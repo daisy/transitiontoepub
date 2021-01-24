@@ -1,6 +1,38 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" xml:lang="en">
 <head>
 <title>Atomic tests for DPUB ARIA</title>
+
+<script src="https://unpkg.com/axe-core@4.1.1/axe.min.js" type="javascript"> </script>
+
+<script type="text/javascript">
+//<![CDATA[
+  document. addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        window.axe
+        .run()
+        .then(results => {
+          console.log(results.violations.length);
+          console.log(results);
+
+          const iframe = document.createElement("iframe");
+          // iframe.setAttribute("seamless", "seamless");
+          iframe.setAttribute("style", "width: 90vw; height: 90vh;");
+          iframe.setAttribute("sandbox", "allow-same-origin allow-scripts");
+
+          const b64 = btoa(JSON.stringify(results));
+          iframe.setAttribute("src", `iframe.html?results=${encodeURIComponent(b64)}`);
+
+          document.body.insertAdjacentElement("afterbegin", iframe);
+        })
+        .catch(err => {
+          console.error(err.message);
+          alert(err.message);
+        });
+      }, 500);
+  });
+//]]>
+</script>
+
 </head>
 <body>
     <h1>DPUS ARIA Test Suite</h1>
