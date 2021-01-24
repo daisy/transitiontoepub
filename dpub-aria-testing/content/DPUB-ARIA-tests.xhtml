@@ -6,28 +6,41 @@
 
 <script type="text/javascript">
   document. addEventListener('DOMContentLoaded', () => {
-      setTimeout(() => {
-        window.axe
-        .run()
-        .then(results => {
-          console.log(results.violations.length);
-          console.log(results);
+      window.axe
+      .run()
+      .then(results => {
+        // console.log(results.violations.length);
+        // console.log(results);
 
-          const iframe = document.createElement("iframe");
-          // iframe.setAttribute("seamless", "seamless");
-          iframe.setAttribute("style", "width: 90vw; height: 90vh;");
-          iframe.setAttribute("sandbox", "allow-same-origin allow-scripts");
+        const iframe = document.createElement("iframe");
+        iframe.setAttribute("style", "width: 98vw; height: 90vh;");
+        // iframe.setAttribute("seamless", "seamless");
+        // iframe.setAttribute("sandbox", "allow-same-origin allow-scripts");
 
-          const b64 = btoa(JSON.stringify(results));
-          iframe.setAttribute("src", `iframe.html?results=${encodeURIComponent(b64)}`);
+        // const b64 = btoa(JSON.stringify(results));
+        // iframe.setAttribute("src", `iframe.html?results=${encodeURIComponent(b64)}`);
+        iframe.setAttribute("src", "iframe.html");
 
-          document.body.insertAdjacentElement("afterbegin", iframe);
-        })
-        .catch(err => {
-          console.error(err.message);
-          alert(err.message);
+        document.body.insertAdjacentElement("afterbegin", iframe);
+
+        if (results.passes) {
+          delete results.passes;
+        }
+        if (results.incomplete) {
+          delete results.incomplete;
+        }
+        if (results.inapplicable) {
+          delete results.inapplicable;
+        }
+
+        iframe.addEventListener('load', () => {
+          iframe.contentWindow.postMessage({ axe: results }, '*');
         });
-      }, 500);
+      })
+      .catch(err => {
+        console.error(err.message);
+        alert(err.message);
+      });
   });
 </script>
 

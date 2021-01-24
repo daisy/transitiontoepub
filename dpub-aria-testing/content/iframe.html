@@ -1,25 +1,146 @@
 <html>
 <head>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretty-print-json@0.4/dist/pretty-print-json.css" />
-<script src="https://cdn.jsdelivr.net/npm/pretty-print-json@0.4/dist/pretty-print-json.min.js"> </script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretty-print-json@0.4/dist/pretty-print-json.css" />
+  <style type="text/css">
+    .json-string {
+      white-space: break-spaces;
+      color: #333333;
+    }
+    pre {
+      font-family:monospace;
+      font-style:normal;
+      font-weight:700;
+      font-size:1.2em;
+      line-height:1.3em;
+      padding: 1em;
+    }
+    ul {
+      list-style-type: none;
+    }
+    body > ul > li:first-child {
+      border-left: 1em solid #333333;
+    }
+    body > ul > li > pre:first-child {
+      background-color:#eee;
+      border-left: 1em solid grey;
+    }
+    body > ul > li:nth-child(odd):not(:first-child) {
+      border-left: 1em solid lime;
+    }
+    body > ul > li:nth-child(even) {
+      border-left: 1em solid cyan;
+    }
+    body > ul > li > ul > li:nth-child(even) > pre {
+      border-bottom: 1px solid blue;
+      border-top: 1px solid blue;
+      border-left: 1em solid blue;
+    }
+    body > ul > li > ul > li:nth-child(odd) > pre {
+      border-bottom: 1px solid magenta;
+      border-top: 1px solid magenta;
+      border-left: 1em solid magenta;
+    }
+    .htmlPre {
+      display: inline-block;
+      vertical-align: top;
+      background-color:#eee;
+      font-size:0.8em;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/pretty-print-json@0.4/dist/pretty-print-json.min.js"> </script>
+  <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', () => {
+      window.addEventListener('message', (evt) => {
+          console.log('window message:', evt.data);
+          if (evt.data.axe) {
+            // const b64 = decodeURIComponent(location.search.replace("?results=", ""));
+            // const results = JSON.parse(atob(b64));
+            const results = evt.data.axe;
+  
+            setTimeout(() => {
+              const jsonViolations = results.violations;
+              if (results.violations) {
+                delete results.violations;
+              }
+              document.body.innerHTML = `
+<ul>
+<li><pre>${prettyPrintJson.toHtml(results, { indent: 4, linkUrls: true, quoteKeys: false })
+  .replace(/<span class=json-string>"(.*)"<\/span>/g, "<span class=json-string>$1</span>")}</pre></li>
+
+${jsonViolations && jsonViolations.length ?
+  jsonViolations.reduce((jsonViolationAccumulator, jsonViolation) => {
+
+  const processNodeProp = (node, k) => {
+    if (node[k] === null) {
+      delete node[k];
+    } else if (Array.isArray(node[k])) {
+      if (!node[k].length) {
+        delete node[k];
+      } else {
+        node[k].forEach((obj) => {
+          if (obj.data === null || Array.isArray(obj.data) && !obj.data.length) {
+            delete obj.data;
+          }
+          if (obj.relatedNodes === null || Array.isArray(obj.relatedNodes) && !obj.relatedNodes.length) {
+            delete obj.relatedNodes;
+          }
+        });
+      }
+    }
+  };
+  const nodes = jsonViolation.nodes;
+  if (jsonViolation.nodes) {
+    delete jsonViolation.nodes;
+  }
+  if (nodes) {
+    nodes.forEach((node) => {
+      processNodeProp(node, "any");
+      processNodeProp(node, "all");
+      processNodeProp(node, "none");
+    });
+  }
+  const nodesHtml = nodes && nodes.length ?
+    `<ul>${nodes.reduce((nodesAccumulator, node) => {
+      const nodeHtml = node.html;
+      const TOKEN = "__AXE_HTML_DAISY_DPUB_ARIA__";
+      if (node.html) {
+        // delete node.html;
+        node.html = TOKEN;
+      }
+      if (node.failureSummary) {
+        node.failureSummary = node.failureSummary.replace(/\n/g, " ");
+      }
+      if (node.target) {
+        node.target.forEach((t, i) => {
+          node.target[i] = t.replace(/"/g, '\'');
+        });
+      }
+      const nodeHtml_ = `<pre class="htmlPre">${nodeHtml.replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/ xmlns="http:\/\/www.w3.org\/1999\/xhtml"/g, "")}</pre>`;
+      const pretty = prettyPrintJson.toHtml(node, { indent: 4, linkUrls: true, quoteKeys: false })
+      .replace(/,/g, "")
+      .replace(`<span class=json-string>"${TOKEN}"</span>`, nodeHtml_)
+      .replace(/<span class=json-string>"(.*)"<\/span>/g, "<span class=json-string>$1</span>");
+      return `${nodesAccumulator}
+<li><pre>${pretty}</pre></li>`;
+}, "")}
+</ul>` :
+    "";
+
+    return `${jsonViolationAccumulator}
+<li><pre>${prettyPrintJson.toHtml(jsonViolation, { indent: 4, linkUrls: true, quoteKeys: false })
+  .replace(/<span class=json-string>"(.*)"<\/span>/g, "<span class=json-string>$1</span>")}</pre>
+${nodesHtml}</li>
+`;
+}, "") :
+"<li>NO AXE VIOLATIONS</li>"}
+</ul>
+`;
+            }, 100);
+          }
+      });
+    });
+  </script>
 </head>
 <body>
-  <script type="text/javascript">
-  document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(() => {
-      const b64 = decodeURIComponent(location.search.replace("?results=", ""));
-
-      const results = JSON.parse(atob(b64));
-      console.log(results);
-
-      const jsonHtml = prettyPrintJson.toHtml(results, {
-        indent: 4,
-        linkUrls: true,
-        quoteKeys: true,
-      });
-      document.body.innerHTML = jsonHtml;
-    }, 500);
-  });
-</script>
 </body>
 </html>
