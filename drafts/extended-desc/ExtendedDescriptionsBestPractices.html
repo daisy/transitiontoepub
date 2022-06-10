@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+	<head>
+		<meta charset="utf-8" />
+        <link href="../css/callout.css" rel="stylesheet" type="text/css"/>
+		<title>Best Practices for Authoring Extended Descriptions in EPUB</title>
+    </head>
+    <body>
+         <h1>Best Practices for Authoring Extended Descriptions in EPUB</h1>
+        
+        <h2>Introduction</h2>
+
+        <p>Images and diagrams are essential for careers in the fields of science, technology, engineering and mathematics. However, these crucial sources of information are not accessible to people with visual disabilities. The <code>alt</code> text attribute is frequently used to provide a summary of an image, but it is not sufficient for describing complex images, like a diagram of a hydraulic valve, or parts of the body like kidneys etc.</p>
+        
+        <p>At this point of time, the most appropriate and cost effective solution for making complex images accessible is extended descriptions. It enables authors and publishers to provide longer descriptions in well-structured text. The good news is that the Html 5 and ARIA specifications already have the features for supporting extended descriptions, but there are implementation challenges in the current state of web browsers, EPUB 3 reading systems and assistive technologies. Therefore we initiated an activity in our  working group for evaluating the implementation shortcomings of different reading environments, and developing the best practices for authoring extended descriptions, which can enable the users to understand the images in a wider range of EPUB reading environments.</p>
+
+        <p>It is possible that the recommendations for EPUB 3 environments provided in this report are a little different from the recommendations for the web environment. Though most of EPUB 3 reading systems use components from web browsers, the reading systems tend to change and sometimes override the web browser functionality, which results in a somewhat different reading experience.</p>
+
+        <p>It is important to highlight that the web browsers, EPUB 3 reading systems and assistive technologies are improving consistently, therefore, the recommendations may become outdated after some months, and another round of evaluations would be required. Furthermore we will make the developers of reading technologies aware of the identified implementation gaps to facilitate quick resolution of the issues.</p>
+
+        <h2>Evaluation Process</h2>
+        
+        <p>Step 1. The following techniques were developed:
+        <ol>
+            <li><code>&lt;aria-details&gt;</code> is used on <code>&lt;img&gt;</code> element, and it is used by the user to move from image to the extended description placed in HTML details element. The image is placed inside figure element and the HTML details element with extended description is placed in figcaption of the figure element.</li>
+            <li><code>&lt;aria-details&gt;</code> is used on <code>&lt;img&gt;</code> element, and it is used by the user to move from image to the HTML details containing the extended description. The HTML details element follows the image in the reading order. In this technique no figure element is used.</li>
+            <li><code>&lt;aria-details&gt;</code> is used on <code>&lt;img&gt;</code> element, and it is used by the user to move from image to the extended description, which is placed at end of current HTML file.</li>
+            <li>Hyperlink on text is used by the user to move to the extended description placed at the end of current HTML file. The expectation is that the hyperlink needs to take you to the exact position on the extended description and the back link should take you back to the original image.</li>
+            <li>Hyperlink on image is used by the user to move to the extended description placed at the end of current HTML file. The expectation is that the hyperlink needs to take you to the exact position on the extended description and the back link should take you back to the original image.</li>
+            <li><code>&lt;aria-describedby&gt;</code> points to an aside in a figcaption.</li>
+            <li><code>&lt;aria-describedby&gt;</code> points to an aside at the end of chapter.</li>
+            <li>Use of role="presentation" on inline image and block image.</li>
+            <li>Expand HTML details containing a long extended description, and evaluate if the reading system adjusts the screen accordingly and provides ease of reading.</li>
+            <li>Collapse HTML details containing a long extended description, and evaluate if the reading system correctly adjusts the screen and pagination.</li>
+            <li>JavaScript is supported and enhancement to HTML details, prefers-reduced-motion media query works.</li>
+            <li>JavaScript is supported  and enhancement to HTML details, pointer media query works.</li>
+            <li>Text hyperlink is used by the user to go to the exact position of the extended description placed on a separate HTML file, and the back links takes you back to the original position in the original file.</li>
+            <li>Text hyperlink is used by the user to go to a separate HTML file with a single extended description. The accuracy of the landing location on the description does not matter, because there is only a single description in the HTML file, but the back link must take you to the original position.</li>
+            <li>Text hyperlink is used by the user to go to a separate HTML file with single extended description. The accuracy of the landing location on the extended description as well as landing location while coming back is relaxed.</li>
+        </ol>
+    
+    <p>Step 2. The techniques were evaluated on Different configurations of reading environments. The following reading systems, operating systems, browsers and assistive technologies combinations were used: </p>
+        <ul>
+            <li>Reading systems: Vital Source bookshelf online, Vital Source bookshelf desktop, Redshelf, Thorium desktop, Azardi, Dolphin Easyreader, Voice Dream, Apple Books and Google Playbooks.</li>
+            <li>Operating systems: Windows 10, Mac 10, iOS and Android.</li>
+            <li>Browsers used for reading systems plugins: Chrome, Firefox, Edge, and Safari.</li>
+            <li>Assistive technologies: JAWS, NVDA, Voiceover and Talkback.</li>
+        </ul>
+
+        <h2>Recommendations</h2>
+        <p>After thorough evaluation, we are able to recommend only two techniques at this point of time. These techniques worked in 14 of 22 reading environments. This does not guarantee very wide support, but these provide a way forward while the web browsers, EPUB reading systems and assistive technologies catch-up.</p>
+
+        <h3>Technique 1: Extended description placed in HTML details element, just below the image, without use of figure or figcaption.</h3>
+        
+        <p><b>Note:</b> If the image needs to be wrapped inside a <code>&lt;figure&gt;</code> element, place the <code>&lt;detail&gt;</code> extended description after the close of the <code>&lt;/figure&gt;</code>.
+        </p>
+        <h4><b>Advantages:</b></h4>
+        <ul>
+            <li>The extended description can be provided just below the image, the next item in the reading order. This means that the user does not need to branch out from the reading flow, and lose their reading position.</li>
+            <li>The details element does not show the description by default, the user needs to expand it to show the description, therefore it does not clutter the page for users who do not need extended descriptions.</li>
+            <li>Good approach for publishers who do not want additional chunks of description text visible on the page.</li>
+        </ul>
+    
+    <h4><b>Disadvantages:</b></h4>
+        <ul>
+            <li>If a publication has a large number of images and extended descriptions, the task of locating the details, and expanding it to read descriptions puts considerable cognitive load, especially on the people with cognitive disabilities.</li>
+            <li>There are EPUB reading systems which do not support HTML details properly, and details element is always expanded. Such a situation clutters the page with a huge amount of text and makes it very difficult for everyone to read the publication.</li>
+            <li>Sometimes publishers need to create pixel perfect pages, and visibility of detail’s elements get in the way of achieving it.</li>
+            <li>If the extended description inside the details element is huge, expanding it may disorient the user, especially when the reading system has paginated view.</li>
+        </ul>
+
+        <div class="simplecalloutbox_preheader">    
+            <h4>Code Example 1</h4>
+        </div>
+        <div class="simplecalloutbox">
+            <pre><code>
+            &lt;img src="chart-ebcaadfb.png" 
+            alt="Bar chart showing monthly and total visitors for the first quarter 2014 for sites 1 to 3"
+            aria-details="image1-extended-desc" /&gt;
+  
+          &lt;details id="image1-extended-desc"&gt;
+              &lt;summary&gt;Expand / collapse Extended Description&lt;/summary&gt;
+              &lt;div&gt;
+                  &lt;h5&gt;Overview&lt;/h5&gt;
+                  &lt;p&gt;The chart shows the website hits for the first quarter of 2014. It shows that Site 1 has more visitors
+                      than either of the other sites, but the number of visitors is decreasing. Site 2 has a fairly constant
+                      number of visitors, while for Site 3 page hits are increasing month on month.&lt;/p&gt;
+                  &lt;h6&gt;Data&lt;/h6&gt;
+                &lt;table&gt;
+                    &lt;tr&gt;
+                        &lt;th scope="col"&gt;Period&lt;/th&gt;
+                        &lt;th scope="col"&gt;Site 1&lt;/th&gt;
+                        &lt;th scope="col"&gt;Site 2&lt;/th&gt;
+                        &lt;th scope="col"&gt;Site 3&lt;/th&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;th scope="row"&gt;Jan&lt;/th&gt;
+                        &lt;td&gt;135&lt;/td&gt;
+                        &lt;td&gt;112&lt;/td&gt;
+                        &lt;td&gt;92&lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;th scope="row"&gt;Feb&lt;/th&gt;
+                        &lt;td&gt;117&lt;/td&gt;
+                        &lt;td&gt;114&lt;/td&gt;
+                        &lt;td&gt;99&lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;th scope="row"&gt;Mar&lt;/th&gt;
+                        &lt;td&gt;96&lt;/td&gt;
+                        &lt;td&gt;111&lt;/td&gt;
+                        &lt;td&gt;126&lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;th scope="row"&gt;Qtr Total&lt;/th&gt;
+                        &lt;td&gt;348&lt;/td&gt;
+                        &lt;td&gt;337&lt;/td&gt;
+                        &lt;td&gt;308&lt;/td&gt;
+                    &lt;/tr&gt;
+                &lt;/table&gt;
+            &lt;h6&gt;Presentation&lt;/h6&gt;
+                  &lt;p&gt;The bar chart represents both the number of visitors per month for each website, and the total number
+                      of visitors per website for the entire quarter. Website visitors for each month are represented using
+                      columns lined up horizontally, with heights indicating the number of visitors. A fourth column is
+                      provided for each website with the accumulated site visitors for the quarter.&lt;/p&gt;
+              &lt;/div&gt;
+          &lt;/details&gt;
+</code></pre>
+
+
+            <div class="simplecalloutbox_preheader">    
+            <h4>Code Example 1 Preview</h4>
+            </div>
+            <div class="simplecalloutbox">
+
+                <img src="chart-ebcaadfb.png" alt="Bar chart showing monthly and total visitors for the first quarter 2014 for sites 1 to 3" aria-details="image1-extended-desc"/>
+
+                <details id="image1-extended-desc">
+                <summary>Expand / collapse Extended Description</summary>
+                <div>
+                  <h5>Overview</h5>
+                  <p>The chart shows the website hits for the first quarter of 2014. It shows that Site 1 has more visitors
+                      than either of the other sites, but the number of visitors is decreasing. Site 2 has a fairly constant
+                      number of visitors, while for Site 3 page hits are increasing month on month.</p>
+                  <h6>Data</h6>
+                <table>
+                    <tr>
+                        <th scope="col">Period</th>
+                        <th scope="col">Site 1</th>
+                        <th scope="col">Site 2</th>
+                        <th scope="col">Site 3</th>
+                    </tr>
+                    <tr>
+                        <th scope="row">Jan</th>
+                        <td>135</td>
+                        <td>112</td>
+                        <td>92</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Feb</th>
+                        <td>117</td>
+                        <td>114</td>
+                        <td>99</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Mar</th>
+                        <td>96</td>
+                        <td>111</td>
+                        <td>126</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Qtr Total</th>
+                        <td>348</td>
+                        <td>337</td>
+                        <td>308</td>
+                    </tr>
+                </table>
+            <h6>Presentation</h6>
+                  <p>The bar chart represents both the number of visitors per month for each website, and the total number
+                      of visitors per website for the entire quarter. Website visitors for each month are represented using
+                      columns lined up horizontally, with heights indicating the number of visitors. A fourth column is
+                      provided for each website with the accumulated site visitors for the quarter.</p>
+              </div>
+          </details>
+            </div>
+        </div>
+        
+        <h3>Technique 2: Provide a text hyperlink just below the image, which takes the user to a separate HTML file containing only one extended description, and provide a text hyperlink to return back to original reading position.</h3>
+            <p>This technique looks simple, but it is worth mentioning that all reading system environments are not able to land the reading cursor at the exact location on the destination HTML file. Therefore, to avoid landing at the incorrect extended description, it is important to have only one extended description in an HTML file.</p>
+        <h4><b>Advantages:</b></h4>
+        <ul>
+            <li>Simple old technique, authors and publishers are already familiar with it.</li>
+            <li>Complexities due to collapsing and expanding are avoided, and originality of the page is maintained to a great extent.</li>
+            <li>Almost all the EPUB reading systems support the hyperlinks, however navigation to exact location in the destination HTML file may not be supported so well.</li>
+        </ul>
+    <h4><b>Disadvantages:</b></h4>
+
+        <ul>
+            <li>Results in branching from the reading flow and sometimes the reading position is also lost.</li>
+            <li>The inaccuracy of the landing position on the extended description does not matter because there is just one extended description on the HTML file, but accuracy of linking back to original reading position does matter, and some reading systems fail to provide this accuracy.</li>
+            <li>Having only one extended description on an HTML page can create some production challenges for a publication having a large number of complex images to describe.</li>
+        </ul>
+
+        <div class="simplecalloutbox_preheader">    
+            <h4>Code Example 2</h4>
+        </div>
+        <div class="simplecalloutbox">
+
+            <pre>
+            <code>
+            &lt;p&gt;Image with hyperlink pointing to the extended description. The following example uses figure and figcaption elements, but the technique can also be used without these elements.&lt;/p&gt;
+
+        &lt;figure id="image3"&gt;
+       &lt;img src="chart-ebcaadfb.png" 
+       alt="Bar chart showing monthly and total visitors for the first quarter 2014 for sites 1 to 3"/&gt;
+       &lt;figcaption&gt;Example.com Site visitors Jan to March 2014&lt;/figcaption&gt;
+   &lt;/figure&gt;
+   &lt;a id="image3-link" href="./endOfBookDescriptionsSingle.xhtml#image3-extended-desc"&gt;Follow for extended description&lt;/a&gt;
+   </code>
+   </pre>
+
+            <p>Extended description on a separate HTML file. It also shows smaller image for convenience of the users</p>
+
+
+            <pre><code>
+    &lt;div id="image3-extended-desc" class="endDesc" aria-labelledby="barchart-desc"&gt;
+    &lt;h5 id="barchart-desc"&gt;Description of Bar Chart&lt;/h5&gt;
+    &lt;img src="chart-ebcaadfb.png" alt="" role="presentation"/&gt;
+    &lt;div&gt;
+        &lt;h6&gt;Overview&lt;/h6&gt;
+        &lt;p&gt;The chart shows the website hits for the first quarter of 2014. It shows that Site 1 has more visitors than either
+            of the other sites, but the number of visitors is decreasing. Site 2 has a fairly constant number of visitors,
+            while for Site 3 page hits are increasing month on month.&lt;/p&gt;
+        &lt;h6&gt;Data&lt;/h6&gt;
+                &lt;table&gt;
+                    &lt;tr&gt;
+                        &lt;th scope="col"&gt;Period&lt;/th&gt;
+                        &lt;th scope="col"&gt;Site 1&lt;/th&gt;
+                        &lt;th scope="col"&gt;Site 2&lt;/th&gt;
+                        &lt;th scope="col"&gt;Site 3&lt;/th&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;th scope="row"&gt;Jan&lt;/th&gt;
+                        &lt;td&gt;135&lt;/td&gt;
+                        &lt;td&gt;112&lt;/td&gt;
+                        &lt;td&gt;92&lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;th scope="row"&gt;Feb&lt;/th&gt;
+                        &lt;td&gt;117&lt;/td&gt;
+                        &lt;td&gt;114&lt;/td&gt;
+                        &lt;td&gt;99&lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;th scope="row"&gt;Mar&lt;/th&gt;
+                        &lt;td&gt;96&lt;/td&gt;
+                        &lt;td&gt;111&lt;/td&gt;
+                        &lt;td&gt;126&lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;th scope="row"&gt;Qtr Total&lt;/th&gt;
+                        &lt;td&gt;348&lt;/td&gt;
+                        &lt;td&gt;337&lt;/td&gt;
+                        &lt;td&gt;308&lt;/td&gt;
+                    &lt;/tr&gt;
+                &lt;/table&gt;
+        &lt;h6&gt;Presentation&lt;/h6&gt;
+        &lt;p&gt;The bar chart represents both the number of visitors per month for each website, and the total number of visitors
+            per website for the entire quarter. Website visitors for each month are represented using columns lined up
+            horizontally, with heights indicating the number of visitors. A fourth column is provided for each website
+            with the accumulated site visitors for the quarter.&lt;/p&gt;
+        &lt;p&gt;
+            &lt;a id="Image3DetailsBackLink" href="./testDetailsEndOfBookSingle.xhtml#image3-link"&gt;Navigate back to bar chart image.&lt;/a&gt;
+        &lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+</code>
+</pre>
+
+<div class="simplecalloutbox_preheader">    
+<h4>Code Example 2 Preview</h4>
+</div>
+<div class="simplecalloutbox">
+     <figure id="image3">
+        <img src="chart-ebcaadfb.png" alt="Bar chart showing monthly and total visitors for the first quarter 2014 for sites 1 to 3" />
+        <figcaption>Example.com Site visitors Jan to March 2014</figcaption>
+    </figure>
+    <a id="image3-link" href="./endofbookdescriptionssingle.html#image3-extended-desc">Follow for extended description</a>
+</div>
+</div>
+
+<hr/>
+<p>
+Updated: 06/10/2022
+</p>
+  
+    </body>
+</html>
