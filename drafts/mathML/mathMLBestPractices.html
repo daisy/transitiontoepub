@@ -108,6 +108,8 @@
         <h2>Analysis and Recommendations</h2>
         <p>Based on test results and future prospects, the following techniques are recommended as interim solution.</p>
         
+        <p>Based on test results it is recommended not to use global namespacing for MathML, i.e. not using m: prefix namespace within the <code>&lt;html&gt;</code> element.  Instead it is recommended that for each mathML equation to add the local namespace <code>xmlns="http://www.w3.org/1998/Math/MathML"</code> within the <code>&lt;math&gt;</code> element itself.</p>
+        
         <h3>Technique 1: Native MathML</h3>
         <p>Right now native MathML is supported by 7 of the tested 25 reading combinations. But looking at the future prospects, this would be the best way forward.</p>
 
