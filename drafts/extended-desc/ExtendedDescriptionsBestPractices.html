@@ -12,21 +12,20 @@
 
         <p>Images and diagrams are essential for careers in the fields of science, technology, engineering and mathematics. However, these crucial sources of information are not accessible to people with visual disabilities. The <code>alt</code> text attribute is frequently used to provide a summary of an image, but it is not sufficient for describing complex images, like a diagram of a hydraulic valve, or parts of the body like kidneys etc.</p>
         
-        <p>At this point of time, the most appropriate and cost effective solution for making complex images accessible is extended descriptions. It enables authors and publishers to provide longer descriptions in well-structured text. The good news is that the Html 5 and ARIA specifications already have the features for supporting extended descriptions, but there are implementation challenges in the current state of web browsers, EPUB 3 reading systems and assistive technologies. Therefore we initiated an activity in our  working group for evaluating the implementation shortcomings of different reading environments, and developing the best practices for authoring extended descriptions, which can enable the users to understand the images in a wider range of EPUB reading environments.</p>
+        <p>At this point of time, the most appropriate and cost effective solution for making complex images accessible is the use of extended descriptions. It enables authors and publishers to provide longer descriptions in well-structured text. The good news is that the Html 5 and ARIA specifications already have the features for supporting extended descriptions, but there are implementation challenges in the current state of web browsers, EPUB 3 reading systems and assistive technologies. Therefore we initiated an activity in our  working group for evaluating the implementation shortcomings of different reading environments, and developing the best practices for authoring extended descriptions, which enables the users to understand the images in a wider range of EPUB reading environments.</p>
 
         <p>It is possible that the recommendations for EPUB 3 environments provided in this report are a little different from the recommendations for the web environment. Though most of EPUB 3 reading systems use components from web browsers, the reading systems tend to change and sometimes override the web browser functionality, which results in a somewhat different reading experience.</p>
 
-        <p>It is important to highlight that the web browsers, EPUB 3 reading systems and assistive technologies are improving consistently, therefore, the recommendations may become outdated after some months, and another round of evaluations would be required. Furthermore we will make the developers of reading technologies aware of the identified implementation gaps to facilitate quick resolution of the issues.</p>
+        <p>It is important to highlight that the web browsers, EPUB 3 reading systems and assistive technologies are constantly improving, therefore, the recommendations may become outdated, and another round of evaluations would be required. Furthermore we will make the developers of reading technologies aware of the identified implementation gaps to facilitate resolution of the issues.</p>
 
         <h2>Evaluation Process</h2>
         
         <p>Step 1. The following techniques were developed:
         <ol>
-            <li><code>&lt;aria-details&gt;</code> is used on <code>&lt;img&gt;</code> element, and it is used by the user to move from image to the extended description placed in HTML details element. The image is placed inside figure element and the HTML details element with extended description is placed in figcaption of the figure element.</li>
+            <li><code>&lt;aria-details&gt;</code> is used on <code>&lt;img&gt;</code> element, and it is used by the user to move from image to the extended description placed in HTML details element. The image is placed inside figure element and the HTML details element with extended description is placed before the figcaption of the figure element.</li>
             <li><code>&lt;aria-details&gt;</code> is used on <code>&lt;img&gt;</code> element, and it is used by the user to move from image to the HTML details containing the extended description. The HTML details element follows the image in the reading order. In this technique no figure element is used.</li>
             <li><code>&lt;aria-details&gt;</code> is used on <code>&lt;img&gt;</code> element, and it is used by the user to move from image to the extended description, which is placed at end of current HTML file.</li>
             <li>Hyperlink on text is used by the user to move to the extended description placed at the end of current HTML file. The expectation is that the hyperlink needs to take you to the exact position on the extended description and the back link should take you back to the original image.</li>
-            <li>Hyperlink on image is used by the user to move to the extended description placed at the end of current HTML file. The expectation is that the hyperlink needs to take you to the exact position on the extended description and the back link should take you back to the original image.</li>
             <li><code>&lt;aria-describedby&gt;</code> points to an aside in a figcaption.</li>
             <li><code>&lt;aria-describedby&gt;</code> points to an aside at the end of chapter.</li>
             <li>Use of role="presentation" on inline image and block image.</li>
@@ -42,7 +41,7 @@
     <p>Step 2. The techniques were evaluated on Different configurations of reading environments. The following reading systems, operating systems, browsers and assistive technologies combinations were used: </p>
         <ul>
             <li>Reading systems: Vital Source bookshelf online, Vital Source bookshelf desktop, Redshelf, Thorium desktop, Azardi, Dolphin Easyreader, Voice Dream, Apple Books and Google Playbooks.</li>
-            <li>Operating systems: Windows 10, Mac 10, iOS and Android.</li>
+            <li>Operating systems: Windows 10 and 11, Mac 10, iOS and Android.</li>
             <li>Browsers used for reading systems plugins: Chrome, Firefox, Edge, and Safari.</li>
             <li>Assistive technologies: JAWS, NVDA, Voiceover and Talkback.</li>
         </ul>
@@ -51,15 +50,15 @@
         
         <p>After thorough evaluation, we are able to recommend three techniques at this point of time. These techniques worked in 14 of 22 reading environments. This does not guarantee very wide support, but these provide a way forward while the web browsers, EPUB reading systems and assistive technologies catch-up.</p>
         
-        <p>It is also recommended to include <code>&lt;aria-details&gt;</code> on the image which informs assistive technology that in addition to the alt text simple description there is also an associated extended description which it refers to.</p>
+        <p>It is also recommended to include <code>&lt;aria-details&gt;</code> on the image which informs assistive technology that in addition to the alt text simple description there is also an associated extended description which the <code>aria-details</code>refers to.</p>
 
         <h3>Technique 1: Extended description placed in HTML details element, just below the image</h3>
         
         <h4><b>Advantages:</b></h4>
         <ul>
-            <li>The extended description can be provided just below the image, the next item in the reading order. This means that the user does not need to branch out from the reading flow, and lose their reading position.</li>
+            <li>The extended description is provided just below the image, the next item in the reading order. This means that the user does not need to change from the reading flow, and lose their reading position.</li>
             <li>The details element does not show the description by default, the user needs to expand it to show the description, therefore it does not clutter the page for users who do not need extended descriptions.</li>
-            <li>Good approach for publishers who do not want additional chunks of description text visible on the page.</li>
+            <li>It is a good approach for publishers who do not want additional portions of description text visible on the page.</li>
         </ul>
     
     <h4><b>Disadvantages:</b></h4>
@@ -188,13 +187,13 @@
         
         <h3>Technique 2: Provide a text hyperlink just below the image, which takes the user to a separate HTML file containing only one extended description, and provide a text hyperlink to return back to original reading position.</h3>
         
-            <p>This technique looks simple, but it is worth mentioning that all reading system environments are not able to land the reading cursor at the exact location on the destination HTML file. Therefore, to avoid landing at the incorrect extended description, it is important to have only one extended description in an HTML file.</p>
+            <p>This technique looks simple, but it is worth mentioning that all reading system environments are not able to land the reading cursor at the exact location on the destination HTML file. Therefore, to avoid landing at the incorrect extended description, it is important to have only one extended description in the HTML file.</p>
         
         <h4><b>Advantages:</b></h4>
         <ul>
             <li>Simple technique, authors and publishers are already familiar with it.</li>
-            <li>Complexities due to collapsing and expanding are avoided, and originality of the page is maintained to a great extent.</li>
-            <li>Almost all the EPUB reading systems support the hyperlinks, however navigation to exact location in the destination HTML file may not be supported so well.</li>
+            <li>Complexities due to collapsing and expanding are avoided, and fidelity of the page is maintained to a great extent.</li>
+            <li>Almost all the EPUB reading systems support the hyperlinks, however navigation to exact location in the destination HTML file may not be supported as well.</li>
         </ul>
     <h4><b>Disadvantages:</b></h4>
 
@@ -294,12 +293,12 @@
 
         <h3>Technique 3: Encapsulating either Techniques 1 or 2 within a <code>figure</code></h3>
         
-            <p>This technique simply encapsulate either technique within a <code>figure</code> element.</p>
+            <p>This technique simply encapsulates either technique within a <code>figure</code> element.</p>
             
             <p>Note: when adding a <code>figcaption</code> it is important that this be placed either before the first image or after the last image within the <code>figure</code>.  I.E.: either immediately after
             the <code>&lt;figure&gt;</code> tag or immediately before the end <code>&lt;/figure&gt;</code> tag.</p>
            
-            <p>Note: when adding multiple images within a single <code>&lt;figure&gt;</code> there can be only one <code>&lt;figcaption&gt;</code> either at the top or bottom and each image should have its extended description <code>&lt;details&gt;</code> or link to the extended description immediately after the image.</p>
+            <p>Note: when adding multiple images within a single <code>&lt;figure&gt;</code> there can be only one <code>&lt;figcaption&gt;</code> either at the top or bottom and each image should have its extended description <code>&lt;details&gt;</code> or link to the extended description immediately after the image. Note that when the images relate to each other, it may be best to have a single extended description after the final image that describes the images and their relationship.</p>
         
         <h4><b>Advantages:</b></h4>
         <ul>
@@ -310,7 +309,7 @@
  
         <h4><b>Disadvantages:</b></h4>
         <ul>
-            <li>If no <code>&lt;figcaption&gt;</code> is needed, there is added complexity of using the <code>&lt;figure&gt;</code> stucture, and the potential additional text spoken to assistive technology</li>
+            <li>If no <code>&lt;figcaption&gt;</code> is needed, there is added complexity of using the <code>&lt;figure&gt;</code> structure, and the potential for additional text spoken to assistive technology</li>
         </ul>
          
         <div class="simplecalloutbox_preheader">    
