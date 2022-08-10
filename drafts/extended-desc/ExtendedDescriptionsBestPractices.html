@@ -8,7 +8,7 @@
     <body>
          <h1>Best Practices for Authoring Extended Descriptions in EPUB</h1>
 
-        <p>Updated: 08/09/2022</p>
+        <p>Updated: 08/10/2022</p>
         
         <h2>Introduction</h2>
 
@@ -190,12 +190,16 @@
         <h3>Technique 2: Provide a text hyperlink just below the image, which takes the user to a separate HTML file containing only one extended description, and provide a text hyperlink to return back to original reading position.</h3>
         
             <p>This technique looks simple, but it is worth mentioning that all reading system environments are not able to land the reading cursor at the exact location on the destination HTML file. Therefore, to avoid landing at the incorrect extended description, it is important to have only one extended description in the HTML file.</p>
+            
+            <p>It is also recommended that on the separate page which has the extended description there should also be a copy of the same image marked as presentational.  This would be useful for those who can see the image and may need to reference the image along with its extended description.</p>
         
         <h4><b>Advantages:</b></h4>
         <ul>
             <li>Simple technique, authors and publishers are already familiar with it.</li>
             <li>Complexities due to collapsing and expanding are avoided, and fidelity of the page is maintained to a great extent.</li>
             <li>Almost all the EPUB reading systems support the hyperlinks, however navigation to exact location in the destination HTML file may not be supported as well.</li>
+            <li>Including a copy of the original image can help cognative users with understanding the extended description in context with the image on the same page.</li>
+            <li>Making the copy of the image presentational, instead of repeating the alt text from the original image in the EPUB, prevents the same alt text description from being spoken twice to the screen reader user.  Also, since the extended description fully describes the image in question no alt text is required here.</li>
         </ul>
     <h4><b>Disadvantages:</b></h4>
 
