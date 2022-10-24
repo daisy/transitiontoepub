@@ -3,85 +3,108 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>Best Practices for Authoring MathML in EPUB</title>
-        <link href="../css/callout.css" rel="stylesheet" type="text/css"/>
-        <script id="MathJax-script" async
-  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
-</script>
-
-<script>
-    MathJax = {
-      loader: {load: ['a11y/explorer']},
-      options: {
-        a11y: {
-          speech: true,
-          speechRules: 'clearspeak-default',
-          subtitles: true
-        },
-        menuOptions: {
-          settings: {
-            explorer: true
-          }
-        },
-        renderActions: {
-          addMenu: [],
-          checkLoad: [],
-          assistiveMml: [],
-          setExplorerValues: [199,
-            (doc) => {for (const math of doc.math) {MathJax.config.setExplorer(math, doc)}},
-            (math, doc) => MathJax.config.setExplorer(math, doc)
-          ]
-        }
-      },
-      currentMathFocus: null,
-      setExplorer(math, doc) {
-        math.typesetRoot.addEventListener('mousedown', function() {
-          let event = new KeyboardEvent("keydown", {
-            code: 13,
-            key: 13,
-            keyCode: 13,
-            charCode: 13,
-            which: 13,
-            bubbles: true
-          });
-          let focus = new FocusEvent('focusout');
-          if (MathJax.config.currentMathFocus) {
-            MathJax.config.currentMathFocus.dispatchEvent(focus);
-          }
-          focus = new FocusEvent('focusin');
-          math.typesetRoot.dispatchEvent(focus);
-          math.typesetRoot.dispatchEvent(event);
-        });
-        math.typesetRoot.addEventListener('focusin', function () {
-          
-          const braille = this.parentNode.id === 'braille';
-
-          MathJax.config.currentMathFocus = this;
-          const pool = doc.menu.menu.variablePool;
-          pool.lookup('braille').setValue(braille);
-          pool.lookup('viewBraille').setValue(braille);
-          pool.lookup('speech').setValue(!braille);
-        });
-      }
-    };
-    </script>
-
-        
-    </head>
+		<script src="https://www.w3.org/Tools/respec/respec-w3c" class="remove"></script>
+		<script class="remove">
+			//<![CDATA[
+			var respecConfig = {
+				shortName: 'mathML',
+				specStatus: 'base',
+				latestVersion: 'https://inclusivepublishing.org/mathMLBestPractices',
+				edDraftURI: null,
+				editors: [
+					{
+						name: 'Charles Lapierre',
+						company: 'Benetech'
+					}
+				],
+				logos: [
+					{
+						src: 'https://mattgarrish.github.io/transitiontoepub/daisy_high.jpg',
+						width: 100,
+						height: 100,
+						alt: 'DAISY logo',
+						url: 'https://daisy.org'
+					}
+				],
+				github: 'DAISY/transitiontoepub'
+			};
+			// ]]>
+		</script>
+		<script>
+		    MathJax = {
+		      loader: {load: ['a11y/explorer']},
+		      options: {
+		        a11y: {
+		          speech: true,
+		          speechRules: 'clearspeak-default',
+		          subtitles: true
+		        },
+		        menuOptions: {
+		          settings: {
+		            explorer: true
+		          }
+		        },
+		        renderActions: {
+		          addMenu: [],
+		          checkLoad: [],
+		          assistiveMml: [],
+		          setExplorerValues: [199,
+		            (doc) => {for (const math of doc.math) {MathJax.config.setExplorer(math, doc)}},
+		            (math, doc) => MathJax.config.setExplorer(math, doc)
+		          ]
+		        }
+		      },
+		      currentMathFocus: null,
+		      setExplorer(math, doc) {
+		        math.typesetRoot.addEventListener('mousedown', function() {
+		          let event = new KeyboardEvent("keydown", {
+		            code: 13,
+		            key: 13,
+		            keyCode: 13,
+		            charCode: 13,
+		            which: 13,
+		            bubbles: true
+		          });
+		          let focus = new FocusEvent('focusout');
+		          if (MathJax.config.currentMathFocus) {
+		            MathJax.config.currentMathFocus.dispatchEvent(focus);
+		          }
+		          focus = new FocusEvent('focusin');
+		          math.typesetRoot.dispatchEvent(focus);
+		          math.typesetRoot.dispatchEvent(event);
+		        });
+		        math.typesetRoot.addEventListener('focusin', function () {
+		          
+		          const braille = this.parentNode.id === 'braille';
+		
+		          MathJax.config.currentMathFocus = this;
+		          const pool = doc.menu.menu.variablePool;
+		          pool.lookup('braille').setValue(braille);
+		          pool.lookup('viewBraille').setValue(braille);
+		          pool.lookup('speech').setValue(!braille);
+		        });
+		      }
+		    };
+		</script>
+		<link href="../css/callout.css" rel="stylesheet" type="text/css"/>
+		<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+	</head>
     <body>
-        
-        <h1>Best Practices for Authoring MathML in EPUB</h1>
-        <p>Updated: October 11, 2022</p>    
+    	<p class="copyright">&copy; DAISY Consortium 2022</p>
+    	
+    	<section id="abstract" hidden="" class="notoc"></section>
 
         <h2>Introduction</h2>
-            <p>MathML has been around for many years, but the support for MathML in web browsers and EBook reading systems was suboptimal. On the other hand reading Math is essential for students with disabilities for making progress in the field of science, technology, engineering and mathematics.</p>
-        
-            <p>Therefore we initialized a working group for developing the best practices for MathML which could enable users to read Math in wider range of EPUB reading environments. The working group came up with wide range of techniques and evaluated the reading experience in different combination of EPUB reading systems, operating systems, browsers and assistive technologies. Which was followed by selection of most widely supported techniques.</p>
+    	
+        <p>MathML has been around for many years, but the support for MathML in web browsers and EBook reading systems was suboptimal. On the other hand reading Math is essential for students with disabilities for making progress in the field of science, technology, engineering and mathematics.</p>
+    
+        <p>Therefore we initialized a working group for developing the best practices for MathML which could enable users to read Math in wider range of EPUB reading environments. The working group came up with wide range of techniques and evaluated the reading experience in different combination of EPUB reading systems, operating systems, browsers and assistive technologies. Which was followed by selection of most widely supported techniques.</p>
 
-            <p>It is possible that the recommendations for EPUB 3 environments provided in this report are a little different from the recommendations for the web environment. Though most of EPUB 3 reading systems use components from web browsers, the reading systems tend to change and sometimes override the web browser functionality, which results in a somewhat different reading experience.</p>
+        <p>It is possible that the recommendations for EPUB 3 environments provided in this report are a little different from the recommendations for the web environment. Though most of EPUB 3 reading systems use components from web browsers, the reading systems tend to change and sometimes override the web browser functionality, which results in a somewhat different reading experience.</p>
 
-            <p>It is important to highlight that reading systems, the underlying browsers of reading systems, and assistive technologies are making rapid progress in supporting MathML. In the next 6 to 12 months, we expect revolutionary positive change in the MathML reading experience. Therefore, it is possible that the recommendations in this report become out of date very soon. Due to this reason we are providing interim recommendations at this time. The readers of this report should consider the recommendations as temporary or interim; the reading environments will be tested again after some months for providing future recommendations.</p>
-        
-            <p>Additionally, the mere inclusion of presentational MathML does not guarantee that it will be fully accessible. We will be looking into providing accessible authoring recommendations for MathML in the future.</p>
+        <p>It is important to highlight that reading systems, the underlying browsers of reading systems, and assistive technologies are making rapid progress in supporting MathML. In the next 6 to 12 months, we expect revolutionary positive change in the MathML reading experience. Therefore, it is possible that the recommendations in this report become out of date very soon. Due to this reason we are providing interim recommendations at this time. The readers of this report should consider the recommendations as temporary or interim; the reading environments will be tested again after some months for providing future recommendations.</p>
+    
+        <p>Additionally, the mere inclusion of presentational MathML does not guarantee that it will be fully accessible. We will be looking into providing accessible authoring recommendations for MathML in the future.</p>
         
         <h2>Evaluation Process</h2>
         
