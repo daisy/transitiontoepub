@@ -2,14 +2,41 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
 	<head>
 		<meta charset="utf-8" />
-        <link href="../css/callout.css" rel="stylesheet" type="text/css"/>
 		<title>Best Practices for Authoring Extended Descriptions in EPUB</title>
+		<script src="https://www.w3.org/Tools/respec/respec-w3c" class="remove"></script>
+		<script class="remove">
+			//<![CDATA[
+			var respecConfig = {
+				shortName: 'extended-desc',
+				specStatus: 'base',
+				latestVersion: 'https://inclusivepublishing.org/ExtendedDescriptionsBestPractices',
+				edDraftURI: null,
+				editors: [
+					{
+						name: 'Charles Lapierre',
+						company: 'Benetech'
+					}
+				],
+				logos: [
+					{
+						src: '/transitiontoepub/daisy_high.jpg',
+						width: 100,
+						height: 100,
+						alt: 'DAISY logo',
+						url: 'https://daisy.org'
+					}
+				],
+				github: 'DAISY/transitiontoepub'
+			};
+			// ]]>
+		</script>
+        <link href="../css/callout.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-         <h1>Best Practices for Authoring Extended Descriptions in EPUB</h1>
-
-        <p>Updated: October 11, 2022</p>
-        
+    	<p class="copyright">Copyright &#169; DAISY Consortium 2022</p>
+    	
+    	<section id="abstract" hidden="" class="notoc"></section>
+    	
         <h2>Introduction</h2>
 
         <p>Images and diagrams are essential for careers in the fields of science, technology, engineering and mathematics. However, these crucial sources of information are not accessible to people with visual disabilities. The <code>alt</code> text attribute is frequently used to provide a summary of an image, but it is not sufficient for describing complex images, like a diagram of a hydraulic valve, or parts of the body like kidneys etc.</p>
