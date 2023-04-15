@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+	<head>
+		<meta charset="utf-8" />
+		<title>Position
+Statement: When to use math Represented as plain Text or Images of Math
+Instead of MathML</title>
+		<script src="https://www.w3.org/Tools/respec/respec-w3c" class="remove"></script>
+		<script class="remove">
+			//<![CDATA[
+			var respecConfig = {
+				shortName: 'plain-text-math',
+				specStatus: 'base',
+				latestVersion: 'https://TBD',
+				edDraftURI: null,
+				editors: [
+					{
+						name: 'George Kerscher',
+						company: 'DAISY Consortium'
+					}
+				],
+				logos: [
+					{
+						src: '/transitiontoepub/daisy_high.jpg',
+						width: 112,
+						height: 100,
+						alt: 'DAISY Consortium logo',
+						url: 'https://daisy.org'
+					}
+				],
+				github: 'DAISY/transitiontoepub'
+			};
+			// ]]>
+		</script>
+	</head>
+	<body>
+		<p class="copyright">Copyright &#169; DAISY Consortium 2023</p>
+		
+		<section id="abstract" hidden="" class="notoc"></section>
+	<h1
+      id="position-statement-when-to-use-math-represented-as-plain-text-or-images-of-math-instead-of-mathml">Position
+Statement: When to use math Represented as plain Text or Images of Math
+Instead of MathML</h1>
+<p>Last Updated: April 14, 2022,</p>
+<h2
+      id="introduction">Introduction</h2>
+<p>The question often arises, “If there is a simple mathematical
+expression occurring in what is basically text, is it OK to just use
+plain text (sometimes called ASCII) for the math?” Similarly, people
+ask, is it OK to produce a mathematical expression as an image, and
+include the Alt text as math in plain text? Currently, many publications
+take this approach, but our position is that we would like to see the
+day where MathML is the only acceptable encoding of mathematical
+content. We do recognize that it can be simpler for authors to enter
+math as plain text, and we understand that there can be a learning curve
+associated with encoding the math as MathML. However, we are looking
+forward to the day when only using MathML for formally published
+materials becomes the recommended best practice.</p>
+<h2
+      id="explanation-of-why-mathml-is-always-preferred">Explanation of
+Why MathML is Always Preferred</h2>
+<p>Let us start simple. Consider the expression 10 – 7 = 3. This is
+simple enough that many people would type these plain text characters
+instead of using a math editor that generates MathML. However:</p>
+<ol
+      type="1">
+<li><p>The MathML provides the semantics that this is mathematics and
+not just text.</p></li>
+<li><p>If a screen reader is being used by a blind person, it would say,
+“ten dash seven equals three.” The blind reader would need to figure out
+that the dash is really a minus sign. In this case it is easy to figure
+it out, but there are many times when it can be very confusing.
+Understanding if something is a negative number is one example.</p></li>
+<li><p>Depending on the level of punctuation spoken by a screen reader,
+the dash may not be spoken at all. Hence you get, “ten seven equals
+three”.</p></li>
+<li><p>Using a “read aloud” feature, you may get “ten to seven equals
+three”.</p></li>
+<li><p>Many people use “read aloud” to have documents read to them. The
+Text-To-Speech (TTS) engine processes the text strings, and again will
+say dash instead of minus, causing confusion in the
+presentation.</p></li>
+<li><p>People who use refreshable braille will have inaccurate
+information presented to them. Nemeth math and UEB math braille use
+different codes for mathematical information.</p></li>
+<li><p>The plain text will have inappropriate typographical
+presentation, but when using MathML it will be typographically presented
+as mathematics.</p></li>
+</ol><h2
+      id="what-about-when-numbers-are-in-text">What about When
+Numbers are in Text</h2>
+<p>“The man is 65 years old,” is an example of when numbers appear in
+text. Do not use MathML for these kinds of situations. In a mathematics
+textbook, you will certainly encounter word problems. Here too, the word
+problem should use plain text numbers and not MathML. Things like phone
+numbers, zip codes, numbers in an address, etc. should all be
+represented as plain text.</p>
+<p>When you have a mathematical expression, and it is followed by a
+paragraph that is referring to that expression, the item you are
+referencing in the mathematical expression that uses MathML should also
+use MathML. A Greek letter, symbol, or any part from the expression
+should be set as MathML, and the symbol in the paragraph should also be
+in MathML. The typographical characteristics will match e.g., font and
+appearance of the symbol will be identical, and Assistive Technology
+would present the symbol in the same way in both places.</p>
+<h2
+      id="opportunities-using-mathml.">Opportunities using MathML.</h2>
+<p>Tools exist today that can do marvelous things! For example, MathCAT:
+Math Capable Assistive Technology <a
+        href="https://nsoiffer.github.io/MathCAT/"><span
+          class="textcolor_0563C1">https://nsoiffer.github.io/MathCAT/</span></a></p>
+<p>When reading math, you need to intellectually process the information
+differently than plain text. Most people slow down as they process the
+math. If the content is in MathML versus an image or as ASCII (plain
+text), a few things that can be done are:</p>
+<p>1. Change the speaking rate of a screen reader or read aloud feature.
+This rate should be configurable by the end user. This is an important
+personal preference.</p>
+<p>2. Change the speaking rules. Depending on the context, the way math
+is read should be another personal preference. For example, “A squared”
+may be preferred over “A to the power of two”.</p>
+<p>3. Pauses between elements of expressions help make the math more
+understandable, and again is a personal preference. The duration of the
+pause should be selectable.</p>
+<p>4. If a person using refreshable braille encounters MathML, it is
+converted to correct mathematical notation for braille instead of text.
+The braille reader should also be able to choose from Nemeth code or
+Unified English Braille (UEB).</p>
+ <h2
+      id="mathml-widely-supported">MathML Widely Supported </h2>
+<p>MathML is widely used on the Web, and MathJax has been used in
+browsers to provide the visual rendering where it was not supported
+natively. However, this is changing for the better!</p>
+<p>Before the introduction of MathML support in Chromium, used by the
+Chrome and Edge browsers, the practice of providing an image of math
+with the Alt text being the ASCII presentation of the math was common.
+Now that MathML is natively supported in Safari, FireFox, Chrome, and
+Edge, the use of MathML is always preferred.</p>
+<p>EPUB Reading Systems will commonly use the rendering engine of a web
+browser. Testing will take place in early 2023 to determine the support
+of MathML. This will be reported on epubtest.org.</p>
+</body>
+</html>
