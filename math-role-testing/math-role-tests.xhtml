@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" xml:lang="en" lang="en">
+	<head>
+		<title>Tests for ARIA Math Role</title>
+		<style>p.formula {
+				text-align: center;
+			}
+			math {
+				display:block math;
+			}</style>
+	</head>
+	<body>
+		<h1>Tests for ARIA Math Role</h1>
+		<h2>Introduction</h2>
+		<p>
+			We developed these tests to try to use the ARIA
+			<code>math</code>
+			role to identify inline mathematical formulas written in pure UTF-8 coding and test how assistive technologies interpret the formulas so encoded. The hope is that assistive technologies will read all mathematical symbols so that the user can fully understand the content.
+		</p>
+		<p>
+			The ability to use the ARIA
+			<code>math</code>
+			role for inline formulas can be very useful for content producers (e.g., scholastic textbooks) where there is often an alternation of inline mathematical elements within paragraphs of text and block formulas; for this type of publishing product, using MathML for inline formulas is time-consuming and can create formatting problems (e.g., line height being different from the rest of the paragraph text); these content producers often write the inline formulas as simple UTF8 text formatted graphically in italic; the problem is that assistive technologies normally do not read mathematical symbols (such as +, -, ⋅, etc.) thus rendering partial content to the user who enjoys the content via assistive technologies.
+		</p>
+		<p>
+			If assistive technologies read all symbols when content is tagged with the ARIA
+			<code>math</code>
+			role, we would have a win-win situation: on the one hand, content producers could continue to write inline formulas as plain text (and tag it with the appropriate role), and on the other hand, users using assistive technologies could fully enjoy the content.
+		</p>
+		<h2>Tests</h2>
+		<p>
+			To create the tests we started from the examples in the GitHub repository
+			<a href="https://github.com/fKunstner/latex-to-utf8">fKunstner/latex-to-utf8</a>
+			. In doing the work we learned about this handy utility for transforming formulas encoded as LaText into plain UTF-8:
+			<a href="https://fkunstner.github.io/latex-to-utf8/">LaTeX ⟶ UTF-8</a>
+			.
+		</p>
+		<p>
+			For each test, you can find the same formula in UTF-8 (with role
+			<code>math</code>
+			) and in MathML, so you can read both with assistive technologies and make sure the perceived content is the same.
+		</p>
+		<h3>Test 1</h3>
+		<h4>
+			UTF-8 with role
+			<code>math</code>
+		</h4>
+		<p class="formula">
+			<span role="math">∇&#x1d453;(&#x1d465;) = 2&#x1d465;</span>
+		</p>
+		<h4>MathML</h4>
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<mrow>
+				<mi mathvariant="normal">∇</mi>
+				<mi>f</mi>
+				<mo form="prefix" stretchy="false">(</mo>
+				<mi>x</mi>
+				<mo form="postfix" stretchy="false">)</mo>
+				<mo>=</mo>
+				<mn>2</mn>
+				<mi>x</mi>
+			</mrow>
+		</math>
+		<h3>Test 2</h3>
+		<h4>
+			UTF-8 with role
+			<code>math</code>
+		</h4>
+		<p class="formula">
+			<span role="math">&#x1d463; = &#x1d715;&#x1d465;/&#x1d715;&#x1d461;</span>
+		</p>
+		<h4>MathML</h4>
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<mrow>
+				<mi>v</mi>
+				<mo>=</mo>
+				<mi>∂</mi>
+				<mi>x</mi>
+				<mo lspace="0em" rspace="0em">⁄</mo>
+				<mi>∂</mi>
+				<mi>t</mi>
+			</mrow>
+		</math>
+		<h3>Test 3</h3>
+		<h4>
+			UTF-8 with role
+			<code>math</code>
+		</h4>
+		<p class="formula">
+			<span role="math">&#x1d53c;[(&#x1d465;−&#x1d707;)²] = &#x1d70e;²</span>
+		</p>
+		<h4>MathML</h4>
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<mrow>
+				<mi>&#x1d53c;</mi>
+				<mo form="prefix" stretchy="false">[</mo>
+				<mo form="prefix" stretchy="false">(</mo>
+				<mi>x</mi>
+				<mo>−</mo>
+				<mi>μ</mi>
+				<msup>
+					<mo form="postfix" stretchy="false">)</mo>
+					<mn>2</mn>
+				</msup>
+				<mo form="postfix" stretchy="false">]</mo>
+				<mo>=</mo>
+				<msup>
+					<mi>σ</mi>
+					<mn>2</mn>
+				</msup>
+			</mrow>
+		</math>
+		<h3>Test 4</h3>
+		<h4>
+			UTF-8 with role
+			<code>math</code>
+		</h4>
+		<p class="formula">
+			<span role="math">lim {x → ∞} 1/x = 0</span>
+		</p>
+		<h4>MathML</h4>
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<mrow>
+				<mi>l</mi>
+				<mi>i</mi>
+				<mi>m</mi>
+				<mo form="prefix" stretchy="false">{</mo>
+				<mi>x</mi>
+				<mo stretchy="false">→</mo>
+				<mi>∞</mi>
+				<mo form="postfix" stretchy="false">}</mo>
+				<mn>1</mn>
+				<mo lspace="0em" rspace="0em">⁄</mo>
+				<mi>x</mi>
+				<mo>=</mo>
+				<mn>0</mn>
+			</mrow>
+		</math>
+		<h3>Test 5</h3>
+		<h4>
+			UTF-8 with role
+			<code>math</code>
+		</h4>
+		<p class="formula">
+			<span role="math">&#x1d6e5;ₜ ≤ (1 − &#x1d705;)ᵗ&#x1d6e5;₀</span>
+		</p>
+		<h4>MathML</h4>
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<mrow>
+				<msub>
+					<mrow>
+						<mi mathvariant="normal">Δ</mi>
+					</mrow>
+					<mi>t</mi>
+				</msub>
+				<mo>≤</mo>
+				<mo form="prefix" stretchy="false">(</mo>
+				<mn>1</mn>
+				<mo>−</mo>
+				<mi>κ</mi>
+				<msup>
+					<mo form="postfix" stretchy="false">)</mo>
+					<mi>t</mi>
+				</msup>
+				<msub>
+					<mrow>
+						<mi mathvariant="normal">Δ</mi>
+					</mrow>
+					<mn>0</mn>
+				</msub>
+			</mrow>
+		</math>
+		<h3>Test 6</h3>
+		<h4>
+			UTF-8 with role
+			<code>math</code>
+		</h4>
+		<p class="formula">
+			<span role="math">&#x1d6f7; = ∫ &#x1d404; ⋅ d&#x1d400;</span>
+		</p>
+		<h4>MathML</h4>
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<mrow>
+				<mrow>
+					<mi mathvariant="normal">Φ</mi>
+				</mrow>
+				<mo>=</mo>
+				<mo movablelimits="false">∫</mo>
+				<mi>&#x1d404;</mi>
+				<mo>⋅</mo>
+				<mi>d</mi>
+				<mi>&#x1d400;</mi>
+			</mrow>
+		</math>
+		<h3>Test 7</h3>
+		<h4>
+			UTF-8 with role
+			<code>math</code>
+		</h4>
+		<p class="formula">
+			<span role="math">&#x1d715;²&#x1d462;/&#x1d715;&#x1d465;² + &#x1d715;²&#x1d462;/&#x1d715;&#x1d466;² = 0</span>
+		</p>
+		<h4>MathML</h4>
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<mrow>
+				<msup>
+					<mi>∂</mi>
+					<mn>2</mn>
+				</msup>
+				<mi>u</mi>
+				<mo lspace="0em" rspace="0em">⁄</mo>
+				<mi>∂</mi>
+				<msup>
+					<mi>x</mi>
+					<mn>2</mn>
+				</msup>
+				<mo>+</mo>
+				<msup>
+					<mi>∂</mi>
+					<mn>2</mn>
+				</msup>
+				<mi>u</mi>
+				<mo lspace="0em" rspace="0em">⁄</mo>
+				<mi>∂</mi>
+				<msup>
+					<mi>y</mi>
+					<mn>2</mn>
+				</msup>
+				<mo>=</mo>
+				<mn>0</mn>
+			</mrow>
+		</math>
+	</body>
+</html>
