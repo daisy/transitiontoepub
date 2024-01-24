@@ -1,0 +1,40 @@
+﻿Role,Suggested Output,Priority,Placement (pre/post),Comments
+doc-abstract,abstract,Medium,,"With the priority, we are putting in High, medium, and low. We mean a high priority would always be presented, so even if a verbosity setting was set to low, it would still be presented."
+doc-acknowledgments,acknowledgements,Medium,,"Normally this would be placed on the section element before the H1 or h2 that follows it. The announcement would be better than the generic ""landmark""."
+doc-afterword,afterward,Medium,,
+doc-appendix,appendix,Medium,,
+doc-backlink,backlink,High,,This would let the reader know they were going back to the referencing item.
+doc-bibliography,bibliography,Medium,,
+doc-biblioref,Bibliographic reference,High,,
+doc-chapter,chapter,Medium,,
+doc-colophon,colophon,Medium,,
+doc-conclusion,conclusion,Medium,,
+doc-cover,cover,Medium,,
+doc-credit,credit,Medium,,
+doc-credits,credits,Medium,,
+doc-dedication,dedication,Medium,,
+doc-endnotes,end notes,Medium,,
+doc-epigraph,epigraph,Medium,,
+doc-epilogue,epilogue,Medium,,
+doc-errata,errata,Medium,,
+doc-example,example,Low,,"We think that this may appear on each example, which could become too tedious."
+doc-footnote,footnote,Medium,,
+doc-foreword,forward,Medium,,
+doc-glossary,glossary,Medium,,
+doc-glossref,Glossary reference,High,,We felt letting people that the link was to a specific type of element would be good.
+doc-index,index,Medium,,
+doc-introduction,introduction,Medium,,
+doc-noteref,note reference,High,,
+doc-notice,notice,High,,"Notices are many times cautions, posion, warnings, which should always be presented."
+doc-pagebreak,page break,Medium,,
+doc-pagelist,list of pages,Medium,,
+doc-part,part,Medium,,
+doc-preface,preface,Medium,,
+doc-prologue,prologue,Medium,,
+doc-pullquote,Emphasised Excerpt,Medium,,
+doc-qna,question and answer,Medium,,
+doc-subtitle,subtitle,Medium,,
+doc-tip,tip,Medium,,
+doc-toc,Table of Contents,Medium,,
+doc-fake (no role),],,,
+Notes,,,,
