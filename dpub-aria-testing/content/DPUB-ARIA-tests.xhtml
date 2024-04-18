@@ -4,7 +4,14 @@
 </head>
 <body>
     <h1>DPUB ARIA Test Suite</h1>
-    
+
+<p>This HTML page is designed to assist implementers of Assistive Technology such as screen readers to vocalize the DPUB Aria roles on web pages and in EPUB publications.      There are currently 39 DPUB Aria roles which are prefixed with "doc-" before the publishing construct, e.g. "doc-chapter" for a chapter. a list of the roles, their importance, suggested output, actions to be considered, and   support in 
+browsers can be found at: <a href="https://docs.google.com/spreadsheets/d/1atUkcAbkHpS5eUJ1rdDCrQ3saY8HZEMTNtWkanASLo4/edit?usp=sharing">Google Sheet showing DPUB Aria roles and suggestions for implementors.</a></p>
+
+<p>The importance of vocalizing or presenting these constructs will be critical, high, medium, and low. The critical constructs are suggested to always be presented. the others might be associated with a verbosity setting, or in a selection of presentational items for browser settings.</p>
+
+<p>The following are presented for testing purposes. Included in the examples is a description of the test, its importance, and suggested output, which corresponds to the Google sheet linked above.</p>
+
     <h2 id="complementary">Valid Aria Role Complementary Test</h2>
     <div role="complementary">
          This text in a div element has a role of complementary.
@@ -12,20 +19,28 @@
     
     <h2 id="doc-abstract">doc-abstract Test</h2>
     <div role="doc-abstract">This text in div element has abstract role.</div>
-    
+    <p>This is a high priority. Many times, the word"abstract" would be included in the heading associated with this item. It should pe vocalized when the verbosity is set to high.</p>
+<p>Suggested output "abstract"</p>
     <h2 id="doc-acknowledgments">doc-acknowledgments Test</h2>   
     <div role="doc-acknowledgments">This text in the div element has rol of acknowledgments.</div>
-    
+    <p>This is a low  priority. Many times, the word"Acknowledgements" would be included in the heading associated with this item. It should pe vocalized when the verbosity is set to low.</p>
+<p>Suggested output "acknowledgements"</p>
     <h2 id="doc-afterword">doc-afterword Test</h2>   
     <div role="doc-afterword">This text in the div element has afterword role.</div>
-    
+    <p>This is a medium priority. Many times, the word"Afterward" would be included in the heading associated with this item. It should pe vocalized when the verbosity is set to medium.</p>
+<p>Suggested output "afterward"</p>
     <h2 id="doc-appendix">doc-appendix Test</h2>   
     <div role="doc-appendix">This text in the div element has appendix role.</div>
-
+<p>This is a medium priority. Many times, the word"Appendix" would be included in the heading associated with this item. It should pe vocalized when the verbosity is set to medium.</p>
+<p>Suggested output "Appendix"</p>
     <h2 id="doc-backlink">doc-backlink Test</h2>   
     <a role="doc-backlink" href="#">a backlink</a>
 
+<p>This is a critical  priority. The vocalization of the information that it is a back link should always be vocalized.</p>
+<p>Suggested output "back link"</p>
+<p>This is an "actionable item" meaning the user would follow the back link to return to the identified position in the publication.</p> 
     <h2 id="doc-bibliography">doc-bibliography Test</h2>   
+<p>Alert, there are two tests here. The first has the role on the section element, and the second has the role on a div.</p> 
 				
     <section role="doc-bibliography">
     	<h3>Bibliography</h3>
@@ -35,31 +50,44 @@
 		</ul>
     </section>
     <div role="doc-bibliography">This text in the div element has bibliography role. Test added to check if it acts differently from role on <code>section</code> tag.</div>
-
+<p>This is a medium priority. Many times, the word"bibliography" would be included in the heading associated with this item. It should pe vocalized when the verbosity is set to medium.</p>
+<p>Suggested output "bibliography"</p>
     <h2 id="doc-biblioref">doc-biblioref Test</h2>   
     <a role="doc-biblioref" href="#">a role of biblioref.</a>
-    
+
+    <p>This is a critical  priority. The vocalization of the information that it is a Bibliographic reference    link should always be vocalized.</p>
+<p>Suggested output " Bibliographic reference"</p>
+<p>This is an "actionable item" meaning the user would follow the  link to go to the reference  identified   .</p> 
+
     <h2 id="doc-chapter">doc-chapter Test</h2>   
     <div role="doc-chapter">This text has a role of chapter.</div>
-    
+<p>This is a high  priority. Many times, the word"chapter" will not appear in the heading. It should pe vocalized when the verbosity is set to high.</p>     
+
+<p>Suggested output "chapter"</p>
     <h2 id="doc-colophon">doc-colophon Test</h2>   
     <div role="doc-colophon">This text has a role of colophon.</div>
-    
+<p>This is a low priority. Many times, the word"colophon" would be included in the heading associated with this item. It should pe vocalized when the verbosity is set to low.</p>
+<p>Suggested output "colophon"</p>
     <h2 id="doc-conclusion">doc-conclusion Test</h2>   
     <div role="doc-conclusion">This text has a role of conclusion.</div>
-    
-    <h2 id="doc-cover">doc-cover Test</h2>   
+    <p>This is a medium priority. Many times, the word"conclusion" would be included in the heading associated with this item. It should pe vocalized when the verbosity is set to medium.</p>
+<p>Suggested output "conclusion"</p>
+<h2 id="doc-cover">doc-cover Test</h2>   
     <img role="doc-cover" src="image_001.jpg" alt="A beautiful cover with role of cover."/>
-    
+<p>This is a medium priority. Many times, the word"Cover" would be included in the heading associated with this item. It should pe vocalized when the verbosity is set to medium.</p>
+    <p>Suggested output, "cover"</p>
     <h2 id="doc-credit">doc-credit Test</h2>   
     <div role="doc-credit">This text has a role of credit.</div>
-    
+<p>This is a low priority. Many times, the word"credit" would be included in the heading associated with this item. It should pe vocalized when the verbosity is set to low.</p>
+    <p>Suggested output "credit"</p>
     <h2 id="doc-credits">doc-credits Test</h2>   
     <div role="doc-credits">This text has a role of credits.</div>
-    
+<p>This is a low priority. Many times, the word"credits" would be included in the heading associated with this item. It should pe vocalized when the verbosity is set to low.</p>
+    <p>Suggested output "credits"</p>
     <h2 id="doc-dedication">doc-dedication Test</h2>   
     <div role="doc-dedication">This text has a role of dedication.</div>
-    
+    <p>This is a medium priority. Many times, the word"dedication" would be included in the heading associated with this item. It should pe vocalized when the verbosity is set to medium.</p>
+<p>Suggested output "dedication"</p>
     <h2 id="doc-endnotes">doc-endnotes Tests</h2>   
     <section role="doc-endnotes">
 		<h3>Endnotes</h3>
@@ -67,77 +95,114 @@
 		<ul>
 			<li>list item inside endnotes</li>
 		</ul>
+
+<p>This is a critical priority. Many times, the word"end notes" would be included in the heading associated with this item. It should pe vocalized all of the time. </p>
+<p>Suggested output "Endnotes"</p>
     </section>
     <div role="doc-endnotes">This text in the div element has endnotes role. Test added to check if it acts differently from role on <code>section</code> tag.</div>
     
     <h2 id="doc-epigraph">doc-epigraph Test</h2>   
     <div role="doc-epigraph">This text has a role of epigraph.</div>
-    
+    <p>This is a low priority. Many times, the word"epigraph" would be included in the heading associated with this item. It should pe vocalized when the verbosity is set to low.</p>
+<p>Suggested output "epigraph"</p>
     <h2 id="doc-epilogue">doc-epilogue Test</h2>   
     <div role="doc-epilogue">This test has a role of epilogue.</div>
-    
+    <p>This is a medium priority. Many times, the word"epilog" would be included in the heading associated with this item. It should pe vocalized when the verbosity is set to medium.</p>
+<p>Suggested output "epilog"</p>
     <h2 id="doc-errata">doc-errata Test</h2>   
     <div role="doc-errata">This text has a role of errata.</div>
-    
+    <p>This is a low priority. Many times, the word"errata" would be included in the heading associated with this item. It should pe vocalized when the verbosity is set to low.</p>
+<p>Suggested output "errata"</p>
     <h2 id="doc-example">doc-example Test</h2>   
     <div role="doc-example">This text has a role of example.</div>
-    
+    <p>This is a medium priority. Many times, the word"example" would be included in the heading associated with this item. It should pe vocalized when the verbosity is set to medium.</p>
+<p>Suggested output "example"</p>
     <h2 id="doc-footnote">doc-footnote Test</h2>   
     <div role="doc-footnote">This text has a role of footnote.</div>
-    
+    <p>This is a critical  priority. Many times, the word "footnote" would be included in the heading associated with this item. It should  always ve vocalized.</p>
+<p>Suggested output "footnote"
+</p>
     <h2 id="doc-foreword">doc-foreword Test</h2>   
     <div role="doc-foreword">This text has a role of foreword.</div>
-    
+    <p>This is a medium priority. Many times, the word"forward" would be included in the heading associated with this item. It should pe vocalized when the verbosity is set to medium.</p>
+<p>Suggested output "forward"</p>
     <h2 id="doc-glossary">doc-glossary Test</h2>   
     <div role="doc-glossary">
         This text has a role of glossary.
+<p>This is a medium priority. Many times, the word"glossary" would be included in the heading associated with this item. It should pe vocalized when the verbosity is set to medium.</p>
+<p>Suggested output "glossary"</p>
       <span role="term">foo role of term.</span>: <span role="definition">bar role of definition.</span>
     </div>
     
     <h2 id="doc-glossref">doc-glossref Test</h2>   
     <a role="doc-glossref" href="#">a role of glossref.</a>
-
+<p>This is a critical  priority. The vocalization of the information that it is a glossary  reference    link should always be vocalized.</p>
+<p>Suggested output " glossary reference"</p>
+<p>This is an "actionable item" meaning the user would follow the  link to go to the reference  identified   .</p> 
     <h2 id="doc-index">doc-index Test</h2>   
     <div role="doc-index">This text has a role of index.</div>
-    
+    <p>This is a medium priority. Many times, the word"index" would be included in the heading associated with this item. It should pe vocalized when the verbosity is set to medium.</p>
+<p>Suggested output "index"</p>
     <h2 id="doc-introduction">doc-introduction Test</h2>   
     <div role="doc-introduction">This text has a role of introduction.</div>
-    
+    <p>This is a medium priority. Many times, the word"introduction" would be included in the heading associated with this item. It should pe vocalized when the verbosity is set to medium.</p>
+<p>Suggested output "introduction"</p>
     <h2 id="doc-noteref">doc-noteref Test</h2>   
     <a role="doc-noteref" href="#">a noteref role.</a>
+<p>This is a critical  priority. The vocalization of the information that it is  a note reference    link should always be vocalized.</p>
+<p>Suggested output " note  reference"</p>
+<p>This is an "actionable item" meaning the user would follow the  link to go to the reference  identified   .</p> 
     
+
     <h2 id="doc-notice">doc-notice Test</h2>   
     <div role="doc-notice">This text has a role of notice.</div>
-    
+    <p>This is a high  priority. Many times, the word"notice or caution" would be included in the heading associated with this item. It should pe vocalized when the verbosity is set to high.</p>
+<p>Suggested output "notice"</p>
     <h2 id="doc-pagebreak">doc-pagebreak Test</h2>   
     <div role="doc-pagebreak" aria-label="23">This text has a role of pagebreak.</div>
-    
+    <p>This is a critical  priority. The vocalization of the information that it is a page break      should always be vocalized.</p>
+<p>Suggested output " Page break"</p>
+<p>This is an "actionable item" meaning the user would  want to go to  the previous or next page break.</p> 
+
     <h2 id="doc-pagelist">doc-pagelist Test</h2>   
     <div role="doc-pagelist">This text has a role of pagelist.</div>
+<p>This is a critical  priority. The vocalization of the information that it is a list of links to pages  should always be vocalized.</p>
+<p>Suggested output " list of pages"</p>
+<p>This is an "actionable item" meaning the user would want to be taken to the list of pages or if they were presented with a list of pages, it would be announced.</p> 
 
     <h2 id="doc-part">doc-part Test</h2>   
     <div role="doc-part">This text has a role of part.</div>
-    
+    <p>This is a high priority. Many times, the word"part" would be included in the heading associated with this item. It should pe vocalized when the verbosity is set to high.</p>
+<p>Suggested output "part"</p>
     <h2 id="doc-preface">doc-preface Test</h2>   
     <div role="doc-preface">This text has a role of preface.</div>
-    
+    <p>This is a medium priority. Many times, the word"preface" would be included in the heading associated with this item. It should pe vocalized when the verbosity is set to medium.</p>
+<p>Suggested output "preface"</p>
     <h2 id="doc-prologue">doc-prologue Test</h2>   
     <div role="doc-prologue">This text has a role of prologue.</div>
-    
+    <p>This is a medium priority. Many times, the word"prolog" would be included in the heading associated with this item. It should pe vocalized when the verbosity is set to medium.</p>
+<p>Suggested output "prolog"</p>
     <h2 id="doc-pullquote">doc-pullquote Test</h2>   
     <div role="doc-pullquote">This text has a role of pullquote.</div>
-    
+    <p>This is a high priority. Many times, emphasised portions of a text are  in a margin or pulled to the side. The information that emphasised text is being presented.  should pe vocalized when the verbosity is set to high.</p>
+<p>Suggested output "emphasised text"</p>
     <h2 id="doc-qna">doc-qna Test</h2>   
     <div role="doc-qna">This text has a role of qna.</div>
-    
+        <p>This is a high priority. Many times, the words"Question and Answers" would be included in the heading associated with this item. It should pe vocalized when the verbosity is set to high.</p>
+<p>Suggested output "Question and Answer"</p>
     <h2 id="doc-subtitle">doc-subtitle Test</h2>   
     <div role="doc-subtitle">This text has a role of subtitle.</div>
-    
+    <p>This is a high  priority. Many times, the subtitle is present after the title. It should pe vocalized when the verbosity is set to high.</p>
+<p>Suggested output "subtitle"</p>
     <h2 id="doc-tip">doc-tip Test</h2>   
     <div role="doc-tip">This text has a role of tip.</div>
-    
+    <p>This is a high priority. Many times, the word"tip" would be included in the heading associated with this item. It should pe vocalized when the verbosity is set to high.</p>
+<p>Suggested output "tip"</p>
     <h2 id="doc-toc">doc-toc Test</h2>   
     <div role="doc-toc">This text has a role of toc.</div>
+<p>This is a critical  priority. The vocalization of the information that it is a table of contents should always be vocalized.</p>
+<p>Suggested output " Table of Contents"</p>
+<p>This is an "actionable item" meaning the user would want to have a mechanism to go to the table of contents.</p>
 
     <h2 id="doc-fake">doc-fake Test</h2>   
     <div role="doc-fake">This text has a role of fake which should not map to anything other than generic.</div>
