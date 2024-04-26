@@ -1,6 +1,49 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" xml:lang="en" lang="en">
 <head>
 <title>Atomic tests for DPUB ARIA</title>
+
+<script src="https://unpkg.com/axe-core@4.1.1/axe.min.js"> </script>
+
+<script type="text/javascript">
+  document. addEventListener('DOMContentLoaded', () => {
+      window.axe
+      .run()
+      .then(results => {
+        // console.log(results.violations.length);
+        // console.log(results);
+
+        const iframe = document.createElement("iframe");
+        iframe.setAttribute("style", "width: 98vw; height: 90vh;");
+        // iframe.setAttribute("seamless", "seamless");
+        // iframe.setAttribute("sandbox", "allow-same-origin allow-scripts");
+
+        // const b64 = btoa(JSON.stringify(results));
+        // iframe.setAttribute("src", `iframe.html?results=${encodeURIComponent(b64)}`);
+        iframe.setAttribute("src", "iframe.html");
+
+        document.body.insertAdjacentElement("afterbegin", iframe);
+
+        if (results.passes) {
+          delete results.passes;
+        }
+        if (results.incomplete) {
+          delete results.incomplete;
+        }
+        if (results.inapplicable) {
+          delete results.inapplicable;
+        }
+
+        iframe.addEventListener('load', () => {
+          iframe.contentWindow.postMessage({ axe: results }, '*');
+        });
+      })
+      .catch(err => {
+        console.error(err.message);
+        alert(err.message);
+      });
+  });
+</script>
+
 </head>
 <body>
     <h1>DPUB ARIA Test Suite</h1>
