@@ -11,14 +11,14 @@
 		<h2>Screen Reader Implementation</h2>
 		<p>There are currently 39 DPUB Aria roles which are prefixed with "doc-" before the name of the publishing construct, e.g. <code>doc-chapter</code> for a chapter. A list of the roles, their importance, suggested output, actions to be considered, and support in browsers can be found at: <a href="https://docs.google.com/spreadsheets/d/1atUkcAbkHpS5eUJ1rdDCrQ3saY8HZEMTNtWkanASLo4/edit?usp=sharing">Google Sheet showing DPUB Aria roles and suggestions for implementors.</a>
 		</p>
-		<p> Importance of vocalizing or presenting constructs</p>
-		<ol>
-			<li>critical: should always be presented,</li>
-			<li>high: should be presented most of the time,</li>
-			<li>medium: should be presented some of the time,</li>
-			<li>low: should be presented with the highest verbosity setting.</li>
-		</ol>
 		<p>The following are presented for testing purposes. Included in the example is a description of the test, its importance, and suggested output, which corresponds to the Google sheet linked above.</p>
+		<p>Importance of vocalizing or presenting constructs:</p>
+		<dl>
+			<dt>critical</dt><dd>should always be presented</dd>
+			<dt>high</dt><dd>should be presented most of the time</dd>
+			<dt>medium</dt><dd>should be presented some of the time</dd>
+			<dt>low</dt><dd>should be presented with the highest verbosity setting</dd>
+		</dl>
 		<h2 id="complementary">Valid Aria Role Complementary Test</h2>
 		<div role="complementary">
 			This text in a <code>div</code> element has the  role of complementary.
