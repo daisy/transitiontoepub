@@ -9,7 +9,7 @@
 		<p>To improve the reading experience for screen reader users, the presentation of these semantic constructs is recommended. Some of the roles are extremely important to present to the reader, while others are of less importance or a matter of reader preference. In this XHTML document, the <a href="https://daisy.org/activities/projects/ties/">Transition to Accessible EPUB working group</a> in the DAISY Consortium is making suggestions as to the importance of the roles and what might be presented. This document provides the necessary information that screen reader implementors should consider. It can also be used for testing purposes.</p>
 		<p>Each item should be self-explanatory and indicate the (1) importance and (2) what should be presented.</p>
 		<h2>Screen Reader Implementation</h2>
-		<p>There are currently 39 DPUB Aria roles which are prefixed with "doc-" before the name of the publishing construct, e.g. "doc-chapter" for a chapter. A list of the roles, their importance, suggested output, actions to be considered, and support in browsers can be found at: <a href="https://docs.google.com/spreadsheets/d/1atUkcAbkHpS5eUJ1rdDCrQ3saY8HZEMTNtWkanASLo4/edit?usp=sharing">Google Sheet showing DPUB Aria roles and suggestions for implementors.</a>
+		<p>There are currently 39 DPUB Aria roles which are prefixed with "doc-" before the name of the publishing construct, e.g. <code>doc-chapter</code> for a chapter. A list of the roles, their importance, suggested output, actions to be considered, and support in browsers can be found at: <a href="https://docs.google.com/spreadsheets/d/1atUkcAbkHpS5eUJ1rdDCrQ3saY8HZEMTNtWkanASLo4/edit?usp=sharing">Google Sheet showing DPUB Aria roles and suggestions for implementors.</a>
 		</p>
 		<p> Importance of vocalizing or presenting constructs</p>
 		<ol>
@@ -21,14 +21,14 @@
 		<p>The following are presented for testing purposes. Included in the example is a description of the test, its importance, and suggested output, which corresponds to the Google sheet linked above.</p>
 		<h2 id="complementary">Valid Aria Role Complementary Test</h2>
 		<div role="complementary">
-			This text in a div element has the  role of complementary.
+			This text in a <code>div</code> element has the  role of complementary.
 		</div>
 		<h2 id="doc-abstract">doc-abstract Test</h2>
 		<div role="doc-abstract">This text in the div element has the role of abstract.</div>
 		<p>This is a high priority. Many times the word "abstract" would be included in the heading associated with this item. It should be vocalized when the verbosity is set to high.</p>
 		<p>Suggested output "abstract"</p>
 		<h2 id="doc-acknowx`ledgments">doc-acknowledgments Test</h2>
-		<div role="doc-acknowledgments">This text in the div element has role of acknowledgments.</div>
+		<div role="doc-acknowledgments">This text in the <code>div</code> element has role of acknowledgments.</div>
 		<p>This is a low priority. Many times the word "Acknowledgements" would be included in the heading associated with this item. It should be vocalized when the verbosity is set to low.</p>
 		<p>Suggested output "acknowledgements"</p>
 		<h2 id="doc-afterword">doc-afterword Test</h2>
@@ -36,7 +36,7 @@
 		<p>This is a medium priority. Many times the word "Afterward" would be included in the heading associated with this item. It should be vocalized when the verbosity is set to medium.</p>
 		<p>Suggested output "afterward"</p>
 		<h2 id="doc-appendix">doc-appendix Test</h2>
-		<div role="doc-appendix">This text in the div element has the role of appendix.</div>
+		<div role="doc-appendix">This text in the <code>div</code> element has the role of appendix.</div>
 		<p>This is a medium priority. Many times the word "Appendix" would be included in the heading associated with this item. It should be vocalized when the verbosity is set to medium.</p>
 		<p>Suggested output "appendix"</p>
 		<h2 id="doc-backlink">doc-backlink Test</h2>
@@ -45,7 +45,7 @@
 		<p>Suggested output "back link"</p>
 		<p>This is an "actionable item" meaning the user would follow the back link to return to the identified position in the publication.</p>
 		<h2 id="doc-bibliography">doc-bibliography Test</h2>
-		<p>Alert, there are two tests here. The first has the role on the section element, and the second has the role on a div.</p>
+		<p>Alert, there are two tests here. The first has the role on the <code>section</code> element, and the second has the role on a <code>div</code>.</p>
 		<section role="doc-bibliography">
 			<h3>Bibliography</h3>
 			<p>This text has the role of bibliography.</p>
@@ -53,7 +53,7 @@
 				<li>List item inside bibliography</li>
 			</ul>
 		</section>
-		<div role="doc-bibliography">This text in the div element has bibliography role. Test added to check if it acts differently from role on <code>section</code> tag.</div>
+		<div role="doc-bibliography">This text in the <code>div</code> element has bibliography role. Test added to check if it acts differently from role on <code>section</code> tag.</div>
 		<p>This is a medium priority. Many times the word "bibliography" would be included in the heading associated with this item. It should be vocalized when the verbosity is set to medium.</p>
 		<p>Suggested output "bibliography"</p>
 		<h2 id="doc-biblioref">doc-biblioref Test</h2>
@@ -92,7 +92,7 @@
 		<h2 id="doc-endnotes">doc-endnotes Tests</h2>
 		<section role="doc-endnotes">
 			<h3>Endnotes</h3>
-			<p>This section has the role of endnotes.</p>
+			<p>This <code>section</code> has the role of endnotes.</p>
 			<ul>
 				<li>list item inside endnotes</li>
 				<li>second list item inside endnotes</li>
@@ -100,7 +100,7 @@
 			<p>This is a critical priority. Many times the word "end notes" would be included in the heading associated with this item. It should be vocalized all of the time. </p>
 			<p>Suggested output "endnotes"</p>
 		</section>
-		<div role="doc-endnotes">This text in the div element has the endnotes role. Test added to check if it acts differently from role on <code>section</code> tag.</div>
+		<div role="doc-endnotes">This text in the <code>div</code> element has the endnotes role. Test added to check if it acts differently from role on <code>section</code> tag.</div>
 		<h2 id="doc-epigraph">doc-epigraph Test</h2>
 		<div role="doc-epigraph">This text has the role of epigraph.</div>
 		<p>This is a low priority. Many times the word "epigraph" would be included in the heading associated with this item. It should be vocalized when the verbosity is set to low.</p>
