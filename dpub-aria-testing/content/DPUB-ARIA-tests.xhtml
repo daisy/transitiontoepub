@@ -26,10 +26,7 @@
 			<dt>medium</dt><dd>should be presented when "some" or "all"  is selected.</dd>
 			<dt>low</dt><dd>should be presented     when "all" is selected.</dd>
 		</dl>
-		<h2 id="complementary">Valid Aria Role Complementary Test</h2>
-		<div role="complementary">
-			This text in a <code>div</code> element has the  role of complementary.
-		</div>
+
 		<h2 id="doc-abstract">doc-abstract Test</h2>
 		<div role="doc-abstract">This text in the div element has the role of abstract.</div>
 		<p>This is a high priority. Many times the word "abstract" would be included in the heading associated with this item. It should be vocalized when the verbosity is set to high.</p>
@@ -206,8 +203,17 @@
 		<p>This is a critical priority. The vocalization of the information that it is a table of contents should always be vocalized.</p>
 		<p>Suggested output: "table of contents"</p>
 		<p>This is an "actionable item" meaning the user would want to have a mechanism to go to the table of contents.</p>
-		<h2 id="doc-fake">doc-fake Test</h2>
+		
+<h2>Tests to make sure nothing is voiced</h2>
+
+<p>The next two tests should not be voiced through the DPUB ARIA roles. They are placed here only for testing purposes.</p>
+
+<h2 id="doc-fake">doc-fake Test</h2>
 		<div role="doc-fake">This text has the role of fake which should not map to anything other than generic.</div>
+		<h2 id="complementary">Valid Aria Role Complementary Test</h2>
+		<div role="complementary">
+			This text in a <code>div</code> element has the  role of complementary.
+		</div>
 	  </main>
 	</body>
 </html>
