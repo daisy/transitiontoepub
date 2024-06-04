@@ -3,8 +3,11 @@
 		<title>DPUB ARIA Test Suite</title>
 	</head>
 	<body>
+	  <header>
 		<h1>DPUB ARIA Test Suite</h1>
-<p>Last updated: June 4, 2024</p>
+		<p>Last updated: June 4, 2024</p>
+	  </header>
+	  <main>
 		<h2>Background</h2>
 		<p>Books and other publications have constructs such as chapters, parts, footnotes and more that are not commonly found on web pages. The visual presentation of these constructs makes it obvious to the sighted reader what the semantics are. These semantic constructs can now be added to HTML and XHTML by using <a href="https://www.w3.org/TR/dpub-aria-1.1/#roles">DPUB Aria roles</a> and then used for presentation through Assistive Technology. The <a href="https://www.w3.org/community/publishingcg/">Publishing Community Group</a> at the W3C continues to promote these roles for browsers, in EPUB Reading Systems, and for published digital materials.</p>
 		<p>To improve the reading experience for screen reader users, the presentation of these semantic constructs is recommended. Some of the roles are extremely important to present to the reader, while others are of less importance or a matter of reader preference. In this XHTML document, the <a href="https://daisy.org/activities/projects/ties/">Transition to Accessible EPUB working group</a> in the DAISY Consortium is making suggestions as to the importance of the roles and what might be presented. This document provides the necessary information that screen reader implementors should consider. It can also be used for testing purposes.</p>
@@ -202,5 +205,6 @@
 		<p>This is an "actionable item" meaning the user would want to have a mechanism to go to the table of contents.</p>
 		<h2 id="doc-fake">doc-fake Test</h2>
 		<div role="doc-fake">This text has the role of fake which should not map to anything other than generic.</div>
+	  </main>
 	</body>
 </html>
