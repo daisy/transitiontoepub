@@ -10,19 +10,21 @@
 	  </header>
 	  <main>
 		<h2>Background</h2>
-		<p>Books and other publications have constructs such as chapters, parts, footnotes and more that are not commonly found on web pages. The visual presentation of these constructs makes it obvious to the sighted reader what the semantics are. These semantic constructs can now be added to HTML and XHTML by using <a href="https://www.w3.org/TR/dpub-aria-1.1/#roles">DPUB Aria roles</a> and then used for presentation through Assistive Technology. The <a href="https://www.w3.org/community/publishingcg/">Publishing Community Group</a> at the W3C continues to promote these roles for browsers, in EPUB Reading Systems, and for published digital materials.</p>
-		<p>To improve the reading experience for screen reader users, the presentation of these semantic constructs is recommended. Some of the roles are extremely important to present to the reader, while others are of less importance or a matter of reader preference. In this XHTML document, the <a href="https://daisy.org/activities/projects/ties/">Transition to Accessible EPUB working group</a> in the DAISY Consortium is making suggestions as to the importance of the roles and what might be presented. This document provides the necessary information that screen reader implementors should consider. It can also be used for testing purposes.</p>
+		<p>Books and other publications have constructs such as chapters, parts, footnotes and more that are not commonly found on web pages. The visual presentation of these constructs makes it obvious to the sighted reader what the semantics are. These document semantic constructs can now be added to HTML and XHTML by using <a href="https://www.w3.org/TR/dpub-aria-1.1/#roles">DPUB Aria roles</a> and then used for presentation through Assistive Technology. The <a href="https://www.w3.org/community/publishingcg/">Publishing Community Group</a> at the W3C continues to promote these roles for browsers, in EPUB Reading Systems, and for published digital materials.</p>
+		<p>To improve the reading experience for screen reader users, the presentation of these document semantic constructs is recommended. Some of the roles are extremely important to present to the reader, while others are of less importance or a matter of reader preference. In this XHTML document, the <a href="https://daisy.org/activities/projects/ties/">Transition to Accessible EPUB working group</a> in the DAISY Consortium is making suggestions as to the importance of the roles and what might be presented. This document provides the necessary information that screen reader implementors should consider. It can also be used for testing purposes.</p>
 		<p>Each item should be self-explanatory and indicate the (1) importance and (2) what should be presented.</p>
 		<h2>Screen Reader Implementation</h2>
 		<p>There are currently 39 DPUB Aria roles which are prefixed with "doc-" before the name of the publishing construct, e.g. <code>doc-chapter</code> for a chapter. A list of the roles, their importance, suggested output, actions to be considered, and support in browsers can be found at: <a href="https://docs.google.com/spreadsheets/d/1atUkcAbkHpS5eUJ1rdDCrQ3saY8HZEMTNtWkanASLo4/edit?usp=sharing">Google Sheet showing DPUB Aria roles and suggestions for implementors.</a>
 		</p>
 		<p>The following are presented for testing purposes. Included in the example is a description of the test, its importance, and suggested output, which corresponds to the Google sheet linked above.</p>
-		<p>Importance of vocalizing or presenting constructs:</p>
+		
+<p>The selection of the amount  of document semantics to vocalize  or present could be grouped as "all," "most", "some," or None."</p> 
+
 		<dl>
-			<dt>critical</dt><dd>should always be presented</dd>
-			<dt>high</dt><dd>should be presented most of the time</dd>
-			<dt>medium</dt><dd>should be presented some of the time</dd>
-			<dt>low</dt><dd>should be presented with the highest verbosity setting</dd>
+			<dt>critical</dt><dd>should  always be presented, unless "none" is selected.</dd>
+			<dt>high</dt><dd>should be presented when "most" is selected.</dd>
+			<dt>medium</dt><dd>should be presented when "some"   is selected.</dd>
+			<dt>low</dt><dd>should be presented     when "high" is selected.</dd>
 		</dl>
 		<h2 id="complementary">Valid Aria Role Complementary Test</h2>
 		<div role="complementary">
