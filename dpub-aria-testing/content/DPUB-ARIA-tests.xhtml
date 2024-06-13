@@ -130,13 +130,17 @@
 		<div role="doc-foreword">This text has the role of foreword.</div>
 		<p>This is a medium priority. Many times the word "foreword" would be included in the heading associated with this item. It should be vocalized when the document semantic verbosity is set to most or all.</p>
 		<p>Suggested output: "foreword"</p>
-		<h2 id="doc-glossary">doc-glossary Test</h2>
-		<div role="doc-glossary">
-			This text has the role of glossary.
-			<p>This is a medium priority. Many times the word "glossary" would be included in the heading associated with this item. It should be vocalized when the document semantic verbosity is set to most or all.</p>
-			<p>Suggested output: "glossary"</p>
-			<span role="term">foo role of term.</span>: <span role="definition">bar role of definition.</span>
-		</div>
+                             <h2 id="doc-glossary">doc-glossary Test</h2>
+                             <div role="doc-glossary">
+                                           This text has the role of glossary.
+<ul>
+                                           <li><span role="term">foo role of term.</span>: <span role="definition">bar role of definition.</span></li>
+</ul>
+                             </div>
+                                           <p>This is a medium priority. Many times the word "glossary" would be included in the heading associated with this item. It should be vocalized when the document semantic verbosity is set to most or all.</p>
+                                           <p>Suggested output: "glossary"</p>
+
+
 		<h2 id="doc-glossref">doc-glossref Test</h2>
 		<a role="doc-glossref" href="#">a glossary reference</a>
 		<p>This is a critical priority. The vocalization of the information that it is a glossary reference link should always be vocalized, unless the document semantic  verbosity of none is selected.</p>
