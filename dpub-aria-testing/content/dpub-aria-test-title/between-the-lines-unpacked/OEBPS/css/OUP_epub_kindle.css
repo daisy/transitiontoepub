@@ -1,0 +1,2438 @@
+@charset "UTF-8";
+/* CSS Document */
+
+/* updated 5.01.24 */
+
+/* Namespace declarations */
+@namespace epub "http://www.idpf.org/2007/ops";
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp, 
+small, strike, strong, sub, sup, tt, var, 
+b, u, i, center,
+dl, dt, dd, ol, ul, li, 
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td, 
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	margin: 0;
+	outline: 0;
+	padding: 0;
+	vertical-align: baseline;
+} 
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+body {
+    font-family: Georgia, Baskerville, roman, 'times new roman', times, serif;
+    color: #404040;
+    background-color: transparent;
+    hyphens: none;
+        -webkit-hyphens: none;
+        -moz-hyphens:none;
+        adobe-hyphenate: none;    
+	margin: 30px 5% 20px 5%;
+	text-indent: 0;
+    text-rendering: optimizeLegibility;
+}
+
+.chunk {
+  display: block;
+  margin: 1em auto
+}
+
+ol, ul {
+    list-style-type: none;
+}
+
+/* removed line-height: 150%; from ol, ul on 10.23.23 to test on Kindle */
+
+blockquote, q {
+	quotes: none;
+}
+
+q {
+  quotes: "“" "”" "‘" "’";
+ }
+
+q:before {
+    content: open-quote;
+ }
+
+q:after {
+    content: close-quote;
+ }
+
+table {
+    display: table;
+	border-collapse: collapse;
+	border-spacing: 0; }
+
+/* end CSS Reset */
+
+
+/**** MAIN PARAGRAPH STYLES ****/
+p {
+    background-color: inherit;
+    outline: 0;
+	padding: 0;
+    text-indent: 0;
+	-webkit-margin-before: 0em;
+   	-webkit-margin-after: 0em;
+	 }
+
+.rightAlign {
+  text-align: right !important; }
+
+.centreAlign {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-indent: 0;
+    text-align: center;
+}
+
+.inline {
+    display: inline;
+}
+
+p + p {
+    text-indent: 1em;
+} 
+
+/* Headings */
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: sans-serif;
+    hyphens: none;
+        -webkit-hyphens: none;
+        -moz-hyphens:none;
+        adobe-hyphenate: none;
+    page-break-after: avoid;
+    page-break-inside: avoid;
+    text-align: left;    
+}
+
+h1 {
+	color: #8E57DB;
+	font-size: 1.8em;
+    text-align: left;
+    font-weight: 600;
+    margin-bottom: 0.5em;
+    display: block;
+    }
+
+h1 .label {
+	color: #757575;
+    font-size: 1.1em;
+    font-weight: 400;
+	display: block;
+    margin-bottom: .5em;
+}
+
+h1 .label.part {
+	color: #008489;
+    margin: 2em 0 0.5em 0;
+}
+
+h1 .title.part {
+    color: #757575;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+p.subtitle.part {
+    font-family: sans-serif;
+    font-size: 1.6em;
+    font-style: italic;
+    font-weight: 300;
+    color: #008489;  
+    margin-bottom: 2.25em;
+}
+
+p.subtitle.chapter,
+p.subtitle.other,
+p.subtitle.introduction,
+p.subtitle.contributors,
+p.subtitle.appendix,
+p.subtitle.abbrev,
+p.subtitle.chronology,
+p.subtitle.dedication,
+p.subtitle.disclaimer,
+p.subtitle.editorialBoard,
+p.subtitle.endorsement,
+p.subtitle.endNotes,
+p.subtitle.epigraph,
+p.subtitle.foreword,
+p.subtitle.frontispiece,
+p.subtitle.glossary,
+p.subtitle.illustration,
+p.subtitle.lawTable,
+p.subtitle.map,
+p.subtitle.preface,
+p.subtitle.updates {
+    font-family: sans-serif;
+    font-size: 1.6em;
+    font-style: italic;
+    font-weight: 300;
+    color: #008489;  
+    margin-bottom: 2.25em;
+}
+
+h1 .label.appendix {
+    margin-bottom: 0.5em;
+}
+
+
+h2, h3, h4, h5 {
+    color: #0F7BC2;
+}
+
+h2 {
+	font-size: 1.6em;
+    font-weight: 600;
+    margin: 1.5em 0 1em 0;    
+    padding-bottom: 0.3em;
+    border-bottom: 1px solid #0F7BC2;
+}
+
+h3 {
+	font-size: 1.4em;
+    font-weight: 600;
+    margin: 1.5em 0 1em 0;       
+}
+
+h4 {
+    font-size: 1.2em;
+    font-weight: 400;
+    margin: 1.3em 0 1em 0;
+}
+
+h5 {
+    font-size: 1.1em;
+    font-weight: 300;
+    margin: 1.3em 0 1em 0;
+
+}
+
+h6 {
+    font-size: 1em;
+    font-style: italic;
+    color: #575757;
+    font-weight: 400;
+    margin: 1.3em 0 1em 0;
+}
+
+h6.hLevel7 .title.sec {
+    font-family: Georgia, Baskerville, roman, 'times new roman', times, serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 0.95em;
+}
+
+h6.hLevel8 .title.sec {
+    font-size: 1em;
+    font-family: Georgia, Baskerville, roman, 'times new roman', times, serif;
+}
+
+h6.hLevel9 .title.sec {
+    font-size: 0.9em;
+    font-family: Georgia, Baskerville, roman, 'times new roman', times, serif;
+}
+
+.label.sec {
+    padding-right: 0.4em;
+    font-weight: 300;
+    font-size: 100%;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+
+/* Links */
+a {
+    color: #0060C0;
+	font: inherit; 
+    text-decoration: underline;
+    word-break: break-word;
+}
+
+a:hover {
+    color: #BA4E00;
+}
+
+a:focus, .glossary-term:focus, .annotation-in-text:focus {
+    color: #BA4E00;
+    outline: 2px solid #BA4E00;
+}
+
+div[tabindex="0"]:focus {
+    outline: 2px solid #BA4E00;
+}
+
+a:active {
+    text-decoration: none;
+}
+
+a.glossary-term {
+    color: #BD0075;
+}
+
+.glossary-term:hover {
+    color: #BA4E00;
+}
+
+/* Inline */
+b,
+strong {
+    font-size: inherit;
+    font-style: inherit;
+    font-weight: bold;
+    font-family: inherit;
+    text-decoration: inherit;
+    }
+
+cite,
+em,
+i {
+    font-size: inherit;
+    font-style:italic;
+    font-weight: inherit;
+    font-family: inherit;
+    text-decoration: inherit;
+}
+
+.glossary-term {
+    font-weight: 600;
+	color: #BD0075;
+    font-family: Georgia, Baskerville, roman, 'times new roman', times, serif;
+}
+
+.annotation-in-text{
+    font-family: inherit;
+    color: inherit;
+    font-weight: inherit;
+    border-bottom: 1px dashed #404040;
+}
+
+.annotation-in-text:hover {
+    color: #BA4E00;
+}
+
+.styled-content.emphasis {
+    color: #007A7F;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+
+sup {
+    font: inherit;
+    font-size: 0.75em;
+    vertical-align: super;
+    position: relative;
+}
+
+sub {
+    font: inherit;
+    font-size: 0.85em;
+    vertical-align: sub;
+    position: relative;
+}
+
+s {
+    font: inherit;
+    text-decoration: line-through;
+}
+
+u {
+    font: inherit;
+    text-decoration: underline;
+}
+
+.ref-title {
+    font-style: italic;
+}
+
+.volume {
+    font-weight: 600;
+}
+
+.inline-graphic img{
+    vertical-align: middle;
+}
+
+span.para-id {
+    font-weight: bold;
+    padding-right: 0.75em;
+	display: none;
+}
+
+span.line {
+    font-size: 0.8em;
+    float: left;
+    margin-left: -2.5em;
+    color: #646464;
+}
+
+span.folio {
+    font-size: 0.8em;
+    color: #646464;
+}
+
+span.folio:before {
+    display: inline-block;
+    content: "\005B";
+    background-size: 1em 0.5em;
+    height: 1em;
+    width: 0.4em;
+    margin-right: 0em;
+    margin-left: 0em;
+}
+
+span.folio:after {
+    display: inline-block;
+    content: "\005D";
+    background-size: 1em 0.5em;
+    height: 1em;
+    width: 0.5em;
+    margin-right: 0em;
+    margin-left: 0em;
+}
+
+/** Lists **/
+
+/* Simple lists */
+li {
+    margin-top: 0.5em;
+}
+
+.list-item {
+    margin: 0.5em 0 0 0em;
+    padding-left: 0.5em;
+}
+
+.liLabel {
+    text-align: right;
+    margin-right: 0.5em;
+    padding-right: 1em;
+    display: table-cell;
+}
+ /*
+.liBody {
+    list-style: none;
+    display: table-cell;
+    line-height: 150%; 
+}
+*/
+.liTitle, .itemTitle {
+    font-weight: 600;
+}
+
+.title.list {
+    font: inherit;
+    font-weight: 600;
+}
+
+div.header.list {
+    margin-top: 0.75em;
+    column-span: all;
+}
+
+div.simple.list {
+    margin: 0.5em 0 0.5em 0;
+    border-collapse: separate;
+    border-spacing: 0 0.5em;
+    font-size: inherit;
+}
+
+.simple.list .list-item {
+    display: table-row;
+    padding-left: 0;
+}
+
+.liBody .simple.list {
+    margin: 0 0 0 0.5em;
+    border-spacing: 0.25em;
+}
+
+.simple.list .liLabel {
+    white-space: nowrap;
+}
+
+/*
+.list.number .list-item {
+    margin: 0.5em 0 0 1.75em;
+}
+*/
+.listItem-para + .listItem-para{
+    margin-top: 0.3em;
+    display: block;
+}
+
+/* New ol ul */
+
+ol, ul {
+    margin: 1em 0 1em .5em;
+}
+
+li ol, li ul {
+    margin: 0;
+}
+
+/* Autolabelled lists */
+ol.autoLabelled.number {
+    list-style-type: decimal;
+}
+ol.autoLabelled.alpha-lower {
+    list-style-type: lower-alpha;
+}
+
+ol.autoLabelled.alpha-upper {
+    list-style-type: upper-alpha;
+}
+
+ol.autoLabelled.roman-lower {
+    list-style-type: lower-roman;
+}
+
+ol.autoLabelled.roman-upper {
+    list-style-type: upper-roman;
+}
+
+ul.autoLabelled {
+    list-style-type: disc;
+}
+
+ul.unlabelled, ul.labelled, ol.labelled {
+    list-style-type: none;
+}
+
+li ol.autoLabelled, li ul.autoLabelled {
+    margin: 0;
+}
+
+li ol.autoLabelled .list-item, li ul.autoLabelled .list-item {
+    margin-top: 0.25em;
+}
+
+/* Labelled lists */
+ol.labelled, ul.labelled {
+    border-collapse: separate;
+    border-spacing: 0 0.5em;
+    font-size: inherit;
+}
+
+ol.labelled .list-item, ul.labelled .list-item {
+    display: table-row;
+    padding-left: 0;
+}
+
+li ol.labelled, li ul.labelled {
+    margin: 0;
+    border-spacing: 0 0.25em;
+}
+
+/* Reference and Index lists */
+.ref-list ul, ul.indexList {
+    list-style-type: none;
+    margin: 0em;
+}
+
+.ref-list li,  ul.indexList {
+    padding-left: 0em;
+    margin: 0.5em 0 0 0em;
+}
+
+li > ul.indexList {
+    margin: 0 0 0 1.5em;
+}
+
+li > ul.indexList > li {
+    margin-top: 0.25em;
+}
+
+/* Common Classes */
+.caption {
+    display: block;
+}
+
+.label {
+    font-family: sans-serif;
+}
+
+.title {
+    font-family: sans-serif;
+}
+
+/**** FRONT MATTER STYLES ****/
+/* Title Page */
+section.chunk.titlepage p.title {
+    color: #8E57D8;
+    font-size: 2.5em;
+	line-height: 1.2em;
+    font-weight: 600;
+	letter-spacing: .01em;
+    margin: 0 0 .75em 0;
+    page-break-after: avoid;
+    text-align: left;  
+}
+
+section.chunk.titlepage p.subtitle {
+    color: #0F7BC2;
+	font-family: sans-serif;
+    font-size: 1.5em;
+    margin: 0 0 1em 0;
+    page-break-after: avoid;
+    text-align: left; 
+	text-indent: 0em;
+    border: none;
+    padding: 0;
+}
+
+section.chunk.titlepage p.title + p.subtitle {
+    margin-top: -0.5em;
+}
+
+section.chunk.titlepage p.edition-number {
+    font-style: italic;
+	text-indent: 0em;
+	margin: 1em 0em 0em 0em;
+}
+
+section.chunk.titlepage p.volume-statement {
+	text-indent: 0em;
+	margin: 1em 0em 0em 0em;
+}
+
+section.chunk.titlepage p.seriesinfo {
+    font-family: sans-serif;
+    color: #757575;
+    font-size: 1.3em;
+    font-weight: 400;
+    font-style: italic;
+}
+
+section.chunk.titlepage p.contributor {
+    margin-top: 2em;
+    display: block;
+    font-size: 1.2em;
+	text-indent: 0em;
+}
+
+section.chunk.titlepage p.affiliation {
+    font-family: sans-serif;
+    font-style: italic;
+    font-size: 0.9em;
+    margin-top: 0em;
+	text-indent: 0em;		
+}
+
+section.chunk.titlepage p.publisher-location {
+    margin-top: 3em;
+	text-indent: 0em;
+}
+
+section.chunk.titlepage p.publisher {
+    margin-top: 0em;
+	text-indent: 0em;
+}
+
+section.chunk.titlepage img.logoImage {
+    width: 8em;
+    margin-top: 5em;
+}
+
+section.chunk.titlepage p.logo {
+    width: 8em;
+    margin-top: 5em;
+}
+
+section.chunk.titlepage p.publisher-location + img.logoImage {
+    margin-top: 0.25em;
+}
+
+section.chunk.titlepage p.publisher-location + p.logo {
+    margin-top: 0.25em;
+}
+
+/* Copyright */
+section.chunk.titleverso p,
+section.chunk.titleverso div.versionDate {
+    font-size: 0.8em;
+    margin-top: 1.25em;
+}
+
+section.chunk.titleverso p.mission-statement {
+    display: inline;
+} 
+
+section.chunk.titleverso p.copyright-he {
+    padding: 0.5em;
+    border: 1px solid #404040;
+} 
+
+section.chunk.titleverso p.copyright-address + p.copyright-address,
+section.chunk.titleverso p.copyright-year + p.copyright-year,
+section.chunk.titleverso p.copyright-printer + p.copyright-printer {
+    margin-top:0em;
+}
+
+section.chunk.titleverso p.copyright-catalog + p.copyright-catalog {
+    margin-left: 1em;
+    text-indent: -1em;
+    margin-top: 0.25em;
+} 
+
+section.chunk.titleverso p + p {
+    text-indent: 0em;
+} 
+
+section.chunk.titleverso img.logoImage {
+    width: 10em;
+    margin-left: -0.4em;
+    margin-bottom: 1em;
+}
+
+section.chunk.titleverso p.logo {
+    width: 10em;
+    margin-bottom: 1em;
+}
+
+/* Abbreviations */
+.abbrevHead  {
+    display: inline-block;
+    margin: 0;
+    padding-right: 1em;
+    font-weight: 600;
+}
+
+.abbrevDef  {
+    display: inline;
+    line-height: 150%;
+}
+
+/* Contributors */
+div.contributorList {
+    margin-bottom: 2em;
+}
+
+.contributor {  
+    padding-right: 1em;
+    font-family: sans-serif;
+    margin-top:0.5em;
+}
+
+div.contributor div.name, div.contributor div.collab {
+    font-size: 1em;
+}
+
+div.contributorList .role {
+    font-style: italic;
+    font-size: 0.95em;
+}
+
+div.affiliation,
+div.institution,
+div.addr-line {  
+    font-family: sans-serif;
+    font-style: italic;
+    font-size: 0.8em;
+}
+
+div.EditorsList {
+    margin-top: 1.75em;
+    font-size: 1em;
+    font-style: italic;
+}
+
+section.chunk.contributors div.contributor {
+    margin-top: .5em;
+}
+
+div.metadata-area {
+    margin-top: 0.35em;
+}
+
+/* Contents */
+/* Detailed TOC*/
+
+div.toc-entry.sec.front-matter,
+div.toc-entry.sec.end-matter {
+    margin-top: 0.75em;
+    margin-bottom: 0;
+}
+
+div.toc-div div.toc-entry {
+    margin-top: 2.25em;
+    margin-bottom: 2.25em;
+}
+
+div.toc-entry > div.toc-entry {
+    margin-top: 1.25em;
+    margin-left: 1.5em;
+    margin-bottom: 0;
+}
+
+div.toc-entry > div.toc-entry > div.toc-entry {
+    margin-top: 0.75em;
+    margin-bottom: 0;
+}
+
+div.toc-entry a.link_part{
+    font-family: sans-serif;
+    font-size: 1.2em;
+    line-height: 100%;
+    font-weight: 600;
+    margin-top: 1em;
+    text-decoration: none;
+}
+
+div.toc-entry a.link_chapter {
+    font-family: sans-serif;
+    font-weight: 600;
+    font-size: 1em;
+    text-decoration: none;
+}
+
+div.toc-entry a.link_sec {
+    font-family: Georgia, Baskerville, roman, 'times new roman', times, serif;
+    font-weight: 400;
+    font-size: 0.9em;
+    text-decoration: none;
+}
+
+div.toc-entry a.link_boxed-text,
+div.toc-entry.undefined a {
+    font-family: sans-serif;
+    font-weight: 600;
+    font-size: 0.9em;
+    color: #005397;
+    text-decoration: none;
+}
+
+div.toc-entry a.link_boxed-text .toc-entry-label,
+div.toc-entry.undefined .toc-entry-label {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+div.toc-entry.case-study a.link_boxed-text {
+    color: #5C007C;
+}
+
+div.toc-entry.reading a.link_boxed-text {
+    color: #293845;
+}
+
+div.toc-entry a.link_boxed-text:hover,
+div.toc-entry.case-study a.link_boxed-text:hover,
+div.toc-entry.reading a.link_boxed-text:hover,
+div.toc-entry.undefined a:hover {
+    color: #BA4E00;
+}
+
+
+div.toc-entry a.link_boxed-text:before,
+div.toc-entry.undefined a:before {
+    display: inline-block;
+    content: "\25FC";
+    background-size: 1em 1em;
+    height: 1.1em;
+    width: 1em;
+    margin-right: 0.1em;
+    margin-left: 0em;
+}
+
+div.toc-entry.case-study a.link_boxed-text:before {
+    display: inline-block;
+    content: "\25AE";
+    background-size: 1em 1em;
+    height: 1em;
+    width: 1em;
+    margin-right: 0.1em;
+    margin-left: 0em;
+}
+
+div.toc-entry.reading a.link_boxed-text:before {
+    display: inline-block;
+    content: "\25AF";
+    background-size: 1em 1em;
+    height: 1em;
+    width: 1em;
+    margin-right: 0.1em;
+    margin-left: 0em;
+}
+
+section.chunk.toc div.contributorList {
+    margin-bottom: 0em;
+}
+
+section.chunk.toc .contributor {  
+    font-family: sans-serif;
+    font-size: 0.85em;
+    margin-top: 0.1em;
+}
+
+section.chunk.toc div.contributorList .role {
+    font-size: 0.8em;
+}
+
+section.chunk.toc div.affiliation,
+section.chunk.toc div.institution {  
+    font-family: sans-serif;
+    font-size: 0.75em;
+    margin-bottom: 0.5em;
+}
+
+/* old Contents - retain if needed*/
+nav > ol {
+    font-family: sans-serif;
+    font-size: 1.1em;
+    line-height: 100%;
+    font-weight: 600;
+    margin-left: 0em;
+}
+
+nav > ol ol {
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 2em;
+    font-size: 0.9em;
+}
+
+nav > ol ol ol {
+    font-family: Georgia, Baskerville, roman, 'times new roman', times, serif;
+    font-weight: 400;
+    font-size: 1em;
+}
+
+nav > ol ol ol ol {
+    font-weight: 400;
+    font-size: 0.9em;
+}
+
+nav li {
+    margin-top: 1.5em;
+}
+
+nav ol ol li {
+    margin-top: 1em;
+}
+
+nav ol ol ol li {
+    margin-top: 0.5em;
+}
+
+nav ol ol ol ol li {
+    margin-top: 0.25em;
+}
+
+nav[id="list-of-illustrations"] ol, nav[id="list-of-tables"] ol, nav[id="list-of-video"] ol {
+    font-size: 0.9em;
+    font-weight: 400;
+    margin-top: 0;
+}
+
+nav[id="list-of-illustrations"] li, nav[id="list-of-tables"] li, nav[id="list-of-video"] li {
+    margin-top: 0.75em;
+}
+
+nav a {
+    text-decoration: none;
+}
+
+/* Dedication */
+
+section.chunk.dedication p {
+    font-size: 1.2em;
+    font-style: italic;   
+}
+
+/**** CHAPTER STYLES ****/
+
+/*** BOXED MATTER ***/
+.boxed-text {
+    font-family: sans-serif;
+    text-align: left;
+}
+.boxed-text p + p {
+    margin-top: 0em;
+    text-indent: 1.5em;
+} 
+
+.header.boxed-text,
+.caption.boxed-text,
+.label.boxed-text,
+.title.boxed-text  {
+    border: 0;
+    border-radius: 0;
+    margin: 0;
+    padding: 0;
+    background-color: inherit;
+}
+
+.header.boxed-text {
+    margin: 0em 0 1.1em 0;
+}
+
+div.header.boxed-text .label {
+    display: block;
+    font-weight: 600;
+    font-size: 1.1em;
+    margin: 0 0 0.3em 0;
+}
+
+div.header.boxed-text .title {
+    font-weight: 300;
+    font-size: 1.2em;
+}
+
+div.header.boxed-text .para {
+    display: block;
+    margin-top: 0.6em;
+    line-height: 150%;
+}
+
+/** GENERIC BOXES **/
+.boxed-text {
+    border: 1px solid #005397;
+    border-radius: 10px;
+    margin: 1.5em 0 1.5em 0;
+    padding: 20px;
+    background-color: #EBF5FF;
+}
+
+.header.boxed-text .caption {
+    color: #005397;
+}
+
+.box.sectitle2, .box.sectitle3, .box.sectitle4, .box.sectitle5, .box.sectitle6 {
+    font-family: sans-serif;
+    hyphens: none;
+        -webkit-hyphens: none;
+        -moz-hyphens:none;
+        adobe-hyphenate: none;
+    page-break-after: avoid;
+    page-break-inside: avoid;
+    text-align: left;  
+    color: #005397;
+}
+
+.box.sectitle2 {
+    font-size: 1.1em;
+    font-weight: 600;
+    margin: 1.5em 0 1em 0;
+    border: 0;
+    padding: 0;
+}
+
+.box.sectitle3 {
+    font-size: 0.9em;
+    font-weight: 600;
+    margin: 1.25em 0 1em 0;
+}
+
+.box.sectitle4 {
+    font-size: 0.9em;
+    font-weight: 400;
+    margin: 1em 0 0.75em 0;
+}
+
+.box.sectitle5 {
+    font-size: 0.9em;
+    font-weight: 300;
+    font-style: italic;
+    margin: 0.75em 0 0.5em 0;
+}
+
+.box.sectitle6 {
+    font-size: 0.8em;
+    font-weight: 300;
+    font-style: italic;
+    color: #404040;
+    margin: 0.75em 0 0.5em 0;
+}
+
+/** CONTENT TYPES **/
+
+/* Annotations */
+
+/* Case Studies */
+.boxed-text.case-study {
+    background-color: transparent;
+    border-left: 6px solid #5C007C;
+    border-top: 0;
+    border-bottom: 0;
+    border-right: 0;
+    border-radius: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.label.case-study,
+.title.case-study,
+.header.boxed-text .caption.case-study,
+.boxed-text.case-study .box.sectitle2, 
+.boxed-text.case-study .box.sectitle3, 
+.boxed-text.case-study .box.sectitle4,
+.boxed-text.case-study .box.sectitle5 {
+    color: #5C007C;
+}
+
+/* Checklist */
+.boxed-text.checklist {
+    background-color: transparent;
+    border-left: 6px solid #C84100;
+    border-radius: 0;
+    border-top: 0;
+    border-bottom: 0;
+    border-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.label.checklist,
+.title.checklist,
+.header.boxed-text .caption.checklist,
+.boxed-text.checklist .box.sectitle2, 
+.boxed-text.checklist .box.sectitle3, 
+.boxed-text.checklist .box.sectitle4,
+.boxed-text.checklist .box.sectitle5  {
+    color: #C84100;
+}
+
+/* Chronology */
+.boxed-text.chronology {
+    border: 1px solid #757575;
+    background-color: #FFF;
+}
+
+.label.chronology,
+.title.chronology,
+.header.boxed-text .caption.chronology,
+.boxed-text.chronology .box.sectitle2, 
+.boxed-text.chronology .box.sectitle3, 
+.boxed-text.chronology .box.sectitle4,
+.boxed-text.chronology .box.sectitle5 {
+    color: #757575;
+}
+
+.boxed-text.chronology .simple.list {
+    margin-left: 0;
+}
+
+.boxed-text.chronology .list-item {
+    margin-left: 0;
+}
+
+.boxed-text.chronology .liTitle {
+    display: table-cell;
+    padding-right: 1em;
+}
+
+/* Cross Reference */
+.boxed-text.cross-reference {
+    background-color: transparent;
+    border-top: 1px solid #007C82;
+    border-bottom: 1px solid #007C82;
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0;
+    padding: 8px;
+}
+
+div.boxed-text.cross-reference div.header.boxed-text {
+    margin-bottom: 0em;
+}
+
+.label.cross-reference,
+.title.cross-reference,
+.header.boxed-text .caption.cross-reference,
+.boxed-text.cross-reference .box.sectitle2, 
+.boxed-text.cross-reference .box.sectitle3, 
+.boxed-text.cross-reference .box.sectitle4,
+.boxed-text.cross-reference .box.sectitle5  {
+    color: #007C82;
+}
+
+.label.cross-reference {
+    font-size: 0.9em;
+}
+
+div.boxed-text.cross-reference p {
+    font-size: 0.9em;
+    margin-top: 0.3em;
+}
+
+div.boxed-text.cross-reference p + p {
+    text-indent: 0;
+} 
+
+/* Definitions */
+.boxed-text.definition {
+    background-color: transparent;
+    border-top: 1px solid #BD0075;
+    border-bottom: 1px solid #BD0075;
+    border-left: 4px solid #BD0075;
+    border-right: 0;
+    border-radius: 0;
+    font-size: 0.95em;
+    padding: 8px;
+    font-family: Georgia, Baskerville, roman, 'times new roman', times, serif;
+}
+
+.term  {
+    color: #BD0075;
+    display: inline-block;
+    margin: 0;
+    font-weight: 600;
+}
+
+.def  {
+    display: inline;
+    line-height: 150%;
+}
+
+.label.definition,
+.title.definition {
+    color: #BD0075; 
+}
+
+/* Examples */
+.boxed-text.examples {
+    background-color: #F0FBF9;
+    border-color: #007C82;
+}
+
+.label.examples,
+.title.examples,
+.header.boxed-text .caption.examples,
+.boxed-text.examples .box.sectitle2, 
+.boxed-text.examples .box.sectitle3, 
+.boxed-text.examples .box.sectitle4,
+.boxed-text.examples .box.sectitle5 {
+    color: #007C82;
+}
+
+/* Expert Comment */
+.boxed-text.expert-comment {
+    background-color: #F8FFF8;
+    border-color: #00820A;
+}
+
+.label.expert-comment,
+.title.expert-comment,
+.header.boxed-text .caption.expert-comment,
+.boxed-text.expert-comment .box.sectitle2, 
+.boxed-text.expert-comment .box.sectitle3, 
+.boxed-text.expert-comment .box.sectitle4,
+.boxed-text.expert-comment .box.sectitle5 {
+    color: #00820A;
+}
+
+/* FAQ */
+.boxed-text.faq {
+    background-color: #F5F3FF;
+    border-color: #1D0B97;
+}
+
+.label.faq,
+.title.faq,
+.header.boxed-text .caption.faq,
+.boxed-text.faq .box.sectitle2, 
+.boxed-text.faq .box.sectitle3, 
+.boxed-text.faq .box.sectitle4,
+.boxed-text.faq .box.sectitle5 {
+    color: #1D0B97;
+}
+
+/* Headnote */
+.boxed-text.headnote {
+    background-color: #FFF;
+    border-color: #293845;
+}
+
+.reading .boxed-text.headnote {
+    background-color: #ECF3F9;
+}
+
+.label.headnote,
+.title.headnote,
+.header.boxed-text .caption.headnote,
+.boxed-text.headnote .box.sectitle2, 
+.boxed-text.headnote .box.sectitle3, 
+.boxed-text.headnote .box.sectitle4,
+.boxed-text.headnote .box.sectitle5 {
+    color: #293845;
+}
+
+/* Hint */
+.boxed-text.hint {
+    background-color: #FFF5F5;
+    border-color: #CE2120;
+}
+
+.label.hint,
+.title.hint,
+.header.boxed-text .caption.hint,
+.boxed-text.hint .box.sectitle2, 
+.boxed-text.hint .box.sectitle3, 
+.boxed-text.hint .box.sectitle4,
+.boxed-text.hint .box.sectitle5 {
+    color: #CE2120;
+}
+
+/* Key Points */
+.boxed-text.key-points {
+    background-color: #EBFAFF;
+    border-color: #0078A7;
+}
+
+.label.key-points,
+.title.key-points,
+.header.boxed-text .caption.key-points,
+.boxed-text.key-points .box.sectitle2, 
+.boxed-text.key-points .box.sectitle3, 
+.boxed-text.key-points .box.sectitle4,
+.boxed-text.key-points .box.sectitle5 {
+    color: #0078A7;
+}
+
+/* Learning Objectives */
+.boxed-text.learning-objectives {
+    border: 1px solid #0060C0;
+    margin-bottom: 2em;
+    background-color: #fff;
+    font-weight: bold;
+}
+
+.label.learning-objectives,
+.title.learning-objectives,
+.header.boxed-text .caption.learning-objectives,
+.boxed-text.learning-objectives .box.sectitle2, 
+.boxed-text.learning-objectives .box.sectitle3, 
+.boxed-text.learning-objectives .box.sectitle4,
+.boxed-text.learning-objectives .box.sectitle5 {
+    color: #0060C0;
+}
+
+/* Perspective */
+.boxed-text.perspective {
+    background-color: #FFF5F0;
+    border-color: #C84100;
+}
+
+.label.perspective,
+.title.perspective,
+.header.boxed-text .caption.perspective,
+.boxed-text.perspective .box.sectitle2, 
+.boxed-text.perspective .box.sectitle3, 
+.boxed-text.perspective .box.sectitle4,
+.boxed-text.perspective .box.sectitle5 {
+    color: #C84100;
+}
+
+/* Readings - boxed */
+.boxed-text.reading {
+    background-color: transparent;
+    border-left: 6px solid #293845;
+    border-radius: 0;
+    border-top: 0;
+    border-bottom: 0;
+    border-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.label.reading,
+.title.reading,
+.header.boxed-text .caption.reading,
+.boxed-text.reading .box.sectitle2, 
+.boxed-text.reading .box.sectitle3, 
+.boxed-text.reading .box.sectitle4,
+.boxed-text.reading .box.sectitle5  {
+    color: #293845;
+}
+
+.boxed-text.reading p + p {
+    margin-top: 1em;
+    text-indent: 0;
+}
+
+.boxed-text.reading .box.sectitle3 {
+    font-size: 0.93em;
+}
+
+.boxed-text.reading .box.sectitle4 {
+    font-size: 0.92em;
+    font-weight: 500;
+    font-style: italic;
+}
+
+.boxed-text.reading .box.sectitle5 {
+    font-size: 0.86em;
+    font-weight: 400;
+    font-style: italic;
+}
+
+/* Readings – endmatter */
+.back.chunk.sec.reading {
+    background-color: transparent;
+    border-left: 6px solid #293845;
+    border-radius: 0;
+    border-top: 0;
+    border-bottom: 0;
+    border-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+
+/* Readings – section */
+div[data-sec-type='reading'],
+section[data-sec-type='reading'] {
+    font-family: sans-serif;
+    background-color: transparent;
+    border-left: 6px solid #293845;
+    border-radius: 0;
+    border-top: 0;
+    border-bottom: 0;
+    border-right: 0;
+    margin: 1.5em 0 1.5em 0;
+    padding: 0 20px 0 20px;
+}
+
+div.reading.sectitle1,
+div.reading.sectitle2, 
+div.reading.sectitle3, 
+div.reading.sectitle4, 
+div.reading.sectitle5, 
+div.reading.sectitle6 {
+    color: #293845;
+}
+
+.boxed-text.reading .title.reading,
+div.reading.sectitle1 .title.reading {
+    font-size: 1.3em;
+    font-weight: 600;
+}
+
+div.reading .subtitle.reading {
+    font-size: 1.1em;
+    font-style: italic;
+    margin: 0.5em 0 1em 0;
+    color: #293845;
+}
+
+div.reading.sectitle1 {
+    margin: 1.5em 0 1em 0;
+}
+
+div.reading.sectitle2 {
+    margin: 1.5em 0 1em 0;
+}
+
+div.reading.sectitle3 {
+    margin: 1.25em 0 1em 0;
+}
+
+div.reading.sectitle4 {
+    margin: 1em 0 0.75em 0;
+}
+
+div.reading.sectitle5 {
+    margin: 0.75em 0 0.5em 0;
+}
+
+div.reading.sectitle6 {
+    margin: 0.75em 0 0.5em 0;
+}
+
+div.reading.sectitle2 .title.sec {
+    font-size: 1.1em;
+    border: none;
+    font-weight: 600;
+}
+
+div.reading.sectitle3 .title.sec {
+    font-size: 0.93em;
+    font-weight: 600;
+}
+
+div.reading.sectitle4 .title.sec {
+    font-size: 0.92em;
+    font-weight: 500;
+    font-style: italic;
+}
+
+div.reading.sectitle5 .title.sec {
+    font-size: 0.86em;
+    font-weight: 400;
+    font-style: italic;
+}
+
+div.reading.sectitle6 .title.sec {
+    font-size: 0.8em;
+    font-weight: 300;
+    font-style: italic;
+}
+
+/* Readings – chapter */
+h1 .label.chapter.reading {
+    color: #757575;
+}
+
+h1 .title.chapter.reading {
+    color: #008489;
+}
+
+/* Resources */
+.boxed-text.resources {
+    border: 1px solid #757575;
+    background-color: #FFF;
+}
+
+.label.resources,
+.title.resources,
+.header.boxed-text .caption.resources,
+.boxed-text.resources .box.sectitle2, 
+.boxed-text.resources .box.sectitle3, 
+.boxed-text.resources .box.sectitle4,
+.boxed-text.resources .box.sectitle5 {
+    color: #757575;
+}
+
+/* Self Assessment */
+.boxed-text.self-assessment {
+    background-color: transparent;
+    border-left: 6px solid #00820A;
+    border-radius: 0;
+    border-top: 0;
+    border-bottom: 0;
+    border-right:0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.label.self-assessment,
+.title.self-assessment,
+.header.boxed-text .caption.self-assessment,
+.boxed-text.self-assessment .box.sectitle2, 
+.boxed-text.self-assessment .box.sectitle3, 
+.boxed-text.self-assessment .box.sectitle4,
+.boxed-text.self-assessment .box.sectitle5 {   
+    color: #00820A;
+}
+
+/* Thinking Point */
+.boxed-text.thinking-point {
+    background-color: #FFF5FF;
+    border-color: #C01D89;
+}
+
+.label.thinking-point,
+.title.thinking-point,
+.header.boxed-text .caption.thinking-point,
+.boxed-text.thinking-point .box.sectitle2, 
+.boxed-text.thinking-point .box.sectitle3, 
+.boxed-text.thinking-point .box.sectitle4,
+.boxed-text.thinking-point .box.sectitle5 {    
+    color: #C01D89;
+}
+
+/* Questions */
+
+.label.question, .label.answer {
+    text-align: left;
+    padding-right: 0.5em;
+    display: table-cell;
+    font-family: inherit;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+.label.answer {
+    font-family: sans-serif;
+    padding-right: 1em;
+}
+ 
+div.question .questionBody, .ans .ansText {
+    display: table-cell;
+    line-height: 150%; 
+    font-family: inherit;
+}
+
+.header.question, .header.answer {
+     display: table-cell;
+}
+
+ div.question {
+    margin: 0em 0 0.5em 1.5em;
+    display: table-row;
+    border-spacing: 0.5em;
+}
+
+div.ans {
+    font-size: 0.85em;
+    margin: 0.5em 0 2em 0;
+    padding-left: 23px;
+	text-align: left;
+	text-indent: 0em;
+}
+
+div.ans p {
+    font-family: sans-serif;
+    padding-top: 1em;
+}
+
+div.ans p + p {
+    padding-top: 0;
+}
+
+/* Vignette */
+.boxed-text.vignette {
+    border-radius: 0;
+    margin: 1.5em 0 1.5em 3em;
+    background-color: transparent;
+    border-left: 12px solid #8A8C8F;
+    border-top: 0;
+    border-bottom: 0;
+    border-right:0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.label.vignette,
+.title.vignette,
+.header.boxed-text .caption.vignette,
+.boxed-text.vignette .box.sectitle2, 
+.boxed-text.vignette .box.sectitle3, 
+.boxed-text.vignette .box.sectitle4,
+.boxed-text.vignette .box.sectitle5  {
+    color: #6F6F6F;
+} 
+
+/* Warning */
+
+.boxed-text.warning {
+    border: 3px dashed #1E1E1E;
+    background-color: #FFF790;
+}
+
+.label.warning,
+.title.warning,
+.header.boxed-text .caption.warning,
+.boxed-text.warning .box.sectitle2, 
+.boxed-text.warning .box.sectitle3, 
+.boxed-text.warning .box.sectitle4,
+.boxed-text.warning .box.sectitle5  {
+    color: #1E1E1E;
+}
+
+/** FT# BOXES - no current styling - treat as generic boxes */
+/* ensures nested FT boxes have generic box heading colour */
+.boxed-text.FT1 .box.sectitle2, 
+.boxed-text.FT1 .box.sectitle3, 
+.boxed-text.FT1 .box.sectitle4,
+.boxed-text.FT1 .box.sectitle5,
+.boxed-text.FT2 .box.sectitle2, 
+.boxed-text.FT2 .box.sectitle3, 
+.boxed-text.FT2 .box.sectitle4,
+.boxed-text.FT2 .box.sectitle5,
+.boxed-text.FT3 .box.sectitle2, 
+.boxed-text.FT3 .box.sectitle3, 
+.boxed-text.FT3 .box.sectitle4,
+.boxed-text.FT3 .box.sectitle5,
+.boxed-text.FT4 .box.sectitle2, 
+.boxed-text.FT4 .box.sectitle3, 
+.boxed-text.FT4 .box.sectitle4,
+.boxed-text.FT4 .box.sectitle5,
+.boxed-text.FT5 .box.sectitle2, 
+.boxed-text.FT5 .box.sectitle3, 
+.boxed-text.FT5 .box.sectitle4,
+.boxed-text.FT5 .box.sectitle5,
+.boxed-text.FT6 .box.sectitle2, 
+.boxed-text.FT6 .box.sectitle3, 
+.boxed-text.FT6 .box.sectitle4,
+.boxed-text.FT6 .box.sectitle5,
+.boxed-text.FT7 .box.sectitle2, 
+.boxed-text.FT7 .box.sectitle3, 
+.boxed-text.FT7 .box.sectitle4,
+.boxed-text.FT7 .box.sectitle5,
+.boxed-text.FT8 .box.sectitle2, 
+.boxed-text.FT8 .box.sectitle3, 
+.boxed-text.FT8 .box.sectitle4,
+.boxed-text.FT8 .box.sectitle5,
+.boxed-text.FT9 .box.sectitle2, 
+.boxed-text.FT9 .box.sectitle3, 
+.boxed-text.FT9 .box.sectitle4,
+.boxed-text.FT9 .box.sectitle5,
+.boxed-text.FT10 .box.sectitle2, 
+.boxed-text.FT10 .box.sectitle3, 
+.boxed-text.FT10 .box.sectitle4,
+.boxed-text.FT10 .box.sectitle5,
+.boxed-text.FT11 .box.sectitle2, 
+.boxed-text.FT11 .box.sectitle3, 
+.boxed-text.FT11 .box.sectitle4,
+.boxed-text.FT11 .box.sectitle5,
+.boxed-text.FT12 .box.sectitle2, 
+.boxed-text.FT12 .box.sectitle3, 
+.boxed-text.FT12 .box.sectitle4,
+.boxed-text.FT12 .box.sectitle5,
+.boxed-text.FT13 .box.sectitle2, 
+.boxed-text.FT13 .box.sectitle3, 
+.boxed-text.FT13 .box.sectitle4,
+.boxed-text.FT13 .box.sectitle5,
+.boxed-text.FT14 .box.sectitle2, 
+.boxed-text.FT14 .box.sectitle3, 
+.boxed-text.FT14 .box.sectitle4,
+.boxed-text.FT14 .box.sectitle5,
+.boxed-text.FT15 .box.sectitle2, 
+.boxed-text.FT15 .box.sectitle3, 
+.boxed-text.FT15 .box.sectitle4,
+.boxed-text.FT15 .box.sectitle5,
+.boxed-text.FT16 .box.sectitle2, 
+.boxed-text.FT16 .box.sectitle3, 
+.boxed-text.FT16 .box.sectitle4,
+.boxed-text.FT16 .box.sectitle5,
+.boxed-text.FT17 .box.sectitle2, 
+.boxed-text.FT17 .box.sectitle3, 
+.boxed-text.FT17 .box.sectitle4,
+.boxed-text.FT17 .box.sectitle5 {
+    color: #005397;
+}
+
+/* Abstract */
+
+div.abstract  {
+  font-family: sans-serif;
+  border-radius: 0;
+    margin: 1em .5em 1em 1em;
+    background-color: transparent;
+    border-left: double;
+    border-top: 0;
+    border-bottom: 0;
+    border-right:0;
+    padding-left: 20px;
+  }
+  
+  div.header.abstract {
+    font-weight: 600;
+    margin: 0 0 .5em 0;
+    border-left: 0;
+    padding: 0;
+
+    }
+
+/** CHAPTER ENDMATTER BOXES **/
+.back {
+    background-color: #EBF5FF;
+    border-radius: 10px;
+    padding: 0px 20px 25px 20px;
+    font-family: sans-serif;
+}
+
+.back h2 {
+    padding-top: 1.5em;
+    margin-top: 0.8em;
+    font-weight: 600;
+    font-size: 1.1em;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #005397;
+    border-bottom: 1px solid #005397;
+    padding-bottom: 0.75em;
+}
+
+.back h2 .label.sec {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 100%;
+}  
+
+.back h3 {
+    font-weight: 600;
+    font-size: 1.05em;
+    color: #005397;
+    margin: 1.5em 0 1em 0;
+}
+
+.back h4 {
+    font-size: 1em;
+    color: #005397;
+    margin: 1.1em 0 0.5em 0;
+}
+
+.back h5, .back h6 {
+    margin: 1em 0 0.25em 0;
+    font-size: 0.95em;
+    font-style: italic;
+    color: #005397;
+}
+
+.back h6 {
+    color: #404040;
+}
+
+.back .def-list {
+    font-size: 0.9em;
+}
+
+.back .term {
+    color: #005397;
+}
+
+p.p-in-ref {
+    margin-top:0;
+    font-size: 0.9em;
+    margin-left: 1.5em;
+    color: #4A4A4A;
+}
+
+p.p-in-ref + p {
+    text-indent: 1.5em;
+}
+
+div.ref-list ul {
+    margin-bottom: 0;
+}
+
+/*** FIGURES AND GRAPHICS ***/
+
+figure
+{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1em;
+    margin-bottom: 1em;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	margin: 1.25em 0 0 0;   
+}
+ 
+figure.fig-group figcaption {
+    margin: 0.25em 0 0 0;
+}
+
+figure.fig-group figure {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+ 
+.label.fig,
+.label.fig-group,
+.p-in-figCaption {
+    font-family: sans-serif;
+    font-size: 0.9em;
+    color: #293845; 
+    display: inline;
+}
+
+.label.fig,
+.label.fig-group {
+    font-weight: 600;
+    padding-right: 0.25em;
+    letter-spacing: 0.1em;
+}
+
+.caption.fig {
+    display: inline;
+}
+
+.title.fig,
+.title.fig-group {
+    font-weight: 600;
+    font-size: 0.9em;
+    color: #3D5163;
+    padding-right: 0.25em;
+}
+
+.p-in-figCaption + .p-in-figCaption {
+    display: block;
+    text-indent: 1em;
+}
+
+img {
+    display: block;
+    margin: 0;
+	max-width: 100%;
+	vertical-align: middle;
+}
+
+img + img {
+    margin-top: 1em;
+}
+
+img.scaled {
+	max-height: 470px;
+}
+
+.figcaption + img {
+	margin-top: 0.75em;
+}
+
+.source {
+    color: inherit;
+    font-size: .8em;
+    text-align: left;
+    text-indent: 0;
+}
+
+p + .source  {
+    margin-top: 1em;
+}
+
+div.boxed-text img {
+    background-color: #FFF;
+    padding: 3px;
+}
+
+div.boxed-text img.inline {
+    background-color: transparent;
+}
+
+/*** TABLES **/
+
+.table-wrap {
+    margin: 2em 0 2em 0;
+  }
+
+.header.table-wrap,
+.caption.table-wrap {
+    margin: 0;
+}
+
+.title.table-wrap {
+    font-weight: 600;
+    font-size: 0.9em;
+    color: #3D5163;
+    padding-right: 0.25em;
+}
+
+.p-in-tableCaption,
+.label.table-wrap  {
+    font-family: sans-serif;
+    font-size: 0.9em;
+    page-break-after: avoid;
+    page-break-inside: avoid;
+    color: #293845;
+}
+
+.label.table-wrap  {
+    font-weight: 600;
+    padding-right: 0.5em;
+    letter-spacing: 0.15em;
+}
+  
+div.table-wrap-foot .footnote + .source {
+    margin-top: 0.5em; 
+}
+
+table {
+  width: 100%;
+  table-layout: auto;
+  background: none repeat scroll 0% 0% #FFF;
+  color: #293845;
+  margin: 1em 0px;
+  border: 1px solid #8A8C8F;
+  box-shadow: none;
+  border-radius: 0.25rem;
+  text-align: left;
+  border-collapse: collapse;
+  border-spacing: 0px;
+}
+ 
+tr {
+    border-top: 1px solid #8A8C8F; 
+    border-bottom: 1px solid #8A8C8F;
+}
+
+th {
+    cursor: auto;
+    background: none repeat scroll 0% 0% #DFDDE0;
+    padding: 0.6em;
+    vertical-align: inherit;
+    font-weight: 600;
+    font-size: 0.9em;
+    text-transform: none;
+    text-align: inherit; 
+    border-left: 1px solid #8A8C8F;
+    word-break: keep-all;
+}
+
+tbody th,
+tr + tr th {
+    font-weight: 600;
+    font-size: 0.85em;
+    background: none repeat scroll 0% 0% #F1F0F2;
+}
+
+td {
+    text-align: inherit;
+    border-left: 1px solid #8A8C8F;
+    word-break: keep-all;
+    padding: 0.6rem;
+    text-align: inherit; 
+    font-size: 0.85em;
+}
+
+td p, th p {
+    text-align: inherit;
+    margin-bottom: 0;
+    word-break: keep-all; }
+
+/* Multi-column tables */
+table.multi-column,
+table.multi-column tr,
+table.multi-column td {
+    border: 0;
+    color: #404040;
+    background: transparent;
+    font-size: inherit;
+}
+
+/* Chronology lists and tables */ /*
+/* def list */
+
+.def-list.tableChronology .term {
+    text-align: left;
+    margin-right: 0.5em;
+    padding: 0.5rem;
+    display: table-cell;
+    color: #293845;
+    font-weight: 600;
+    font-size: 1em;
+    border-top: 1px solid #8A8C8F; 
+}
+ 
+.def-list.tableChronology .def {
+    list-style: none;
+    display: table-cell;
+    border-left: 1px solid #8A8C8F;
+    border-top: 1px solid #8A8C8F; 
+    padding: 0.5rem;
+    line-height: 115%;
+}
+
+.def-list.tableChronology {
+    margin: 0.5em 0 0.5em 0;
+    display: table;
+    border-collapse: separate;
+    font-size: 0.85em;
+    font-family: Georgia, Baskerville, roman, 'times new roman', times, serif;
+    border-left: 1px solid #8A8C8F;
+    border-right: 1px solid #8A8C8F;
+    border-bottom: 1px solid #8A8C8F;
+}
+
+.def-list.tableChronology .def-item {
+    display: table-row;
+    padding-left: 0;
+}
+
+
+/*** OTHER DISPLAY ELEMENTS ***/
+/** Displayed Quotes **/
+blockquote {
+    margin: 1em .5em 1em 1em;
+	quotes: none;
+    min-height: 0;
+    font-size: .9em;
+}
+
+blockquote.disp-quote p+p {
+	text-indent: 0em;
+	margin-top: 0.5em;
+}
+
+/* Sources */
+blockquote.disp-quote .source {
+    margin-top: 0.5em;
+}
+
+blockquote.disp-quote.verse .source,
+blockquote.disp-quote.epigraph .source {
+    margin-right: 15%;
+}
+
+/* Dialogue */
+div.speech {
+    margin-bottom: 0.5em;
+    margin-left: 2em;
+}
+
+div.speech p {
+    text-indent: -2em;
+}
+
+.speaker {
+    text-transform: uppercase;
+    font-size: 0.8em;
+    letter-spacing: 0.1em;
+    display: inline;
+    margin-right: 0.5em;
+}
+/*
+.p-in-sp {
+    display: inline;
+}*/
+
+
+/* Extracts */
+
+/* Unique styling removed to hide tagging issues 
+
+blockquote.disp-quote.extract p {
+    font-family: sans-serif;
+}
+
+blockquote.disp-quote.extract p + p {
+    margin-top: 0em;
+    text-indent: 1.5em;
+}
+*/
+
+blockquote.disp-quote .extract.sectitle2,
+blockquote.disp-quote .extract.sectitle3,
+blockquote.disp-quote .extract.sectitle4,
+blockquote.disp-quote .extract.sectitle5,
+blockquote.disp-quote .extract.sectitle6 {
+    color: #404040;
+}
+
+blockquote.disp-quote .extract.sectitle2 {
+    font-size: 1.1em;
+    font-weight: 600;
+    margin: 1.5em 0 1em 0;
+    padding-bottom: 0.3em;
+    border-bottom: 1px solid#404040;
+}
+blockquote.disp-quote .extract.sectitle3 {
+    font-size: 1em;
+    font-weight: 600;
+    margin: 1.25em 0 1em 0;
+}
+blockquote.disp-quote .extract.sectitle4 {
+    font-size: 0.9em;
+    font-weight: 600;
+    margin: 1em 0 0.75em 0;
+}
+
+blockquote.disp-quote .extract.sectitle5 {
+    font-size: 0.9em;
+    font-style: italic;
+    font-weight: 400;
+    margin: 0.75em 0 0.5em 0;
+}
+
+blockquote.disp-quote .extract.sectitle6 {
+    font-size: 0.85em;
+    font-weight: 300;
+    margin: 0.75em 0 0.5em 0;
+}
+
+/* Program */
+blockquote.disp-quote.program {
+    font-family: monospace;
+}
+
+/* Pull quotes */
+blockquote.disp-quote.pull-quote {
+    border-top: 1px solid #747474;
+    border-bottom: 1px solid #747474;
+    padding: 10px;
+}
+
+blockquote.disp-quote.pull-quote p {
+    font-size: 1.6em;
+    color: #1E1E1E;
+    text-align: left;
+}
+
+/* Verse*/
+div.verse-group  {
+    line-height: 150%;
+    margin: 0.75em 0 0.75em 10%;
+}
+
+.header.verse-group,
+.header.verse {
+    font-size: 1.1em;
+    font-weight: 600;
+    margin: 1em 0 0.25em 0;
+}
+
+.title.verse-group,
+.title.verse {
+    font-family: Georgia, Baskerville, roman, 'times new roman', times, serif;
+}
+
+/** Capitalisation **/
+.smallCaps {
+	font-variant: small-caps
+}
+
+.allCaps {
+	text-transform: uppercase;
+}
+
+/** Math **/
+.formula-wrap {
+    display: flex;
+    justify-content: space-between;
+    gap: 6px;
+    align-items: center;
+}
+
+div.disp-formula {
+    display: block;
+    page-break-inside: avoid;
+    page-break-after: avoid;
+    text-align: center;
+    overflow-y: hidden;
+    overflow-x: auto;
+    margin: 1em 0 !important;
+}
+
+.inline-formula {
+    display: inline;
+    page-break-inside: avoid;
+    page-break-after: avoid;
+}
+
+.label.disp-formula {
+	color: #3D5163;
+    font-size: 0.9em;
+    font-weight: bold;
+    letter-spacing: 0;
+    margin: 0;   
+    padding-left: 0.5em;
+    text-align: right;
+    text-indent: 0;
+    text-transform: none;
+    page-break-after: avoid;
+    page-break-inside: avoid;
+}
+
+/** Footnotes **/
+
+div.fn-group {
+    margin-top: 2em;
+    padding-top: 1em;
+    border-top: 1px solid #D6D9DB;
+}
+
+.footnote, .endnote {
+    font-size: .8em;
+    text-align: left;
+    margin-bottom: 1em;
+}
+
+ol.endnoteList, 
+ul.endnoteList {
+    margin: 0.5em 0 0.5em 0;
+    line-height: 105%;
+}
+
+ol.endnoteList > li,
+ul.endnoteList > li {
+    margin: 0 0 1em 0;
+    list-style-type: none;
+}
+
+.p-in-note + .p-in-note {
+    display: block;
+    text-indent: 1em;
+}
+
+/** Prompts **/
+span.styled-content[data-specific-use='prompt']:after {
+    content: "";
+    padding: 0 3em 0 3em;
+    margin: 0 0.5em 0 0.5em;
+    border-bottom: 1px solid#404040;
+}
+
+/** Break after ornament **/
+
+hr.breakAfter {
+    background-color: #404040;
+    height: 1px;
+    border: none;
+    width: 75px;
+    margin: 1.5em auto 1.5em auto; 
+}
+
+/**** BACK MATTER STYLES ****/
+/* End of book illustrations */
+figure.endPaperfig {
+    margin-bottom: 6em; 
+}     
+
+/* Glossary */
+
+section.chunk.glossary .glossaryLetter, section.chunk.glossary h2.header.def-list {
+    font-size: 1em;
+    font-weight: bold;
+    margin-bottom: .625em;
+    text-align: left;
+    color: #404040;
+    border: none;
+}
+
+div.def-item + div.def-item {
+    margin-top: 1em;
+}
+
+dd.def > dl.list {
+    margin-left: 1em;
+}
+
+/* Index */
+.alphabet {
+    font-size: 1em;
+	font-weight: bold;
+}
+
+.indexItem {
+    font-size: 1em;
+	font-weight: inherit;
+	margin: 0.5em 0 0 1em;
+}
+
+/**** ENHANCEMENTS ****/
+
+.warningMsg {
+    font-size: 0.8em;
+    margin-top: .5em;
+    margin-bottom: .5em;
+}
+
+/* ARC */
+.boxed-text.arc {
+    border: 2px solid #7632A1;
+    background-color: #FFF;
+}
+
+div.iframe span.label,
+div.iframe span.title,
+div.iframe span.p-in-figCaption,
+div.boxed-text.arc span.label,
+div.boxed-text.arc span.title,
+div.boxed-text.arc span.p-in-figCaption {
+    color: #7632A1;
+}
+
+div.iframe span.label,
+div.boxed-text.arc span.label {
+    font-weight: 600;
+    font-size: 1.1em;
+}
+
+div.iframe span.p-in-figCaption,
+div.boxed-text.arc span.p-in-figCaption {
+    font-weight: 300;
+    font-size: 1.2em;
+}
+
+div.iframe div.header.fig,
+div.boxed-text.arc div.header.fig {
+    margin-bottom: 0.5em;
+}
+
+div.iframe span.title,
+div.boxed-text.arc span.title {
+    font-weight: 600;
+    font-size: 1.1em;
+    padding-right: 0.25em;
+}
+
+/* Inline icons (updated 11/2023)*/
+.oll-link:before {
+    background: url("../media/oll-link.svg") no-repeat 0 0;
+    display: inline-block;
+    content: "";
+    background-size: 1.15em 1.15em;
+    height: 1.25em;
+    width: 1.15em;
+    margin-right: 0.2em;
+    margin-left: 0.2em;
+    vertical-align: middle;
+}
+.web-link:before {
+    background: url("../media/web-link.svg") no-repeat 0 0;
+    display: inline-block;
+    content: "";
+    background-size: 1em 1em;
+    height: 1.2em;
+    width: 1em;
+    margin-right: 0.3em;
+    margin-left: 0.3em;
+    vertical-align: middle;
+}
+
+.oll-link-icon {
+    display: inline-block;
+    height: 1.25em;
+    width: 1.15em;
+    margin-right: 0.2em;
+    margin-left: 0.2em;
+    vertical-align: middle;
+}
+.web-link-icon {
+    display: inline-block;   
+    height: 1.2em;
+    width: 1em;
+    margin-right: 0.2em;
+    margin-left: 0.2em;
+    vertical-align: middle;
+}
+
+.inline-audio-icon {
+    display: inline-block;
+    height: 1em;
+    width: 1em;
+    margin-right: 0.2em;
+    margin-left: 0.2em;
+    vertical-align: middle;
+	margin-bottom: 0.2em;
+}
+
+
+/* emphasize the active element */
+.-epub-media-overlay-active {
+    background-color: yellow !important;
+}
+/**** RULES FOR AMAZON ****/
+
+@media amzn-kf8 {
+    body {
+        /* Amazon guidance margin left and right must be 0 */
+    	margin-left: 0;
+    	margin-right: 0;
+    } 
+}
+
+@media amzn-mobi {
+    body {
+    	margin-left: 0;
+    	margin-right: 0;
+    }     
+}
+
+/*End style sheet*/
