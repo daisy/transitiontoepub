@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1">
+	<head>
+		<meta name="dtb:uid" content="urn:uuid:63aaccbb-c532-4138-b7bb-6f12e8350f32" />
+		<meta name="dtb:depth" content="0" />
+		<meta name="dtb:totalPageCount" content="0" />
+		<meta name="dtb:maxPageNumber" content="0" />
+	</head>
+	<docTitle>
+		<text>The Lorentz Transformations</text>
+	</docTitle>
+	<navMap>
+		<navPoint id="navpoint1" playOrder="1"><navLabel><text>The Lorentz Transformations</text></navLabel><content src="The_Lorentz_Transformations.xhtml" /></navPoint>
+	</navMap>
+</ncx>

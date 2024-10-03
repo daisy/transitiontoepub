@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<package version="3.0" xmlns="http://www.idpf.org/2007/opf" unique-identifier="bookid" xml:lang="en-GB" prefix="ibooks: http://vocabulary.itunes.apple.com/rdf/ibooks/vocabulary-extensions-1.0/">
+	<metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+		<meta name="cover" content="x1.png" />
+		<dc:title>The Lorentz Transformations</dc:title>
+		<dc:description>Test file for math expressions</dc:description>
+		<dc:date>2024-10-01T16:05:17Z</dc:date>
+		<dc:language>en-GB</dc:language>
+		<dc:language>en-US</dc:language>
+		<meta property="dcterms:modified">2024-10-01T16:05:17Z</meta>
+		<dc:identifier id="bookid">urn:uuid:63aaccbb-c532-4138-b7bb-6f12e8350f32</dc:identifier>
+		<!--accessibility options-->
+		<meta property="schema:accessibilityFeature">describedMath</meta>
+		<meta property="schema:accessibilityFeature">displayTransformability</meta>
+		<meta property="schema:accessibilityFeature">MathML</meta>
+		<meta property="schema:accessibilityFeature">readingOrder</meta>
+		<meta property="schema:accessibilityFeature">structuralNavigation</meta>
+		<meta property="schema:accessMode">textual</meta>
+		<meta property="schema:accessMode">visual</meta>
+		<meta property="schema:accessModeSufficient">textual,visual</meta>
+	</metadata>
+	<manifest>
+		<item id="cover" href="cover.xhtml" media-type="application/xhtml+xml" />
+		<item id="The_Lorentz_Transformations" href="The_Lorentz_Transformations.xhtml" media-type="application/xhtml+xml" properties="mathml svg" />
+		<item id="ncx" href="toc.ncx" media-type="application/x-dtbncx+xml" />
+		<item id="toc" href="toc.xhtml" media-type="application/xhtml+xml" properties="nav" />
+		<item id="idGeneratedStyles.css" href="css/idGeneratedStyles.css" media-type="text/css" />
+		<item id="x1.png" href="image/1.png" media-type="image/png" properties="cover-image" />
+	</manifest>
+	<spine toc="ncx">
+		<itemref idref="cover" linear="no" />
+		<itemref idref="The_Lorentz_Transformations" />
+	</spine>
+	<guide>
+		<reference type="cover" href="cover.xhtml" title="Cover" />
+	</guide>
+</package>
