@@ -99,48 +99,20 @@
 
         <h2>Introduction</h2>
     	
-        <p>MathML has been around for many years, but the support for MathML in web browsers and EBook reading systems was suboptimal. On the other hand reading Math is essential for students with disabilities for making progress in the field of science, technology, engineering and mathematics.</p>
+        <p>Reading scientific expressions is essential for students with disabilities for making progress in the field of science, technology, engineering and mathematics. Fortunately, MathML is now widely supported in web browsers and EBook reading systems was suboptimal. </p>
     
-        <p>Therefore we initialized a working group for developing the best practices for MathML which could enable users to read Math in wider range of EPUB reading environments. The working group came up with wide range of techniques and evaluated the reading experience in different combination of EPUB reading systems, operating systems, browsers and assistive technologies. Which was followed by selection of most widely supported techniques.</p>
-
         <p>It is possible that the recommendations for EPUB 3 environments provided in this report are a little different from the recommendations for the web environment. Though most of EPUB 3 reading systems use components from web browsers, the reading systems tend to change and sometimes override the web browser functionality, which results in a somewhat different reading experience.</p>
 
-        <p>It is important to highlight that reading systems, the underlying browsers of reading systems, and assistive technologies are making rapid progress in supporting MathML. In the next 6 to 12 months, we expect revolutionary positive change in the MathML reading experience. Therefore, it is possible that the recommendations in this report become out of date very soon. Due to this reason we are providing interim recommendations at this time. The readers of this report should consider the recommendations as temporary or interim; the reading environments will be tested again after some months for providing future recommendations.</p>
-    
-        <p>Additionally, the mere inclusion of presentational MathML does not guarantee that it will be fully accessible. We will be looking into providing accessible authoring recommendations for MathML in the future.</p>
+        <p>The mere inclusion of presentational MathML does not guarantee that it will be fully accessible. We will be looking into providing accessible authoring recommendations for MathML in the future.</p>
         
-        <h2>Evaluation Process</h2>
-        
-        <p>Step 1. Development of techniques for evaluation. The following techniques were developed: </p>
-        <ol>
-            <li>PNG image with alt text: Very basic test in which PNG image of Math expression is used for visual users and description of math expression is placed in the alt text of the image for assistive technology.</li>
-            <li>Javascript workaround for image+alt text along with hidden MathML: By default an image of Math equation, described in alt text is shown. If java script is enabled then it places visually hidden MathML for assistive technology and removes the alt text of image to prevent duplicate reading.</li><li>Image+alt text along with hidden MathML, but no java script: The same as above test, but java script is not used to present hidden MathML and hide alt text. Therefore, assistive technology will come across both hidden MathML as well as image alt text.</li>
-            <li>HTML <code>details</code> based tests: The Math expression in image is shown along with alt text with description of expression. In addition, HTML <code>details</code> element is placed just after the image, and it contains MathML mark-up. Therefore image and alt text of expression will be always available, and if the reading system and assistive technology supports MathML, then user can open the HTML <code>details</code> to read MathML.</li>
-            <li>MathML mark-up with Image and alt text placed in annotation XML: This test mainly checks if annotation XML in MathML is supported by reading environments.</li>
-            <li><code>aria-label</code> placed on parent element of MathML expression: It evaluates the behavior of <code>aria-label</code> in presence of MathML.</li>
-            <li>MathML using <code>m: namespacing</code>: Evaluates reading experience of MathML mark-up when namespace URL is not applied directly on the MathML expression.</li><li>MathML using the <code>role="math"</code>: Evaluates reading experience when <code>role="math"</code> is used.</li>
-            <li>Read aloud feature reads <code>alttext</code> in MathML: Evaluates if the read aloud feature of the reading systems reads the alt text of MathML mark-up.</li>
-        </ol>
-        
-        <p>Step 2. The techniques were evaluated on different configurations of reading environments. The following reading systems, operating systems, browsers and assistive technologies combinations were used: </p>
-        
-        <ul>
-            <li>Reading systems: Vital Source Bookshelf online, Vital Source Bookshelf desktop, Text Help (read &amp; write), Redshelf, Thorium desktop, Dolphin Easyreader, Apple Books and Google Playbooks.</li>
-            <li>Operating systems: Windows 10, Mac 10, iOS and Android.</li>
-            <li>Browsers: Chrome, Firefox, Edge and Safari.</li><li>Assistive technologies: JAWS, NVDA, Voiceover, Talkback.</li>
-        </ul>
-        
-        <h2>Future Prospects</h2>
-        
-        <p>With the efforts of Math refresh community group in W3C, Chrome has implemented MathML, which is now available in the test builds. It is expected that it will start shipping in main stream Chrome releases within 6 to 12 months. Microsoft Edge is also based on Chromium (Open-source browser project used by Chrome), this means that Edge would start supporting MathML almost simultaneously. The two main players in United States higher education, Vital Source and Redshelf have committed to improve MathML support in their reading systems in time frame of 3 to 6 months. All these developments will drastically improve MathML support in next one year.</p>
-        
-        <h2>Analysis and Recommendations</h2>
-        <p>Based on test results and future prospects, the following techniques are recommended as interim solution.</p>
-        
+        <h2>Recommendations</h2>
+
         <p>Note: Based on the test results it is recommended not to use the global namespaces for MathML, i.e. not using m: prefix namespace within the <code>&lt;html&gt;</code> element.  Instead it is recommended that for each mathML equation to add the local namespace <code>xmlns="http://www.w3.org/1998/Math/MathML"</code> within the <code>&lt;math&gt;</code> element itself. For code examples, please see the MathML examples provided in the following techniques.</p>
+
+        <p>Based on test results and future prospects, the following technique is recommended.</p>
         
-        <h3>Technique 1: Native MathML</h3>
-        <p>Right now native MathML is supported by 7 of the tested 25 reading combinations. But looking at the future prospects, this would be the best way forward.</p>
+        
+        <h3>Technique: Native MathML</h3>
 
         <div class="simplecalloutbox_preheader">    
             <h4>Code Example #1: Block MathML</h4>
@@ -151,9 +123,7 @@
        &lt;span id="block-mathml"&gt;
             Some Text before the math equation
             &lt;math xmlns="http://www.w3.org/1998/Math/MathML" 
-            display="block" 
-            alttext="y minus y 1 equals StartFraction y 2 minus y 1 Over x 2 minus x 1 EndFraction 
-            left-parenthesis x minus x 1 right-parenthesis"&gt;
+            display="block"&gt;
                &lt;mrow&gt;
                     &lt;mi&gt;y&lt;/mi&gt;
                     &lt;mo&gt;−&lt;/mo&gt;
@@ -215,8 +185,7 @@
             <span id="block-mathml">
             Some Text before the math equation
             <math xmlns="http://www.w3.org/1998/Math/MathML" 
-                  display="block" 
-                  alttext="y minus y 1 equals StartFraction y 2 minus y 1 Over x 2 minus x 1 EndFraction left-parenthesis x minus x 1 right-parenthesis">
+                  display="block">
                 <mrow>
                     <mi>y</mi>
                     <mo>−</mo>
@@ -279,9 +248,7 @@
             &lt;span id="inline-mathml"&gt;
             Some Text before the math equation
             &lt;math xmlns="http://www.w3.org/1998/Math/MathML" 
-            display="inline" 
-            alttext="y minus y 1 equals StartFraction y 2 minus y 1 Over x 2 minus x 1 EndFraction 
-            left-parenthesis x minus x 1 right-parenthesis"&gt;
+            display="inline"&gt;
                &lt;mrow&gt;
                     &lt;mi&gt;y&lt;/mi&gt;
                     &lt;mo&gt;−&lt;/mo&gt;
@@ -342,8 +309,7 @@
         <span id="inline-mathml">
             Some Text before the math equation
             <math xmlns="http://www.w3.org/1998/Math/MathML" 
-                  display="inline" 
-                  alttext="y minus y 1 equals StartFraction y 2 minus y 1 Over x 2 minus x 1 EndFraction left-parenthesis x minus x 1 right-parenthesis">
+                  display="inline" >
                <mrow>
                     <mi>y</mi>
                     <mo>−</mo>
@@ -398,277 +364,8 @@
         </div>
         </div>
       
-        <h3>Technique 2: Image with alt text followed by MathML placed in HTML <code>details</code></h3>
-        <p>The technique has the following caveats:</p>
-        <ul>
-        <li>It only works for block Math expressions.</li>
-        <li>HTML <code>details</code> is also not so widely supported in reading combinations.</li>
-        <li>The complexity of reading Math expression from image + alt text and then opening HTML <code>details</code> for reading each expression will result in considerable cognitive load, especially for people with cognitive disabilities.</li>
-        </ul>
-
-        <div class="simplecalloutbox_preheader">    
-        <h4>Code Example #3: Image with alt text followed by MathML placed in HTML <code>details</code></h4>
-        </div>
-        <div class="simplecalloutbox">
-        <pre><code>
-              &lt;img src="epub-image-2pointform.png" 
-              alt="y minus y 1 equals StartFraction y 2 minus y 1 Over x 2 minus x 1 EndFraction 
-              left-parenthesis x minus x 1 right-parenthesis" aria-details="math-details1"&gt;
-
-            &lt;details id="math-details1"&gt;
-              &lt;summary&gt;MathML Presentation&lt;/summary&gt;
-              &lt;math id="math1" xmlns="http://www.w3.org/1998/Math/MathML" display="block" 
-              alttext="(MathML alttext): y minus y sub 1 equals StartFraction y sub 2 minus y sub 1 Over x sub 2 minus x sub 1 EndFraction 
-              left-parenthesis x minus x sub 1 right-parenthesis"&gt;
-               &lt;mrow&gt;
-                    &lt;mi&gt;y&lt;/mi&gt;
-                    &lt;mo&gt;−&lt;/mo&gt;
-                    &lt;msub&gt;
-                        &lt;mi&gt;y&lt;/mi&gt;
-                        &lt;mn&gt;1&lt;/mn&gt;
-                    &lt;/msub&gt;
-                &lt;/mrow&gt;
-                &lt;mo&gt;=&lt;/mo&gt;
-                &lt;mrow&gt;
-                    &lt;mfrac&gt;
-                        &lt;mrow&gt;
-                            &lt;msub&gt;
-                                &lt;mi&gt;y&lt;/mi&gt;
-                                &lt;mn&gt;2&lt;/mn&gt;
-                            &lt;/msub&gt;
-                            &lt;mo&gt;−&lt;/mo&gt;
-                            &lt;msub&gt;
-                                &lt;mi&gt;y&lt;/mi&gt;
-                                &lt;mn&gt;1&lt;/mn&gt;
-                            &lt;/msub&gt;
-                        &lt;/mrow&gt;
-                        &lt;mrow&gt;
-                            &lt;msub&gt;
-                                &lt;mi&gt;x&lt;/mi&gt;
-                                &lt;mn&gt;2&lt;/mn&gt;
-                            &lt;/msub&gt;
-                            &lt;mo&gt;−&lt;/mo&gt;
-                            &lt;msub&gt;
-                                &lt;mi&gt;x&lt;/mi&gt;
-                                &lt;mn&gt;1&lt;/mn&gt;
-                            &lt;/msub&gt;
-                        &lt;/mrow&gt;
-                    &lt;/mfrac&gt;
-                    &lt;mo&gt;⁢&lt;!--invisible times--&gt;&lt;/mo&gt;
-                    &lt;mrow&gt;
-                        &lt;mo&gt;(&lt;/mo&gt;
-                        &lt;mrow&gt;
-                            &lt;mi&gt;x&lt;/mi&gt;
-                            &lt;mo&gt;−&lt;/mo&gt;
-                            &lt;msub&gt;
-                                &lt;mi&gt;x&lt;/mi&gt;
-                                &lt;mn&gt;1&lt;/mn&gt;
-                            &lt;/msub&gt;
-                        &lt;/mrow&gt;
-                        &lt;mo&gt;)&lt;/mo&gt;
-                    &lt;/mrow&gt;
-                &lt;/mrow&gt;
-            &lt;/math&gt;
-      &lt;/details&gt;
-      </code></pre>
-
-<div class="simplecalloutbox_preheader">    
-<h4>Code Example #3 Preview: Image with alt text followed by MathML placed in HTML <code>details</code></h4>
-</div>
-<div class="simplecalloutbox">
-<img src="epub-image-2pointform.png" alt="y minus y 1 equals StartFraction y 2 minus y 1 Over x 2 minus x 1 EndFraction left-parenthesis x minus x 1 right-parenthesis" aria-details="math-details1">
-            
-    <details id="math-details1">
-      <summary>MathML Presentation</summary>
-      <math id="math1" xmlns="http://www.w3.org/1998/Math/MathML" 
-            display="block" 
-            alttext="(MathML alttext): y minus y sub 1 equals StartFraction y sub 2 minus y sub 1 Over x sub 2 minus x sub 1 EndFraction left-parenthesis x minus x sub 1 right-parenthesis">
-   <mrow>
-        <mi>y</mi>
-        <mo>−</mo>
-        <msub>
-            <mi>y</mi>
-            <mn>1</mn>
-        </msub>
-    </mrow>
-    <mo>=</mo>
-    <mrow>
-        <mfrac>
-            <mrow>
-                <msub>
-                    <mi>y</mi>
-                    <mn>2</mn>
-                </msub>
-                <mo>−</mo>
-                <msub>
-                    <mi>y</mi>
-                    <mn>1</mn>
-                </msub>
-            </mrow>
-            <mrow>
-                <msub>
-                    <mi>x</mi>
-                    <mn>2</mn>
-                </msub>
-                <mo>−</mo>
-                <msub>
-                    <mi>x</mi>
-                    <mn>1</mn>
-                </msub>
-            </mrow>
-        </mfrac>
-        <mo>⁢<!--invisible times--></mo>
-        </mrow><mrow>
-            <mo>(</mo>
-            </mrow><mrow>
-                <mi>x</mi>
-                <mo>−</mo>
-                <msub>
-                    <mi>x</mi>
-                    <mn>1</mn>
-                </msub>
-            </mrow>
-            <mo>)</mo>
-        
-    
-        </math>
-    </details>
-</div>
     </div>
-    <h3>Technique 3: Image with alt text for inline expression</h3>
-<p>Many times simple Math expression is provided inline. It can be appropriately described by placing the description of the expression in the alt text of the image, therefore we can use image with alt text instead of inline MathML while the reading environments catch up. In order to preserve MathML mark-up for future use, the mark-up can be placed in comments instead of removing it.</p>
 
-<div class="simplecalloutbox_preheader">    
-<h4>Code Example #4: Image with alt text for inline expression</h4>
-</div>
-<div class="simplecalloutbox">
-<pre><code>
-Text before math image
-&lt;img src="epub-image-2pointform.png" 
-alt="y minus y sub 1 equals StartFraction y sub 2 minus y sub 1 Over x sub 2 minus x sub 1 EndFraction 
-left-parenthesis x minus x sub 1 right-parenthesis"&gt;
-Text after math image.
-
-        &lt;!-- Commented out MathML for future use
-            &lt;math xmlns="http://www.w3.org/1998/Math/MathML" display="inline" 
-            alttext="y minus y 1 equals StartFraction y 2 minus y 1 Over x 2 minus x 1 EndFraction 
-            left-parenthesis x minus x 1 right-parenthesis"&gt;
-               &lt;mrow&gt;
-                    &lt;mi&gt;y&lt;/mi&gt;
-                    &lt;mo&gt;−&lt;/mo&gt;
-                    &lt;msub&gt;
-                        &lt;mi&gt;y&lt;/mi&gt;
-                        &lt;mn&gt;1&lt;/mn&gt;
-                    &lt;/msub&gt;
-                &lt;/mrow&gt;
-                &lt;mo&gt;=&lt;/mo&gt;
-                &lt;mrow&gt;
-                    &lt;mfrac&gt;
-                        &lt;mrow&gt;
-                            &lt;msub&gt;
-                                &lt;mi&gt;y&lt;/mi&gt;
-                                &lt;mn&gt;2&lt;/mn&gt;
-                            &lt;/msub&gt;
-                            &lt;mo&gt;−&lt;/mo&gt;
-                            &lt;msub&gt;
-                                &lt;mi&gt;y&lt;/mi&gt;
-                                &lt;mn&gt;1&lt;/mn&gt;
-                            &lt;/msub&gt;
-                        &lt;/mrow&gt;
-                        &lt;mrow&gt;
-                            &lt;msub&gt;
-                                &lt;mi&gt;x&lt;/mi&gt;
-                                &lt;mn&gt;2&lt;/mn&gt;
-                            &lt;/msub&gt;
-                            &lt;mo&gt;−&lt;/mo&gt;
-                            &lt;msub&gt;
-                                &lt;mi&gt;x&lt;/mi&gt;
-                                &lt;mn&gt;1&lt;/mn&gt;
-                            &lt;/msub&gt;
-                        &lt;/mrow&gt;
-                    &lt;/mfrac&gt;
-                    &lt;mo&gt;⁢&lt;/mo&gt;
-                    &lt;mrow&gt;
-                        &lt;mo&gt;(&lt;/mo&gt;
-                        &lt;mrow&gt;
-                            &lt;mi&gt;x&lt;/mi&gt;
-                            &lt;mo&gt;−&lt;/mo&gt;
-                            &lt;msub&gt;
-                                &lt;mi&gt;x&lt;/mi&gt;
-                                &lt;mn&gt;1&lt;/mn&gt;
-                            &lt;/msub&gt;
-                        &lt;/mrow&gt;
-                        &lt;mo&gt;)&lt;/mo&gt;
-                    &lt;/mrow&gt;
-                &lt;/mrow&gt;
-            &lt;/math&gt;
-        End of commented out MathML--&gt;
-</code></pre>
-
-
-        <div class="simplecalloutbox_preheader">    
-            <h4>Code Example #4 Preview: Image with alt text for inline expression</h4>
-        </div>
-        <div class="simplecalloutbox">
-            <p>Text before image
-            <img id="exp4" src="epub-image-2pointform.png" 
-                 alt="y minus y 1 equals StartFraction y 2 minus y 1 Over x 2 minus x 1 EndFraction left-parenthesis x minus x 1 right-parenthesis">
-            Text after image.</p>
-            <!-- Commented out MathML for future use
-            <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline" 
-                alttext="(mathml alt-text): y minus y 1 equals StartFraction y 2 minus y 1 Over x 2 minus x 1 EndFraction left-parenthesis x minus x 1 right-parenthesis">
-        <mrow>
-        <mi>y</mi>
-        <mo>&#x2212;</mo>
-        <msub>
-            <mi>y</mi>
-            <mn>1</mn>
-        </msub>
-    </mrow>
-    <mo>=</mo>
-    <mrow>
-        <mfrac>
-            <mrow>
-                <msub>
-                    <mi>y</mi>
-                    <mn>2</mn>
-                </msub>
-                <mo>&#x2212;</mo>
-                <msub>
-                    <mi>y</mi>
-                    <mn>1</mn>
-                </msub>
-            </mrow>
-            <mrow>
-                <msub>
-                    <mi>x</mi>
-                    <mn>2</mn>
-                </msub>
-                <mo>&#x2212;</mo>
-                <msub>
-                    <mi>x</mi>
-                    <mn>1</mn>
-                </msub>
-            </mrow>
-        </mfrac>
-        <mo>&#x2062;</mo>
-        </mrow><mrow>
-            <mo>(</mo>
-            </mrow><mrow>
-                <mi>x</mi>
-                <mo>&#x2212;</mo>
-                <msub>
-                    <mi>x</mi>
-                    <mn>1</mn>
-                </msub>
-            </mrow>
-            <mo>)</mo>
-        
-    
-        </math>
-            End of commented out MathML-->
-        </div>   
-      </div>
       <div data-include="../acknowledgements/index.html"
     	   data-oninclude="fixIncludes"
     	   data-include-replace="true"></div>
