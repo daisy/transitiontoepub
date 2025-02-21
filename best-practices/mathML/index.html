@@ -98,15 +98,23 @@
     	<section id="abstract" hidden="" class="notoc"></section>
 
         <h2>Introduction</h2>
-    	
-        <p>Reading scientific expressions is essential for students with disabilities for making progress in the field of science, technology, engineering and mathematics. Fortunately, MathML is now widely supported in web browsers and EBook reading systems was suboptimal. </p>
-    
+        
+	    <p>
+            Reading scientific and mathematical expressions are essential for students with disabilities for making progress in the field of science, technology, engineering and mathematics. This document recommends best practices for presenting Mathematics in a way which makes it accessible to people with print disabilities.
+        </p>
+
         <p>It is possible that the recommendations for EPUB 3 environments provided in this report are a little different from the recommendations for the web environment. Though most of EPUB 3 reading systems use components from web browsers, the reading systems tend to change and sometimes override the web browser functionality, which results in a somewhat different reading experience.</p>
 
-        <p>The mere inclusion of presentational MathML does not guarantee that it will be fully accessible. We will be looking into providing accessible authoring recommendations for MathML in the future.</p>
-        
         <h2>Recommendations</h2>
 
+        <p>
+            Fortunately, MathML is now widely supported in web browsers and EBook reading systems. Therefore, MathML should we widely used for presenting Mathematics.
+            There are some instances where the use of MathML is not recommended, these are explained in the section that follows the MathML techniques.
+        </p>
+        <p>
+            It is worth mentioning that the mere inclusion of presentational MathML does not guarantee that it will be fully accessible. We will be looking into providing accessible authoring recommendations for MathML in the future.
+        </p>	    
+	    
         <p>Note: Based on the test results it is recommended not to use the global namespaces for MathML, i.e. not using m: prefix namespace within the <code>&lt;html&gt;</code> element.  Instead it is recommended that for each mathML equation to add the local namespace <code>xmlns="http://www.w3.org/1998/Math/MathML"</code> within the <code>&lt;math&gt;</code> element itself. For code examples, please see the MathML examples provided in the following techniques.</p>
 
         <p>Based on test results and future prospects, the following technique is recommended.</p>
@@ -365,7 +373,17 @@
         </div>
       
     </div>
+	    
+        <h3>Where MathML should not be used</h3>
 
+        <p>MathML should not be used at the places where numbers and symbols are the part of the text, for example.</p>
+        <ul>
+            <li>Adam is 65 years old.</li>
+            <li>The zip code of the office is NY 10036.</li>
+<li>My mobile number is 78950 55823.</li>
+            </ul>
+        <p>In these examples, the numbers are actually the words in the text of the publication. Therefore MathML should not be used in such places.</p>
+	    
       <div data-include="../acknowledgements/index.html"
     	   data-oninclude="fixIncludes"
     	   data-include-replace="true"></div>
