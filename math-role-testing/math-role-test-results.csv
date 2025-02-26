@@ -1,0 +1,19 @@
+﻿Math role testing results,,,,,,,,,
+Last updated:,14-Feb-24,,,,,,,,
+,,,,,,,,,
+Assistive Technology,tester,Platform,Browser,Reads the alt text,can explore alt text,says it is math,Navigate to math,navigate to image,notes
+,,,,,,,,,
+Jaws,Avneesh,Windows,Edge,yes,,no,,,You can explore the alt text by character and word
+Jaws,George,Windows,Edge,yes,yes by character and word,Yes if navigating by image,no,yes and announces math content,George and Avneesh have different results.
+Jaws,Avneesh,windows,Chrome,yes,,no,,,
+Jaws,George,windows,Chrome,yes,yes by character and word,if navigating by image,no,yes and announces math content,
+jJaws,Avneesh,windows,firefox,no,,no,,,
+Jaws,George,windows,Firefox,yes,yes by character and word,If you nivated by images it says it is math content,no,Yes and,
+NVDA,Avneesh,Windows,Edge,yes,,no,,,
+NVDA,George,Windows,Edge,yes,no,no,no,no,
+NVDA,avneesh,Windows,Chrome,yes,,no,,,
+NVDA,George,Windows,Chrome,yes,no,no,no,no,
+NVDA,Avneesh,Windows,Firefox,yes,,no,,,
+NVDA,George,Windows,Firefox,yes,no,no,no,no,
+Talkback,Gregorio,Android,Chrome,yes,,Yes if navigating by image,,,
+voiceover,Gregorio,iOS,Safari,yes,,Yes if navigating by image,,,
