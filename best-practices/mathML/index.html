@@ -30,67 +30,7 @@
 			};
 			// ]]>
 		</script>
-		<script>
-		    MathJax = {
-		      loader: {load: ['a11y/explorer']},
-		      options: {
-		        a11y: {
-		          speech: true,
-		          speechRules: 'clearspeak-default',
-		          subtitles: true
-		        },
-		        menuOptions: {
-		          settings: {
-		            explorer: true
-		          }
-		        },
-		        renderActions: {
-		          addMenu: [],
-		          checkLoad: [],
-		          assistiveMml: [],
-		          setExplorerValues: [199,
-		            (doc) => {for (const math of doc.math) {MathJax.config.setExplorer(math, doc)}},
-		            (math, doc) => MathJax.config.setExplorer(math, doc)
-		          ]
-		        }
-		      },
-		      currentMathFocus: null,
-		      setExplorer(math, doc) {
-		        math.typesetRoot.addEventListener('mousedown', function() {
-		          let event = new KeyboardEvent("keydown", {
-		            code: 13,
-		            key: 13,
-		            keyCode: 13,
-		            charCode: 13,
-		            which: 13,
-		            bubbles: true
-		          });
-		          let focus = new FocusEvent('focusout');
-		          if (MathJax.config.currentMathFocus) {
-		            MathJax.config.currentMathFocus.dispatchEvent(focus);
-		          }
-		          focus = new FocusEvent('focusin');
-		          math.typesetRoot.dispatchEvent(focus);
-		          math.typesetRoot.dispatchEvent(event);
-		        });
-		        math.typesetRoot.addEventListener('focusin', function () {
-		          
-		          const braille = this.parentNode.id === 'braille';
-		
-		          MathJax.config.currentMathFocus = this;
-		          const pool = doc.menu.menu.variablePool;
-		          pool.lookup('braille').setValue(braille);
-		          pool.lookup('viewBraille').setValue(braille);
-		          pool.lookup('speech').setValue(!braille);
-		        });
-		      }
-		    };
-		</script>
 		<link href="../css/callout.css" rel="stylesheet" type="text/css"/>
-        <script type="text/javascript" id="MathJax-script" async
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.0.0/es5/latest?tex-mml-chtml.js">
-            
-</script>
 	</head>
     <body>
     	<p class="copyright">Copyright &#169; DAISY Consortium November 16 2022</p>
