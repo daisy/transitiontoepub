@@ -30,67 +30,7 @@
 			};
 			// ]]>
 		</script>
-		<script>
-		    MathJax = {
-		      loader: {load: ['a11y/explorer']},
-		      options: {
-		        a11y: {
-		          speech: true,
-		          speechRules: 'clearspeak-default',
-		          subtitles: true
-		        },
-		        menuOptions: {
-		          settings: {
-		            explorer: true
-		          }
-		        },
-		        renderActions: {
-		          addMenu: [],
-		          checkLoad: [],
-		          assistiveMml: [],
-		          setExplorerValues: [199,
-		            (doc) => {for (const math of doc.math) {MathJax.config.setExplorer(math, doc)}},
-		            (math, doc) => MathJax.config.setExplorer(math, doc)
-		          ]
-		        }
-		      },
-		      currentMathFocus: null,
-		      setExplorer(math, doc) {
-		        math.typesetRoot.addEventListener('mousedown', function() {
-		          let event = new KeyboardEvent("keydown", {
-		            code: 13,
-		            key: 13,
-		            keyCode: 13,
-		            charCode: 13,
-		            which: 13,
-		            bubbles: true
-		          });
-		          let focus = new FocusEvent('focusout');
-		          if (MathJax.config.currentMathFocus) {
-		            MathJax.config.currentMathFocus.dispatchEvent(focus);
-		          }
-		          focus = new FocusEvent('focusin');
-		          math.typesetRoot.dispatchEvent(focus);
-		          math.typesetRoot.dispatchEvent(event);
-		        });
-		        math.typesetRoot.addEventListener('focusin', function () {
-		          
-		          const braille = this.parentNode.id === 'braille';
-		
-		          MathJax.config.currentMathFocus = this;
-		          const pool = doc.menu.menu.variablePool;
-		          pool.lookup('braille').setValue(braille);
-		          pool.lookup('viewBraille').setValue(braille);
-		          pool.lookup('speech').setValue(!braille);
-		        });
-		      }
-		    };
-		</script>
 		<link href="../css/callout.css" rel="stylesheet" type="text/css"/>
-        <script type="text/javascript" id="MathJax-script" async
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.0.0/es5/latest?tex-mml-chtml.js">
-            
-</script>
 	</head>
     <body>
     	<p class="copyright">Copyright &#169; DAISY Consortium November 16 2022</p>
@@ -108,81 +48,80 @@
         <h2>Recommendations</h2>
 
         <p>
-            Fortunately, MathML is now widely supported in web browsers and EBook reading systems. Therefore, MathML should be used for presenting Mathematics.
+            Fortunately, MathML is now widely supported in web browsers and Ebook reading systems. Therefore, MathML should be used for presenting Mathematics.
             There are some instances where the use of MathML is not recommended, these are explained in the section that follows the MathML techniques.
         </p>
         <p>
             It is worth mentioning that the mere inclusion of presentational MathML does not guarantee that it will be fully accessible. We will be looking into providing accessible authoring recommendations for MathML in the future.
         </p>	    
 	    
-        <p>Note: Based on the test results it is recommended not to use the global namespaces for MathML, i.e. not using m: prefix namespace within the <code>&lt;html&gt;</code> element.  Instead it is recommended that for each mathML equation to add the local namespace <code>xmlns="http://www.w3.org/1998/Math/MathML"</code> within the <code>&lt;math&gt;</code> element itself. For code examples, please see the MathML examples provided in the following techniques.</p>
+        <p class="note">Based on the test results it is recommended not to use the global namespaces for MathML, i.e. not using m: prefix namespace within the <code>&lt;html&gt;</code> element.  Instead it is recommended that for each mathML equation to add the local namespace <code>xmlns="http://www.w3.org/1998/Math/MathML"</code> within the <code>&lt;math&gt;</code> element itself. For code examples, please see the MathML examples provided in the following techniques.</p>
 
         <p>Based on test results and future prospects, the following technique is recommended.</p>
         
         
         <h3>Technique: Native MathML</h3>
-<p>Note: The alttext attribute of MathML should not be used. The implementations are not using alttext attribute for the fallback of MathML, and it results in reading of math expression twice.</p>
+<p class="note">The alttext attribute of MathML should not be used. The implementations are not using alttext attribute for the fallback of MathML, and it results in reading of math expression twice.</p>
         <div class="simplecalloutbox_preheader">    
             <h4>Code Example #1: Block MathML</h4>
             </div>
             <div class="simplecalloutbox">
                 <pre>
         <code>
-       &lt;span id="block-mathml"&gt;
-            Some Text before the math equation
-            &lt;math xmlns="http://www.w3.org/1998/Math/MathML" 
-            display="block"&gt;
-               &lt;mrow&gt;
+&lt;p&gt;Some Text before the math equation&lt;/p&gt;
+&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot; display=&quot;block&quot;&gt;
+    &lt;mrow&gt;
+        &lt;mi&gt;y&lt;/mi&gt;
+        &lt;mo&gt;&minus;&lt;/mo&gt;
+        &lt;msub&gt;
+            &lt;mi&gt;y&lt;/mi&gt;
+            &lt;mn&gt;1&lt;/mn&gt;
+        &lt;/msub&gt;
+    &lt;/mrow&gt;
+    &lt;mo&gt;=&lt;/mo&gt;
+    &lt;mrow&gt;
+        &lt;mfrac&gt;
+            &lt;mrow&gt;
+                &lt;msub&gt;
                     &lt;mi&gt;y&lt;/mi&gt;
-                    &lt;mo&gt;−&lt;/mo&gt;
-                    &lt;msub&gt;
-                        &lt;mi&gt;y&lt;/mi&gt;
-                        &lt;mn&gt;1&lt;/mn&gt;
-                    &lt;/msub&gt;
-                &lt;/mrow&gt;
-                &lt;mo&gt;=&lt;/mo&gt;
-                &lt;mrow&gt;
-                    &lt;mfrac&gt;
-                        &lt;mrow&gt;
-                            &lt;msub&gt;
-                                &lt;mi&gt;y&lt;/mi&gt;
-                                &lt;mn&gt;2&lt;/mn&gt;
-                            &lt;/msub&gt;
-                            &lt;mo&gt;−&lt;/mo&gt;
-                            &lt;msub&gt;
-                                &lt;mi&gt;y&lt;/mi&gt;
-                                &lt;mn&gt;1&lt;/mn&gt;
-                            &lt;/msub&gt;
-                        &lt;/mrow&gt;
-                        &lt;mrow&gt;
-                            &lt;msub&gt;
-                                &lt;mi&gt;x&lt;/mi&gt;
-                                &lt;mn&gt;2&lt;/mn&gt;
-                            &lt;/msub&gt;
-                            &lt;mo&gt;−&lt;/mo&gt;
-                            &lt;msub&gt;
-                                &lt;mi&gt;x&lt;/mi&gt;
-                                &lt;mn&gt;1&lt;/mn&gt;
-                            &lt;/msub&gt;
-                        &lt;/mrow&gt;
-                    &lt;/mfrac&gt;
-                    &lt;mo&gt;⁢&lt;!--invisible times--&gt;&lt;/mo&gt;
-                    &lt;mrow&gt;
-                        &lt;mo&gt;(&lt;/mo&gt;
-                        &lt;mrow&gt;
-                            &lt;mi&gt;x&lt;/mi&gt;
-                            &lt;mo&gt;−&lt;/mo&gt;
-                            &lt;msub&gt;
-                                &lt;mi&gt;x&lt;/mi&gt;
-                                &lt;mn&gt;1&lt;/mn&gt;
-                            &lt;/msub&gt;
-                        &lt;/mrow&gt;
-                        &lt;mo&gt;)&lt;/mo&gt;
-                    &lt;/mrow&gt;
-                &lt;/mrow&gt;
-            &lt;/math&gt;
-            Some text after the equation.
-        &lt;/span&gt;
+                    &lt;mn&gt;2&lt;/mn&gt;
+                &lt;/msub&gt;
+                &lt;mo&gt;&minus;&lt;/mo&gt;
+                &lt;msub&gt;
+                    &lt;mi&gt;y&lt;/mi&gt;
+                    &lt;mn&gt;1&lt;/mn&gt;
+                &lt;/msub&gt;
+            &lt;/mrow&gt;
+            &lt;mrow&gt;
+                &lt;msub&gt;
+                    &lt;mi&gt;x&lt;/mi&gt;
+                    &lt;mn&gt;2&lt;/mn&gt;
+                &lt;/msub&gt;
+                &lt;mo&gt;&minus;&lt;/mo&gt;
+                &lt;msub&gt;
+                    &lt;mi&gt;x&lt;/mi&gt;
+                    &lt;mn&gt;1&lt;/mn&gt;
+                &lt;/msub&gt;
+            &lt;/mrow&gt;
+        &lt;/mfrac&gt;
+        &lt;mo&gt;
+            &it;&lt;!--invisible times--&gt;
+        &lt;/mo&gt;
+        &lt;mrow&gt;
+            &lt;mo&gt;(&lt;/mo&gt;
+            &lt;mrow&gt;
+                &lt;mi&gt;x&lt;/mi&gt;
+                &lt;mo&gt;&minus;&lt;/mo&gt;
+                &lt;msub&gt;
+                    &lt;mi&gt;x&lt;/mi&gt;
+                    &lt;mn&gt;1&lt;/mn&gt;
+                &lt;/msub&gt;
+            &lt;/mrow&gt;
+            &lt;mo&gt;)&lt;/mo&gt;
+        &lt;/mrow&gt;
+    &lt;/mrow&gt;
+&lt;/math&gt;
+&lt;p&gt;Some text after the equation.&lt;/p&gt;
         </code>
         </pre>
 
@@ -190,134 +129,11 @@
             <h4>Code Example #1 Preview: Block MathML</h4>
             </div>
             <div class="simplecalloutbox">
-            <span id="block-mathml">
+            <p>
             Some Text before the math equation
+            </p>
             <math xmlns="http://www.w3.org/1998/Math/MathML" 
-                  display="block">
-                <mrow>
-                    <mi>y</mi>
-                    <mo>−</mo>
-                    <msub>
-                        <mi>y</mi>
-                        <mn>1</mn>
-                    </msub>
-                </mrow>
-                <mo>=</mo>
-                <mrow>
-                    <mfrac>
-                        <mrow>
-                            <msub>
-                                <mi>y</mi>
-                                <mn>2</mn>
-                            </msub>
-                            <mo>−</mo>
-                            <msub>
-                                <mi>y</mi>
-                                <mn>1</mn>
-                            </msub>
-                        </mrow>
-                        <mrow>
-                            <msub>
-                                <mi>x</mi>
-                                <mn>2</mn>
-                            </msub>
-                            <mo>−</mo>
-                            <msub>
-                                <mi>x</mi>
-                                <mn>1</mn>
-                            </msub>
-                        </mrow>
-                    </mfrac>
-                    <mo>⁢<!--invisible times--></mo>
-                    </mrow><mrow>
-                        <mo>(</mo>
-                        </mrow><mrow>
-                            <mi>x</mi>
-                            <mo>−</mo>
-                            <msub>
-                                <mi>x</mi>
-                                <mn>1</mn>
-                            </msub>
-                        </mrow>
-                        <mo>)</mo>
-
-
-            </math>
-
-            Some text after the equation.
-        </span>
-                </div>
-        </div>
-        <div class="simplecalloutbox_preheader">   
-        <h4>Code Example #2: Inline MathML</h4>
-        </div>
-        <div class="simplecalloutbox">
-            <pre><code>
-            &lt;span id="inline-mathml"&gt;
-            Some Text before the math equation
-            &lt;math xmlns="http://www.w3.org/1998/Math/MathML" 
-            display="inline"&gt;
-               &lt;mrow&gt;
-                    &lt;mi&gt;y&lt;/mi&gt;
-                    &lt;mo&gt;−&lt;/mo&gt;
-                    &lt;msub&gt;
-                        &lt;mi&gt;y&lt;/mi&gt;
-                        &lt;mn&gt;1&lt;/mn&gt;
-                    &lt;/msub&gt;
-                &lt;/mrow&gt;
-                &lt;mo&gt;=&lt;/mo&gt;
-                &lt;mrow&gt;
-                    &lt;mfrac&gt;
-                        &lt;mrow&gt;
-                            &lt;msub&gt;
-                                &lt;mi&gt;y&lt;/mi&gt;
-                                &lt;mn&gt;2&lt;/mn&gt;
-                            &lt;/msub&gt;
-                            &lt;mo&gt;−&lt;/mo&gt;
-                            &lt;msub&gt;
-                                &lt;mi&gt;y&lt;/mi&gt;
-                                &lt;mn&gt;1&lt;/mn&gt;
-                            &lt;/msub&gt;
-                        &lt;/mrow&gt;
-                        &lt;mrow&gt;
-                            &lt;msub&gt;
-                                &lt;mi&gt;x&lt;/mi&gt;
-                                &lt;mn&gt;2&lt;/mn&gt;
-                            &lt;/msub&gt;
-                            &lt;mo&gt;−&lt;/mo&gt;
-                            &lt;msub&gt;
-                                &lt;mi&gt;x&lt;/mi&gt;
-                                &lt;mn&gt;1&lt;/mn&gt;
-                            &lt;/msub&gt;
-                        &lt;/mrow&gt;
-                    &lt;/mfrac&gt;
-                    &lt;mo&gt;⁢&lt;!--invisible times--&gt;&lt;/mo&gt;
-                    &lt;mrow&gt;
-                        &lt;mo&gt;(&lt;/mo&gt;
-                        &lt;mrow&gt;
-                            &lt;mi&gt;x&lt;/mi&gt;
-                            &lt;mo&gt;−&lt;/mo&gt;
-                            &lt;msub&gt;
-                                &lt;mi&gt;x&lt;/mi&gt;
-                                &lt;mn&gt;1&lt;/mn&gt;
-                            &lt;/msub&gt;
-                        &lt;/mrow&gt;
-                        &lt;mo&gt;)&lt;/mo&gt;
-                    &lt;/mrow&gt;
-                &lt;/mrow&gt;
-            &lt;/math&gt;
-            Some text after the equation.
-        &lt;/span&gt;
-        </code>
-        </pre>
-    <div class="simplecalloutbox_preheader">    
-        <h4>Code Example #2 Preview: Inline MathML</h4>
-    </div>
-    <div class="simplecalloutbox">
-        <span id="inline-mathml">
-            Some Text before the math equation
-            <math xmlns="http://www.w3.org/1998/Math/MathML" 
-                  display="inline" >
+            display="block">
                <mrow>
                     <mi>y</mi>
                     <mo>−</mo>
@@ -353,9 +169,9 @@
                         </mrow>
                     </mfrac>
                     <mo>⁢<!--invisible times--></mo>
-                    </mrow><mrow>
+                    <mrow>
                         <mo>(</mo>
-                        </mrow><mrow>
+                        <mrow>
                             <mi>x</mi>
                             <mo>−</mo>
                             <msub>
@@ -364,11 +180,135 @@
                             </msub>
                         </mrow>
                         <mo>)</mo>
-        
-    
+                    </mrow>
+                </mrow>
+            </math>
+        <p>
+            Some text after the equation.
+        </p>
+                </div>
+        </div>
+        <div class="simplecalloutbox_preheader">   
+        <h4>Code Example #2: Inline MathML</h4>
+        </div>
+        <div class="simplecalloutbox">
+        <pre><code>
+&lt;p&gt;
+    Some Text before the math equation
+    &lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot; display=&quot;inline&quot;&gt;
+        &lt;mrow&gt;
+            &lt;mi&gt;y&lt;/mi&gt;
+            &lt;mo&gt;&minus;&lt;/mo&gt;
+            &lt;msub&gt;
+                &lt;mi&gt;y&lt;/mi&gt;
+                &lt;mn&gt;1&lt;/mn&gt;
+            &lt;/msub&gt;
+        &lt;/mrow&gt;
+        &lt;mo&gt;=&lt;/mo&gt;
+        &lt;mrow&gt;
+            &lt;mfrac&gt;
+                &lt;mrow&gt;
+                    &lt;msub&gt;
+                        &lt;mi&gt;y&lt;/mi&gt;
+                        &lt;mn&gt;2&lt;/mn&gt;
+                    &lt;/msub&gt;
+                    &lt;mo&gt;&minus;&lt;/mo&gt;
+                    &lt;msub&gt;
+                        &lt;mi&gt;y&lt;/mi&gt;
+                        &lt;mn&gt;1&lt;/mn&gt;
+                    &lt;/msub&gt;
+                &lt;/mrow&gt;
+                &lt;mrow&gt;
+                    &lt;msub&gt;
+                        &lt;mi&gt;x&lt;/mi&gt;
+                        &lt;mn&gt;2&lt;/mn&gt;
+                    &lt;/msub&gt;
+                    &lt;mo&gt;&minus;&lt;/mo&gt;
+                    &lt;msub&gt;
+                        &lt;mi&gt;x&lt;/mi&gt;
+                        &lt;mn&gt;1&lt;/mn&gt;
+                    &lt;/msub&gt;
+                &lt;/mrow&gt;
+            &lt;/mfrac&gt;
+            &lt;mo&gt;
+                &it;&lt;!--invisible times--&gt;
+            &lt;/mo&gt;
+            &lt;mrow&gt;
+                &lt;mo&gt;(&lt;/mo&gt;
+                &lt;mrow&gt;
+                    &lt;mi&gt;x&lt;/mi&gt;
+                    &lt;mo&gt;&minus;&lt;/mo&gt;
+                    &lt;msub&gt;
+                        &lt;mi&gt;x&lt;/mi&gt;
+                        &lt;mn&gt;1&lt;/mn&gt;
+                    &lt;/msub&gt;
+                &lt;/mrow&gt;
+                &lt;mo&gt;)&lt;/mo&gt;
+            &lt;/mrow&gt;
+        &lt;/mrow&gt;
+    &lt;/math&gt;
+    Some text after the equation.
+&lt;/p&gt;  
+        </code>
+        </pre>
+    <div class="simplecalloutbox_preheader">    
+        <h4>Code Example #2 Preview: Inline MathML</h4>
+    </div>
+    <div class="simplecalloutbox">
+        <p>
+	Some Text before the math equation
+            <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+               <mrow>
+                    <mi>y</mi>
+                    <mo>−</mo>
+                    <msub>
+                        <mi>y</mi>
+                        <mn>1</mn>
+                    </msub>
+                </mrow>
+                <mo>=</mo>
+                <mrow>
+                    <mfrac>
+                        <mrow>
+                            <msub>
+                                <mi>y</mi>
+                                <mn>2</mn>
+                            </msub>
+                            <mo>−</mo>
+                            <msub>
+                                <mi>y</mi>
+                                <mn>1</mn>
+                            </msub>
+                        </mrow>
+                        <mrow>
+                            <msub>
+                                <mi>x</mi>
+                                <mn>2</mn>
+                            </msub>
+                            <mo>−</mo>
+                            <msub>
+                                <mi>x</mi>
+                                <mn>1</mn>
+                            </msub>
+                        </mrow>
+                    </mfrac>
+                    <mo>⁢<!--invisible times--></mo>
+                    <mrow>
+                        <mo>(</mo>
+                        <mrow>
+                            <mi>x</mi>
+                            <mo>−</mo>
+                            <msub>
+                                <mi>x</mi>
+                                <mn>1</mn>
+                            </msub>
+                        </mrow>
+                        <mo>)</mo>
+                    </mrow>
+                </mrow>
             </math>
             Some text after the equation.
-        </span>
+        </p>
         </div>
         </div>
 	    
