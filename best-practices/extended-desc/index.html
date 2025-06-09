@@ -45,36 +45,7 @@
 
         <p>It is possible that the recommendations for EPUB 3 environments provided in this report are a little different from the recommendations for the web environment. Though most of EPUB 3 reading systems use components from web browsers, the reading systems tend to change and sometimes override the web browser functionality, which results in a somewhat different reading experience.</p>
 
-        <p>It is important to highlight that the web browsers, EPUB 3 reading systems and assistive technologies are constantly improving, therefore, the recommendations may become outdated, and another round of evaluations would be required. Furthermore we will make the developers of reading technologies aware of the identified implementation gaps to facilitate resolution of the issues.</p>
-
-        <h2>Evaluation Process</h2>
         
-        <p>Step 1. The following techniques were developed:
-        <ol>
-            <li><code>&lt;aria-details&gt;</code> is used on <code>&lt;img&gt;</code> element, and it is used by the user to move from image to the extended description placed in HTML details element. The image is placed inside figure element and the HTML details element with extended description is placed before the figcaption of the figure element.</li>
-            <li><code>&lt;aria-details&gt;</code> is used on <code>&lt;img&gt;</code> element, and it is used by the user to move from image to the HTML details containing the extended description. The HTML details element follows the image in the reading order. In this technique no figure element is used.</li>
-            <li><code>&lt;aria-details&gt;</code> is used on <code>&lt;img&gt;</code> element, and it is used by the user to move from image to the extended description, which is placed at end of current HTML file.</li>
-            <li>Hyperlink on text is used by the user to move to the extended description placed at the end of current HTML file. The expectation is that the hyperlink needs to take you to the exact position on the extended description and the back link should take you back to the original image.</li>
-            <li><code>&lt;aria-describedby&gt;</code> points to an aside in a figcaption.</li>
-            <li><code>&lt;aria-describedby&gt;</code> points to an aside at the end of chapter.</li>
-            <li>Use of role="presentation" on inline image and block image.</li>
-            <li>Expand HTML details containing a long extended description, and evaluate if the reading system adjusts the screen accordingly and provides ease of reading.</li>
-            <li>Collapse HTML details containing a long extended description, and evaluate if the reading system correctly adjusts the screen and pagination.</li>
-            <li>JavaScript is supported and enhancement to HTML details, prefers-reduced-motion media query works.</li>
-            <li>JavaScript is supported  and enhancement to HTML details, pointer media query works.</li>
-            <li>Text hyperlink is used by the user to go to the exact position of the extended description placed on a separate HTML file, and the back links takes you back to the original position in the original file.</li>
-            <li>Text hyperlink is used by the user to go to a separate HTML file with a single extended description. The accuracy of the landing location on the description does not matter, because there is only a single description in the HTML file, but the back link must take you to the original position.</li>
-            <li>Text hyperlink is used by the user to go to a separate HTML file with single extended description. The accuracy of the landing location on the extended description as well as landing location while coming back is relaxed.</li>
-        </ol>
-    
-    <p>Step 2. The techniques were evaluated on Different configurations of reading environments. The following reading systems, operating systems, browsers and assistive technologies combinations were used: </p>
-        <ul>
-            <li>Reading systems: Vital Source bookshelf online, Vital Source bookshelf desktop, Redshelf, Thorium desktop, Azardi, Dolphin Easyreader, Voice Dream, Apple Books and Google Playbooks.</li>
-            <li>Operating systems: Windows, Mac OS, iOS and Android.</li>
-            <li>Browsers used for reading systems plugins: Chrome, Firefox, Edge, and Safari.</li>
-            <li>Assistive technologies: JAWS, NVDA, Voiceover and Talkback.</li>
-        </ul>
-
         <h2>Recommendations</h2>
         
         <p>After thorough evaluation, we are able to recommend three techniques at this point of time. These techniques worked in a majority of the reading environments. This does not guarantee very wide support, but these provide a way forward while the web browsers, EPUB reading systems and assistive technologies catch-up.</p>
