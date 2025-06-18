@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+	<head>
+		<meta charset="utf-8" />
+		<title>External Page Extended Description</title>
+	</head>
+	<body>
+		<section role="doc-chapter">
+			<h1>External Page Extended Description</h1>
+			<p>Here is my image:</p>
+			<figure>
+				<img id="img1" aria-details="anchor-extended-description-img1" src="chart-ebcaadfb.png" alt="Chart of 2014 First Quarter Visitors to example.com Websites"/>
+				<figcaption>
+					This is the caption for this image. <a id="anchor-extended-description-img1" href="poc-external-page-extended-description-appendix.html#extended-description-img1">Extended description</a>.
+				</figcaption>
+			</figure>
+		</section>
+
+		<script>
+			function runTest() {
+				console.log('=== XPATH TEST to identify extended descriptions for reading system developers ===');
+				
+				try {
+					// Test 1: identify links to extended descriptions
+					const linkXPath = "//a[@id=//img[@aria-details]/@aria-details]";
+					const linkResult = document.evaluate(linkXPath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
+					const linkNode = linkResult.singleNodeValue;
+					
+					console.log('\nTest 1 - identify links to extended descriptions:');
+					console.log('\t- XPath used:', linkXPath);
+					if (linkNode) {
+						console.log('\t- ✓ Link found with ID:', linkNode.id);
+						console.log('\t- href:', linkNode.href);
+						console.log('\t- HTML element:', linkNode);
+					} else {
+						console.log('\t- ✗ No links found in the page');
+					}
+					
+				} catch (error) {
+					console.error('Error during the test:', error.message);
+					console.error('Stack trace:', error.stack);
+				}
+				
+				try {
+					// Test 2: identify extended description containers
+					const linkXPath = "//*[@id=substring-after(//a[@id=//img[@aria-details]/@aria-details]/@href, '#')]";
+					const linkResult = document.evaluate(linkXPath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
+					const linkNode = linkResult.singleNodeValue;
+					
+					console.log('\nTest 2 - identify extended description containers:');
+					console.log('\t- XPath used:', linkXPath);
+					if (linkNode) {
+						console.log('\t- ✓ Container found with ID:', linkNode.id);
+						console.log('\t- HTML element:', linkNode);
+					} else {
+						console.log('\t- ✗ No containers of extended description found in the page');
+					}
+					
+				} catch (error) {
+					console.error('Error during the test:', error.message);
+					console.error('Stack trace:', error.stack);
+				}
+			}
+			
+			// Run the test automatically when the page loads
+			window.addEventListener('load', runTest);
+		</script>
+		
+	</body>
+</html>
