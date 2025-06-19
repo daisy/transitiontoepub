@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<package version="3.0" xmlns="http://www.idpf.org/2007/opf" unique-identifier="bookid" prefix="ibooks: http://vocabulary.itunes.apple.com/rdf/ibooks/vocabulary-extensions-1.0/" xml:lang="en-US">
+	<metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+		<dc:title>POC: Extended Description</dc:title>
+		<dc:creator>Gregorio Pellegrino</dc:creator>
+		<dc:date>2025-06-18</dc:date>
+		<dc:language>en</dc:language>
+		<meta property="dcterms:modified">2025-06-18T12:27:49Z</meta>
+		<dc:identifier id="bookid">urn:uuid:86B8E595-0EC7-4744-9CFC-75DF58F56AFE</dc:identifier>
+		<!--accessibility options-->
+		<meta property="schema:accessibilityFeature">alternativeText</meta>
+		<meta property="schema:accessibilityFeature">ARIA</meta>
+		<meta property="schema:accessibilityFeature">displayTransformability</meta>
+		<meta property="schema:accessibilityFeature">longDescription</meta>
+		<meta property="schema:accessibilityFeature">structuralNavigation</meta>
+		<meta property="schema:accessibilityFeature">tableOfContents</meta>
+		<meta property="schema:accessibilityHazard">none</meta>
+		<meta property="schema:accessMode">textual</meta>
+		<meta property="schema:accessMode">visual</meta>
+		<meta property="schema:accessModeSufficient">textual</meta>
+		<meta property="dcterms:conformsTo">EPUB Accessibility 1.1 - WCAG 2.2 Level AA</meta>
+	</metadata>
+	<manifest>
+		<item id="poc-same-page-extended-description" href="poc-same-page-extended-description.html" media-type="application/xhtml+xml" properties="scripted" />
+		<item id="poc-external-page-extended-description" href="poc-external-page-extended-description.html" media-type="application/xhtml+xml" properties="scripted" />
+		<item id="poc-external-page-extended-description-appendix" href="poc-external-page-extended-description-appendix.html" media-type="application/xhtml+xml" />
+		<item id="toc" href="toc.xhtml" media-type="application/xhtml+xml" properties="nav" />
+		<item id="chart-ebcaadfb" href="chart-ebcaadfb.png" media-type="image/png" />
+	</manifest>
+	<spine>
+		<itemref idref="poc-same-page-extended-description" />
+		<itemref idref="poc-external-page-extended-description" />
+		<itemref idref="poc-external-page-extended-description-appendix" />
+	</spine>
+</package>
