@@ -7,13 +7,25 @@
 	<body>
 		<section role="doc-chapter">
 			<h1>External Page Extended Description</h1>
-			<p>Here is my image:</p>
+			<p>Here is an image in a <code>figure</code> cointainer:</p>
 			<figure>
 				<img id="img1" aria-details="anchor-extended-description-img1" src="chart-ebcaadfb.png" alt="Chart of 2014 First Quarter Visitors to example.com Websites"/>
 				<figcaption>
-					This is the caption for this image. <a id="anchor-extended-description-img1" href="poc-external-page-extended-description-appendix.html#extended-description-img1">Extended description</a>.
+					<p>This is the caption for this image.</p>
+					<p><a id="anchor-extended-description-img1" href="poc-external-page-extended-description-appendix.html#extended-description-img1">Extended description first image</a></p>
 				</figcaption>
 			</figure>
+			<aside>
+				<h2>Note</h2>
+				<p>In the case of multiple grouped images, the content creator can decide to have a single extended description for all the images (with only one link), or different extended descriptions (with several links placed after the images, referring in the label to the corresponding image).</p>
+			</aside>
+			<p>This is placeholder text designed to simulate the actual text of the chapter.</p>
+			<p>This is placeholder text serving as a substitute of the actual text of the chapter. The quick brown fox jumps over the lazy dog, demonstrating how various letters appear in different contexts. Meanwhile, the five boxing wizards jump quickly, showcasing another pangram that contains every letter of the alphabet. These sample sentences help designers and developers visualize how text will look in their layouts before the actual content becomes available.</p>
+			<p>Here is an image without a container:</p>
+			<img id="img2" aria-details="anchor-extended-description-img2" src="ex1.jpg" alt="A cross-section view of oxygen-rich blood flows between the heart and lungs." />
+			<p><a id="anchor-extended-description-img2" href="poc-external-page-extended-description-appendix.html#extended-description-img2">Extended description second image</a></p>
+			<p>This is placeholder text designed to simulate the actual text of the chapter.</p>
+			<p>This is placeholder text serving as a substitute of the actual text of the chapter. The quick brown fox jumps over the lazy dog, demonstrating how various letters appear in different contexts. Meanwhile, the five boxing wizards jump quickly, showcasing another pangram that contains every letter of the alphabet. These sample sentences help designers and developers visualize how text will look in their layouts before the actual content becomes available.</p>
 		</section>
 
 		<script>
@@ -23,37 +35,30 @@
 				try {
 					// Test 1: identify links to extended descriptions
 					const linkXPath = "//a[@id=//img[@aria-details]/@aria-details]";
-					const linkResult = document.evaluate(linkXPath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
-					const linkNode = linkResult.singleNodeValue;
+					const linkResult = document.evaluate(linkXPath, document, null, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null);
 					
 					console.log('\nTest 1 - identify links to extended descriptions:');
 					console.log('\t- XPath used:', linkXPath);
-					if (linkNode) {
-						console.log('\t- ✓ Link found with ID:', linkNode.id);
-						console.log('\t- href:', linkNode.href);
-						console.log('\t- HTML element:', linkNode);
-					} else {
-						console.log('\t- ✗ No links found in the page');
+					
+					const linkNodes = [];
+					let linkNode;
+					
+					// Raccoglie tutti i nodi che corrispondono al criterio
+					while (linkNode = linkResult.iterateNext()) {
+						linkNodes.push(linkNode);
 					}
 					
-				} catch (error) {
-					console.error('Error during the test:', error.message);
-					console.error('Stack trace:', error.stack);
-				}
-				
-				try {
-					// Test 2: identify extended description containers
-					const linkXPath = "//*[@id=substring-after(//a[@id=//img[@aria-details]/@aria-details]/@href, '#')]";
-					const linkResult = document.evaluate(linkXPath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
-					const linkNode = linkResult.singleNodeValue;
-					
-					console.log('\nTest 2 - identify extended description containers:');
-					console.log('\t- XPath used:', linkXPath);
-					if (linkNode) {
-						console.log('\t- ✓ Container found with ID:', linkNode.id);
-						console.log('\t- HTML element:', linkNode);
+					if (linkNodes.length > 0) {
+						console.log(`\t- ✓ Found ${linkNodes.length} link(s):`);
+						
+						linkNodes.forEach((node, index) => {
+							console.log(`\t  Link ${index + 1}:`);
+							console.log(`\t    - ID: ${node.id}`);
+							console.log(`\t    - href: ${node.href}`);
+							console.log(`\t    - HTML element:`, node);
+						});
 					} else {
-						console.log('\t- ✗ No containers of extended description found in the page');
+						console.log('\t- ✗ No links found in the page');
 					}
 					
 				} catch (error) {
