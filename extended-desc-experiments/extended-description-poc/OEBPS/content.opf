@@ -21,8 +21,8 @@
 		<meta property="dcterms:conformsTo">EPUB Accessibility 1.1 - WCAG 2.2 Level AA</meta>
 	</metadata>
 	<manifest>
-		<item id="poc-external-page-extended-description" href="poc-external-page-extended-description.html" media-type="application/xhtml+xml" properties="scripted" />
-		<item id="poc-external-page-extended-description-appendix" href="poc-external-page-extended-description-appendix.html" media-type="application/xhtml+xml" />
+		<item id="poc-external-page-extended-description" href="poc-external-page-extended-description.xhtml" media-type="application/xhtml+xml" properties="scripted" />
+		<item id="poc-external-page-extended-description-appendix" href="poc-external-page-extended-description-appendix.xhtml" media-type="application/xhtml+xml" />
 		<item id="toc" href="toc.xhtml" media-type="application/xhtml+xml" properties="nav" />
 		<item id="chart-ebcaadfb" href="chart-ebcaadfb.png" media-type="image/png" />
 		<item id="ex1" href="ex1.jpg" media-type="image/jpeg" />
