@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<package xmlns="http://www.idpf.org/2007/opf" xmlns:dc="http://purl.org/dc/elements/1.1/" unique-identifier="db-id" version="3.0">
+	<metadata>
+	    <dc:title>DPUB ARIA Test Suite</dc:title>
+	    <dc:identifier id="db-id">8e2d428e-27bd-47cf-9c91-3a60ffc21447</dc:identifier>
+	    <meta property="dcterms:modified">2024-06-04T00:00:00Z</meta>
+	    <dc:language>en</dc:language>
+	</metadata>
+	<manifest>
+	    <item id="toc" href="toc.xhtml" media-type="application/xhtml+xml" properties="nav" />
+		<item id="Language_change_main_en_to_fr" href="Language_change_main_en_to_fr.xhtml" media-type="application/xhtml+xml" /> 
+		<item id="Language_change_main_fr_to_en" href="Language_change_main_fr_to_en.xhtml" media-type="application/xhtml+xml" /> 
+		<item id="Language_change_threeletters" href="Language_change_threeletters.xhtml" media-type="application/xhtml+xml" />
+	    <item id="image_001" href="image_001.png" media-type="image/png" />
+	</manifest>
+	<spine>
+		<itemref idref="toc" />
+		<itemref idref="Language_change_main_en_to_fr" /> 
+		<itemref idref="Language_change_main_fr_to_en" /> 
+		<itemref idref="Language_change_threeletters" />
+	</spine>
+</package>
