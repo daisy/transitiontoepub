@@ -1,0 +1,75 @@
+	html {
+		font-size: 62.5%;
+		font-family: arial, helvetica, sans-serif;
+	}
+	body {
+		margin: 5rem 10rem;
+		font-size: 1.6rem;
+	}
+	header {
+		border-bottom: solid black 0.1rem;
+	}
+	header > p,
+	header > hgroup,
+	header > div {
+		margin-bottom: 3rem;
+	}
+	h1 {
+		font-size: 3rem;
+	}
+	h2 {
+		font-size: 2rem;
+	}
+	h3 {
+		font-size: 1.8rem;
+	}
+	h4 {
+		font-size: 1.6rem;
+	}
+	.subtitle {
+		font-size: 1.8rem;
+	}
+	main h2,
+	main h3 {
+		color: rgb(0,90,160);
+	}
+	.logo {
+		max-height: 15vh;
+	}
+	.history-title {
+		font-weight: bold;
+	}
+	.history ul {
+		list-style-type: none;
+		margin-top: 0.3rem;
+	}
+	.history ul > li {
+		margin-bottom: 0.5rem;
+	}
+	.legalnotice {
+		font-size:  1.4rem;
+	}
+	nav#toc {
+		margin-top: 4rem;
+	}
+	nav#toc ol {
+		list-style-type: none;
+	}
+	ol.toc a {
+		display: block;
+		margin-bottom: 0.5rem;
+	}
+	main {
+		margin-top: 6rem;
+	}
+	*[role=note] {
+		padding: 1.5rem 2rem;
+		margin: 2rem 0;
+		background-color: rgba(0, 90, 160, 0.05);
+		border-left: 0.4rem solid rgb(0, 90, 160);
+	}
+	*[role=note] h1, *[role=note] h2, *[role=note] h3, *[role=note] h4, *[role=note] h5, *[role=note] h6 {
+		margin-top: 0;
+		color: #2c3e50;
+		text-transform: uppercase;
+	}
