@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+	<head>
+		<meta charset="utf-8" />
+		<title>Challenges in production of accessible Math</title>
+		<link rel="stylesheet" type="text/css" href="styles.css">
+	</head>
+	<body>
+		<header>
+			<p><a href="https://daisy.org"><img
+				src="https://daisy.org/wp-content/uploads/2019/04/daisy_high.jpg"
+				class="logo" style="height:15.0%" alt="DAISY Consortium" /></a></p>
+			<hgroup>
+				<h1 class="title">Challenges in production of accessible Math</h1>
+				<p><span class="subtitle">Editors’ Working Draft</span></p>
+			</hgroup>
+			<p><span class="pubdate">8 September 2025</span></p>
+			<!--<p>Editors:</p>
+				<ul>
+				<li><a href="mailto:gregorio.pellegrino@fondazionelia.org">Gregorio Pellegrino</a></li>
+				</ul>
+				<div class="history">
+				<p><span class="history-title">Document History</span></p>
+				<ul>
+				<li><a
+				href="https://github.com/daisy/reading-apps-ux-reqs/issues?q=is%3Aissue+is%3Aclosed">Changes
+				to this document</a></li>
+				<li><a
+				href="https://github.com/daisy/reading-apps-ux-reqs/issues">Report an
+				issue</a></li>
+				</ul>
+				</div>-->
+			<div class="legalnotice">
+				<p>Copyright © 2025 DAISY Consortium</p>
+			</div>
+		</header>
+		<nav>
+			<h2 id="table-of-contents">Table of Contents</h2>
+			<ul>
+				<li><a href="#table-of-contents">Table of Contents</a></li>
+				<li><a href="#introduction">Introduction</a></li>
+				<li>
+					<a href="#born-accessible-production-perspective-on-inline-mathematical-expressions">Born Accessible Production Perspective on Inline Mathematical Expressions</a>
+					<ul>
+						<li><a href="#what-do-we-mean-by-inline-math">What do we mean by Inline Math</a></li>
+						<li><a href="#visual-rendering-issues">Visual Rendering Issues</a></li>
+						<li>
+							<a href="#workflow-integration-challenges">Workflow Integration Challenges</a>
+							<ul>
+								<li><a href="#automation-possibilities-and-limitations">Automation Possibilities and Limitations</a></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+		<h2 id="introduction">Introduction</h2>
+		<p>This document refers to <a href="index.html">Best Practices for Authoring MathML in EPUB</a>. Updated as of September 5, 2025.
+		<h2 id="born-accessible-production-perspective-on-inline-mathematical-expressions">Born Accessible Production Perspective on Inline Mathematical Expressions</h2>
+		<p>While best practices for accessible mathematics suggest comprehensive MathML markup for all mathematical content, their implementation presents significant practical challenges for publishers, typesetters and production workflows.</p>
+		<p>The best practices suggest that including simple expressions like "<em>4 − 1 = 3</em>" or single Greek letters, should be marked up with MathML. This is challenging with established typesetting practices for print books where inline mathematical expressions are traditionally handled as italic text using standard typography and UTF-8 characters.</p>
+		<h3 id="what-do-we-mean-by-inline-math">What do we mean by Inline Math</h3>
+		<p>Inline mathematical expressions are formulas that appear within the flow of text, embedded directly in paragraphs rather than displayed as separate mathematical blocks. These expressions are typically constrained to a single line (no fractions) to maintain text flow and readability.</p>
+		<p>Examples of inline math include:</p>
+		<ul>
+			<li>Simple arithmetic: "The equation <em>x + 3 = 7</em> has a solution of <em>x = 4</em>"</li>
+			<li>Basic algebraic expressions: "When <em>a = 2</em> and <em>b = 5</em>, the value of <em>a² + b</em> is <em>9</em>"</li>
+			<li>Variables and parameters: "The coefficient <em>β₁</em> represents the slope"</li>
+			<li>Simple inequalities: "We know that <em>x &gt; 0</em> in this context"</li>
+			<li>Units with exponents: "The acceleration was measured at <em>9.8 m/s²</em>"</li>
+		</ul>
+		<p>In contrast to math blocks, which are:</p>
+		<ul>
+			<li>Displayed as separate elements (usually centered)</li>
+			<li>Can span multiple lines</li>
+			<li>May contain complex structures like fractions, matrices, or large operators</li>
+			<li>Are visually distinct from the surrounding text</li>
+		</ul>
+		<p>Inline math expressions are designed to integrate seamlessly with text flow, maintaining consistent line height and spacing while providing mathematical meaning within sentences.</p>
+		<h3 id="visual-rendering-issues">Visual Rendering Issues</h3>
+		<p>When inline math expressions are converted into MathML, several rendering problems emerge. As MathML elements are rendered as inline-block (these are often vector images used for print production, which are exported as MathML for digital export.), they can cause:</p>
+		<ul>
+			<li>Inconsistent baseline alignment with surrounding text</li>
+			<li>Increased line height that disrupts paragraph spacing</li>
+		</ul>
+		<p>These issues can be resolved, but they require manual intervention for each expression, which is difficult to industrialize.</p>
+		<aside role="note">
+			<h4>Note</h4>
+			Latest versions of InDesign have introduced the ability to generate mathematical formulas in MathML natively within the software. This feature looks promising for inline expressions, but it will take time for it to become professional-grade and widely adopted.
+		</aside>
+		<h3 id="workflow-integration-challenges">Workflow Integration Challenges</h3>
+		<p>Most born accessible publishing workflows begin with print production using professional desktop publishing software (InDesign, QuarkXPress, etc.) where inline mathematical expressions are naturally handled as UTF-8 styled text (typically italic) to maintain consistent typography and avoid layout disruptions.</p>
+		<p>In this scenario implementing MathML for inline formulas requires additional steps in post-production, including:</p>
+		<ul>
+			<li>Identification of all mathematical expressions in the text</li>
+			<li>Manual or semi-automated conversion to MathML markup</li>
+		</ul>
+		<h4 id="automation-possibilities-and-limitations">Automation Possibilities and Limitations</h4>
+		<p>There may be potential semi-automatic solutions to improve workflow. If editorial team consistently use specific character styles for inline mathematical expressions, scripts could potentially:</p>
+		<ul>
+			<li>Identify text with mathematical styling</li>
+			<li>Convert it to appropriate MathML markup</li>
+		</ul>
+		<p>However, these automated systems have limitations, especially with regard to semantic ambiguity in automatic conversion. In particular with:</p>
+		<ul>
+			<li>Context-dependent mathematical meaning</li>
+			<li>Distinction between mathematical and non-mathematical uses of symbols</li>
+			<li>Complex expressions requiring structural analysis</li>
+		</ul>
+		<p>In any case at the moment, there are no open source tools available that support this automation.</p>
+</html>
