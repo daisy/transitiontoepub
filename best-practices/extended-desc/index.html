@@ -94,10 +94,12 @@
             <p>This creates a programmatic relationship that assistive technologies can use to announce the availability of an extended description</p>
 
             <p>The general pattern is:</p>
-            <pre class="html">
+            <aside class="example" title="General pattern">  
+            	<pre class="html">
 &lt;img aria-details="link-id"  alt="Bar chart showing..." ... /&gt;
 &lt;a id="link-id" href="extended-descriptions.xhtml#description-id"&gt;Extended description&lt;/a&gt;
 </pre>
+			</aside>
 
 			<h5>Examples</h5>
 			<p>In this section, we provide some examples, which are not exhaustive, of how the code relating to the link to the extended description can be structured in different cases.</p>
@@ -213,41 +215,40 @@
         <section id="technique2-external-file">
         <h4>Setting up the external file with extended descriptions</h4>
 
-            <p>Extended descriptions should be placed in a separate HTML file, typically named something like <code>extended-descriptions.xhtml</code> or placed at the end of the book content. Each extended description should be wrapped in a <code>section</code> element with a unique ID.</p>
-
-            <h5>EPUB spine configuration</h5>
-
-            <p>The extended description file should be marked as <code>linear="no"</code> in the EPUB spine to exclude it from the normal reading order:</p>
-
-        <div class="simplecalloutbox_preheader">
-            <h4>Code Example 2.4: EPUB spine configuration</h4>
-        </div>
-        <div class="simplecalloutbox">
-            <pre><code>
-&lt;spine&gt;
-    &lt;itemref idref="chapter01" /&gt;
-    &lt;itemref idref="chapter02" /&gt;
-    &lt;itemref idref="extended-descriptions" linear="no" /&gt;
-&lt;/spine&gt;
-</code></pre>
-
-            <h5>Structure of extended descriptions</h5>
-
-            <p>Each extended description should:</p>
+            <p>Extended descriptions should be placed in a separate HTML file that is referenced from the extended description link and with a backlink to the main content. This file can be inserted at the end of the e-book and/or marked as non-linear, meaning that it does not appear when browsing through the e-book. A single HTML file can contain multiple extended descriptions.</p>
+            
+            <p>Each extended description must:</p>
             <ul>
                 <li>Be wrapped in a <code>section</code> element with an ID that matches the fragment identifier in the link</li>
                 <li>Include a heading that describes the content</li>
-                <li>Include a copy of the image marked as presentational (<code>role="presentation"</code>) for visual reference</li>
+                <li>Include a copy of the image marked as presentational (<code>role="presentation"</code> and <code>alt=""</code>) to prevent screen readers from announcing it twice, but for for visual reference</li>
                 <li>Contain the detailed description</li>
                 <li>Include a back link with <code>role="doc-backlink"</code> to return to the original image</li>
             </ul>
 
-        <div class="simplecalloutbox_preheader">
-            <h4>Code Example 2.5: Extended description file structure</h4>
-        </div>
-        <div class="simplecalloutbox">
-            <pre><code>
-&lt;!-- File: extended-descriptions.xhtml --&gt;
+            <h5>EPUB spine configuration</h5>
+
+            <p>The extended description file can be marked as <code>linear="no"</code> in the EPUB <code>spine</code> (inside the OPF file) to exclude it from the normal reading order.</p>
+            
+            <aside class="example" title="EPUB spine configuration">        	
+            <pre class="html">
+&lt;spine&gt;
+	...
+    &lt;itemref idref="chapter01" /&gt;
+    &lt;itemref idref="chapter02" /&gt;
+    ...
+    &lt;itemref idref="extended-descriptions" linear="no" /&gt;
+    ...
+&lt;/spine&gt;
+</pre>
+        </aside>
+
+
+            <h5>Example</h5>
+            
+            <aside class="example" title="Extended description file structure">    
+            	<p>This code is an example of how the file containing the extended descriptions could be structured. Multiple extended descriptions can be placed in the same file, each in its own <code>section</code>.</p>    	
+            <pre class="html">
 &lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
 &lt;head&gt;
     &lt;title&gt;Extended Descriptions&lt;/title&gt;
@@ -257,7 +258,7 @@
 
     &lt;section id="extended-description-img1"&gt;
         &lt;h2&gt;Description of Bar Chart&lt;/h2&gt;
-        &lt;img role="presentation" src="chart-ebcaadfb.png" /&gt;
+        &lt;img role="presentation" alt="" src="image.png" /&gt;
 
         &lt;h3&gt;Overview&lt;/h3&gt;
         &lt;p&gt;The chart shows the website hits for the first quarter of 2014...&lt;/p&gt;
@@ -275,7 +276,7 @@
 
     &lt;section id="extended-description-img2"&gt;
         &lt;h2&gt;Description of Heart and Lung Diagram&lt;/h2&gt;
-        &lt;img role="presentation" src="ex1.jpg" /&gt;
+        &lt;img role="presentation" alt="" src="image.jpg" /&gt;
 
         &lt;p&gt;Systems in Sync. The circulatory and respiratory systems work together...&lt;/p&gt;
 
@@ -288,193 +289,16 @@
     &lt;/section&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-</code></pre>
+</pre>
+        </aside>
 
-            <h5>Important notes</h5>
-            <ul>
-                <li>The image in the extended description should always be marked with <code>role="presentation"</code> to prevent screen readers from announcing it twice</li>
-                <li>The back link should use <code>role="doc-backlink"</code> to identify it as a navigation element</li>
-                <li>Each <code>section</code> should have a descriptive heading for better navigation</li>
-                <li>Multiple extended descriptions can be placed in the same file, each in its own <code>section</code></li>
-            </ul>
-        </section>
-
-        <div class="simplecalloutbox_preheader">
-            <h4>Code Example 2.6: Complete example preview</h4>
-        </div>
-        <div class="simplecalloutbox">
-            <p><strong>Main content:</strong></p>
-            <figure>
-                <img src="chart-ebcaadfb.png" alt="Chart of 2014 First Quarter Visitors to example.com Websites" aria-details="preview-link"/>
-                <figcaption>
-                    <p>Example.com Site visitors Jan to March 2014</p>
-                    <p><a id="preview-link" href="./endofbookdescriptionssingle.html#image2-extended-desc">Extended description</a></p>
-                </figcaption>
-            </figure>
-        </div>
-        </section>
-
-        <section id="technique3">
-        <h3>Technique 3: Encapsulating either Techniques 1 or 2 within a <code>figure</code></h3>
-        
-            <p>This technique simply encapsulates either technique within a <code>figure</code> element.</p>
             
-            <p>Note: when adding a <code>figcaption</code> it is important that this be placed either before the first image or after the last image within the <code>figure</code>.  I.E.: either immediately after
-            the <code>&lt;figure&gt;</code> tag or immediately before the end <code>&lt;/figure&gt;</code> tag.</p>
-           
-            <p>Note: when adding multiple images within a single <code>&lt;figure&gt;</code> there can be only one <code>&lt;figcaption&gt;</code> either at the top or bottom and each image should have its extended description <code>&lt;details&gt;</code> or link to the extended description immediately after the image. Note that when the images relate to each other, it may be best to have a single extended description after the final image that describes the images and their relationship.</p>
-        
-        <h4><b>Advantages:</b></h4>
-        <ul>
-            <li>Ability to add a <code>&lt;figcaption&gt;</code> that is linked semantically with the image(s)</li>
-            <li>Ability to group related images keeping their extended descriptions semantically linked with their respective image</li>
-        </ul>
 
- 
-        <h4><b>Disadvantages:</b></h4>
-        <ul>
-            <li>If no <code>&lt;figcaption&gt;</code> is needed, there is added complexity of using the <code>&lt;figure&gt;</code> structure, and the potential for additional text spoken to assistive technology</li>
-        </ul>
-         
-        <div class="simplecalloutbox_preheader">    
-            <h4>Code Example 3</h4>
-        </div>
-        <div class="simplecalloutbox">
-
-        <pre>
-            <code>
-                &lt;p&gt;Image with hyperlink pointing to the extended description, followed by another image with the extended description in a 
-                <code>&lt;details&gt;</code> expandable structure, both of which are encapsulated with a  
-                <code>&lt;figure&gt;</code> structure&lt; with the <code>&lt;figcaption&gt;</code> provided at the top&lt;/p&gt;
-
-                &lt;figure id="image3"&gt;
-                &lt;figcaption&gt;Example.com Site visitors Jan to March 2014&lt;/figcaption&gt;
-
-                &lt;img src="chart-ebcaadfb.png" 
-                alt="Bar chart showing monthly and total visitors for the first quarter 2014 for sites 1 to 3."  aria-details="image3-link"/&gt;
-                &lt;a id="image3-link" href="./endOfBookDescriptionsSingle3.xhtml#image3-extended-desc"&gt;Follow for extended description&lt;/a&gt;
-                &lt;br/&gt;
-
-                &lt;img src="chart-ebcaadfb.png" 
-                    alt="Bar chart showing monthly and total visitors for the first quarter 2014 for sites 1 to 3."
-                    aria-details="image4-extended-desc" /&gt;
-  
-                &lt;details id="image4-extended-desc"&gt;
-                &lt;summary&gt;Expand / collapse Extended Description&lt;/summary&gt;
-                &lt;div&gt;
-                  &lt;h5&gt;Overview&lt;/h5&gt;
-                  &lt;p&gt;The chart shows the website hits for the first quarter of 2014. It shows that Site 1 has more visitors
-                      than either of the other sites, but the number of visitors is decreasing. Site 2 has a fairly constant
-                      number of visitors, while for Site 3 page hits are increasing month on month.&lt;/p&gt;
-                  &lt;h6&gt;Data&lt;/h6&gt;
-                &lt;table&gt;
-                    &lt;tr&gt;
-                        &lt;th scope="col"&gt;Period&lt;/th&gt;
-                        &lt;th scope="col"&gt;Site 1&lt;/th&gt;
-                        &lt;th scope="col"&gt;Site 2&lt;/th&gt;
-                        &lt;th scope="col"&gt;Site 3&lt;/th&gt;
-                    &lt;/tr&gt;
-                    &lt;tr&gt;
-                        &lt;th scope="row"&gt;Jan&lt;/th&gt;
-                        &lt;td&gt;135&lt;/td&gt;
-                        &lt;td&gt;112&lt;/td&gt;
-                        &lt;td&gt;92&lt;/td&gt;
-                    &lt;/tr&gt;
-                    &lt;tr&gt;
-                        &lt;th scope="row"&gt;Feb&lt;/th&gt;
-                        &lt;td&gt;117&lt;/td&gt;
-                        &lt;td&gt;114&lt;/td&gt;
-                        &lt;td&gt;99&lt;/td&gt;
-                    &lt;/tr&gt;
-                    &lt;tr&gt;
-                        &lt;th scope="row"&gt;Mar&lt;/th&gt;
-                        &lt;td&gt;96&lt;/td&gt;
-                        &lt;td&gt;111&lt;/td&gt;
-                        &lt;td&gt;126&lt;/td&gt;
-                    &lt;/tr&gt;
-                    &lt;tr&gt;
-                        &lt;th scope="row"&gt;Qtr Total&lt;/th&gt;
-                        &lt;td&gt;348&lt;/td&gt;
-                        &lt;td&gt;337&lt;/td&gt;
-                        &lt;td&gt;308&lt;/td&gt;
-                    &lt;/tr&gt;
-                &lt;/table&gt;
-                &lt;h6&gt;Presentation&lt;/h6&gt;
-                  &lt;p&gt;The bar chart represents both the number of visitors per month for each website, and the total number
-                      of visitors per website for the entire quarter. Website visitors for each month are represented using
-                      columns lined up horizontally, with heights indicating the number of visitors. A fourth column is
-                      provided for each website with the accumulated site visitors for the quarter.&lt;/p&gt;
-                      &lt;/div&gt;
-              &lt;/details&gt;
-                
-                &lt;/figure&gt;
-            </code>
-        </pre>
-
-    <div class="simplecalloutbox_preheader">    
-    <h4>Code Example 3 Preview</h4>
-    </div>
-    <div class="simplecalloutbox">
-     <figure id="image3">
-        <figcaption>Example.com Site visitors Jan to March 2014</figcaption>
-        <img src="chart-ebcaadfb.png" alt="Bar chart showing monthly and total visitors for the first quarter 2014 for sites 1 to 3." aria-details="image3-link"/>
-        <br/>
-        <a id="image3-link" href="./endofbookdescriptionssingle3.html#image3-extended-desc">Follow for extended description</a>
-        <br/>
-        <br/>
-         
-       <img src="chart-ebcaadfb.png" alt="Bar chart showing monthly and total visitors for the first quarter 2014 for sites 1 to 3." aria-details="image4-extended-desc"/>
-       <details id="image4-extended-desc">
-          <summary>Expand / collapse Extended Description</summary>
-          <div>
-              <h5>Overview</h5>
-                <p>The chart shows the website hits for the first quarter of 2014. It shows that Site 1 has more visitors
-                  than either of the other sites, but the number of visitors is decreasing. Site 2 has a fairly constant
-                  number of visitors, while for Site 3 page hits are increasing month on month.</p>
-                <h6>Data</h6>
-                <table>
-                    <tr>
-                        <th scope="col">Period</th>
-                        <th scope="col">Site 1</th>
-                        <th scope="col">Site 2</th>
-                        <th scope="col">Site 3</th>
-                    </tr>
-                    <tr>
-                        <th scope="row">Jan</th>
-                        <td>135</td>
-                        <td>112</td>
-                        <td>92</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Feb</th>
-                        <td>117</td>
-                        <td>114</td>
-                        <td>99</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Mar</th>
-                        <td>96</td>
-                        <td>111</td>
-                        <td>126</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Qtr Total</th>
-                        <td>348</td>
-                        <td>337</td>
-                        <td>308</td>
-                    </tr>
-                </table>
-            <h6>Presentation</h6>
-                  <p>The bar chart represents both the number of visitors per month for each website, and the total number
-                      of visitors per website for the entire quarter. Website visitors for each month are represented using
-                      columns lined up horizontally, with heights indicating the number of visitors. A fourth column is
-                      provided for each website with the accumulated site visitors for the quarter.</p>
-              </div>
-          </details>
-        </figure>
-    </div>
-    </div>
+       
         </section>
+        </section>
+
+        
 
         <section id="technique2">
         <h3>Technique 2: Extended description placed in HTML details element, just below the image</h3>
