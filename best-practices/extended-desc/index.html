@@ -30,7 +30,6 @@
 			};
 			// ]]>
 		</script>
-        <link href="../css/callout.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
     	<p class="copyright">Copyright &#169; DAISY Consortium 2022</p>
@@ -41,43 +40,293 @@
 
         <p>Images and diagrams are essential for careers in the fields of science, technology, engineering and mathematics. However, these crucial sources of information are not accessible to people with visual disabilities. The <code>alt</code> text attribute is frequently used to provide a summary of an image, but it is not sufficient for describing complex images, like a diagram of a hydraulic valve, or parts of the body like kidneys etc.</p>
         
-        <p>At this point of time, the most appropriate and cost effective solution for making complex images accessible is the use of extended descriptions. It enables authors and publishers to provide longer descriptions in well-structured text. The good news is that the Html 5 and ARIA specifications already have the features for supporting extended descriptions, but there are implementation challenges in the current state of web browsers, EPUB 3 reading systems and assistive technologies. Therefore we initiated an activity in our  working group for evaluating the implementation shortcomings of different reading environments, and developing the best practices for authoring extended descriptions, which enables the users to understand the images in a wider range of EPUB reading environments.</p>
+        <p>At this point of time, the most appropriate and cost effective solution for making complex images accessible is the use of extended descriptions. It enables authors and publishers to provide longer descriptions in well-structured text. The good news is that the HTML and ARIA specifications already have some features for supporting extended descriptions, but there are implementation challenges in the current state of web browsers, EPUB 3 reading systems and assistive technologies. Therefore we initiated an activity in our working group for evaluating the implementation shortcomings of different reading environments, and developing the best practices for authoring extended descriptions, which enables the users to understand the images in a wider range of EPUB reading environments.</p>
 
         <p>It is possible that the recommendations for EPUB 3 environments provided in this report are a little different from the recommendations for the web environment. Though most of EPUB 3 reading systems use components from web browsers, the reading systems tend to change and sometimes override the web browser functionality, which results in a somewhat different reading experience.</p>
+
+        <aside class="note">
+        	<p>This document represents the second iteration of these best practices. Based on further testing and feedback from the community, we are now recommending a different approach compared to the previous version. While the first version primarily recommended the use of HTML <code>details</code> elements placed directly below images (see <a href="technique2">Technique 2</a>), this updated version prioritizes the use of hyperlinks to external files containing extended descriptions (see <a href="technique1">Technique 1</a>).</p>
+        	<p>This change reflects the fact that many publishers prefer to treat extended descriptions as additional content rather than part of the main content, in addition to the fact that some pagination-based EPUB reading solutions have problems with the appearance and disappearance of <code>details</code> content.</p>
+        </aside>
 
         
         <h2>Recommendations</h2>
         
-        <p>After thorough evaluation, we are able to recommend three techniques at this point of time. These techniques worked in a majority of the reading environments. This does not guarantee very wide support, but these provide a way forward while the web browsers, EPUB reading systems and assistive technologies catch-up.</p>
-        
-        <p>It is also recommended to include <code>&lt;aria-details&gt;</code> on the image which informs assistive technology that in addition to the alt text simple description there is also an associated extended description which the <code>aria-details</code>refers to.</p>
+        <p>After thorough evaluation, we are able to propose two techniques at this point of time. These techniques worked in a majority of the reading environments. This does not guarantee full support, but these provide a way forward while the web browsers, EPUB reading systems and assistive technologies catch-up.</p>
 
-        <h3>Technique 1: Extended description placed in HTML details element, just below the image</h3>
+        <section id="technique1">
+        <h3>Technique 1: Extended description in a separate HTML file with hyperlink</h3>
+
+            <p>This technique provides extended descriptions in a separate HTML file (e.g. and appendix at the end of the e-book) from the main content, with a hyperlink blow the image to the description and a back link to return to the original reading position.</p>
+
+            <p class="note">This technique is recommended over the use of HTML <code>details</code> element (see <a href="technique2">Technique 2</a>) as it provides better support across reading systems and reduces cognitive load for users.</p>
+
+        <p>Advantages:</p>
+        <ul>
+            <li>Simple technique, authors and publishers are already familiar with it.</li>
+            <li>Complexities and technical limitations in some EPUB reading systems due to collapsing and expanding are avoided, and fidelity of the page is maintained to a great extent.</li>
+            <li>Almost all EPUB reading systems support hyperlinks.</li>
+            <li>Including a copy of the original image marked as presentational (<code>role="presentation"</code>) can help cognitive users with understanding the extended description in context with the image.</li>
+            <li>Multiple extended descriptions can be placed in the same HTML file, organized with <code>section</code> elements.</li>
+            <li>The extended description file can be excluded from the reading order by setting <code>linear="no"</code> in the EPUB spine.</li>
+        </ul>
+
+    <p>Disadvantages:</p>
+        <ul>
+            <li>Results in branching from the reading flow and sometimes the reading position may be lost when returning.</li>
+            <li>Accuracy of linking back to original reading position matters, and some reading systems may fail to provide this accuracy.</li>
+        </ul>
+
+        <section id="technique2-main-content">
+        <h4>Setting up the main content</h4>
+
+            <p>By "main content" we refer to the primary content of your EPUB publication (chapters, sections, etc.) where the images that need extended descriptions appear.</p>
+
+            <p>Key requirements:</p>
+            <ul>
+                <li>The image must have a brief <code>alt</code> text that describes what the image is (e.g., "Bar chart showing quarterly website visitors").</li>
+                <li>After the image (or group of images), there must be a link pointing to its (them) extended description.</li>
+                <li>The content of the link to the extended description can be textual (for example, "Extended description", or more specific, localized in the language of the text), or it can be an icon whose accessible name (<code>alt</code> or <code>aria-label</code>) must include the term Extended description (in the language of the text).</li>
+                <li>The link must have a unique <code>id</code> attribute.</li>
+                <li>The image must have an <code>aria-details</code> attribute pointing to that link's ID.</li>
+            </ul>
+            
+            <p>This creates a programmatic relationship that assistive technologies can use to announce the availability of an extended description</p>
+
+            <p>The general pattern is:</p>
+            <aside class="example" title="General pattern">  
+            	<pre class="html">
+&lt;img aria-details="link-id"  alt="Bar chart showing..." ... /&gt;
+&lt;a id="link-id" href="extended-descriptions.xhtml#description-id"&gt;Extended description&lt;/a&gt;
+</pre>
+			</aside>
+
+			<h5>Examples</h5>
+			<p>In this section, we provide some examples, which are not exhaustive, of how the code relating to the link to the extended description can be structured in different cases.</p>
+
+        <aside class="example" title="Images in <code>figure</code> with link in <code>figcaption</code>">
+        	<p>When using a <code>figure</code> element, you can place the link to the extended description inside the <code>figcaption</code>. The <code>figcaption</code> must be either the first or last element within the <code>figure</code> to maintain HTML validity.</p>
+        	
+        	<pre class="html">
+&lt;figure&gt;
+    &lt;img id="img1" aria-details="anchor-extended-description-img1"
+         src="image.png"
+         alt="Chart of 2014 First Quarter Visitors to example.com Websites"/&gt;
+    &lt;figcaption&gt;
+        &lt;p&gt;This is the caption for this image.&lt;/p&gt;
+        &lt;p&gt;&lt;a id="anchor-extended-description-img1"
+              href="extended-descriptions.xhtml#extended-description-img1"&gt;Extended description&lt;/a&gt;&lt;/p&gt;
+    &lt;/figcaption&gt;
+&lt;/figure&gt;</pre>
+        </aside>
         
+        <aside class="example" title="Images in <code>figure</code> with link outside <code>figcaption</code>">
+        	<p>If you prefer to place the link to the extended description outside the <code>figcaption</code>, it must be positioned before the <code>figcaption</code> to maintain HTML validity (since <code>figcaption</code> must be the first or last element within <code>figure</code>).</p>
+
+            <pre class="html">
+&lt;figure&gt;
+    &lt;img id="img2" aria-details="anchor-extended-description-img2"
+         src="image.png"
+         alt="Chart of 2014 First Quarter Visitors to example.com Websites"/&gt;
+    &lt;p&gt;&lt;a id="anchor-extended-description-img2"
+          href="extended-descriptions.xhtml#extended-description-img2"&gt;Extended description&lt;/a&gt;&lt;/p&gt;
+    &lt;figcaption&gt;
+        &lt;p&gt;This is the caption for this image.&lt;/p&gt;
+    &lt;/figcaption&gt;
+&lt;/figure&gt;
+</pre>
+        </aside>
+
+        <aside class="example" title="Images without <code>figure</code> wrapper">
+        	<p>For standalone images without a <code>figure</code> wrapper, place the link  after the image. The <code>aria-details</code> attribute still points to the link's ID.</p>
+
+            <pre class="html">
+&lt;img id="img3" aria-details="anchor-extended-description-img3"
+     src="image.jpg"
+     alt="A cross-section view of oxygen-rich blood flows between the heart and lungs." /&gt;
+&lt;p&gt;&lt;a id="anchor-extended-description-img3"
+      href="extended-descriptions.xhtml#extended-description-img3"&gt;Extended description&lt;/a&gt;&lt;/p&gt;
+</pre>
+        </aside>
+        
+        <aside class="example" title="Multiple images">
+        	<p>In the case of multiple grouped images within a single <code>figure</code>, the content creator can decide to have a single extended description for all the images (with only one link), or different extended descriptions (with several links placed after each image, referring in the label to the corresponding image).</p>
+
+        	<p>Example with a single extended description for all images</p>
+            <pre class="html">
+&lt;figure&gt;
+    &lt;img id="img4a" aria-details="anchor-extended-description-img4"
+         src="image-a.png"
+         alt="First diagram showing..."/&gt;
+    &lt;img id="img4b" aria-details="anchor-extended-description-img4"
+         src="image-b.png"
+         alt="Second diagram showing..."/&gt;
+    &lt;figcaption&gt;
+        &lt;p&gt;Figure 2: Multiple related diagrams&lt;/p&gt;
+        &lt;p&gt;&lt;a id="anchor-extended-description-img4"
+              href="extended-descriptions.xhtml#extended-description-img4"&gt;Extended description&lt;/a&gt;&lt;/p&gt;
+    &lt;/figcaption&gt;
+&lt;/figure&gt;
+</pre>
+
+        	<p>Example with separate extended description for each image</p>
+            <pre class="html">
+&lt;figure&gt;
+    &lt;img id="img5a" aria-details="anchor-extended-description-img5a"
+         src="image-a.png"
+         alt="First diagram showing..."/&gt;
+    &lt;p&gt;&lt;a id="anchor-extended-description-img5a"
+          href="extended-descriptions.xhtml#extended-description-img5a"&gt;Extended description for first diagram&lt;/a&gt;&lt;/p&gt;
+
+    &lt;img id="img5b" aria-details="anchor-extended-description-img5b"
+         src="image-b.png"
+         alt="Second diagram showing..."/&gt;
+    &lt;p&gt;&lt;a id="anchor-extended-description-img5b"
+          href="extended-descriptions.xhtml#extended-description-img5b"&gt;Extended description for second diagram&lt;/a&gt;&lt;/p&gt;
+
+    &lt;figcaption&gt;
+        &lt;p&gt;Figure 3: Multiple diagrams with individual descriptions&lt;/p&gt;
+    &lt;/figcaption&gt;
+&lt;/figure&gt;
+</pre>
+        </aside>
+
+        <aside class="example" title="Using an icon for the extended description link">
+        	<p>An icon can be used instead of text for the link to the extended description. This can be helpful for users with cognitive disabilities. The icon image should have appropriate alternative text. This technique can be used in all cases presented in the other examples.</p>
+        	
+            <pre class="html">
+&lt;figure&gt;
+    &lt;img id="img3" aria-details="anchor-extended-description-img3"
+         src="image.png"
+         alt="Diagram description ..."/&gt;
+    &lt;figcaption&gt;
+        &lt;p&gt;Figure 1: Caption text&lt;/p&gt;
+        &lt;p&gt;&lt;a id="anchor-extended-description-img3"
+              href="extended-descriptions.xhtml#extended-description-img3"&gt;
+            &lt;img src="extended-desc-icon.svg" alt="Extended description"/&gt;
+        &lt;/a&gt;&lt;/p&gt;
+    &lt;/figcaption&gt;
+&lt;/figure&gt;
+</pre>
+        </aside>
+
+        </section>
+
+        <section id="technique2-external-file">
+        <h4>Setting up the external file with extended descriptions</h4>
+
+            <p>Extended descriptions should be placed in a separate HTML file that is referenced from the extended description link and with a backlink to the main content. This file can be inserted at the end of the e-book and/or marked as non-linear, meaning that it does not appear when browsing through the e-book. A single HTML file can contain multiple extended descriptions.</p>
+            
+            <p>Each extended description must:</p>
+            <ul>
+                <li>Be wrapped in a <code>section</code> element with an ID that matches the fragment identifier in the link</li>
+                <li>Include a heading that describes the content</li>
+                <li>Include a copy of the image marked as presentational (<code>role="presentation"</code> and <code>alt=""</code>) to prevent screen readers from announcing it twice, but for for visual reference</li>
+                <li>Contain the detailed description</li>
+                <li>Include a back link with <code>role="doc-backlink"</code> to return to the original image</li>
+            </ul>
+
+            <h5>EPUB spine configuration</h5>
+
+            <p>The extended description file can be marked as <code>linear="no"</code> in the EPUB <code>spine</code> (inside the OPF file) to exclude it from the normal reading order.</p>
+            
+            <aside class="example" title="EPUB spine configuration">        	
+            <pre class="html">
+&lt;spine&gt;
+	...
+    &lt;itemref idref="chapter01" /&gt;
+    &lt;itemref idref="chapter02" /&gt;
+    ...
+    &lt;itemref idref="extended-descriptions" linear="no" /&gt;
+    ...
+&lt;/spine&gt;
+</pre>
+        </aside>
+
+
+            <h5>Example</h5>
+            
+            <aside class="example" title="Extended description file structure">    
+            	<p>This code is an example of how the file containing the extended descriptions could be structured. Multiple extended descriptions can be placed in the same file, each in its own <code>section</code>.</p>    	
+            <pre class="html">
+&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+&lt;head&gt;
+    &lt;title&gt;Extended Descriptions&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Extended Descriptions&lt;/h1&gt;
+
+    &lt;section id="extended-description-img1"&gt;
+        &lt;h2&gt;Description of Bar Chart&lt;/h2&gt;
+        &lt;img role="presentation" alt="" src="image.png" /&gt;
+
+        &lt;h3&gt;Overview&lt;/h3&gt;
+        &lt;p&gt;The chart shows the website hits for the first quarter of 2014...&lt;/p&gt;
+
+        &lt;h3&gt;Data&lt;/h3&gt;
+        &lt;table&gt;
+            &lt;!-- table content --&gt;
+        &lt;/table&gt;
+
+        &lt;h3&gt;Presentation&lt;/h3&gt;
+        &lt;p&gt;The bar chart represents both the number of visitors...&lt;/p&gt;
+
+        &lt;p&gt;&lt;a role="doc-backlink" href="chapter01.xhtml#img1"&gt;Navigate back to bar chart image&lt;/a&gt;.&lt;/p&gt;
+    &lt;/section&gt;
+
+    &lt;section id="extended-description-img2"&gt;
+        &lt;h2&gt;Description of Heart and Lung Diagram&lt;/h2&gt;
+        &lt;img role="presentation" alt="" src="image.jpg" /&gt;
+
+        &lt;p&gt;Systems in Sync. The circulatory and respiratory systems work together...&lt;/p&gt;
+
+        &lt;ol&gt;
+            &lt;li&gt;Oxygen-rich blood cells travel to the heart from the lungs.&lt;/li&gt;
+            &lt;!-- more list items --&gt;
+        &lt;/ol&gt;
+
+        &lt;p&gt;&lt;a role="doc-backlink" href="chapter01.xhtml#img2"&gt;Navigate back to heart and lung diagram&lt;/a&gt;.&lt;/p&gt;
+    &lt;/section&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+        </aside>
+
+            
+
+       
+        </section>
+        </section>
+
+        
+
+        <section id="technique2">
+        <h3>Technique 2: Extended description placed in HTML details element, just below the image</h3>
+
         <h4><b>Advantages:</b></h4>
         <ul>
             <li>The extended description is provided just below the image, the next item in the reading order. This means that the user does not need to change from the reading flow, and lose their reading position.</li>
             <li>The details element does not show the description by default, the user needs to expand it to show the description, therefore it does not clutter the page for users who do not need extended descriptions.</li>
             <li>It is a good approach for publishers who do not want additional portions of description text visible on the page.</li>
         </ul>
-    
+
     <h4><b>Disadvantages:</b></h4>
         <ul>
             <li>If a publication has a large number of images and extended descriptions, the task of locating the details, and expanding it to read descriptions puts considerable cognitive load, especially on the people with cognitive disabilities.</li>
             <li>There are EPUB reading systems which do not support HTML details properly, and details element is always expanded. Such a situation clutters the page with a huge amount of text and makes it very difficult for everyone to read the publication.</li>
-            <li>Sometimes publishers need to create pixel perfect pages, and visibility of detail’s elements get in the way of achieving it.</li>
+            <li>Sometimes publishers need to create pixel perfect pages, and visibility of detail's elements get in the way of achieving it.</li>
             <li>If the extended description inside the details element is huge, expanding it may disorient the user, especially when the reading system has paginated view.</li>
         </ul>
 
-        <div class="simplecalloutbox_preheader">    
+        <div class="simplecalloutbox_preheader">
             <h4>Code Example 1</h4>
         </div>
         <div class="simplecalloutbox">
             <pre><code>
-            &lt;img src="chart-ebcaadfb.png" 
+            &lt;img src="chart-ebcaadfb.png"
             alt="Bar chart showing monthly and total visitors for the first quarter 2014 for sites 1 to 3."
             aria-details="image1-extended-desc" /&gt;
-  
+
           &lt;details id="image1-extended-desc"&gt;
               &lt;summary&gt;Expand / collapse Extended Description&lt;/summary&gt;
               &lt;div&gt;
@@ -128,7 +377,7 @@
 </code></pre>
 
 
-            <div class="simplecalloutbox_preheader">    
+            <div class="simplecalloutbox_preheader">
             <h4>Code Example 1 Preview</h4>
             </div>
             <div class="simplecalloutbox">
@@ -184,276 +433,8 @@
           </details>
             </div>
         </div>
-        
-        <h3>Technique 2: Provide a text hyperlink just below the image, which takes the user to a separate HTML file containing only one extended description, and provide a text hyperlink to return back to original reading position.</h3>
-        
-            <p>This technique looks simple, but it is worth mentioning that all reading system environments are not able to land the reading cursor at the exact location on the destination HTML file. Therefore, to avoid landing at the incorrect extended description, it is important to have only one extended description in the HTML file.</p>
-            
-            <p>It is also recommended that on the separate page which has the extended description there should also be a copy of the same image marked as presentational.  This would be useful for those who can see the image and may need to reference the image along with its extended description.</p>
-        
-        <h4><b>Advantages:</b></h4>
-        <ul>
-            <li>Simple technique, authors and publishers are already familiar with it.</li>
-            <li>Complexities due to collapsing and expanding are avoided, and fidelity of the page is maintained to a great extent.</li>
-            <li>Almost all the EPUB reading systems support the hyperlinks, however navigation to exact location in the destination HTML file may not be supported as well.</li>
-            <li>Including a copy of the original image can help cognative users with understanding the extended description in context with the image on the same page.</li>
-            <li>Making the copy of the image presentational, instead of repeating the alt text from the original image in the EPUB, prevents the same alt text description from being spoken twice to the screen reader user.  Also, since the extended description fully describes the image in question no alt text is required here.</li>
-        </ul>
-    <h4><b>Disadvantages:</b></h4>
+        </section>
 
-        <ul>
-            <li>Results in branching from the reading flow and sometimes the reading position is also lost.</li>
-            <li>The inaccuracy of the landing position on the extended description does not matter because there is just one extended description on the HTML file, but accuracy of linking back to original reading position does matter, and some reading systems fail to provide this accuracy.</li>
-            <li>Having only one extended description on an HTML page can create some production challenges for a publication having a large number of complex images to describe.</li>
-        </ul>
-
-        <div class="simplecalloutbox_preheader">    
-            <h4>Code Example 2</h4>
-        </div>
-        <div class="simplecalloutbox">
-
-            <pre>
-                <code>
-                    &lt;p&gt;Image with hyperlink pointing to the extended description. 
- 
-                    &lt;p&gt;Example.com Site visitors Jan to March 2014&lt;/p&gt;
-                    
-                    &lt;img src="chart-ebcaadfb.png" 
-                    alt="Bar chart showing monthly and total visitors for the first quarter 2014 for sites 1 to 3."  aria-details="image2-link"&gt;
-                    &lt;br/&gt;
-
-                    &lt;a id="image2-link" href="./endOfBookDescriptionsSingle.xhtml#image2-extended-desc"&gt;Follow for extended description&lt;/a&gt;
-                </code>
-                </pre>
-
-            <p>Extended description on a separate HTML file. It also shows smaller image for convenience of the users</p>
-
-
-            <pre><code>
-    &lt;div id="image2-extended-desc" class="endDesc" aria-labelledby="barchart-desc"&gt;
-    &lt;h5 id="barchart-desc"&gt;Description of Bar Chart&lt;/h5&gt;
-    &lt;img src="chart-ebcaadfb.png" alt="" role="presentation"/&gt;
-    &lt;div&gt;
-        &lt;h6&gt;Overview&lt;/h6&gt;
-        &lt;p&gt;The chart shows the website hits for the first quarter of 2014. It shows that Site 1 has more visitors than either
-            of the other sites, but the number of visitors is decreasing. Site 2 has a fairly constant number of visitors,
-            while for Site 3 page hits are increasing month on month.&lt;/p&gt;
-        &lt;h6&gt;Data&lt;/h6&gt;
-                &lt;table&gt;
-                    &lt;tr&gt;
-                        &lt;th scope="col"&gt;Period&lt;/th&gt;
-                        &lt;th scope="col"&gt;Site 1&lt;/th&gt;
-                        &lt;th scope="col"&gt;Site 2&lt;/th&gt;
-                        &lt;th scope="col"&gt;Site 3&lt;/th&gt;
-                    &lt;/tr&gt;
-                    &lt;tr&gt;
-                        &lt;th scope="row"&gt;Jan&lt;/th&gt;
-                        &lt;td&gt;135&lt;/td&gt;
-                        &lt;td&gt;112&lt;/td&gt;
-                        &lt;td&gt;92&lt;/td&gt;
-                    &lt;/tr&gt;
-                    &lt;tr&gt;
-                        &lt;th scope="row"&gt;Feb&lt;/th&gt;
-                        &lt;td&gt;117&lt;/td&gt;
-                        &lt;td&gt;114&lt;/td&gt;
-                        &lt;td&gt;99&lt;/td&gt;
-                    &lt;/tr&gt;
-                    &lt;tr&gt;
-                        &lt;th scope="row"&gt;Mar&lt;/th&gt;
-                        &lt;td&gt;96&lt;/td&gt;
-                        &lt;td&gt;111&lt;/td&gt;
-                        &lt;td&gt;126&lt;/td&gt;
-                    &lt;/tr&gt;
-                    &lt;tr&gt;
-                        &lt;th scope="row"&gt;Qtr Total&lt;/th&gt;
-                        &lt;td&gt;348&lt;/td&gt;
-                        &lt;td&gt;337&lt;/td&gt;
-                        &lt;td&gt;308&lt;/td&gt;
-                    &lt;/tr&gt;
-                &lt;/table&gt;
-        &lt;h6&gt;Presentation&lt;/h6&gt;
-        &lt;p&gt;The bar chart represents both the number of visitors per month for each website, and the total number of visitors
-            per website for the entire quarter. Website visitors for each month are represented using columns lined up
-            horizontally, with heights indicating the number of visitors. A fourth column is provided for each website
-            with the accumulated site visitors for the quarter.&lt;/p&gt;
-        &lt;p&gt;
-            &lt;a id="Image2DetailsBackLink" href="./testDetailsEndOfBookSingle.xhtml#image2-link"&gt;Navigate back to bar chart image.&lt;/a&gt;
-        &lt;/p&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-</code>
-</pre>
-
-<div class="simplecalloutbox_preheader">    
-<h4>Code Example 2 Preview</h4>
-</div>
-<div class="simplecalloutbox">
-     <p>Example.com Site visitors Jan to March 2014</p>
-       <img src="chart-ebcaadfb.png" alt="Bar chart showing monthly and total visitors for the first quarter 2014 for sites 1 to 3." aria-details="image2-link"/>
-    <br/>
-    <a id="image2-link" href="./endofbookdescriptionssingle.html#image2-extended-desc">Follow for extended description</a>
-</div>
-</div>
-
-        <h3>Technique 3: Encapsulating either Techniques 1 or 2 within a <code>figure</code></h3>
-        
-            <p>This technique simply encapsulates either technique within a <code>figure</code> element.</p>
-            
-            <p>Note: when adding a <code>figcaption</code> it is important that this be placed either before the first image or after the last image within the <code>figure</code>.  I.E.: either immediately after
-            the <code>&lt;figure&gt;</code> tag or immediately before the end <code>&lt;/figure&gt;</code> tag.</p>
-           
-            <p>Note: when adding multiple images within a single <code>&lt;figure&gt;</code> there can be only one <code>&lt;figcaption&gt;</code> either at the top or bottom and each image should have its extended description <code>&lt;details&gt;</code> or link to the extended description immediately after the image. Note that when the images relate to each other, it may be best to have a single extended description after the final image that describes the images and their relationship.</p>
-        
-        <h4><b>Advantages:</b></h4>
-        <ul>
-            <li>Ability to add a <code>&lt;figcaption&gt;</code> that is linked semantically with the image(s)</li>
-            <li>Ability to group related images keeping their extended descriptions semantically linked with their respective image</li>
-        </ul>
-
- 
-        <h4><b>Disadvantages:</b></h4>
-        <ul>
-            <li>If no <code>&lt;figcaption&gt;</code> is needed, there is added complexity of using the <code>&lt;figure&gt;</code> structure, and the potential for additional text spoken to assistive technology</li>
-        </ul>
-         
-        <div class="simplecalloutbox_preheader">    
-            <h4>Code Example 3</h4>
-        </div>
-        <div class="simplecalloutbox">
-
-        <pre>
-            <code>
-                &lt;p&gt;Image with hyperlink pointing to the extended description, followed by another image with the extended description in a 
-                <code>&lt;details&gt;</code> expandable structure, both of which are encapsulated with a  
-                <code>&lt;figure&gt;</code> structure&lt; with the <code>&lt;figcaption&gt;</code> provided at the top&lt;/p&gt;
-
-                &lt;figure id="image3"&gt;
-                &lt;figcaption&gt;Example.com Site visitors Jan to March 2014&lt;/figcaption&gt;
-
-                &lt;img src="chart-ebcaadfb.png" 
-                alt="Bar chart showing monthly and total visitors for the first quarter 2014 for sites 1 to 3."  aria-details="image3-link"/&gt;
-                &lt;a id="image3-link" href="./endOfBookDescriptionsSingle3.xhtml#image3-extended-desc"&gt;Follow for extended description&lt;/a&gt;
-                &lt;br/&gt;
-
-                &lt;img src="chart-ebcaadfb.png" 
-                    alt="Bar chart showing monthly and total visitors for the first quarter 2014 for sites 1 to 3."
-                    aria-details="image4-extended-desc" /&gt;
-  
-                &lt;details id="image4-extended-desc"&gt;
-                &lt;summary&gt;Expand / collapse Extended Description&lt;/summary&gt;
-                &lt;div&gt;
-                  &lt;h5&gt;Overview&lt;/h5&gt;
-                  &lt;p&gt;The chart shows the website hits for the first quarter of 2014. It shows that Site 1 has more visitors
-                      than either of the other sites, but the number of visitors is decreasing. Site 2 has a fairly constant
-                      number of visitors, while for Site 3 page hits are increasing month on month.&lt;/p&gt;
-                  &lt;h6&gt;Data&lt;/h6&gt;
-                &lt;table&gt;
-                    &lt;tr&gt;
-                        &lt;th scope="col"&gt;Period&lt;/th&gt;
-                        &lt;th scope="col"&gt;Site 1&lt;/th&gt;
-                        &lt;th scope="col"&gt;Site 2&lt;/th&gt;
-                        &lt;th scope="col"&gt;Site 3&lt;/th&gt;
-                    &lt;/tr&gt;
-                    &lt;tr&gt;
-                        &lt;th scope="row"&gt;Jan&lt;/th&gt;
-                        &lt;td&gt;135&lt;/td&gt;
-                        &lt;td&gt;112&lt;/td&gt;
-                        &lt;td&gt;92&lt;/td&gt;
-                    &lt;/tr&gt;
-                    &lt;tr&gt;
-                        &lt;th scope="row"&gt;Feb&lt;/th&gt;
-                        &lt;td&gt;117&lt;/td&gt;
-                        &lt;td&gt;114&lt;/td&gt;
-                        &lt;td&gt;99&lt;/td&gt;
-                    &lt;/tr&gt;
-                    &lt;tr&gt;
-                        &lt;th scope="row"&gt;Mar&lt;/th&gt;
-                        &lt;td&gt;96&lt;/td&gt;
-                        &lt;td&gt;111&lt;/td&gt;
-                        &lt;td&gt;126&lt;/td&gt;
-                    &lt;/tr&gt;
-                    &lt;tr&gt;
-                        &lt;th scope="row"&gt;Qtr Total&lt;/th&gt;
-                        &lt;td&gt;348&lt;/td&gt;
-                        &lt;td&gt;337&lt;/td&gt;
-                        &lt;td&gt;308&lt;/td&gt;
-                    &lt;/tr&gt;
-                &lt;/table&gt;
-                &lt;h6&gt;Presentation&lt;/h6&gt;
-                  &lt;p&gt;The bar chart represents both the number of visitors per month for each website, and the total number
-                      of visitors per website for the entire quarter. Website visitors for each month are represented using
-                      columns lined up horizontally, with heights indicating the number of visitors. A fourth column is
-                      provided for each website with the accumulated site visitors for the quarter.&lt;/p&gt;
-                      &lt;/div&gt;
-              &lt;/details&gt;
-                
-                &lt;/figure&gt;
-            </code>
-        </pre>
-
-    <div class="simplecalloutbox_preheader">    
-    <h4>Code Example 3 Preview</h4>
-    </div>
-    <div class="simplecalloutbox">
-     <figure id="image3">
-        <figcaption>Example.com Site visitors Jan to March 2014</figcaption>
-        <img src="chart-ebcaadfb.png" alt="Bar chart showing monthly and total visitors for the first quarter 2014 for sites 1 to 3." aria-details="image3-link"/>
-        <br/>
-        <a id="image3-link" href="./endofbookdescriptionssingle3.html#image3-extended-desc">Follow for extended description</a>
-        <br/>
-        <br/>
-         
-       <img src="chart-ebcaadfb.png" alt="Bar chart showing monthly and total visitors for the first quarter 2014 for sites 1 to 3." aria-details="image4-extended-desc"/>
-       <details id="image4-extended-desc">
-          <summary>Expand / collapse Extended Description</summary>
-          <div>
-              <h5>Overview</h5>
-                <p>The chart shows the website hits for the first quarter of 2014. It shows that Site 1 has more visitors
-                  than either of the other sites, but the number of visitors is decreasing. Site 2 has a fairly constant
-                  number of visitors, while for Site 3 page hits are increasing month on month.</p>
-                <h6>Data</h6>
-                <table>
-                    <tr>
-                        <th scope="col">Period</th>
-                        <th scope="col">Site 1</th>
-                        <th scope="col">Site 2</th>
-                        <th scope="col">Site 3</th>
-                    </tr>
-                    <tr>
-                        <th scope="row">Jan</th>
-                        <td>135</td>
-                        <td>112</td>
-                        <td>92</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Feb</th>
-                        <td>117</td>
-                        <td>114</td>
-                        <td>99</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Mar</th>
-                        <td>96</td>
-                        <td>111</td>
-                        <td>126</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Qtr Total</th>
-                        <td>348</td>
-                        <td>337</td>
-                        <td>308</td>
-                    </tr>
-                </table>
-            <h6>Presentation</h6>
-                  <p>The bar chart represents both the number of visitors per month for each website, and the total number
-                      of visitors per website for the entire quarter. Website visitors for each month are represented using
-                      columns lined up horizontally, with heights indicating the number of visitors. A fourth column is
-                      provided for each website with the accumulated site visitors for the quarter.</p>
-              </div>
-          </details>
-        </figure>   
-    </div>
-    </div>
     <div data-include="../acknowledgements/index.html"
     	 data-oninclude="fixIncludes"
          data-include-replace="true"></div>
