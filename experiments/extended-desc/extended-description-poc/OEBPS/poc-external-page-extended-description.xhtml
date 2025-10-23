@@ -3,6 +3,15 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>External Page Extended Description</title>
+		<style>
+			.icon {
+				width: 1em;
+			}
+			
+			img {
+				max-width: 100%;
+			}
+		</style>
 	</head>
 	<body>
 		<section role="doc-chapter">
@@ -26,31 +35,51 @@
 			<p><a id="anchor-extended-description-img2" href="poc-external-page-extended-description-appendix.xhtml#extended-description-img2">Extended description second image</a></p>
 			<p>This is placeholder text designed to simulate the actual text of the chapter.</p>
 			<p>This is placeholder text serving as a substitute of the actual text of the chapter. The quick brown fox jumps over the lazy dog, demonstrating how various letters appear in different contexts. Meanwhile, the five boxing wizards jump quickly, showcasing another pangram that contains every letter of the alphabet. These sample sentences help designers and developers visualize how text will look in their layouts before the actual content becomes available.</p>
+			<p>A third example with two images in a <code>figure</code> container, with the link to the extended description outside the <code>figcaption</code>:</p>
+			<figure>
+				<img id="img3" aria-details="anchor-extended-description-img3" src="pie-chart-154411_640.png" alt="Pie chart"/>
+				<p><a id="anchor-extended-description-img3" href="poc-external-page-extended-description-appendix.xhtml#extended-description-img3">Extended description for the first image of this container</a></p>
+				<img id="img4" aria-details="anchor-extended-description-img4" src="infographic-1786704_1280.png" alt="Infographic"/>
+				<p><a id="anchor-extended-description-img4" href="poc-external-page-extended-description-appendix.xhtml#extended-description-img4"><img src="info-circle-icon.svg" class="icon" alt="Extended description for the second image of this container - taken from https://uxwing.com/license/" /></a></p>
+				<figcaption>
+					<p>This is the caption for these two images.</p>
+					<p>Image by <a href="https://pixabay.com/users/openclipart-vectors-30363/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=154411">OpenClipart-Vectors</a> from <a href="https://pixabay.com//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=154411">Pixabay</a></p>
+					<p>Image by <a href="https://pixabay.com/users/gustavofer74-791316/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1786704">Gustavo Ferreira Gustavo</a> from <a href="https://pixabay.com//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1786704">Pixabay</a></p>
+				</figcaption>
+			</figure>
 		</section>
 
 		<script>
 			function runTest() {
 				console.log('=== XPATH TEST to identify extended descriptions for reading system developers ===');
-				
+
 				try {
+					// Namespace resolver for XHTML documents
+					const nsResolver = function(prefix) {
+						const ns = {
+							'xhtml': 'http://www.w3.org/1999/xhtml'
+						};
+						return ns[prefix] || null;
+					};
+
 					// Test 1: identify links to extended descriptions
-					const linkXPath = "//a[@id=//img[@aria-details]/@aria-details]";
-					const linkResult = document.evaluate(linkXPath, document, null, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null);
-					
+					const linkXPath = "//xhtml:a[@id=//xhtml:img[@aria-details]/@aria-details]";
+					const linkResult = document.evaluate(linkXPath, document, nsResolver, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null);
+
 					console.log('\nTest 1 - identify links to extended descriptions:');
 					console.log('\t- XPath used:', linkXPath);
-					
+
 					const linkNodes = [];
 					let linkNode;
-					
+
 					// Raccoglie tutti i nodi che corrispondono al criterio
 					while (linkNode = linkResult.iterateNext()) {
 						linkNodes.push(linkNode);
 					}
-					
+
 					if (linkNodes.length > 0) {
 						console.log(`\t- ✓ Found ${linkNodes.length} link(s):`);
-						
+
 						linkNodes.forEach((node, index) => {
 							console.log(`\t  Link ${index + 1}:`);
 							console.log(`\t    - ID: ${node.id}`);
@@ -60,13 +89,13 @@
 					} else {
 						console.log('\t- ✗ No links found in the page');
 					}
-					
+
 				} catch (error) {
 					console.error('Error during the test:', error.message);
 					console.error('Stack trace:', error.stack);
 				}
 			}
-			
+
 			// Run the test automatically when the page loads
 			window.addEventListener('load', runTest);
 		</script>

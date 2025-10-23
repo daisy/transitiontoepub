@@ -26,6 +26,9 @@
 		<item id="toc" href="toc.xhtml" media-type="application/xhtml+xml" properties="nav" />
 		<item id="chart-ebcaadfb" href="chart-ebcaadfb.png" media-type="image/png" />
 		<item id="ex1" href="ex1.jpg" media-type="image/jpeg" />
+		<item id="info-circle-icon" href="info-circle-icon.svg" media-type="image/svg+xml" />
+		<item id="infographic-1786704_1280" href="infographic-1786704_1280.png" media-type="image/png" />
+		<item id="pie-chart-154411_640" href="pie-chart-154411_640.png" media-type="image/png" />
 	</manifest>
 	<spine>
 		<itemref idref="poc-external-page-extended-description" />
