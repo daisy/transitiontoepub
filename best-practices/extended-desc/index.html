@@ -33,13 +33,13 @@
     </head>
     <body>
     	<p class="copyright">Copyright &#169; DAISY Consortium 2022</p>
-    	
+
     	<section id="abstract" hidden="" class="notoc"></section>
-    	
+
         <h2>Introduction</h2>
 
         <p>Images and diagrams are essential for careers in the fields of science, technology, engineering and mathematics. However, these crucial sources of information are not accessible to people with visual disabilities. The <code>alt</code> text attribute is frequently used to provide a summary of an image, but it is not sufficient for describing complex images, like a diagram of a hydraulic valve, or parts of the body like kidneys etc.</p>
-        
+
         <p>At this point of time, the most appropriate and cost effective solution for making complex images accessible is the use of extended descriptions. It enables authors and publishers to provide longer descriptions in well-structured text. The good news is that the HTML and ARIA specifications already have some features for supporting extended descriptions, but there are implementation challenges in the current state of web browsers, EPUB 3 reading systems and assistive technologies. Therefore we initiated an activity in our working group for evaluating the implementation shortcomings of different reading environments, and developing the best practices for authoring extended descriptions, which enables the users to understand the images in a wider range of EPUB reading environments.</p>
 
         <p>It is possible that the recommendations for EPUB 3 environments provided in this report are a little different from the recommendations for the web environment. Though most of EPUB 3 reading systems use components from web browsers, the reading systems tend to change and sometimes override the web browser functionality, which results in a somewhat different reading experience.</p>
@@ -49,9 +49,9 @@
         	<p>This change reflects the fact that many publishers prefer to treat extended descriptions as additional content rather than part of the main content, in addition to the fact that some pagination-based EPUB reading solutions have problems with the appearance and disappearance of <code>details</code> content.</p>
         </aside>
 
-        
+
         <h2>Recommendations</h2>
-        
+
         <p>After thorough evaluation, we are able to propose two techniques at this point of time. These techniques worked in a majority of the reading environments. This does not guarantee full support, but these provide a way forward while the web browsers, EPUB reading systems and assistive technologies catch-up.</p>
 
         <section id="technique1">
@@ -85,16 +85,16 @@
             <p>Key requirements:</p>
             <ul>
                 <li>The image must have a brief <code>alt</code> text that describes what the image is (e.g., "Bar chart showing quarterly website visitors").</li>
-                <li>After the image (or group of images), there must be a link pointing to its (them) extended description.</li>
+                <li>After the image (or group of images), there must be a link pointing to its (their) extended description.</li>
                 <li>The content of the link to the extended description can be textual (for example, "Extended description", or more specific, localized in the language of the text), or it can be an icon whose accessible name (<code>alt</code> or <code>aria-label</code>) must include the term Extended description (in the language of the text).</li>
                 <li>The link must have a unique <code>id</code> attribute.</li>
                 <li>The image must have an <code>aria-details</code> attribute pointing to that link's ID.</li>
             </ul>
-            
+
             <p>This creates a programmatic relationship that assistive technologies can use to announce the availability of an extended description</p>
 
             <p>The general pattern is:</p>
-            <aside class="example" title="General pattern">  
+            <aside class="example" title="General pattern">
             	<pre class="html">
 &lt;img aria-details="link-id"  alt="Bar chart showing..." ... /&gt;
 &lt;a id="link-id" href="extended-descriptions.xhtml#description-id"&gt;Extended description&lt;/a&gt;
@@ -106,7 +106,7 @@
 
         <aside class="example" title="Images in <code>figure</code> with link in <code>figcaption</code>">
         	<p>When using a <code>figure</code> element, you can place the link to the extended description inside the <code>figcaption</code>. The <code>figcaption</code> must be either the first or last element within the <code>figure</code> to maintain HTML validity.</p>
-        	
+
         	<pre class="html">
 &lt;figure&gt;
     &lt;img id="img1" aria-details="anchor-extended-description-img1"
@@ -119,7 +119,7 @@
     &lt;/figcaption&gt;
 &lt;/figure&gt;</pre>
         </aside>
-        
+
         <aside class="example" title="Images in <code>figure</code> with link outside <code>figcaption</code>">
         	<p>If you prefer to place the link to the extended description outside the <code>figcaption</code>, it must be positioned before the <code>figcaption</code> to maintain HTML validity (since <code>figcaption</code> must be the first or last element within <code>figure</code>).</p>
 
@@ -148,7 +148,7 @@
       href="extended-descriptions.xhtml#extended-description-img3"&gt;Extended description&lt;/a&gt;&lt;/p&gt;
 </pre>
         </aside>
-        
+
         <aside class="example" title="Multiple images">
         	<p>In the case of multiple grouped images within a single <code>figure</code>, the content creator can decide to have a single extended description for all the images (with only one link), or different extended descriptions (with several links placed after each image, referring in the label to the corresponding image).</p>
 
@@ -193,7 +193,7 @@
 
         <aside class="example" title="Using an icon for the extended description link">
         	<p>An icon can be used instead of text for the link to the extended description. This can be helpful for users with cognitive disabilities. The icon image should have appropriate alternative text. This technique can be used in all cases presented in the other examples.</p>
-        	
+
             <pre class="html">
 &lt;figure&gt;
     &lt;img id="img3" aria-details="anchor-extended-description-img3"
@@ -216,7 +216,7 @@
         <h4>Setting up the external file with extended descriptions</h4>
 
             <p>Extended descriptions should be placed in a separate HTML file that is referenced from the extended description link and with a backlink to the main content. This file can be inserted at the end of the e-book and/or marked as non-linear, meaning that it does not appear when browsing through the e-book. A single HTML file can contain multiple extended descriptions.</p>
-            
+
             <p>Each extended description must:</p>
             <ul>
                 <li>Be wrapped in a <code>section</code> element with an ID that matches the fragment identifier in the link</li>
@@ -225,12 +225,13 @@
                 <li>Contain the detailed description</li>
                 <li>Include a back link with <code>role="doc-backlink"</code> to return to the original image</li>
             </ul>
+<p class="note">To avoid external files with many extended descriptions becoming too large and creating long load times, multiple files can be used. These files must be identified in the spine as described below.</p>
 
             <h5>EPUB spine configuration</h5>
 
             <p>The extended description file can be marked as <code>linear="no"</code> in the EPUB <code>spine</code> (inside the OPF file) to exclude it from the normal reading order.</p>
-            
-            <aside class="example" title="EPUB spine configuration">        	
+
+            <aside class="example" title="EPUB spine configuration">
             <pre class="html">
 &lt;spine&gt;
 	...
@@ -245,9 +246,9 @@
 
 
             <h5>Example</h5>
-            
-            <aside class="example" title="Extended description file structure">    
-            	<p>This code is an example of how the file containing the extended descriptions could be structured. Multiple extended descriptions can be placed in the same file, each in its own <code>section</code>.</p>    	
+
+            <aside class="example" title="Extended description file structure">
+            	<p>This code is an example of how the file containing the extended descriptions could be structured. Multiple extended descriptions can be placed in the same file, each in its own <code>section</code>.</p>
             <pre class="html">
 &lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
 &lt;head&gt;
@@ -292,13 +293,13 @@
 </pre>
         </aside>
 
-            
 
-       
+
+
         </section>
         </section>
 
-        
+
 
         <section id="technique2">
         <h3>Technique 2: Extended description placed in HTML details element, just below the image</h3>
