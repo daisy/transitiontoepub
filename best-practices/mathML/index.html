@@ -19,7 +19,7 @@
 				],
 				logos: [
 					{
-						src: '/transitiontoepub/daisy_high.jpg',
+						src: 'https://daisy.github.io/transitiontoepub/daisy_high.jpg',
 						width: 112,
 						height: 100,
 						alt: 'DAISY Consortium logo',
@@ -62,6 +62,7 @@
         
         <h3>Technique: Native MathML</h3>
 <p class="note">The alttext attribute of MathML should not be used. The implementations are not using alttext attribute for the fallback of MathML, and it results in reading of math expression twice.</p>
+        <p class="note">In the MathML specifications, there are three deprecated (but still in use) attributes that control visual representation and can impact the adaptability of visual formatting to user preferences: <code>mathcolor</code>, <code>mathbackground</code> and <code>mathsize</code>. Please use CSS for styling MathML if necessary.</p>
         <div class="simplecalloutbox_preheader">    
             <h4>Code Example #1: Block MathML</h4>
             </div>
