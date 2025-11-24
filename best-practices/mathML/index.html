@@ -1,73 +1,81 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
-	<head>
-		<meta charset="utf-8" />
-		<title>Best Practices for Authoring MathML in EPUB</title>
-		<script src="https://www.w3.org/Tools/respec/respec-w3c" class="remove"></script>
-		<script class="remove">
-			//<![CDATA[
-			var respecConfig = {
-				shortName: 'mathML',
-				specStatus: 'base',
-				latestVersion: 'https://inclusivepublishing.org/mathMLBestPractices',
-				edDraftURI: null,
-				editors: [
-					{
-						name: 'Charles LaPierre',
-						company: 'Benetech'
-					}
-				],
-				logos: [
-					{
-						src: 'https://daisy.github.io/transitiontoepub/daisy_high.jpg',
-						width: 112,
-						height: 100,
-						alt: 'DAISY Consortium logo',
-						url: 'https://daisy.org'
-					}
-				],
-				github: 'DAISY/transitiontoepub'
-			};
-			// ]]>
-		</script>
-		<link href="../css/callout.css" rel="stylesheet" type="text/css"/>
-	</head>
-    <body>
-    	<p class="copyright">Copyright &#169; DAISY Consortium November 16 2022</p>
-    	
-    	<section id="abstract" hidden="" class="notoc"></section>
 
-        <h2>Introduction</h2>
-        
-	    <p>
-            Reading scientific and mathematical expressions are essential for students with disabilities for making progress in the field of science, technology, engineering and mathematics. This document recommends best practices for presenting Mathematics in a way which makes it accessible to people with print disabilities.
-        </p>
+<head>
+    <meta charset="utf-8" />
+    <title>Best Practices for Authoring MathML in EPUB</title>
+    <script src="https://www.w3.org/Tools/respec/respec-w3c" class="remove"></script>
+    <script class="remove">
+        //<![CDATA[
+        var respecConfig = {
+            shortName: 'mathML',
+            specStatus: 'base',
+            latestVersion: 'https://inclusivepublishing.org/mathMLBestPractices',
+            edDraftURI: null,
+            editors: [
+                {
+                    name: 'Charles LaPierre',
+                    company: 'Benetech'
+                }
+            ],
+            logos: [
+                {
+                    src: 'https://daisy.github.io/transitiontoepub/daisy_high.jpg',
+                    width: 112,
+                    height: 100,
+                    alt: 'DAISY Consortium logo',
+                    url: 'https://daisy.org'
+                }
+            ],
+            github: 'DAISY/transitiontoepub'
+        };
+        // ]]>
+    </script>
+    <link href="../css/callout.css" rel="stylesheet" type="text/css" />
+</head>
 
-        <p>It is possible that the recommendations for EPUB 3 environments provided in this report are a little different from the recommendations for the web environment. Though most of EPUB 3 reading systems use components from web browsers, the reading systems tend to change and sometimes override the web browser functionality, which results in a somewhat different reading experience.</p>
+<body>
+    <p class="copyright">Copyright &#169; DAISY Consortium November 16 2022</p>
 
-        <h2>Recommendations</h2>
+    <section id="abstract" hidden="" class="notoc"></section>
 
-        <p>
-            Fortunately, MathML is now widely supported in web browsers and Ebook reading systems. Therefore, MathML should be used for presenting Mathematics.
-            There are some instances where the use of MathML is not recommended, these are explained in the section that follows the MathML techniques.
-        </p>
-        <p>
-            It is worth mentioning that the mere inclusion of presentational MathML does not guarantee that it will be fully accessible. We will be looking into providing accessible authoring recommendations for MathML in the future.
-        </p>	    
-	    
-        <p class="note">Based on the test results it is recommended not to use the global namespaces for MathML, i.e. not using m: prefix namespace within the <code>&lt;html&gt;</code> element.  Instead it is recommended that for each mathML equation to add the local namespace <code>xmlns="http://www.w3.org/1998/Math/MathML"</code> within the <code>&lt;math&gt;</code> element itself. For code examples, please see the MathML examples provided in the following techniques.</p>
+    <h2>Introduction</h2>
 
-        <p>Based on test results and future prospects, the following technique is recommended.</p>
-        
-        
-        <h3>Technique: Native MathML</h3>
-<p class="note">The alttext attribute of MathML should not be used. The implementations are not using alttext attribute for the fallback of MathML, and it results in reading of math expression twice.</p>
-        <p class="note">In the MathML specifications, there are three deprecated (but still in use) attributes that control visual representation and can impact the adaptability of visual formatting to user preferences: <code>mathcolor</code>, <code>mathbackground</code> and <code>mathsize</code>. Please use CSS for styling MathML if necessary.</p>
-        <div class="simplecalloutbox_preheader">    
-            <h4>Code Example #1: Block MathML</h4>
-            </div>
-            <div class="simplecalloutbox">
-                <pre>
+    <p>
+        Reading and understanding scientific and mathematical expressions is essential for students with disabilities
+        for making progress in the field of science, technology, engineering and mathematics. This document recommends
+        best practices for including mathematics in EPUB 3 publications in a way which makes it accessible to people
+        with print disabilities.
+    </p>
+
+    <p>It is possible that the recommendations for EPUB 3 environments provided in this report are a little different
+        from the recommendations for the web environment. Though most of EPUB 3 reading systems use components from web
+        browsers, the reading systems tend to change and sometimes override the web browser functionality, which results
+        in a somewhat different reading experience.</p>
+
+    <h2>Recommendations</h2>
+
+    <p>
+        MathML is widely supported in web browsers and ebook reading systems and by assistive technologies. Therefore,
+        MathML should be used when
+        including mathematics.
+        There are some instances where the use of MathML is discouraged, these are explained in the section that follows
+        the MathML techniques.
+    </p>
+    <p>
+        It is worth mentioning that the mere inclusion of presentational MathML does not guarantee that it will be fully
+        accessible. We will be looking into providing accessible authoring recommendations for MathML in the future.
+    </p>
+
+    <p>Based on test results and future prospects, the following technique is recommended.</p>
+
+    <h3>Technique: Native MathML</h3>
+
+    <div class="simplecalloutbox_preheader">
+        <h4>Code Example #1: Block MathML</h4>
+    </div>
+    <div class="simplecalloutbox">
+        <pre>
         <code>
 &lt;p&gt;Some Text before the math equation&lt;/p&gt;
 &lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot; display=&quot;block&quot;&gt;
@@ -126,16 +134,15 @@
         </code>
         </pre>
 
-            <div class="simplecalloutbox_preheader">    
+        <div class="simplecalloutbox_preheader">
             <h4>Code Example #1 Preview: Block MathML</h4>
-            </div>
-            <div class="simplecalloutbox">
+        </div>
+        <div class="simplecalloutbox">
             <p>
-            Some Text before the math equation
+                Some Text before the math equation
             </p>
-            <math xmlns="http://www.w3.org/1998/Math/MathML" 
-            display="block">
-               <mrow>
+            <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+                <mrow>
                     <mi>y</mi>
                     <mo>−</mo>
                     <msub>
@@ -184,15 +191,15 @@
                     </mrow>
                 </mrow>
             </math>
-        <p>
-            Some text after the equation.
-        </p>
-                </div>
+            <p>
+                Some text after the equation.
+            </p>
         </div>
-        <div class="simplecalloutbox_preheader">   
+    </div>
+    <div class="simplecalloutbox_preheader">
         <h4>Code Example #2: Inline MathML</h4>
-        </div>
-        <div class="simplecalloutbox">
+    </div>
+    <div class="simplecalloutbox">
         <pre><code>
 &lt;p&gt;
     Some Text before the math equation
@@ -252,84 +259,107 @@
 &lt;/p&gt;  
         </code>
         </pre>
-    <div class="simplecalloutbox_preheader">    
-        <h4>Code Example #2 Preview: Inline MathML</h4>
-    </div>
-    <div class="simplecalloutbox">
-        <p>
-	Some Text before the math equation
-            <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
-               <mrow>
-                    <mi>y</mi>
-                    <mo>−</mo>
-                    <msub>
-                        <mi>y</mi>
-                        <mn>1</mn>
-                    </msub>
-                </mrow>
-                <mo>=</mo>
-                <mrow>
-                    <mfrac>
-                        <mrow>
-                            <msub>
-                                <mi>y</mi>
-                                <mn>2</mn>
-                            </msub>
-                            <mo>−</mo>
-                            <msub>
-                                <mi>y</mi>
-                                <mn>1</mn>
-                            </msub>
-                        </mrow>
-                        <mrow>
-                            <msub>
-                                <mi>x</mi>
-                                <mn>2</mn>
-                            </msub>
-                            <mo>−</mo>
-                            <msub>
-                                <mi>x</mi>
-                                <mn>1</mn>
-                            </msub>
-                        </mrow>
-                    </mfrac>
-                    <mo>⁢<!--invisible times--></mo>
+        <div class="simplecalloutbox_preheader">
+            <h4>Code Example #2 Preview: Inline MathML</h4>
+        </div>
+        <div class="simplecalloutbox">
+            <p>
+                Some Text before the math equation
+                <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
                     <mrow>
-                        <mo>(</mo>
-                        <mrow>
-                            <mi>x</mi>
-                            <mo>−</mo>
-                            <msub>
-                                <mi>x</mi>
-                                <mn>1</mn>
-                            </msub>
-                        </mrow>
-                        <mo>)</mo>
+                        <mi>y</mi>
+                        <mo>−</mo>
+                        <msub>
+                            <mi>y</mi>
+                            <mn>1</mn>
+                        </msub>
                     </mrow>
-                </mrow>
-            </math>
-            Some text after the equation.
-        </p>
+                    <mo>=</mo>
+                    <mrow>
+                        <mfrac>
+                            <mrow>
+                                <msub>
+                                    <mi>y</mi>
+                                    <mn>2</mn>
+                                </msub>
+                                <mo>−</mo>
+                                <msub>
+                                    <mi>y</mi>
+                                    <mn>1</mn>
+                                </msub>
+                            </mrow>
+                            <mrow>
+                                <msub>
+                                    <mi>x</mi>
+                                    <mn>2</mn>
+                                </msub>
+                                <mo>−</mo>
+                                <msub>
+                                    <mi>x</mi>
+                                    <mn>1</mn>
+                                </msub>
+                            </mrow>
+                        </mfrac>
+                        <mo>⁢<!--invisible times--></mo>
+                        <mrow>
+                            <mo>(</mo>
+                            <mrow>
+                                <mi>x</mi>
+                                <mo>−</mo>
+                                <msub>
+                                    <mi>x</mi>
+                                    <mn>1</mn>
+                                </msub>
+                            </mrow>
+                            <mo>)</mo>
+                        </mrow>
+                    </mrow>
+                </math>
+                Some text after the equation.
+            </p>
         </div>
-        </div>
-	    
-        <h3>Where MathML should not be used</h3>
+    </div>
 
-        <p>MathML should not be used at the places where numbers and symbols are the part of the text, for example.</p>
-        <ul>
-            <li>Adam is 65 years old.</li>
-            <li>The zip code of the office is NY 10036.</li>
-<li>My mobile number is 78950 55823.</li>
-            </ul>
-        <p>In these examples, the numbers are actually the words in the text of the publication. Therefore MathML should not be used in such places.</p>
-        
-        <h2>Challenges in production of accessible Math</h2>
-        <p>While MathML is the recommended approach for accessible mathematical content in EPUB publications, the practical implementation of comprehensive MathML markup involves various considerations and challenges in real-world publishing workflows.</p>
-        <p>These range from technical and workflow integration issues to questions about when and how to apply MathML most effectively across different types of mathematical content. The publishing industry continues to evolve its approaches to balancing accessibility requirements with production efficiency and visual presentation needs.</p>
-        <p>For a detailed examination of current implementation challenges and ongoing discussions in this area, see <a href="mathML-challenges.html">Challenges in production of accessible Math</a>.</p>
-	    
-      <div data-include="../acknowledgements/index.html"
-    	   data-oninclude="fixIncludes"
-    	   data-include-replace="true"></div>
-    </body>
+    <h2>Alttext Attribute</h2>
+    <p class="note">The alttext attribute of MathML should not be used. Testing results show that the inclusion of this
+        attribute results in math expression being read twice.</p>
+    <h2>Styling</h2>
+    <p>If necessary CSS can be used for styling MathML.</p>
+    <p class="note">The MathML specifications includes attributes that control visual representation
+        (<code>mathcolor</code>,
+        <code>mathbackground</code> and <code>mathsize</code>). Whilst still in use, these attributes are deprecated and
+        can impact the adaptability of visual formatting to user preferences, and their use is discouraged.
+    </p>
+
+    <h2>Namespace</h2>
+    <p class="note">Based on the test results it is recommended not to use the global namespaces for MathML, i.e. not using m: prefix
+        namespace within the <code>&lt;html&gt;</code> element. Instead it is recommended that for each mathML equation
+        to add the local namespace <code>xmlns="http://www.w3.org/1998/Math/MathML"</code> within the
+        <code>&lt;math&gt;</code> element itself. For code examples, please see the MathML examples provided in the
+        following techniques.
+    </p>
+
+    <h2>Where MathML should not be used</h2>
+    <p>MathML should not be used at the places where numbers and symbols are the part of the text, for example.</p>
+    <ul>
+        <li>Adam is 65 years old.</li>
+        <li>The zip code of the office is NY 10036.</li>
+        <li>My mobile number is 78950 55823.</li>
+    </ul>
+    <p>In these examples, the numbers are actually the words in the text of the publication. Therefore MathML should not
+        be used in such places.</p>
+
+    <h2>Challenges in production of accessible Math</h2>
+    <p>While MathML is the recommended approach for accessible mathematical content in EPUB publications, the practical
+        implementation of comprehensive MathML markup involves various considerations and challenges in real-world
+        publishing workflows.</p>
+    <p>These range from technical and workflow integration issues to questions about when and how to apply MathML most
+        effectively across different types of mathematical content. The publishing industry continues to evolve its
+        approaches to balancing accessibility requirements with production efficiency and visual presentation needs.</p>
+    <p>For a detailed examination of current implementation challenges and ongoing discussions in this area, see <a
+            href="mathML-challenges.html">Challenges in production of accessible Math</a>.</p>
+
+    <div data-include="../acknowledgements/index.html" data-oninclude="fixIncludes" data-include-replace="true"></div>
+</body>
+
 </html>
