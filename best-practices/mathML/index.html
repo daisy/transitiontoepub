@@ -94,8 +94,6 @@
 		<p>Do not apply ARIA attributes to MathML elements. Native MathML provides its own accessibility semantics, and adding ARIA attributes (such as <code>role="math"</code>, <code>aria-label</code>, or <code>aria-describedby</code>) can create conflicts or redundancy in how assistive technologies interpret the mathematical content.</p>
         
         <h3>Technique: Native MathML</h3>
-<p class="note">The alttext attribute of MathML should not be used. The implementations are not using alttext attribute for the fallback of MathML, and it results in reading of math expression twice.</p>
-        <p class="note">In the MathML specifications, there are three deprecated (but still in use) attributes that control visual representation and can impact the adaptability of visual formatting to user preferences: <code>mathcolor</code>, <code>mathbackground</code> and <code>mathsize</code>. Please use CSS for styling MathML if necessary.</p>
         <div class="simplecalloutbox_preheader">    
             <h4>Code Example #1: Block MathML</h4>
             </div>
