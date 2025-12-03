@@ -13,8 +13,22 @@
 				edDraftURI: null,
 				editors: [
 					{
+						name: 'Avneesh Singh',
+						company: 'DAISY Consortium'
+					},
+					{
 						name: 'Charles LaPierre',
 						company: 'Benetech'
+					},
+					{
+						name: 'Gregorio Pellegrino',
+						company: 'Fondazione LIA'
+					},
+				],
+				formerEditors :[
+					{
+						name: 'George Kerscher',
+						company: 'DAISY Consortium'
 					}
 				],
 				logos: [
@@ -50,19 +64,36 @@
         <p>
             Fortunately, MathML is now widely supported in web browsers and Ebook reading systems. Therefore, MathML should be used for presenting Mathematics.
             There are some instances where the use of MathML is not recommended, these are explained in the section that follows the MathML techniques.
-        </p>
-        <p>
-            It is worth mentioning that the mere inclusion of presentational MathML does not guarantee that it will be fully accessible. We will be looking into providing accessible authoring recommendations for MathML in the future.
         </p>	    
 	    
-        <p class="note">Based on the test results it is recommended not to use the global namespaces for MathML, i.e. not using m: prefix namespace within the <code>&lt;html&gt;</code> element.  Instead it is recommended that for each mathML equation to add the local namespace <code>xmlns="http://www.w3.org/1998/Math/MathML"</code> within the <code>&lt;math&gt;</code> element itself. For code examples, please see the MathML examples provided in the following techniques.</p>
-
         <p>Based on test results and future prospects, the following technique is recommended.</p>
         
+        <h3>Important Implementation Considerations</h3>
+		<p>Based on testing across various reading systems and assistive technologies, the following implementation practices should be carefully observed to ensure optimal accessibility and compatibility.</p>
+		
+		<h4>Namespace Declaration</h4>
+		<p>Do not use global namespaces for MathML (i.e., avoid using the <code>m:</code> prefix namespace within the <code>&lt;html&gt;</code> element). Instead, declare the namespace locally by adding <code>xmlns="http://www.w3.org/1998/Math/MathML"</code> within each <code>&lt;math&gt;</code> element. For implementation examples, refer to the code samples provided in the following sections.</p>
+		
+		<h4>Alternative Text Handling</h4>
+		<ul>
+			<li><strong>Do not use the <code>alttext</code> attribute:</strong> current implementations do not properly use this attribute for fallback content, resulting in mathematical expressions being read twice by assistive technologies.</li>
+			<li><strong>Do not use the <code>altimg</code> attribute:</strong> avoid referencing fallback images through this attribute.</li>
+		</ul>
+		
+		<h4>Deprecated Attributes</h4>
+		<p>Avoid using deprecated MathML attributes for visual styling. These attributes impact the adaptability of visual formatting to user preferences and may not be supported in future implementations:</p>
+		<ul>
+			<li><code>mathcolor</code></li>
+			<li><code>mathbackground</code></li>
+			<li><code>mathsize</code></li>
+			<li><code>displaystyle</code></li>
+			<li><code>scriptlevel</code></li>
+		</ul>
+		
+		<h4>ARIA Attributes</h4>
+		<p>Do not apply ARIA attributes to MathML elements. Native MathML provides its own accessibility semantics, and adding ARIA attributes (such as <code>role="math"</code>, <code>aria-label</code>, or <code>aria-describedby</code>) can create conflicts or redundancy in how assistive technologies interpret the mathematical content.</p>
         
         <h3>Technique: Native MathML</h3>
-<p class="note">The alttext attribute of MathML should not be used. The implementations are not using alttext attribute for the fallback of MathML, and it results in reading of math expression twice.</p>
-        <p class="note">In the MathML specifications, there are three deprecated (but still in use) attributes that control visual representation and can impact the adaptability of visual formatting to user preferences: <code>mathcolor</code>, <code>mathbackground</code> and <code>mathsize</code>. Please use CSS for styling MathML if necessary.</p>
         <div class="simplecalloutbox_preheader">    
             <h4>Code Example #1: Block MathML</h4>
             </div>
@@ -328,8 +359,28 @@
         <p>These range from technical and workflow integration issues to questions about when and how to apply MathML most effectively across different types of mathematical content. The publishing industry continues to evolve its approaches to balancing accessibility requirements with production efficiency and visual presentation needs.</p>
         <p>For a detailed examination of current implementation challenges and ongoing discussions in this area, see <a href="mathML-challenges.html">Challenges in production of accessible Math</a>.</p>
 	    
-      <div data-include="../acknowledgements/index.html"
-    	   data-oninclude="fixIncludes"
-    	   data-include-replace="true"></div>
+      	<section class="appendix informative" id="acknowledgements">
+			<h2>Acknowledgments</h2>
+			
+			<p>The following people contributed to the development of this document:</p>
+			
+			<ul>
+				<li>Avneesh Singh, DAISY Consortium</li>
+				<li>Charles LaPierre, Benetech</li>
+				<li>Chris Stynes, HMH</li>
+				<li>Gautier Chomel, EDRLab</li>
+				<li>George Kerscher, DAISY Consortium</li>
+				<li>Gregorio Pellegrino, Fondazione LIA</li>
+				<li>Ibrahim Siddo, Oxford University Press</li>
+				<li>James Yanchak, Taylor & Francis</li>
+				<li>Cody Care, EBSCO</li>
+				<li>Mark Dunn, Oxford University Press</li>
+				<li>Marthe Gjelstad, National Library of Norway (NB)</li>
+				<li>Richard Orme, DAISY Consortium</li>
+				<li>Sagiv Lapkin, Taylor & Francis</li>
+				<li>Steve Noble, Pearson</li>
+				<li>Tim Arborealis Lötberg, Swedish Agency for Accessible Media (MTM)</li>
+			</ul>
+		</section>
     </body>
 </html>
