@@ -1,16 +1,16 @@
 <!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head>
 <meta charset="utf-8">
-<meta name="generator" content="ReSpec 32.5.1">
+<meta name="generator" content="ReSpec 35.6.1">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <style>
 dfn{cursor:pointer}
-.dfn-panel{position:absolute;z-index:35;min-width:300px;max-width:500px;padding:.5em .75em;margin-top:.6em;font-family:"Helvetica Neue",sans-serif;font-size:small;background:#fff;color:#000;box-shadow:0 1em 3em -.4em rgba(0,0,0,.3),0 0 1px 1px rgba(0,0,0,.05);border-radius:2px}
+.dfn-panel{position:absolute;z-index:35;min-width:300px;max-width:500px;padding:.5em .75em;margin-top:.6em;font-family:"Helvetica Neue",sans-serif;font-size:small;background:#fff;background:var(--indextable-hover-bg,#fff);color:#000;color:var(--text,#000);box-shadow:0 1em 3em -.4em rgba(0,0,0,.3),0 0 1px 1px rgba(0,0,0,.05);box-shadow:0 1em 3em -.4em var(--tocsidebar-shadow,rgba(0,0,0,.3)),0 0 1px 1px var(--tocsidebar-shadow,rgba(0,0,0,.05));border-radius:2px}
 .dfn-panel:not(.docked)>.caret{position:absolute;top:-9px}
-.dfn-panel:not(.docked)>.caret::after,.dfn-panel:not(.docked)>.caret::before{content:"";position:absolute;border:10px solid transparent;border-top:0;border-bottom:10px solid #fff;top:0}
-.dfn-panel:not(.docked)>.caret::before{border-bottom:9px solid #a2a9b1}
+.dfn-panel:not(.docked)>.caret::after,.dfn-panel:not(.docked)>.caret::before{content:"";position:absolute;border:10px solid transparent;border-top:0;border-bottom:10px solid #fff;border-bottom-color:var(--indextable-hover-bg,#fff);top:0}
+.dfn-panel:not(.docked)>.caret::before{border-bottom:9px solid #a2a9b1;border-bottom-color:var(--indextable-hover-bg,#a2a9b1)}
 .dfn-panel *{margin:0}
-.dfn-panel b{display:block;color:#000;margin-top:.25em}
-.dfn-panel ul a[href]{color:#333}
+.dfn-panel b{display:block;color:#000;color:var(--text,#000);margin-top:.25em}
+.dfn-panel ul a[href]{color:#333;color:var(--text,#333)}
 .dfn-panel>div{display:flex}
 .dfn-panel a.self-link{font-weight:700;margin-right:auto}
 .dfn-panel .marker{padding:.1em;margin-left:.5em;border-radius:.2em;text-align:center;white-space:nowrap;font-size:90%;color:#040b1c}
@@ -32,8 +32,6 @@ dfn{cursor:pointer}
 25%{transform:scale(1.25,1.25);opacity:.75}
 100%{transform:scale(1,1)}
 }
-:is(h1,h2,h3,h4,h5,h6,a) abbr{border:none}
-dfn{font-weight:700}
 a.internalDFN{color:inherit;border-bottom:1px solid #99c;text-decoration:none}
 a.externalDFN{color:inherit;border-bottom:1px dotted #ccc;text-decoration:none}
 a.bibref{text-decoration:none}
@@ -44,23 +42,11 @@ a.bibref{text-decoration:none}
 .respec-offending-element{background:url(data:image/gif;base64,R0lGODdhBAADAPEAANv///8AAP///wAAACwAAAAABAADAEACBZQjmIAFADs=) bottom repeat-x}
 }
 #references :target{background:#eaf3ff;animation:pop .4s ease-in-out 0s 1}
-cite .bibref{font-style:normal}
+cite .bibref{font-style:italic}
 a[href].orcid{padding-left:4px;padding-right:4px}
 a[href].orcid>svg{margin-bottom:-2px}
-.toc a,.tof a{text-decoration:none}
-a .figno,a .secno{color:#000}
 ol.tof,ul.tof{list-style:none outside none}
 .caption{margin-top:.5em;font-style:italic}
-table.simple{border-spacing:0;border-collapse:collapse;border-bottom:3px solid #005a9c}
-.simple th{background:#005a9c;color:#fff;padding:3px 5px;text-align:left}
-.simple th a{color:#fff;padding:3px 5px;text-align:left}
-.simple th[scope=row]{background:inherit;color:inherit;border-top:1px solid #ddd}
-.simple td{padding:3px 10px;border-top:1px solid #ddd}
-.simple tr:nth-child(even){background:#f0f6ff}
-.section dd>p:first-child{margin-top:0}
-.section dd>p:last-child{margin-bottom:0}
-.section dd{margin-bottom:1em}
-.section dl.attrs dd,.section dl.eldef dd{margin-bottom:0}
 #issue-summary>ul{column-count:2}
 #issue-summary li{list-style:none;display:inline-block}
 details.respec-tests-details{margin-left:1em;display:inline-block;vertical-align:top}
@@ -86,88 +72,49 @@ dd{margin-left:0}
 </style>
 		
 		
-<script>
-		    MathJax = {
-		      loader: {load: ['a11y/explorer']},
-		      options: {
-		        a11y: {
-		          speech: true,
-		          speechRules: 'clearspeak-default',
-		          subtitles: true
-		        },
-		        menuOptions: {
-		          settings: {
-		            explorer: true
-		          }
-		        },
-		        renderActions: {
-		          addMenu: [],
-		          checkLoad: [],
-		          assistiveMml: [],
-		          setExplorerValues: [199,
-		            (doc) => {for (const math of doc.math) {MathJax.config.setExplorer(math, doc)}},
-		            (math, doc) => MathJax.config.setExplorer(math, doc)
-		          ]
-		        }
-		      },
-		      currentMathFocus: null,
-		      setExplorer(math, doc) {
-		        math.typesetRoot.addEventListener('mousedown', function() {
-		          let event = new KeyboardEvent("keydown", {
-		            code: 13,
-		            key: 13,
-		            keyCode: 13,
-		            charCode: 13,
-		            which: 13,
-		            bubbles: true
-		          });
-		          let focus = new FocusEvent('focusout');
-		          if (MathJax.config.currentMathFocus) {
-		            MathJax.config.currentMathFocus.dispatchEvent(focus);
-		          }
-		          focus = new FocusEvent('focusin');
-		          math.typesetRoot.dispatchEvent(focus);
-		          math.typesetRoot.dispatchEvent(event);
-		        });
-		        math.typesetRoot.addEventListener('focusin', function () {
-		          
-		          const braille = this.parentNode.id === 'braille';
-		
-		          MathJax.config.currentMathFocus = this;
-		          const pool = doc.menu.menu.variablePool;
-		          pool.lookup('braille').setValue(braille);
-		          pool.lookup('viewBraille').setValue(braille);
-		          pool.lookup('speech').setValue(!braille);
-		        });
-		      }
-		    };
-		</script>
-		
 <link href="../css/callout.css" rel="stylesheet" type="text/css">
-        
-<script type="text/javascript" id="MathJax-script" async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.0.0/es5/latest?tex-mml-chtml.js">
-            
-</script>
 	
+<meta name="color-scheme" content="light">
 <style>
-.hljs{display:block;overflow-x:auto;padding:.5em;color:#383a42;background:#fafafa}
-.hljs-comment,.hljs-quote{color:#717277;font-style:italic}
-.hljs-doctag,.hljs-formula,.hljs-keyword{color:#a626a4}
-.hljs-deletion,.hljs-name,.hljs-section,.hljs-selector-tag,.hljs-subst{color:#ca4706;font-weight:700}
-.hljs-literal{color:#0b76c5}
-.hljs-addition,.hljs-attribute,.hljs-meta-string,.hljs-regexp,.hljs-string{color:#42803c}
-.hljs-built_in,.hljs-class .hljs-title{color:#9a6a01}
-.hljs-attr,.hljs-number,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-pseudo,.hljs-template-variable,.hljs-type,.hljs-variable{color:#986801}
-.hljs-bullet,.hljs-link,.hljs-meta,.hljs-selector-id,.hljs-symbol,.hljs-title{color:#336ae3}
+.hljs{--base:#fafafa;--mono-1:#383a42;--mono-2:#686b77;--mono-3:#717277;--hue-1:#0b76c5;--hue-2:#336ae3;--hue-3:#a626a4;--hue-4:#42803c;--hue-5:#ca4706;--hue-5-2:#c91243;--hue-6:#986801;--hue-6-2:#9a6a01}
+@media (prefers-color-scheme:dark){
+.hljs{--base:#282c34;--mono-1:#abb2bf;--mono-2:#818896;--mono-3:#5c6370;--hue-1:#56b6c2;--hue-2:#61aeee;--hue-3:#c678dd;--hue-4:#98c379;--hue-5:#e06c75;--hue-5-2:#be5046;--hue-6:#d19a66;--hue-6-2:#e6c07b}
+}
+.hljs{display:block;overflow-x:auto;padding:.5em;color:#383a42;color:var(--mono-1,#383a42);background:#fafafa;background:var(--base,#fafafa)}
+.hljs-comment,.hljs-quote{color:#717277;color:var(--mono-3,#717277);font-style:italic}
+.hljs-doctag,.hljs-formula,.hljs-keyword{color:#a626a4;color:var(--hue-3,#a626a4)}
+.hljs-deletion,.hljs-name,.hljs-section,.hljs-selector-tag,.hljs-subst{color:#ca4706;color:var(--hue-5,#ca4706);font-weight:700}
+.hljs-literal{color:#0b76c5;color:var(--hue-1,#0b76c5)}
+.hljs-addition,.hljs-attribute,.hljs-meta-string,.hljs-regexp,.hljs-string{color:#42803c;color:var(--hue-4,#42803c)}
+.hljs-built_in,.hljs-class .hljs-title{color:#9a6a01;color:var(--hue-6-2,#9a6a01)}
+.hljs-attr,.hljs-number,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-pseudo,.hljs-template-variable,.hljs-type,.hljs-variable{color:#986801;color:var(--hue-6,#986801)}
+.hljs-bullet,.hljs-link,.hljs-meta,.hljs-selector-id,.hljs-symbol,.hljs-title{color:#336ae3;color:var(--hue-2,#336ae3)}
 .hljs-emphasis{font-style:italic}
 .hljs-strong{font-weight:700}
 .hljs-link{text-decoration:underline}
 </style>
 <style>
+var:hover{text-decoration:underline;cursor:pointer}
+var.respec-hl{color:var(--color,#000);background-color:var(--bg-color);box-shadow:0 0 0 2px var(--bg-color)}
+@media (prefers-color-scheme:dark){
+var.respec-hl{filter:saturate(.9) brightness(.9)}
+}
+var.respec-hl-c1{--bg-color:#f4d200}
+var.respec-hl-c2{--bg-color:#ff87a2}
+var.respec-hl-c3{--bg-color:#96e885}
+var.respec-hl-c4{--bg-color:#3eeed2}
+var.respec-hl-c5{--bg-color:#eacfb6}
+var.respec-hl-c6{--bg-color:#82ddff}
+var.respec-hl-c7{--bg-color:#ffbcf2}
+@media print{
+var.respec-hl{background:0 0;color:#000;box-shadow:unset}
+}
+</style>
+<style>
 var{position:relative;cursor:pointer}
 var[data-type]::after,var[data-type]::before{position:absolute;left:50%;top:-6px;opacity:0;transition:opacity .4s;pointer-events:none}
-var[data-type]::before{content:"";transform:translateX(-50%);border-width:4px 6px 0 6px;border-style:solid;border-color:transparent;border-top-color:#000}
-var[data-type]::after{content:attr(data-type);transform:translateX(-50%) translateY(-100%);background:#000;text-align:center;font-family:"Dank Mono","Fira Code",monospace;font-style:normal;padding:6px;border-radius:3px;color:#daca88;text-indent:0;font-weight:400}
+var[data-type]::before{content:"";transform:translateX(-50%);border-width:4px 6px 0 6px;border-style:solid;border-color:transparent;border-top-color:#222}
+var[data-type]::after{content:attr(data-type);transform:translateX(-50%) translateY(-100%);background:#222;text-align:center;font-family:"Dank Mono","Fira Code",monospace;font-style:normal;padding:6px;border-radius:3px;color:#daca88;text-indent:0;font-weight:400}
 var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
 </style>
 <script id="initialUserConfig" type="application/json">{
@@ -177,13 +124,27 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
   "edDraftURI": null,
   "editors": [
     {
+      "name": "Avneesh Singh",
+      "company": "DAISY Consortium"
+    },
+    {
       "name": "Charles LaPierre",
       "company": "Benetech"
+    },
+    {
+      "name": "Gregorio Pellegrino",
+      "company": "Fondazione LIA"
+    }
+  ],
+  "formerEditors": [
+    {
+      "name": "George Kerscher",
+      "company": "DAISY Consortium"
     }
   ],
   "logos": [
     {
-      "src": "/transitiontoepub/daisy_high.jpg",
+      "src": "https://daisy.github.io/transitiontoepub/daisy_high.jpg",
       "width": 112,
       "height": 100,
       "alt": "DAISY Consortium logo",
@@ -191,15 +152,15 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     }
   ],
   "github": "DAISY/transitiontoepub",
-  "publishISODate": "2022-12-14T00:00:00.000Z",
-  "generatedSubtitle": "14 December 2022"
+  "publishISODate": "2025-12-10T00:00:00.000Z",
+  "generatedSubtitle": "10 December 2025"
 }</script>
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/base.css"></head>
     <body class="h-entry informative"><div class="head">
-    <p class="logos"><a class="logo" href="https://daisy.org"><img crossorigin="" alt="DAISY Consortium logo" height="100" src="/transitiontoepub/daisy_high.jpg" width="112">
+    <p class="logos"><a class="logo" href="https://daisy.org"><img crossorigin="" alt="DAISY Consortium logo" height="100" src="https://daisy.github.io/transitiontoepub/daisy_high.jpg" width="112">
   </a></p>
     <h1 id="title" class="title">Best Practices for Authoring MathML in EPUB</h1> 
-    <p id="w3c-state"> <time class="dt-published" datetime="2022-12-14">14 December 2022</time></p>
+    <p id="w3c-state"> <time class="dt-published" datetime="2025-12-10">10 December 2025</time></p>
     <details open="">
       <summary>More details about this document</summary>
       <dl>
@@ -216,10 +177,18 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
         
         
         
-        <dt>Editor:</dt><dd class="editor p-author h-card vcard">
+        <dt>Editors:</dt><dd class="editor p-author h-card vcard">
+    <span class="p-name fn">Avneesh Singh</span> (<span class="p-org org h-org">DAISY Consortium</span>)
+  </dd><dd class="editor p-author h-card vcard">
     <span class="p-name fn">Charles LaPierre</span> (<span class="p-org org h-org">Benetech</span>)
+  </dd><dd class="editor p-author h-card vcard">
+    <span class="p-name fn">Gregorio Pellegrino</span> (<span class="p-org org h-org">Fondazione LIA</span>)
   </dd>
-        
+        <dt>
+                Former editor:
+              </dt><dd class="editor p-author h-card vcard">
+    <span class="p-name fn">George Kerscher</span> (<span class="p-org org h-org">DAISY Consortium</span>)
+  </dd>
         
         <dt>Feedback:</dt><dd>
         <a href="https://github.com/DAISY/transitiontoepub/">GitHub DAISY/transitiontoepub</a>
@@ -238,248 +207,120 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
   </div>
     	
     	
-    	<section id="abstract" hidden="" class="notoc introductory"><h2>Abstract</h2></section><nav id="toc"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#introduction"><bdi class="secno">1. </bdi>Introduction</a></li><li class="tocline"><a class="tocxref" href="#evaluation-process"><bdi class="secno">2. </bdi>Evaluation Process</a></li><li class="tocline"><a class="tocxref" href="#future-prospects"><bdi class="secno">3. </bdi>Future Prospects</a></li><li class="tocline"><a class="tocxref" href="#analysis-and-recommendations"><bdi class="secno">4. </bdi>Analysis and Recommendations</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#technique-1-native-mathml"><bdi class="secno">4.1 </bdi>Technique 1: Native MathML</a></li><li class="tocline"><a class="tocxref" href="#technique-2-image-with-alt-text-followed-by-mathml-placed-in-html-details"><bdi class="secno">4.2 </bdi>Technique 2: Image with alt text followed by MathML placed in HTML <code>details</code></a></li><li class="tocline"><a class="tocxref" href="#technique-3-image-with-alt-text-for-inline-expression"><bdi class="secno">4.3 </bdi>Technique 3: Image with alt text for inline expression</a></li></ol></li><li class="tocline"><a class="tocxref" href="#acknowledgements"><bdi class="secno">A. </bdi>Acknowledgments</a></li></ol></nav>
+    	<section id="abstract" hidden="" class="notoc introductory"><h2>Abstract</h2></section><nav id="toc"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#introduction"><bdi class="secno">1. </bdi>Introduction</a></li><li class="tocline"><a class="tocxref" href="#recommendations"><bdi class="secno">2. </bdi>Recommendations</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#important-implementation-considerations"><bdi class="secno">2.1 </bdi>Important Implementation Considerations</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#namespace-declaration"><bdi class="secno">2.1.1 </bdi>Namespace Declaration</a></li><li class="tocline"><a class="tocxref" href="#alternative-text-and-image-handling"><bdi class="secno">2.1.2 </bdi>Alternative Text and Image Handling</a></li><li class="tocline"><a class="tocxref" href="#deprecated-attributes"><bdi class="secno">2.1.3 </bdi>Deprecated Attributes</a></li><li class="tocline"><a class="tocxref" href="#aria-attributes"><bdi class="secno">2.1.4 </bdi>ARIA Attributes</a></li></ol></li><li class="tocline"><a class="tocxref" href="#technique-native-mathml"><bdi class="secno">2.2 </bdi>Technique: Native MathML</a></li><li class="tocline"><a class="tocxref" href="#where-mathml-should-not-be-used"><bdi class="secno">2.3 </bdi>Where MathML should not be used</a></li></ol></li><li class="tocline"><a class="tocxref" href="#challenges-in-production-of-accessible-math"><bdi class="secno">3. </bdi>Challenges in production of accessible Math</a></li><li class="tocline"><a class="tocxref" href="#acknowledgements"><bdi class="secno">A. </bdi>Acknowledgments</a></li></ol></nav>
 
         <section id="introduction"><div class="header-wrapper"><h2 id="x1-introduction"><bdi class="secno">1. </bdi>Introduction</h2><a class="self-link" href="#introduction" aria-label="Permalink for Section 1."></a></div>
-    	
-        <p>MathML has been around for many years, but the support for MathML in web browsers and EBook reading systems was suboptimal. On the other hand reading Math is essential for students with disabilities for making progress in the field of science, technology, engineering and mathematics.</p>
-    
-        <p>Therefore we initialized a working group for developing the best practices for MathML which could enable users to read Math in wider range of EPUB reading environments. The working group came up with wide range of techniques and evaluated the reading experience in different combination of EPUB reading systems, operating systems, browsers and assistive technologies. Which was followed by selection of most widely supported techniques.</p>
+        
+	    <p>
+            Reading scientific and mathematical expressions are essential for students with disabilities for making progress in the field of science, technology, engineering and mathematics. This document recommends best practices for presenting Mathematics in a way which makes it accessible to people with print disabilities.
+        </p>
 
         <p>It is possible that the recommendations for EPUB 3 environments provided in this report are a little different from the recommendations for the web environment. Though most of EPUB 3 reading systems use components from web browsers, the reading systems tend to change and sometimes override the web browser functionality, which results in a somewhat different reading experience.</p>
 
-        <p>It is important to highlight that reading systems, the underlying browsers of reading systems, and assistive technologies are making rapid progress in supporting MathML. In the next 6 to 12 months, we expect revolutionary positive change in the MathML reading experience. Therefore, it is possible that the recommendations in this report become out of date very soon. Due to this reason we are providing interim recommendations at this time. The readers of this report should consider the recommendations as temporary or interim; the reading environments will be tested again after some months for providing future recommendations.</p>
-    
-        <p>Additionally, the mere inclusion of presentational MathML does not guarantee that it will be fully accessible. We will be looking into providing accessible authoring recommendations for MathML in the future.</p>
-        
-        </section><section id="evaluation-process"><div class="header-wrapper"><h2 id="x2-evaluation-process"><bdi class="secno">2. </bdi>Evaluation Process</h2><a class="self-link" href="#evaluation-process" aria-label="Permalink for Section 2."></a></div>
-        
-        <p>Step 1. Development of techniques for evaluation. The following techniques were developed: </p>
-        <ol>
-            <li>PNG image with alt text: Very basic test in which PNG image of Math expression is used for visual users and description of math expression is placed in the alt text of the image for assistive technology.</li>
-            <li>Javascript workaround for image+alt text along with hidden MathML: By default an image of Math equation, described in alt text is shown. If java script is enabled then it places visually hidden MathML for assistive technology and removes the alt text of image to prevent duplicate reading.</li><li>Image+alt text along with hidden MathML, but no java script: The same as above test, but java script is not used to present hidden MathML and hide alt text. Therefore, assistive technology will come across both hidden MathML as well as image alt text.</li>
-            <li>HTML <code>details</code> based tests: The Math expression in image is shown along with alt text with description of expression. In addition, HTML <code>details</code> element is placed just after the image, and it contains MathML mark-up. Therefore image and alt text of expression will be always available, and if the reading system and assistive technology supports MathML, then user can open the HTML <code>details</code> to read MathML.</li>
-            <li>MathML mark-up with Image and alt text placed in annotation XML: This test mainly checks if annotation XML in MathML is supported by reading environments.</li>
-            <li><code>aria-label</code> placed on parent element of MathML expression: It evaluates the behavior of <code>aria-label</code> in presence of MathML.</li>
-            <li>MathML using <code>m: namespacing</code>: Evaluates reading experience of MathML mark-up when namespace URL is not applied directly on the MathML expression.</li><li>MathML using the <code>role="math"</code>: Evaluates reading experience when <code>role="math"</code> is used.</li>
-            <li>Read aloud feature reads <code>alttext</code> in MathML: Evaluates if the read aloud feature of the reading systems reads the alt text of MathML mark-up.</li>
-        </ol>
-        
-        <p>Step 2. The techniques were evaluated on different configurations of reading environments. The following reading systems, operating systems, browsers and assistive technologies combinations were used: </p>
-        
-        <ul>
-            <li>Reading systems: Vital Source Bookshelf online, Vital Source Bookshelf desktop, Text Help (read &amp; write), Redshelf, Thorium desktop, Dolphin Easyreader, Apple Books and Google Playbooks.</li>
-            <li>Operating systems: Windows 10, Mac 10, iOS and Android.</li>
-            <li>Browsers: Chrome, Firefox, Edge and Safari.</li><li>Assistive technologies: JAWS, NVDA, Voiceover, Talkback.</li>
-        </ul>
-        
-        </section><section id="future-prospects"><div class="header-wrapper"><h2 id="x3-future-prospects"><bdi class="secno">3. </bdi>Future Prospects</h2><a class="self-link" href="#future-prospects" aria-label="Permalink for Section 3."></a></div>
-        
-        <p>With the efforts of Math refresh community group in W3C, Chrome has implemented MathML, which is now available in the test builds. It is expected that it will start shipping in main stream Chrome releases within 6 to 12 months. Microsoft Edge is also based on Chromium (Open-source browser project used by Chrome), this means that Edge would start supporting MathML almost simultaneously. The two main players in United States higher education, Vital Source and Redshelf have committed to improve MathML support in their reading systems in time frame of 3 to 6 months. All these developments will drastically improve MathML support in next one year.</p>
-        
-        </section><section id="analysis-and-recommendations"><div class="header-wrapper"><h2 id="x4-analysis-and-recommendations"><bdi class="secno">4. </bdi>Analysis and Recommendations</h2><a class="self-link" href="#analysis-and-recommendations" aria-label="Permalink for Section 4."></a></div>
-        <p>Based on test results and future prospects, the following techniques are recommended as interim solution.</p>
-        
-        <p>Note: Based on the test results it is recommended not to use the global namespaces for MathML, i.e. not using m: prefix namespace within the <code>&lt;html&gt;</code> element.  Instead it is recommended that for each mathML equation to add the local namespace <code>xmlns="http://www.w3.org/1998/Math/MathML"</code> within the <code>&lt;math&gt;</code> element itself. For code examples, please see the MathML examples provided in the following techniques.</p>
-        
-        <section id="technique-1-native-mathml"><div class="header-wrapper"><h3 id="x4-1-technique-1-native-mathml"><bdi class="secno">4.1 </bdi>Technique 1: Native MathML</h3><a class="self-link" href="#technique-1-native-mathml" aria-label="Permalink for Section 4.1"></a></div>
-        <p>Right now native MathML is supported by 7 of the tested 25 reading combinations. But looking at the future prospects, this would be the best way forward.</p>
+        </section><section id="recommendations"><div class="header-wrapper"><h2 id="x2-recommendations"><bdi class="secno">2. </bdi>Recommendations</h2><a class="self-link" href="#recommendations" aria-label="Permalink for Section 2."></a></div>
 
+        <p>
+            Fortunately, MathML is now widely supported in web browsers and Ebook reading systems. Therefore, MathML should be used for presenting Mathematics.
+            There are some instances where the use of MathML is not recommended, these are explained in the section that follows the MathML techniques.
+        </p>	    
+	    
+        <p>Based on test results and future prospects, the following technique is recommended.</p>
+        
+        <section id="important-implementation-considerations"><div class="header-wrapper"><h3 id="x2-1-important-implementation-considerations"><bdi class="secno">2.1 </bdi>Important Implementation Considerations</h3><a class="self-link" href="#important-implementation-considerations" aria-label="Permalink for Section 2.1"></a></div>
+		<p>Based on testing across various reading systems and assistive technologies, the following implementation practices should be carefully observed to ensure optimal accessibility and compatibility.</p>
+		
+		<section id="namespace-declaration"><div class="header-wrapper"><h4 id="x2-1-1-namespace-declaration"><bdi class="secno">2.1.1 </bdi>Namespace Declaration</h4><a class="self-link" href="#namespace-declaration" aria-label="Permalink for Section 2.1.1"></a></div>
+		<p>Do not use global namespaces for MathML (e.g. avoid using the <code>m:</code> prefix namespace within the <code>&lt;html&gt;</code> element). Instead, declare the namespace locally by adding <code>xmlns="http://www.w3.org/1998/Math/MathML"</code> within each <code>&lt;math&gt;</code> element. For implementation examples, refer to the code samples provided in the following sections.</p>
+		
+		</section><section id="alternative-text-and-image-handling"><div class="header-wrapper"><h4 id="x2-1-2-alternative-text-and-image-handling"><bdi class="secno">2.1.2 </bdi>Alternative Text and Image Handling</h4><a class="self-link" href="#alternative-text-and-image-handling" aria-label="Permalink for Section 2.1.2"></a></div>
+		<ul>
+			<li><strong>Do not use the <code>alttext</code> attribute:</strong> current implementations do not properly use this attribute for fallback content, resulting in mathematical expressions being read twice by assistive technologies.</li>
+			<li><strong>Do not use the <code>altimg</code> attribute:</strong> avoid referencing fallback images through this attribute.</li>
+		</ul>
+		
+		</section><section id="deprecated-attributes"><div class="header-wrapper"><h4 id="x2-1-3-deprecated-attributes"><bdi class="secno">2.1.3 </bdi>Deprecated Attributes</h4><a class="self-link" href="#deprecated-attributes" aria-label="Permalink for Section 2.1.3"></a></div>
+		<p>Avoid using deprecated MathML attributes for visual styling. These attributes impact the adaptability of visual formatting to user preferences and may not be supported in future implementations:</p>
+		<ul>
+			<li><code>mathcolor</code></li>
+			<li><code>mathbackground</code></li>
+			<li><code>mathsize</code></li>
+			<li><code>displaystyle</code></li>
+			<li><code>scriptlevel</code></li>
+		</ul>
+		
+		</section><section id="aria-attributes"><div class="header-wrapper"><h4 id="x2-1-4-aria-attributes"><bdi class="secno">2.1.4 </bdi>ARIA Attributes</h4><a class="self-link" href="#aria-attributes" aria-label="Permalink for Section 2.1.4"></a></div>
+		<p>Do not apply ARIA attributes to MathML elements. Native MathML provides its own accessibility semantics, and adding ARIA attributes (such as <code>role="math"</code>, <code>aria-label</code>, or <code>aria-describedby</code>) can create conflicts or redundancy in how assistive technologies interpret the mathematical content.</p>
+        
+        </section></section><section id="technique-native-mathml"><div class="header-wrapper"><h3 id="x2-2-technique-native-mathml"><bdi class="secno">2.2 </bdi>Technique: Native MathML</h3><a class="self-link" href="#technique-native-mathml" aria-label="Permalink for Section 2.2"></a></div>
         <div class="simplecalloutbox_preheader">    
             <div class="header-wrapper"><h3 id="code-example-1-block-mathml">Code Example #1: Block MathML</h3><a class="self-link" href="#code-example-1-block-mathml" aria-label="Permalink for this Section"></a></div>
             </div>
             <div class="simplecalloutbox">
-                <pre> <code aria-busy="false" class="hljs xml">
-<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"block-mathml"</span>&gt;</span>
-     Some Text before the math equation
-     <span class="hljs-tag">&lt;<span class="hljs-name">math</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.w3.org/1998/Math/MathML"</span> 
-     <span class="hljs-attr">display</span>=<span class="hljs-string">"block"</span> 
-     <span class="hljs-attr">alttext</span>=<span class="hljs-string">"y minus y 1 equals StartFraction y 2 minus y 1 Over x 2 minus x 1 EndFraction 
-     left-parenthesis x minus x 1 right-parenthesis"</span>&gt;</span>
+                <pre>        <code aria-busy="false" class="hljs xml">
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Some Text before the math equation<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">math</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.w3.org/1998/Math/MathML"</span> <span class="hljs-attr">display</span>=<span class="hljs-string">"block"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">mrow</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">mi</span>&gt;</span>y<span class="hljs-tag">&lt;/<span class="hljs-name">mi</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">mo</span>&gt;</span>−<span class="hljs-tag">&lt;/<span class="hljs-name">mo</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">msub</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">mi</span>&gt;</span>y<span class="hljs-tag">&lt;/<span class="hljs-name">mi</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">mn</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">mn</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">msub</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">mrow</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">mo</span>&gt;</span>=<span class="hljs-tag">&lt;/<span class="hljs-name">mo</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">mrow</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">mfrac</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">mrow</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">msub</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">mi</span>&gt;</span>y<span class="hljs-tag">&lt;/<span class="hljs-name">mi</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">mn</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">mn</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">msub</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">mo</span>&gt;</span>−<span class="hljs-tag">&lt;/<span class="hljs-name">mo</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">msub</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">mi</span>&gt;</span>y<span class="hljs-tag">&lt;/<span class="hljs-name">mi</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">mn</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">mn</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">msub</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">mrow</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">mrow</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">msub</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">mi</span>&gt;</span>x<span class="hljs-tag">&lt;/<span class="hljs-name">mi</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">mn</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">mn</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">msub</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">mo</span>&gt;</span>−<span class="hljs-tag">&lt;/<span class="hljs-name">mo</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">msub</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">mi</span>&gt;</span>x<span class="hljs-tag">&lt;/<span class="hljs-name">mi</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">mn</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">mn</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">msub</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">mrow</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">mfrac</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">mo</span>&gt;</span>
+            ⁢<span class="hljs-comment">&lt;!--invisible times--&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">mo</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">mrow</span>&gt;</span>
-             <span class="hljs-tag">&lt;<span class="hljs-name">mi</span>&gt;</span>y<span class="hljs-tag">&lt;/<span class="hljs-name">mi</span>&gt;</span>
-             <span class="hljs-tag">&lt;<span class="hljs-name">mo</span>&gt;</span>−<span class="hljs-tag">&lt;/<span class="hljs-name">mo</span>&gt;</span>
-             <span class="hljs-tag">&lt;<span class="hljs-name">msub</span>&gt;</span>
-                 <span class="hljs-tag">&lt;<span class="hljs-name">mi</span>&gt;</span>y<span class="hljs-tag">&lt;/<span class="hljs-name">mi</span>&gt;</span>
-                 <span class="hljs-tag">&lt;<span class="hljs-name">mn</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">mn</span>&gt;</span>
-             <span class="hljs-tag">&lt;/<span class="hljs-name">msub</span>&gt;</span>
-         <span class="hljs-tag">&lt;/<span class="hljs-name">mrow</span>&gt;</span>
-         <span class="hljs-tag">&lt;<span class="hljs-name">mo</span>&gt;</span>=<span class="hljs-tag">&lt;/<span class="hljs-name">mo</span>&gt;</span>
-         <span class="hljs-tag">&lt;<span class="hljs-name">mrow</span>&gt;</span>
-             <span class="hljs-tag">&lt;<span class="hljs-name">mfrac</span>&gt;</span>
-                 <span class="hljs-tag">&lt;<span class="hljs-name">mrow</span>&gt;</span>
-                     <span class="hljs-tag">&lt;<span class="hljs-name">msub</span>&gt;</span>
-                         <span class="hljs-tag">&lt;<span class="hljs-name">mi</span>&gt;</span>y<span class="hljs-tag">&lt;/<span class="hljs-name">mi</span>&gt;</span>
-                         <span class="hljs-tag">&lt;<span class="hljs-name">mn</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">mn</span>&gt;</span>
-                     <span class="hljs-tag">&lt;/<span class="hljs-name">msub</span>&gt;</span>
-                     <span class="hljs-tag">&lt;<span class="hljs-name">mo</span>&gt;</span>−<span class="hljs-tag">&lt;/<span class="hljs-name">mo</span>&gt;</span>
-                     <span class="hljs-tag">&lt;<span class="hljs-name">msub</span>&gt;</span>
-                         <span class="hljs-tag">&lt;<span class="hljs-name">mi</span>&gt;</span>y<span class="hljs-tag">&lt;/<span class="hljs-name">mi</span>&gt;</span>
-                         <span class="hljs-tag">&lt;<span class="hljs-name">mn</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">mn</span>&gt;</span>
-                     <span class="hljs-tag">&lt;/<span class="hljs-name">msub</span>&gt;</span>
-                 <span class="hljs-tag">&lt;/<span class="hljs-name">mrow</span>&gt;</span>
-                 <span class="hljs-tag">&lt;<span class="hljs-name">mrow</span>&gt;</span>
-                     <span class="hljs-tag">&lt;<span class="hljs-name">msub</span>&gt;</span>
-                         <span class="hljs-tag">&lt;<span class="hljs-name">mi</span>&gt;</span>x<span class="hljs-tag">&lt;/<span class="hljs-name">mi</span>&gt;</span>
-                         <span class="hljs-tag">&lt;<span class="hljs-name">mn</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">mn</span>&gt;</span>
-                     <span class="hljs-tag">&lt;/<span class="hljs-name">msub</span>&gt;</span>
-                     <span class="hljs-tag">&lt;<span class="hljs-name">mo</span>&gt;</span>−<span class="hljs-tag">&lt;/<span class="hljs-name">mo</span>&gt;</span>
-                     <span class="hljs-tag">&lt;<span class="hljs-name">msub</span>&gt;</span>
-                         <span class="hljs-tag">&lt;<span class="hljs-name">mi</span>&gt;</span>x<span class="hljs-tag">&lt;/<span class="hljs-name">mi</span>&gt;</span>
-                         <span class="hljs-tag">&lt;<span class="hljs-name">mn</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">mn</span>&gt;</span>
-                     <span class="hljs-tag">&lt;/<span class="hljs-name">msub</span>&gt;</span>
-                 <span class="hljs-tag">&lt;/<span class="hljs-name">mrow</span>&gt;</span>
-             <span class="hljs-tag">&lt;/<span class="hljs-name">mfrac</span>&gt;</span>
-             <span class="hljs-tag">&lt;<span class="hljs-name">mo</span>&gt;</span>⁢<span class="hljs-comment">&lt;!--invisible times--&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">mo</span>&gt;</span>
-             <span class="hljs-tag">&lt;<span class="hljs-name">mrow</span>&gt;</span>
-                 <span class="hljs-tag">&lt;<span class="hljs-name">mo</span>&gt;</span>(<span class="hljs-tag">&lt;/<span class="hljs-name">mo</span>&gt;</span>
-                 <span class="hljs-tag">&lt;<span class="hljs-name">mrow</span>&gt;</span>
-                     <span class="hljs-tag">&lt;<span class="hljs-name">mi</span>&gt;</span>x<span class="hljs-tag">&lt;/<span class="hljs-name">mi</span>&gt;</span>
-                     <span class="hljs-tag">&lt;<span class="hljs-name">mo</span>&gt;</span>−<span class="hljs-tag">&lt;/<span class="hljs-name">mo</span>&gt;</span>
-                     <span class="hljs-tag">&lt;<span class="hljs-name">msub</span>&gt;</span>
-                         <span class="hljs-tag">&lt;<span class="hljs-name">mi</span>&gt;</span>x<span class="hljs-tag">&lt;/<span class="hljs-name">mi</span>&gt;</span>
-                         <span class="hljs-tag">&lt;<span class="hljs-name">mn</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">mn</span>&gt;</span>
-                     <span class="hljs-tag">&lt;/<span class="hljs-name">msub</span>&gt;</span>
-                 <span class="hljs-tag">&lt;/<span class="hljs-name">mrow</span>&gt;</span>
-                 <span class="hljs-tag">&lt;<span class="hljs-name">mo</span>&gt;</span>)<span class="hljs-tag">&lt;/<span class="hljs-name">mo</span>&gt;</span>
-             <span class="hljs-tag">&lt;/<span class="hljs-name">mrow</span>&gt;</span>
-         <span class="hljs-tag">&lt;/<span class="hljs-name">mrow</span>&gt;</span>
-     <span class="hljs-tag">&lt;/<span class="hljs-name">math</span>&gt;</span>
-     Some text after the equation.
- <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
- </code></pre>
+            <span class="hljs-tag">&lt;<span class="hljs-name">mo</span>&gt;</span>(<span class="hljs-tag">&lt;/<span class="hljs-name">mo</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">mrow</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">mi</span>&gt;</span>x<span class="hljs-tag">&lt;/<span class="hljs-name">mi</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">mo</span>&gt;</span>−<span class="hljs-tag">&lt;/<span class="hljs-name">mo</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">msub</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">mi</span>&gt;</span>x<span class="hljs-tag">&lt;/<span class="hljs-name">mi</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">mn</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">mn</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">msub</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">mrow</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">mo</span>&gt;</span>)<span class="hljs-tag">&lt;/<span class="hljs-name">mo</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">mrow</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">mrow</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">math</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Some text after the equation.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+        </code></pre>
 
             <div class="simplecalloutbox_preheader">    
             <div class="header-wrapper"><h3 id="code-example-1-preview-block-mathml">Code Example #1 Preview: Block MathML</h3><a class="self-link" href="#code-example-1-preview-block-mathml" aria-label="Permalink for this Section"></a></div>
             </div>
             <div class="simplecalloutbox">
-            <span id="block-mathml">
+            <p>
             Some Text before the math equation
-            <math xmlns="http://www.w3.org/1998/Math/MathML" display="block" alttext="y minus y 1 equals StartFraction y 2 minus y 1 Over x 2 minus x 1 EndFraction left-parenthesis x minus x 1 right-parenthesis">
-                <mrow>
-                    <mi>y</mi>
-                    <mo>−</mo>
-                    <msub>
-                        <mi>y</mi>
-                        <mn>1</mn>
-                    </msub>
-                </mrow>
-                <mo>=</mo>
-                <mrow>
-                    <mfrac>
-                        <mrow>
-                            <msub>
-                                <mi>y</mi>
-                                <mn>2</mn>
-                            </msub>
-                            <mo>−</mo>
-                            <msub>
-                                <mi>y</mi>
-                                <mn>1</mn>
-                            </msub>
-                        </mrow>
-                        <mrow>
-                            <msub>
-                                <mi>x</mi>
-                                <mn>2</mn>
-                            </msub>
-                            <mo>−</mo>
-                            <msub>
-                                <mi>x</mi>
-                                <mn>1</mn>
-                            </msub>
-                        </mrow>
-                    </mfrac>
-                    <mo>⁢</mo>
-                    </mrow><mrow>
-                        <mo>(</mo>
-                        </mrow><mrow>
-                            <mi>x</mi>
-                            <mo>−</mo>
-                            <msub>
-                                <mi>x</mi>
-                                <mn>1</mn>
-                            </msub>
-                        </mrow>
-                        <mo>)</mo>
-
-
-            </math>
-
-            Some text after the equation.
-        </span>
-                </div>
-        </div>
-        <div class="simplecalloutbox_preheader">   
-        <div class="header-wrapper"><h3 id="code-example-2-inline-mathml">Code Example #2: Inline MathML</h3><a class="self-link" href="#code-example-2-inline-mathml" aria-label="Permalink for this Section"></a></div>
-        </div>
-        <div class="simplecalloutbox">
-            <pre><code aria-busy="false" class="hljs xml">
-            <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"inline-mathml"</span>&gt;</span>
-            Some Text before the math equation
-            <span class="hljs-tag">&lt;<span class="hljs-name">math</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.w3.org/1998/Math/MathML"</span> 
-            <span class="hljs-attr">display</span>=<span class="hljs-string">"inline"</span> 
-            <span class="hljs-attr">alttext</span>=<span class="hljs-string">"y minus y 1 equals StartFraction y 2 minus y 1 Over x 2 minus x 1 EndFraction 
-            left-parenthesis x minus x 1 right-parenthesis"</span>&gt;</span>
-               <span class="hljs-tag">&lt;<span class="hljs-name">mrow</span>&gt;</span>
-                    <span class="hljs-tag">&lt;<span class="hljs-name">mi</span>&gt;</span>y<span class="hljs-tag">&lt;/<span class="hljs-name">mi</span>&gt;</span>
-                    <span class="hljs-tag">&lt;<span class="hljs-name">mo</span>&gt;</span>−<span class="hljs-tag">&lt;/<span class="hljs-name">mo</span>&gt;</span>
-                    <span class="hljs-tag">&lt;<span class="hljs-name">msub</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">mi</span>&gt;</span>y<span class="hljs-tag">&lt;/<span class="hljs-name">mi</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">mn</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">mn</span>&gt;</span>
-                    <span class="hljs-tag">&lt;/<span class="hljs-name">msub</span>&gt;</span>
-                <span class="hljs-tag">&lt;/<span class="hljs-name">mrow</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-name">mo</span>&gt;</span>=<span class="hljs-tag">&lt;/<span class="hljs-name">mo</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-name">mrow</span>&gt;</span>
-                    <span class="hljs-tag">&lt;<span class="hljs-name">mfrac</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">mrow</span>&gt;</span>
-                            <span class="hljs-tag">&lt;<span class="hljs-name">msub</span>&gt;</span>
-                                <span class="hljs-tag">&lt;<span class="hljs-name">mi</span>&gt;</span>y<span class="hljs-tag">&lt;/<span class="hljs-name">mi</span>&gt;</span>
-                                <span class="hljs-tag">&lt;<span class="hljs-name">mn</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">mn</span>&gt;</span>
-                            <span class="hljs-tag">&lt;/<span class="hljs-name">msub</span>&gt;</span>
-                            <span class="hljs-tag">&lt;<span class="hljs-name">mo</span>&gt;</span>−<span class="hljs-tag">&lt;/<span class="hljs-name">mo</span>&gt;</span>
-                            <span class="hljs-tag">&lt;<span class="hljs-name">msub</span>&gt;</span>
-                                <span class="hljs-tag">&lt;<span class="hljs-name">mi</span>&gt;</span>y<span class="hljs-tag">&lt;/<span class="hljs-name">mi</span>&gt;</span>
-                                <span class="hljs-tag">&lt;<span class="hljs-name">mn</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">mn</span>&gt;</span>
-                            <span class="hljs-tag">&lt;/<span class="hljs-name">msub</span>&gt;</span>
-                        <span class="hljs-tag">&lt;/<span class="hljs-name">mrow</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">mrow</span>&gt;</span>
-                            <span class="hljs-tag">&lt;<span class="hljs-name">msub</span>&gt;</span>
-                                <span class="hljs-tag">&lt;<span class="hljs-name">mi</span>&gt;</span>x<span class="hljs-tag">&lt;/<span class="hljs-name">mi</span>&gt;</span>
-                                <span class="hljs-tag">&lt;<span class="hljs-name">mn</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">mn</span>&gt;</span>
-                            <span class="hljs-tag">&lt;/<span class="hljs-name">msub</span>&gt;</span>
-                            <span class="hljs-tag">&lt;<span class="hljs-name">mo</span>&gt;</span>−<span class="hljs-tag">&lt;/<span class="hljs-name">mo</span>&gt;</span>
-                            <span class="hljs-tag">&lt;<span class="hljs-name">msub</span>&gt;</span>
-                                <span class="hljs-tag">&lt;<span class="hljs-name">mi</span>&gt;</span>x<span class="hljs-tag">&lt;/<span class="hljs-name">mi</span>&gt;</span>
-                                <span class="hljs-tag">&lt;<span class="hljs-name">mn</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">mn</span>&gt;</span>
-                            <span class="hljs-tag">&lt;/<span class="hljs-name">msub</span>&gt;</span>
-                        <span class="hljs-tag">&lt;/<span class="hljs-name">mrow</span>&gt;</span>
-                    <span class="hljs-tag">&lt;/<span class="hljs-name">mfrac</span>&gt;</span>
-                    <span class="hljs-tag">&lt;<span class="hljs-name">mo</span>&gt;</span>⁢<span class="hljs-comment">&lt;!--invisible times--&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">mo</span>&gt;</span>
-                    <span class="hljs-tag">&lt;<span class="hljs-name">mrow</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">mo</span>&gt;</span>(<span class="hljs-tag">&lt;/<span class="hljs-name">mo</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">mrow</span>&gt;</span>
-                            <span class="hljs-tag">&lt;<span class="hljs-name">mi</span>&gt;</span>x<span class="hljs-tag">&lt;/<span class="hljs-name">mi</span>&gt;</span>
-                            <span class="hljs-tag">&lt;<span class="hljs-name">mo</span>&gt;</span>−<span class="hljs-tag">&lt;/<span class="hljs-name">mo</span>&gt;</span>
-                            <span class="hljs-tag">&lt;<span class="hljs-name">msub</span>&gt;</span>
-                                <span class="hljs-tag">&lt;<span class="hljs-name">mi</span>&gt;</span>x<span class="hljs-tag">&lt;/<span class="hljs-name">mi</span>&gt;</span>
-                                <span class="hljs-tag">&lt;<span class="hljs-name">mn</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">mn</span>&gt;</span>
-                            <span class="hljs-tag">&lt;/<span class="hljs-name">msub</span>&gt;</span>
-                        <span class="hljs-tag">&lt;/<span class="hljs-name">mrow</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">mo</span>&gt;</span>)<span class="hljs-tag">&lt;/<span class="hljs-name">mo</span>&gt;</span>
-                    <span class="hljs-tag">&lt;/<span class="hljs-name">mrow</span>&gt;</span>
-                <span class="hljs-tag">&lt;/<span class="hljs-name">mrow</span>&gt;</span>
-            <span class="hljs-tag">&lt;/<span class="hljs-name">math</span>&gt;</span>
-            Some text after the equation.
-        <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
-        </code></pre>
-    <div class="simplecalloutbox_preheader">    
-        <div class="header-wrapper"><h3 id="code-example-2-preview-inline-mathml">Code Example #2 Preview: Inline MathML</h3><a class="self-link" href="#code-example-2-preview-inline-mathml" aria-label="Permalink for this Section"></a></div>
-    </div>
-    <div class="simplecalloutbox">
-        <span id="inline-mathml">
-            Some Text before the math equation
-            <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline" alttext="y minus y 1 equals StartFraction y 2 minus y 1 Over x 2 minus x 1 EndFraction left-parenthesis x minus x 1 right-parenthesis">
+            </p>
+            <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
                <mrow>
                     <mi>y</mi>
                     <mo>−</mo>
@@ -515,9 +356,9 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
                         </mrow>
                     </mfrac>
                     <mo>⁢</mo>
-                    </mrow><mrow>
+                    <mrow>
                         <mo>(</mo>
-                        </mrow><mrow>
+                        <mrow>
                             <mi>x</mi>
                             <mo>−</mo>
                             <msub>
@@ -526,278 +367,277 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
                             </msub>
                         </mrow>
                         <mo>)</mo>
-        
-    
+                    </mrow>
+                </mrow>
             </math>
+        <p>
             Some text after the equation.
-        </span>
+        </p>
+                </div>
         </div>
-        </div>
-      
-        </section><section id="technique-2-image-with-alt-text-followed-by-mathml-placed-in-html-details"><div class="header-wrapper"><h3 id="x4-2-technique-2-image-with-alt-text-followed-by-mathml-placed-in-html-details"><bdi class="secno">4.2 </bdi>Technique 2: Image with alt text followed by MathML placed in HTML <code>details</code></h3><a class="self-link" href="#technique-2-image-with-alt-text-followed-by-mathml-placed-in-html-details" aria-label="Permalink for Section 4.2"></a></div>
-        <p>The technique has the following caveats:</p>
-        <ul>
-        <li>It only works for block Math expressions.</li>
-        <li>HTML <code>details</code> is also not so widely supported in reading combinations.</li>
-        <li>The complexity of reading Math expression from image + alt text and then opening HTML <code>details</code> for reading each expression will result in considerable cognitive load, especially for people with cognitive disabilities.</li>
-        </ul>
-
-        <div class="simplecalloutbox_preheader">    
-        <div class="header-wrapper"><h3 id="code-example-3-image-with-alt-text-followed-by-mathml-placed-in-html-details">Code Example #3: Image with alt text followed by MathML placed in HTML <code>details</code></h3><a class="self-link" href="#code-example-3-image-with-alt-text-followed-by-mathml-placed-in-html-details" aria-label="Permalink for this Section"></a></div>
+        <div class="simplecalloutbox_preheader">   
+        <div class="header-wrapper"><h3 id="code-example-2-inline-mathml">Code Example #2: Inline MathML</h3><a class="self-link" href="#code-example-2-inline-mathml" aria-label="Permalink for this Section"></a></div>
         </div>
         <div class="simplecalloutbox">
         <pre><code aria-busy="false" class="hljs xml">
-              <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"epub-image-2pointform.png"</span> 
-              <span class="hljs-attr">alt</span>=<span class="hljs-string">"y minus y 1 equals StartFraction y 2 minus y 1 Over x 2 minus x 1 EndFraction 
-              left-parenthesis x minus x 1 right-parenthesis"</span> <span class="hljs-attr">aria-details</span>=<span class="hljs-string">"math-details1"</span>&gt;</span>
-
-            <span class="hljs-tag">&lt;<span class="hljs-name">details</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"math-details1"</span>&gt;</span>
-              <span class="hljs-tag">&lt;<span class="hljs-name">summary</span>&gt;</span>MathML Presentation<span class="hljs-tag">&lt;/<span class="hljs-name">summary</span>&gt;</span>
-              <span class="hljs-tag">&lt;<span class="hljs-name">math</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"math1"</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.w3.org/1998/Math/MathML"</span> <span class="hljs-attr">display</span>=<span class="hljs-string">"block"</span> 
-              <span class="hljs-attr">alttext</span>=<span class="hljs-string">"(MathML alttext): y minus y sub 1 equals StartFraction y sub 2 minus y sub 1 Over x sub 2 minus x sub 1 EndFraction 
-              left-parenthesis x minus x sub 1 right-parenthesis"</span>&gt;</span>
-               <span class="hljs-tag">&lt;<span class="hljs-name">mrow</span>&gt;</span>
-                    <span class="hljs-tag">&lt;<span class="hljs-name">mi</span>&gt;</span>y<span class="hljs-tag">&lt;/<span class="hljs-name">mi</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+    Some Text before the math equation
+    <span class="hljs-tag">&lt;<span class="hljs-name">math</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.w3.org/1998/Math/MathML"</span> <span class="hljs-attr">display</span>=<span class="hljs-string">"inline"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">mrow</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">mi</span>&gt;</span>y<span class="hljs-tag">&lt;/<span class="hljs-name">mi</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">mo</span>&gt;</span>−<span class="hljs-tag">&lt;/<span class="hljs-name">mo</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">msub</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">mi</span>&gt;</span>y<span class="hljs-tag">&lt;/<span class="hljs-name">mi</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">mn</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">mn</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">msub</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">mrow</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">mo</span>&gt;</span>=<span class="hljs-tag">&lt;/<span class="hljs-name">mo</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">mrow</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">mfrac</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">mrow</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">msub</span>&gt;</span>
+                        <span class="hljs-tag">&lt;<span class="hljs-name">mi</span>&gt;</span>y<span class="hljs-tag">&lt;/<span class="hljs-name">mi</span>&gt;</span>
+                        <span class="hljs-tag">&lt;<span class="hljs-name">mn</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">mn</span>&gt;</span>
+                    <span class="hljs-tag">&lt;/<span class="hljs-name">msub</span>&gt;</span>
                     <span class="hljs-tag">&lt;<span class="hljs-name">mo</span>&gt;</span>−<span class="hljs-tag">&lt;/<span class="hljs-name">mo</span>&gt;</span>
                     <span class="hljs-tag">&lt;<span class="hljs-name">msub</span>&gt;</span>
                         <span class="hljs-tag">&lt;<span class="hljs-name">mi</span>&gt;</span>y<span class="hljs-tag">&lt;/<span class="hljs-name">mi</span>&gt;</span>
                         <span class="hljs-tag">&lt;<span class="hljs-name">mn</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">mn</span>&gt;</span>
                     <span class="hljs-tag">&lt;/<span class="hljs-name">msub</span>&gt;</span>
                 <span class="hljs-tag">&lt;/<span class="hljs-name">mrow</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-name">mo</span>&gt;</span>=<span class="hljs-tag">&lt;/<span class="hljs-name">mo</span>&gt;</span>
                 <span class="hljs-tag">&lt;<span class="hljs-name">mrow</span>&gt;</span>
-                    <span class="hljs-tag">&lt;<span class="hljs-name">mfrac</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">mrow</span>&gt;</span>
-                            <span class="hljs-tag">&lt;<span class="hljs-name">msub</span>&gt;</span>
-                                <span class="hljs-tag">&lt;<span class="hljs-name">mi</span>&gt;</span>y<span class="hljs-tag">&lt;/<span class="hljs-name">mi</span>&gt;</span>
-                                <span class="hljs-tag">&lt;<span class="hljs-name">mn</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">mn</span>&gt;</span>
-                            <span class="hljs-tag">&lt;/<span class="hljs-name">msub</span>&gt;</span>
-                            <span class="hljs-tag">&lt;<span class="hljs-name">mo</span>&gt;</span>−<span class="hljs-tag">&lt;/<span class="hljs-name">mo</span>&gt;</span>
-                            <span class="hljs-tag">&lt;<span class="hljs-name">msub</span>&gt;</span>
-                                <span class="hljs-tag">&lt;<span class="hljs-name">mi</span>&gt;</span>y<span class="hljs-tag">&lt;/<span class="hljs-name">mi</span>&gt;</span>
-                                <span class="hljs-tag">&lt;<span class="hljs-name">mn</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">mn</span>&gt;</span>
-                            <span class="hljs-tag">&lt;/<span class="hljs-name">msub</span>&gt;</span>
-                        <span class="hljs-tag">&lt;/<span class="hljs-name">mrow</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">mrow</span>&gt;</span>
-                            <span class="hljs-tag">&lt;<span class="hljs-name">msub</span>&gt;</span>
-                                <span class="hljs-tag">&lt;<span class="hljs-name">mi</span>&gt;</span>x<span class="hljs-tag">&lt;/<span class="hljs-name">mi</span>&gt;</span>
-                                <span class="hljs-tag">&lt;<span class="hljs-name">mn</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">mn</span>&gt;</span>
-                            <span class="hljs-tag">&lt;/<span class="hljs-name">msub</span>&gt;</span>
-                            <span class="hljs-tag">&lt;<span class="hljs-name">mo</span>&gt;</span>−<span class="hljs-tag">&lt;/<span class="hljs-name">mo</span>&gt;</span>
-                            <span class="hljs-tag">&lt;<span class="hljs-name">msub</span>&gt;</span>
-                                <span class="hljs-tag">&lt;<span class="hljs-name">mi</span>&gt;</span>x<span class="hljs-tag">&lt;/<span class="hljs-name">mi</span>&gt;</span>
-                                <span class="hljs-tag">&lt;<span class="hljs-name">mn</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">mn</span>&gt;</span>
-                            <span class="hljs-tag">&lt;/<span class="hljs-name">msub</span>&gt;</span>
-                        <span class="hljs-tag">&lt;/<span class="hljs-name">mrow</span>&gt;</span>
-                    <span class="hljs-tag">&lt;/<span class="hljs-name">mfrac</span>&gt;</span>
-                    <span class="hljs-tag">&lt;<span class="hljs-name">mo</span>&gt;</span>⁢<span class="hljs-comment">&lt;!--invisible times--&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">mo</span>&gt;</span>
-                    <span class="hljs-tag">&lt;<span class="hljs-name">mrow</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">mo</span>&gt;</span>(<span class="hljs-tag">&lt;/<span class="hljs-name">mo</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">mrow</span>&gt;</span>
-                            <span class="hljs-tag">&lt;<span class="hljs-name">mi</span>&gt;</span>x<span class="hljs-tag">&lt;/<span class="hljs-name">mi</span>&gt;</span>
-                            <span class="hljs-tag">&lt;<span class="hljs-name">mo</span>&gt;</span>−<span class="hljs-tag">&lt;/<span class="hljs-name">mo</span>&gt;</span>
-                            <span class="hljs-tag">&lt;<span class="hljs-name">msub</span>&gt;</span>
-                                <span class="hljs-tag">&lt;<span class="hljs-name">mi</span>&gt;</span>x<span class="hljs-tag">&lt;/<span class="hljs-name">mi</span>&gt;</span>
-                                <span class="hljs-tag">&lt;<span class="hljs-name">mn</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">mn</span>&gt;</span>
-                            <span class="hljs-tag">&lt;/<span class="hljs-name">msub</span>&gt;</span>
-                        <span class="hljs-tag">&lt;/<span class="hljs-name">mrow</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">mo</span>&gt;</span>)<span class="hljs-tag">&lt;/<span class="hljs-name">mo</span>&gt;</span>
-                    <span class="hljs-tag">&lt;/<span class="hljs-name">mrow</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">msub</span>&gt;</span>
+                        <span class="hljs-tag">&lt;<span class="hljs-name">mi</span>&gt;</span>x<span class="hljs-tag">&lt;/<span class="hljs-name">mi</span>&gt;</span>
+                        <span class="hljs-tag">&lt;<span class="hljs-name">mn</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">mn</span>&gt;</span>
+                    <span class="hljs-tag">&lt;/<span class="hljs-name">msub</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">mo</span>&gt;</span>−<span class="hljs-tag">&lt;/<span class="hljs-name">mo</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">msub</span>&gt;</span>
+                        <span class="hljs-tag">&lt;<span class="hljs-name">mi</span>&gt;</span>x<span class="hljs-tag">&lt;/<span class="hljs-name">mi</span>&gt;</span>
+                        <span class="hljs-tag">&lt;<span class="hljs-name">mn</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">mn</span>&gt;</span>
+                    <span class="hljs-tag">&lt;/<span class="hljs-name">msub</span>&gt;</span>
                 <span class="hljs-tag">&lt;/<span class="hljs-name">mrow</span>&gt;</span>
-            <span class="hljs-tag">&lt;/<span class="hljs-name">math</span>&gt;</span>
-      <span class="hljs-tag">&lt;/<span class="hljs-name">details</span>&gt;</span>
-      </code></pre>
-
-<div class="simplecalloutbox_preheader">    
-<div class="header-wrapper"><h3 id="code-example-3-preview-image-with-alt-text-followed-by-mathml-placed-in-html-details">Code Example #3 Preview: Image with alt text followed by MathML placed in HTML <code>details</code></h3><a class="self-link" href="#code-example-3-preview-image-with-alt-text-followed-by-mathml-placed-in-html-details" aria-label="Permalink for this Section"></a></div>
-</div>
-<div class="simplecalloutbox">
-<img src="epub-image-2pointform.png" alt="y minus y 1 equals StartFraction y 2 minus y 1 Over x 2 minus x 1 EndFraction left-parenthesis x minus x 1 right-parenthesis" aria-details="math-details1" height="43" width="237">
-            
-    <details id="math-details1">
-      <summary>MathML Presentation</summary>
-      <math id="math1" xmlns="http://www.w3.org/1998/Math/MathML" display="block" alttext="(MathML alttext): y minus y sub 1 equals StartFraction y sub 2 minus y sub 1 Over x sub 2 minus x sub 1 EndFraction left-parenthesis x minus x sub 1 right-parenthesis">
-   <mrow>
-        <mi>y</mi>
-        <mo>−</mo>
-        <msub>
-            <mi>y</mi>
-            <mn>1</mn>
-        </msub>
-    </mrow>
-    <mo>=</mo>
-    <mrow>
-        <mfrac>
-            <mrow>
-                <msub>
-                    <mi>y</mi>
-                    <mn>2</mn>
-                </msub>
-                <mo>−</mo>
-                <msub>
-                    <mi>y</mi>
-                    <mn>1</mn>
-                </msub>
-            </mrow>
-            <mrow>
-                <msub>
-                    <mi>x</mi>
-                    <mn>2</mn>
-                </msub>
-                <mo>−</mo>
-                <msub>
-                    <mi>x</mi>
-                    <mn>1</mn>
-                </msub>
-            </mrow>
-        </mfrac>
-        <mo>⁢</mo>
-        </mrow><mrow>
-            <mo>(</mo>
-            </mrow><mrow>
-                <mi>x</mi>
-                <mo>−</mo>
-                <msub>
-                    <mi>x</mi>
-                    <mn>1</mn>
-                </msub>
-            </mrow>
-            <mo>)</mo>
-        
-    
-        </math>
-    </details>
-</div>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">mfrac</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">mo</span>&gt;</span>
+                ⁢<span class="hljs-comment">&lt;!--invisible times--&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">mo</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">mrow</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">mo</span>&gt;</span>(<span class="hljs-tag">&lt;/<span class="hljs-name">mo</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">mrow</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">mi</span>&gt;</span>x<span class="hljs-tag">&lt;/<span class="hljs-name">mi</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">mo</span>&gt;</span>−<span class="hljs-tag">&lt;/<span class="hljs-name">mo</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">msub</span>&gt;</span>
+                        <span class="hljs-tag">&lt;<span class="hljs-name">mi</span>&gt;</span>x<span class="hljs-tag">&lt;/<span class="hljs-name">mi</span>&gt;</span>
+                        <span class="hljs-tag">&lt;<span class="hljs-name">mn</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">mn</span>&gt;</span>
+                    <span class="hljs-tag">&lt;/<span class="hljs-name">msub</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">mrow</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">mo</span>&gt;</span>)<span class="hljs-tag">&lt;/<span class="hljs-name">mo</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">mrow</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">mrow</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">math</span>&gt;</span>
+    Some text after the equation.
+<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>  
+        </code></pre>
+    <div class="simplecalloutbox_preheader">    
+        <div class="header-wrapper"><h3 id="code-example-2-preview-inline-mathml">Code Example #2 Preview: Inline MathML</h3><a class="self-link" href="#code-example-2-preview-inline-mathml" aria-label="Permalink for this Section"></a></div>
     </div>
-    </section><section id="technique-3-image-with-alt-text-for-inline-expression"><div class="header-wrapper"><h3 id="x4-3-technique-3-image-with-alt-text-for-inline-expression"><bdi class="secno">4.3 </bdi>Technique 3: Image with alt text for inline expression</h3><a class="self-link" href="#technique-3-image-with-alt-text-for-inline-expression" aria-label="Permalink for Section 4.3"></a></div>
-<p>Many times simple Math expression is provided inline. It can be appropriately described by placing the description of the expression in the alt text of the image, therefore we can use image with alt text instead of inline MathML while the reading environments catch up. In order to preserve MathML mark-up for future use, the mark-up can be placed in comments instead of removing it.</p>
-
-<div class="simplecalloutbox_preheader">    
-<div class="header-wrapper"><h3 id="code-example-4-image-with-alt-text-for-inline-expression">Code Example #4: Image with alt text for inline expression</h3><a class="self-link" href="#code-example-4-image-with-alt-text-for-inline-expression" aria-label="Permalink for this Section"></a></div>
-</div>
-<div class="simplecalloutbox">
-<pre><code aria-busy="false" class="hljs xml">
-Text before math image
-<span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"epub-image-2pointform.png"</span> 
-<span class="hljs-attr">alt</span>=<span class="hljs-string">"y minus y sub 1 equals StartFraction y sub 2 minus y sub 1 Over x sub 2 minus x sub 1 EndFraction 
-left-parenthesis x minus x sub 1 right-parenthesis"</span> <span class="hljs-attr">aria-details</span>=<span class="hljs-string">"math-details1"</span>&gt;</span>
-Text after math image.
-
-        <span class="hljs-comment">&lt;!-- Commented out MathML for future use
-            &lt;math xmlns="http://www.w3.org/1998/Math/MathML" display="inline" 
-            alttext="y minus y 1 equals StartFraction y 2 minus y 1 Over x 2 minus x 1 EndFraction 
-            left-parenthesis x minus x 1 right-parenthesis"&gt;
-               &lt;mrow&gt;
-                    &lt;mi&gt;y&lt;/mi&gt;
-                    &lt;mo&gt;−&lt;/mo&gt;
-                    &lt;msub&gt;
-                        &lt;mi&gt;y&lt;/mi&gt;
-                        &lt;mn&gt;1&lt;/mn&gt;
-                    &lt;/msub&gt;
-                &lt;/mrow&gt;
-                &lt;mo&gt;=&lt;/mo&gt;
-                &lt;mrow&gt;
-                    &lt;mfrac&gt;
-                        &lt;mrow&gt;
-                            &lt;msub&gt;
-                                &lt;mi&gt;y&lt;/mi&gt;
-                                &lt;mn&gt;2&lt;/mn&gt;
-                            &lt;/msub&gt;
-                            &lt;mo&gt;−&lt;/mo&gt;
-                            &lt;msub&gt;
-                                &lt;mi&gt;y&lt;/mi&gt;
-                                &lt;mn&gt;1&lt;/mn&gt;
-                            &lt;/msub&gt;
-                        &lt;/mrow&gt;
-                        &lt;mrow&gt;
-                            &lt;msub&gt;
-                                &lt;mi&gt;x&lt;/mi&gt;
-                                &lt;mn&gt;2&lt;/mn&gt;
-                            &lt;/msub&gt;
-                            &lt;mo&gt;−&lt;/mo&gt;
-                            &lt;msub&gt;
-                                &lt;mi&gt;x&lt;/mi&gt;
-                                &lt;mn&gt;1&lt;/mn&gt;
-                            &lt;/msub&gt;
-                        &lt;/mrow&gt;
-                    &lt;/mfrac&gt;
-                    &lt;mo&gt;⁢&lt;/mo&gt;
-                    &lt;mrow&gt;
-                        &lt;mo&gt;(&lt;/mo&gt;
-                        &lt;mrow&gt;
-                            &lt;mi&gt;x&lt;/mi&gt;
-                            &lt;mo&gt;−&lt;/mo&gt;
-                            &lt;msub&gt;
-                                &lt;mi&gt;x&lt;/mi&gt;
-                                &lt;mn&gt;1&lt;/mn&gt;
-                            &lt;/msub&gt;
-                        &lt;/mrow&gt;
-                        &lt;mo&gt;)&lt;/mo&gt;
-                    &lt;/mrow&gt;
-                &lt;/mrow&gt;
-            &lt;/math&gt;
-        End of commented out MathML--&gt;</span>
-</code></pre>
-
-
-        <div class="simplecalloutbox_preheader">    
-            <div class="header-wrapper"><h3 id="code-example-4-preview-image-with-alt-text-for-inline-expression">Code Example #4 Preview: Image with alt text for inline expression</h3><a class="self-link" href="#code-example-4-preview-image-with-alt-text-for-inline-expression" aria-label="Permalink for this Section"></a></div>
+    <div class="simplecalloutbox">
+        <p>
+	Some Text before the math equation
+            <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+               <mrow>
+                    <mi>y</mi>
+                    <mo>−</mo>
+                    <msub>
+                        <mi>y</mi>
+                        <mn>1</mn>
+                    </msub>
+                </mrow>
+                <mo>=</mo>
+                <mrow>
+                    <mfrac>
+                        <mrow>
+                            <msub>
+                                <mi>y</mi>
+                                <mn>2</mn>
+                            </msub>
+                            <mo>−</mo>
+                            <msub>
+                                <mi>y</mi>
+                                <mn>1</mn>
+                            </msub>
+                        </mrow>
+                        <mrow>
+                            <msub>
+                                <mi>x</mi>
+                                <mn>2</mn>
+                            </msub>
+                            <mo>−</mo>
+                            <msub>
+                                <mi>x</mi>
+                                <mn>1</mn>
+                            </msub>
+                        </mrow>
+                    </mfrac>
+                    <mo>⁢</mo>
+                    <mrow>
+                        <mo>(</mo>
+                        <mrow>
+                            <mi>x</mi>
+                            <mo>−</mo>
+                            <msub>
+                                <mi>x</mi>
+                                <mn>1</mn>
+                            </msub>
+                        </mrow>
+                        <mo>)</mo>
+                    </mrow>
+                </mrow>
+            </math>
+            Some text after the equation.
+        </p>
         </div>
-        <div class="simplecalloutbox">
-            <p>Text before image
-            <img id="exp4" src="epub-image-2pointform.png" alt="y minus y 1 equals StartFraction y 2 minus y 1 Over x 2 minus x 1 EndFraction left-parenthesis x minus x 1 right-parenthesis" height="43" width="237">
-            Text after image.</p>
-            
-        </div>   
-      </div>
-      
-</section></section><section class="appendix informative" id="acknowledgements"><div class="header-wrapper"><h2 id="a-acknowledgments"><bdi class="secno">A. </bdi>Acknowledgments</h2><a class="self-link" href="#acknowledgements" aria-label="Permalink for Appendix A."></a></div><p><em>This section is non-normative.</em></p>
-	
-	
-	<p style="font-style:italic">Ben Schroeter’s insights and implementations contributed greatly to our work. We all
-		will miss his good-natured contributions. This document is dedicated to his memory.</p>
-	
-	<p>The following people contributed to the development of this document:</p>
-	
-	<ul>
-		<li>Avneesh Singh (DAISY Consortium)</li>
-		<li>Ben Schroeter (Pearson)</li>
-		<li>Charles LaPierre (Benetech)</li>
-		<li>Franco Alvarado (Macmillan Learning)</li>
-		<li>George Kerscher (DAISY Consortium)</li>
-		<li>Gregorio Pellegrino (Fondazione LIA)</li>
-		<li>James Yanchak (Taylor and Francis)</li>
-		<li>Jason White (Educational Testing Service)</li>
-		<li>Matt Garrish (DAISY Consortium)</li>
-		<li>Steve Noble (Pearson)</li>
-	</ul>
-	
-	<p>The task force would also like to thank the following people for their help designing techniques,
-		creating test books, synthesizing test results, and developing best practices:</p>
-	
-	<ul>
-		<li>George Kerscher (DAISY Consortium)</li>
-		<li>Charles LaPierre (Benetech)</li>
-		<li>Gregorio Pellegrino (Fondazione LIA)</li>
-		<li>Avneesh Singh (DAISY Consortium)</li>
-		<li>Ben Schroeter (Pearson)</li>
-		<li>James Yanchak (Taylor &amp; Francis Group)</li>
-	</ul>
-	
-	<p>Additionally, thanks goes to the following people for their help testing the techniques:</p>
-	
-	<ul>
-		<li>George Kerscher (DAISY Consortium)</li>
-		<li>Richard Orme (DAISY Consortium)</li>
-		<li>Prashant Verma (DAISY Consortium)</li>
-	</ul>
-</section>
+        </div>
+	    
+        </section><section id="where-mathml-should-not-be-used"><div class="header-wrapper"><h3 id="x2-3-where-mathml-should-not-be-used"><bdi class="secno">2.3 </bdi>Where MathML should not be used</h3><a class="self-link" href="#where-mathml-should-not-be-used" aria-label="Permalink for Section 2.3"></a></div>
 
+        <p>MathML should not be used at the places where numbers and symbols are the part of the text, for example.</p>
+        <ul>
+            <li>Adam is 65 years old.</li>
+            <li>The zip code of the office is NY 10036.</li>
+<li>My mobile number is 78950 55823.</li>
+            </ul>
+        <p>In these examples, the numbers are actually the words in the text of the publication. Therefore MathML should not be used in such places.</p>
+        
+        </section></section><section id="challenges-in-production-of-accessible-math"><div class="header-wrapper"><h2 id="x3-challenges-in-production-of-accessible-math"><bdi class="secno">3. </bdi>Challenges in production of accessible Math</h2><a class="self-link" href="#challenges-in-production-of-accessible-math" aria-label="Permalink for Section 3."></a></div>
+        <p>While MathML is the recommended approach for accessible mathematical content in EPUB publications, the practical implementation of comprehensive MathML markup involves various considerations and challenges in real-world publishing workflows.</p>
+        <p>These range from technical and workflow integration issues to questions about when and how to apply MathML most effectively across different types of mathematical content. The publishing industry continues to evolve its approaches to balancing accessibility requirements with production efficiency and visual presentation needs.</p>
+        <p>For a detailed examination of current implementation challenges and ongoing discussions in this area, see <a href="mathML-challenges.html">Challenges in production of accessible Math</a>.</p>
+	    
+      	</section><section class="appendix informative" id="acknowledgements"><div class="header-wrapper"><h2 id="a-acknowledgments"><bdi class="secno">A. </bdi>Acknowledgments</h2><a class="self-link" href="#acknowledgements" aria-label="Permalink for Appendix A."></a></div><p><em>This section is non-normative.</em></p>
+			
+			
+			<p>The following people contributed to the development of this document:</p>
+			
+			<ul>
+				<li>Avneesh Singh, DAISY Consortium</li>
+				<li>Charles LaPierre, Benetech</li>
+				<li>Chris Stynes, HMH</li>
+				<li>Gautier Chomel, EDRLab</li>
+				<li>George Kerscher, DAISY Consortium</li>
+				<li>Gregorio Pellegrino, Fondazione LIA</li>
+				<li>Ibrahim Siddo, Oxford University Press</li>
+				<li>James Yanchak, Taylor &amp; Francis</li>
+				<li>Cody Care, EBSCO</li>
+				<li>Mark Dunn, Oxford University Press</li>
+				<li>Marthe Gjelstad, National Library of Norway (NB)</li>
+				<li>Richard Orme, DAISY Consortium</li>
+				<li>Sagiv Lapkin, Taylor &amp; Francis</li>
+				<li>Steve Noble, Pearson</li>
+				<li>Tim Arborealis Lötberg, Swedish Agency for Accessible Media (MTM)</li>
+			</ul>
+		</section>
     
 
 <p role="navigation" id="back-to-top">
     <a href="#title"><abbr title="Back to Top">↑</abbr></a>
-  </p><script id="respec-dfn-panel">(() => {
+  </p><script id="respec-highlight-vars">(() => {
+// @ts-check
+
+if (document.respec) {
+  document.respec.ready.then(setupVarHighlighter);
+} else {
+  setupVarHighlighter();
+}
+
+function setupVarHighlighter() {
+  document
+    .querySelectorAll("var")
+    .forEach(varElem => varElem.addEventListener("click", highlightListener));
+}
+
+function highlightListener(ev) {
+  ev.stopPropagation();
+  const { target: varElem } = ev;
+  const hightligtedElems = highlightVars(varElem);
+  const resetListener = () => {
+    const hlColor = getHighlightColor(varElem);
+    hightligtedElems.forEach(el => removeHighlight(el, hlColor));
+    [...HL_COLORS.keys()].forEach(key => HL_COLORS.set(key, true));
+  };
+  if (hightligtedElems.length) {
+    document.body.addEventListener("click", resetListener, { once: true });
+  }
+}
+
+// availability of highlight colors. colors from var.css
+const HL_COLORS = new Map([
+  ["respec-hl-c1", true],
+  ["respec-hl-c2", true],
+  ["respec-hl-c3", true],
+  ["respec-hl-c4", true],
+  ["respec-hl-c5", true],
+  ["respec-hl-c6", true],
+  ["respec-hl-c7", true],
+]);
+
+function getHighlightColor(target) {
+  // return current colors if applicable
+  const { value } = target.classList;
+  const re = /respec-hl-\w+/;
+  const activeClass = re.test(value) && value.match(re);
+  if (activeClass) return activeClass[0];
+
+  // first color preference
+  if (HL_COLORS.get("respec-hl-c1") === true) return "respec-hl-c1";
+
+  // otherwise get some other available color
+  return [...HL_COLORS.keys()].find(c => HL_COLORS.get(c)) || "respec-hl-c1";
+}
+
+function highlightVars(varElem) {
+  const textContent = norm(varElem.textContent);
+  const parent = varElem.closest(".algorithm, section");
+  const highlightColor = getHighlightColor(varElem);
+
+  const varsToHighlight = [...parent.querySelectorAll("var")].filter(
+    el =>
+      norm(el.textContent) === textContent &&
+      el.closest(".algorithm, section") === parent
+  );
+
+  // update availability of highlight color
+  const colorStatus = varsToHighlight[0].classList.contains("respec-hl");
+  HL_COLORS.set(highlightColor, colorStatus);
+
+  // highlight vars
+  if (colorStatus) {
+    varsToHighlight.forEach(el => removeHighlight(el, highlightColor));
+    return [];
+  } else {
+    varsToHighlight.forEach(el => addHighlight(el, highlightColor));
+  }
+  return varsToHighlight;
+}
+
+function removeHighlight(el, highlightColor) {
+  el.classList.remove("respec-hl", highlightColor);
+  // clean up empty class attributes so they don't come in export
+  if (!el.classList.length) el.removeAttribute("class");
+}
+
+function addHighlight(elem, highlightColor) {
+  elem.classList.add("respec-hl", highlightColor);
+}
+
+/**
+ * Same as `norm` from src/core/utils, but our build process doesn't allow
+ * imports in runtime scripts, so duplicated here.
+ * @param {string} str
+ */
+function norm(str) {
+  return str.trim().replace(/\s+/g, " ");
+}
+})()</script><script id="respec-dfn-panel">(() => {
 // @ts-check
 if (document.respec) {
   document.respec.ready.then(setupPanel);
