@@ -104,7 +104,7 @@
 			<h5 id="technique1-main-content-examples">Examples</h5>
 			<p>In this section, we provide some examples, which are not exhaustive, of how the code relating to the link to the extended description can be structured in different cases.</p>
 
-        <aside class="example" title="Images in <code>figure</code> with link in <code>figcaption</code>">
+        <aside class="example" title="Images in figure with link in figcaption">
         	<p>When using a <code>figure</code> element, you can place the link to the extended description inside the <code>figcaption</code>. The <code>figcaption</code> must be either the first or last element within the <code>figure</code> to maintain HTML validity.</p>
 
         	<pre class="html">
@@ -120,7 +120,7 @@
 &lt;/figure&gt;</pre>
         </aside>
 
-        <aside class="example" title="Images in <code>figure</code> with link outside <code>figcaption</code>">
+        <aside class="example" title="Images in figure with link outside figcaption">
         	<p>If you prefer to place the link to the extended description outside the <code>figcaption</code>, it must be positioned before the <code>figcaption</code> to maintain HTML validity (since <code>figcaption</code> must be the first or last element within <code>figure</code>).</p>
 
             <pre class="html">
@@ -137,7 +137,7 @@
 </pre>
         </aside>
 
-        <aside class="example" title="Images without <code>figure</code> wrapper">
+        <aside class="example" title="Images without figure wrapper">
         	<p>For standalone images without a <code>figure</code> wrapper, place the link  after the image. The <code>aria-details</code> attribute still points to the link's ID.</p>
 
             <pre class="html">
@@ -292,15 +292,8 @@
 &lt;/html&gt;
 </pre>
         </aside>
-
-
-
-
         </section>
         </section>
-
-
-
         <section id="technique2">
 			<h3>Technique 2: Extended description placed in HTML, just below the image</h3>
 			
@@ -356,6 +349,9 @@
 &lt;/details&gt;
 		</pre>
 					</aside>
+			
+			<h5 id="technique2-examples">Examples</h5>
+			<p>In this section, we provide some examples, which are not exhaustive, for placing the extended description just below the image.</p>
 	
 			<div class="simplecalloutbox_preheader">
 				<h4>Code Example 1</h4>
