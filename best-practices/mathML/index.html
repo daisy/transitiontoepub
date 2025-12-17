@@ -4,6 +4,7 @@
 		<meta charset="utf-8" />
 		<title>Best Practices for Authoring MathML in EPUB</title>
 		<script src="https://www.w3.org/Tools/respec/respec-w3c" class="remove"></script>
+		<script src="../common/js/previousRelease.js" class="remove"></script>
 		<script class="remove">
 			//<![CDATA[
 			var respecConfig = {
@@ -11,6 +12,8 @@
 				specStatus: 'base',
 				latestVersion: 'https://inclusivepublishing.org/mathMLBestPractices',
 				edDraftURI: null,
+				previousPublishDate: "2023-12-14",
+				previousMaturity: "NOTE",
 				editors: [
 					{
 						name: 'Avneesh Singh',
@@ -40,7 +43,8 @@
 						url: 'https://daisy.org'
 					}
 				],
-				github: 'DAISY/transitiontoepub'
+				github: 'DAISY/transitiontoepub',
+				postProcess: [addPreviousRelease]
 			};
 			// ]]>
 		</script>
