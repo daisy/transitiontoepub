@@ -57,7 +57,7 @@
         <section id="technique1">
         <h3>Technique 1: Extended description in a separate HTML file with hyperlink</h3>
 
-            <p>This technique provides extended descriptions in a separate HTML file (e.g. and appendix at the end of the e-book) from the main content, with a hyperlink blow the image to the description and a back link to return to the original reading position.</p>
+            <p>This technique provides extended descriptions in separate HTML file(s) (e.g. and appendix at the end of the e-book, possibly a file containing extended descriptions for each chapter of the publication or even a file for each image) from the main content, with a hyperlink below the image to the description and a back link to return to the original reading position.</p>
 
             <p class="note">This technique is recommended over the use of HTML <code>details</code> element (see <a href="technique2">Technique 2</a>) as it provides better support across reading systems and reduces cognitive load for users.</p>
 
@@ -215,7 +215,7 @@
         <section id="technique1-external-file">
         <h4>Setting up the external file with extended descriptions</h4>
 
-            <p>Extended descriptions should be placed in a separate HTML file that is referenced from the extended description link and with a backlink to the main content. This file can be inserted at the end of the e-book and/or marked as non-linear, meaning that it does not appear when browsing through the e-book. A single HTML file can contain multiple extended descriptions.</p>
+            <p>Extended descriptions should be placed in separate HTML file(s) that is referenced from the extended description link and with a backlink to the main content. These file(s) can be inserted at the end of the e-book and/or marked as non-linear, meaning that it does not appear when browsing through the e-book. A single HTML file can contain multiple extended descriptions. The content creator can decide whether to collect all the extended descriptions of the publication in a single file, or create one for each chapter or section of the book, or even create a single file for each description.</p>
 
             <p>Each extended description must:</p>
             <ul>
@@ -225,7 +225,7 @@
                 <li>Contain the detailed description</li>
                 <li>Include a back link with <code>role="doc-backlink"</code> to return to the original image</li>
             </ul>
-<p class="note">To avoid external files with many extended descriptions becoming too large and creating long load times, multiple files can be used. These files must be identified in the spine as described below.</p>
+<p class="note">To avoid external files with many extended descriptions becoming too large and creating long load times, multiple files can be used (for example, one per chapter of the publication). These files must be identified in the spine as described below.</p>
 
             <h5>EPUB spine configuration</h5>
 
