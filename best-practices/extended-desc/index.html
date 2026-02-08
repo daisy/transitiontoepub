@@ -45,7 +45,7 @@
         <p>It is possible that the recommendations for EPUB 3 environments provided in this report are a little different from the recommendations for the web environment. Though most of EPUB 3 reading systems use components from web browsers, the reading systems tend to change and sometimes override the web browser functionality, which results in a somewhat different reading experience.</p>
 
         <aside class="note">
-        	<p>This document represents the second iteration of these best practices. Based on further testing and feedback from the community, we are now recommending a different approach compared to the previous version. While the first version primarily recommended the use of HTML <code>details</code> elements placed directly below images (see <a href="technique2">Technique 2</a>), this updated version prioritizes the use of hyperlinks to external files containing extended descriptions (see <a href="technique1">Technique 1</a>).</p>
+        	<p>This document represents the second iteration of these best practices. Based on further testing and feedback from the community, we are now recommending a different approach compared to the previous version. While the first version primarily recommended the use of HTML <code>details</code> elements placed directly below images (see <a href="#technique3">Deprecated technique</a>), this updated version prioritizes the use of hyperlinks to external files containing extended descriptions (see <a href="#technique1">Recommended technique</a>).</p>
         	<p>This change reflects the fact that many publishers prefer to treat extended descriptions as additional content rather than part of the main content, in addition to the fact that some pagination-based EPUB reading solutions have problems with the appearance and disappearance of <code>details</code> content.</p>
         </aside>
 
@@ -59,7 +59,7 @@
 
             <p>This technique provides extended descriptions in separate HTML file(s) (e.g. and appendix at the end of the e-book, possibly a file containing extended descriptions for each chapter of the publication or even a file for each image) from the main content, with a hyperlink below the image to the description and a back link to return to the original reading position.</p>
 
-            <p class="note">This technique is recommended over the use of HTML <code>details</code> element (see <a href="technique2">Technique 2</a>) as it provides better support across reading systems and reduces cognitive load for users.</p>
+            <p class="note">This technique is recommended over the use of HTML <code>details</code> element (see <a href="#technique3">Deprecated technique</a>) as it provides better support across reading systems and reduces cognitive load for users.</p>
 
         <p>Advantages:</p>
         <ul>
@@ -302,16 +302,13 @@
 			<p>Advantages:</p>
 			<ul>
 				<li>The extended description is provided just below the image, the next item in the reading order. This means that the user does not need to change from the reading flow, and lose their reading position.</li>
-				<li>The details element does not show the description by default, the user needs to expand it to show the description, therefore it does not clutter the page for users who do not need extended descriptions.</li>
 				<li>It is a good approach for content creators who don't want to manage external files and back and forward links (from the image to the description and back to the main content).</li>
+				<li>The description is always visible to all users, which can be a good solution for having text-to-speech engines read the description text.</li>
 			</ul>
-	
+
 			<p>Disadvantages:</p>
 			<ul>
-				<li>If a publication has a large number of images and extended descriptions, the task of locating the details, and expanding it to read descriptions puts considerable cognitive load, especially on the people with cognitive disabilities.</li>
-				<li>There are EPUB reading systems which do not support HTML details properly, or the expansion of the element may cause pagination issues.</li>
-				<li>This is one of the rare cases in which the content creator of the EPUB attempts to force a particular user experience (show/hide content); the world of EPUBs is normally declarative, identifying semantic structures and leaving it up to reading solutions to interpret them and show the user the best interface (think of footnotes managed in pop-ups or similar).</li>
-				<li>If the extended description inside the details element is huge, expanding it may disorient the user, especially when the reading system has paginated view.</li>
+				<li>The description is always visible, which may clutter the page for users who do not need extended descriptions.</li>
 			</ul>
 			
 			<section id="technique2-below">
@@ -322,9 +319,9 @@
 					<p>Key requirements:</p>
 					<ul>
 						<li>The image must have a brief <code>alt</code> text that describes what the image is (e.g., "Bar chart showing quarterly website visitors").</li>
-						<li>After the image (or group of images), there must the container of the extended description.</li>
-						<li>The container of the extended description must have a unique <code>id</code> attribute.</li>
-						<li>The image must have an <code>aria-details</code> attribute pointing to that container's ID.</li>
+						<li>After the image (or group of images), there must be the <code>aside</code> element containing the extended description.</li>
+						<li>The <code>aside</code> element must have a unique <code>id</code> attribute.</li>
+						<li>The image must have an <code>aria-details</code> attribute pointing to that <code>aside</code>'s ID.</li>
 					</ul>
 		
 					<p>This creates a programmatic relationship that assistive technologies can use to announce the availability of an extended description.</p>
@@ -333,9 +330,7 @@
 					<aside class="example" title="General pattern">
 						<pre class="html">
 &lt;img aria-details="container-id"  alt="Bar chart showing..." ... /&gt;
-&lt;details id="container-id"&gt;
-	&lt;summary&gt;Description of Bar Chart&lt;/summary&gt;
-
+&lt;aside id="container-id"&gt;
 	&lt;h3&gt;Overview&lt;/h3&gt;
 	&lt;p&gt;The chart shows the website hits for the first quarter of 2014...&lt;/p&gt;
 
@@ -346,71 +341,14 @@
 
 	&lt;h3&gt;Presentation&lt;/h3&gt;
 	&lt;p&gt;The bar chart represents both the number of visitors...&lt;/p&gt;
-&lt;/details&gt;
+&lt;/aside&gt;
 		</pre>
 					</aside>
-			
-			<h5 id="technique2-examples">Examples</h5>
-			<p>In this section, we provide some examples, which are not exhaustive, for placing the extended description just below the image.</p>
-			
-			<aside class="example" title="Extended description below the image in a details element">
-            	<p>This code is an example of an extended description inside a <code>details</code> element, just below the image.</p>
-            <pre class="html">
-&lt;img src="chart-ebcaadfb.png" alt="Bar chart showing monthly and total visitors for the first quarter 2014 for sites 1 to 3." aria-details="image1-extended-desc" /&gt;
-	
-&lt;details id="image1-extended-desc"&gt;
-	&lt;summary&gt;Expand / collapse Extended Description&lt;/summary&gt;
-	
-	&lt;h5&gt;Overview&lt;/h5&gt;
-	&lt;p&gt;The chart shows the website hits for the first quarter of 2014. It shows that Site 1 has more visitors
-	  than either of the other sites, but the number of visitors is decreasing. Site 2 has a fairly constant
-	  number of visitors, while for Site 3 page hits are increasing month on month.&lt;/p&gt;
-	
-	&lt;h6&gt;Data&lt;/h6&gt;
-	&lt;table&gt;
-		&lt;tr&gt;
-			&lt;th scope="col"&gt;Period&lt;/th&gt;
-			&lt;th scope="col"&gt;Site 1&lt;/th&gt;
-			&lt;th scope="col"&gt;Site 2&lt;/th&gt;
-			&lt;th scope="col"&gt;Site 3&lt;/th&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;th scope="row"&gt;Jan&lt;/th&gt;
-			&lt;td&gt;135&lt;/td&gt;
-			&lt;td&gt;112&lt;/td&gt;
-			&lt;td&gt;92&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;th scope="row"&gt;Feb&lt;/th&gt;
-			&lt;td&gt;117&lt;/td&gt;
-			&lt;td&gt;114&lt;/td&gt;
-			&lt;td&gt;99&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;th scope="row"&gt;Mar&lt;/th&gt;
-			&lt;td&gt;96&lt;/td&gt;
-			&lt;td&gt;111&lt;/td&gt;
-			&lt;td&gt;126&lt;/td&gt;
-		&lt;/tr&gt;
-		&lt;tr&gt;
-			&lt;th scope="row"&gt;Qtr Total&lt;/th&gt;
-			&lt;td&gt;348&lt;/td&gt;
-			&lt;td&gt;337&lt;/td&gt;
-			&lt;td&gt;308&lt;/td&gt;
-		&lt;/tr&gt;
-	&lt;/table&gt;
-	
-	&lt;h6&gt;Presentation&lt;/h6&gt;
-	&lt;p&gt;The bar chart represents both the number of visitors per month for each website, and the total number
-	  of visitors per website for the entire quarter. Website visitors for each month are represented using
-	  columns lined up horizontally, with heights indicating the number of visitors. A fourth column is
-	  provided for each website with the accumulated site visitors for the quarter.&lt;/p&gt;
-&lt;/details&gt;
-</pre>
-        </aside>
-        
-        <aside class="example" title="Extended description below the image in an aside element">
-            	<p>This code is an example of an extended description inside a <code>aside</code> element, just below the image. In this case, the description is always visible to all users, which can be a good solution for having text-to-speech engines read the description text.</p>
+
+			<h5 id="technique2-examples">Example</h5>
+
+			<aside class="example" title="Extended description below the image in an aside element">
+            	<p>This code is an example of an extended description inside an <code>aside</code> element, just below the image.</p>
             <pre class="html">
 &lt;h3&gt;Chart 1&lt;/h3&gt;
 &lt;img src="chart-ebcaadfb.png" alt="Bar chart showing monthly and total visitors for the first quarter 2014 for sites 1 to 3." aria-details="image1-extended-desc" /&gt;
@@ -464,6 +402,123 @@
         </aside>
 	
 			
+        	</section>
+        </section>
+
+        <section id="technique3">
+			<h3>Deprecated technique: Extended description in a details element below the image</h3>
+
+			<p>This technique provides extended descriptions in the same HTML file of the main content, using a <code>details</code> element just below the image. The description is hidden by default and can be expanded by the user.</p>
+
+			<p>Advantages:</p>
+			<ul>
+				<li>The extended description is provided just below the image, the next item in the reading order. This means that the user does not need to change from the reading flow, and lose their reading position.</li>
+				<li>The details element does not show the description by default, the user needs to expand it to show the description, therefore it does not clutter the page for users who do not need extended descriptions.</li>
+				<li>It is a good approach for content creators who don't want to manage external files and back and forward links (from the image to the description and back to the main content).</li>
+			</ul>
+
+			<p>Disadvantages:</p>
+			<ul>
+				<li>If a publication has a large number of images and extended descriptions, the task of locating the details, and expanding it to read descriptions puts considerable cognitive load, especially on the people with cognitive disabilities.</li>
+				<li>There are EPUB reading systems which do not support HTML details properly, or the expansion of the element may cause pagination issues.</li>
+				<li>This is one of the rare cases in which the content creator of the EPUB attempts to force a particular user experience (show/hide content); the world of EPUBs is normally declarative, identifying semantic structures and leaving it up to reading solutions to interpret them and show the user the best interface (think of footnotes managed in pop-ups or similar).</li>
+				<li>If the extended description inside the details element is huge, expanding it may disorient the user, especially when the reading system has paginated view.</li>
+			</ul>
+
+			<section id="technique3-details">
+				<h4>Setting up the main content with extended description</h4>
+
+					<p>In this technique the extended description is placed below the image in a <code>details</code> element.</p>
+
+					<p>Key requirements:</p>
+					<ul>
+						<li>The image must have a brief <code>alt</code> text that describes what the image is (e.g., "Bar chart showing quarterly website visitors").</li>
+						<li>After the image (or group of images), there must be the <code>details</code> element containing the extended description.</li>
+						<li>The <code>details</code> element must have a unique <code>id</code> attribute.</li>
+						<li>The image must have an <code>aria-details</code> attribute pointing to that <code>details</code>'s ID.</li>
+					</ul>
+
+					<p>This creates a programmatic relationship that assistive technologies can use to announce the availability of an extended description.</p>
+
+					<p>The general pattern is:</p>
+					<aside class="example" title="General pattern">
+						<pre class="html">
+&lt;img aria-details="container-id"  alt="Bar chart showing..." ... /&gt;
+&lt;details id="container-id"&gt;
+	&lt;summary&gt;Description of Bar Chart&lt;/summary&gt;
+
+	&lt;h3&gt;Overview&lt;/h3&gt;
+	&lt;p&gt;The chart shows the website hits for the first quarter of 2014...&lt;/p&gt;
+
+	&lt;h3&gt;Data&lt;/h3&gt;
+	&lt;table&gt;
+		&lt;!-- table content --&gt;
+	&lt;/table&gt;
+
+	&lt;h3&gt;Presentation&lt;/h3&gt;
+	&lt;p&gt;The bar chart represents both the number of visitors...&lt;/p&gt;
+&lt;/details&gt;
+		</pre>
+					</aside>
+
+			<h5 id="technique3-examples">Example</h5>
+
+			<aside class="example" title="Extended description below the image in a details element">
+            	<p>This code is an example of an extended description inside a <code>details</code> element, just below the image.</p>
+            <pre class="html">
+&lt;img src="chart-ebcaadfb.png" alt="Bar chart showing monthly and total visitors for the first quarter 2014 for sites 1 to 3." aria-details="image1-extended-desc" /&gt;
+
+&lt;details id="image1-extended-desc"&gt;
+	&lt;summary&gt;Expand / collapse Extended Description&lt;/summary&gt;
+
+	&lt;h5&gt;Overview&lt;/h5&gt;
+	&lt;p&gt;The chart shows the website hits for the first quarter of 2014. It shows that Site 1 has more visitors
+	  than either of the other sites, but the number of visitors is decreasing. Site 2 has a fairly constant
+	  number of visitors, while for Site 3 page hits are increasing month on month.&lt;/p&gt;
+
+	&lt;h6&gt;Data&lt;/h6&gt;
+	&lt;table&gt;
+		&lt;tr&gt;
+			&lt;th scope="col"&gt;Period&lt;/th&gt;
+			&lt;th scope="col"&gt;Site 1&lt;/th&gt;
+			&lt;th scope="col"&gt;Site 2&lt;/th&gt;
+			&lt;th scope="col"&gt;Site 3&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th scope="row"&gt;Jan&lt;/th&gt;
+			&lt;td&gt;135&lt;/td&gt;
+			&lt;td&gt;112&lt;/td&gt;
+			&lt;td&gt;92&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th scope="row"&gt;Feb&lt;/th&gt;
+			&lt;td&gt;117&lt;/td&gt;
+			&lt;td&gt;114&lt;/td&gt;
+			&lt;td&gt;99&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th scope="row"&gt;Mar&lt;/th&gt;
+			&lt;td&gt;96&lt;/td&gt;
+			&lt;td&gt;111&lt;/td&gt;
+			&lt;td&gt;126&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;th scope="row"&gt;Qtr Total&lt;/th&gt;
+			&lt;td&gt;348&lt;/td&gt;
+			&lt;td&gt;337&lt;/td&gt;
+			&lt;td&gt;308&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/table&gt;
+
+	&lt;h6&gt;Presentation&lt;/h6&gt;
+	&lt;p&gt;The bar chart represents both the number of visitors per month for each website, and the total number
+	  of visitors per website for the entire quarter. Website visitors for each month are represented using
+	  columns lined up horizontally, with heights indicating the number of visitors. A fourth column is
+	  provided for each website with the accumulated site visitors for the quarter.&lt;/p&gt;
+&lt;/details&gt;
+</pre>
+        </aside>
+
         	</section>
         </section>
 
