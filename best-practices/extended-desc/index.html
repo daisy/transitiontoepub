@@ -54,12 +54,12 @@
 
         <h2>Recommendations</h2>
 
-        <p>After thorough evaluation, we are able to propose two techniques at this point of time. These techniques worked in a majority of the reading environments. This does not guarantee full support, but these provide a way forward while the web browsers, EPUB reading systems and assistive technologies catch-up.</p>
+        <p>After thorough evaluation, we are able to propose two techniques at this point of time. These techniques worked in a majority of the reading environments. This does not guarantee full support, but these provide a way forward while the web browsers, EPUB reading systems and assistive technologies catch up.</p>
 
         <section id="technique1">
         <h3>Recommended technique: Extended description in a separate HTML file with hyperlink</h3>
 
-            <p>This technique provides extended descriptions in separate HTML file(s) (e.g. and appendix at the end of the e-book, a file containing extended descriptions for each chapter of the publication or even a file for each image). A hyperlink placed below the image in the main content links to the description in the separate file. And a back link placed in the description returns the user to the original reading position in the main content.</p>
+            <p>This technique provides extended descriptions in separate HTML file(s) (e.g. an appendix at the end of the e-book, a file containing extended descriptions for each chapter of the publication or even a file for each image). A hyperlink placed below the image in the main content links to the description in the separate file. And a back link placed in the description returns the user to the original reading position in the main content.</p>
 
             <p class="note">This technique is recommended over the use of HTML <code>details</code> element (see <a href="#technique3">Deprecated technique</a>) as it provides better support across reading systems and reduces cognitive load for users.</p>
 
@@ -424,7 +424,7 @@
 
 			<p>Disadvantages:</p>
 			<ul>
-				<li>If a publication has a large number of images and extended descriptions, the task of locating the details, and expanding it to read descriptions puts considerable cognitive load, especially on the people with cognitive disabilities.</li>
+				<li>If a publication has a large number of images and extended descriptions, the task of locating the details, and expanding it to read descriptions puts considerable cognitive load, especially on people with cognitive disabilities.</li>
 				<li>There are EPUB reading systems which do not support HTML details properly, or the expansion of the element may cause pagination issues.</li>
 				<li>This is one of the rare cases in which the content creator of the EPUB attempts to force a particular user experience (show/hide content); the world of EPUBs is normally declarative, identifying semantic structures and leaving it up to reading solutions to interpret them and show the user the best interface (think of footnotes managed in pop-ups or similar).</li>
 				<li>If the extended description inside the details element is huge, expanding it may disorient the user, especially when the reading system has paginated view.</li>
