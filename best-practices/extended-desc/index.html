@@ -61,14 +61,14 @@
 
             <p>This technique provides extended descriptions in separate HTML file(s) (e.g. an appendix at the end of the e-book, a file containing extended descriptions for each chapter of the publication or even a file for each image). A hyperlink placed below the image in the main content links to the description in the separate file. And a back link placed in the description returns the user to the original reading position in the main content.</p>
 
-            <p class="note">This technique is recommended over the use of HTML <code>details</code> element (see <a href="#technique3">Deprecated technique</a>) as it provides better support across reading systems and reduces cognitive load for users.</p>
+            <p class="note">This technique is recommended over the use of HTML <code>details</code> element (see <a href="#technique3">Deprecated technique</a>) as it provides better support across reading systems.</p>
 
         <p>Advantages:</p>
         <ul>
             <li>Simple technique, authors and publishers are already familiar with it.</li>
             <li>Complexities and technical limitations in some EPUB reading systems due to collapsing and expanding are avoided, and fidelity of the page is maintained to a great extent.</li>
             <li>Almost all EPUB reading systems support hyperlinks.</li>
-            <li>Including a copy of the original image marked as presentational (<code>role="presentation"</code>) can help cognitive users with understanding the extended description in context with the image.</li>
+            <li>Including a copy of the original image marked as presentational (<code>role="presentation"</code>) can help users with understanding the extended description in context with the image.</li>
             <li>Multiple extended descriptions can be placed in the same HTML file, organized with <code>section</code> elements.</li>
             <li>The extended description file can be excluded from the reading order by setting <code>linear="no"</code> in the EPUB spine.</li>
         </ul>
