@@ -226,9 +226,12 @@
                 <li>Include a heading that describes the content</li>
                 <li>Include a copy of the image marked as presentational (<code>role="presentation"</code> and <code>alt=""</code>) to prevent screen readers from announcing it twice, but for for visual reference</li>
                 <li>Contain the detailed description</li>
-                <li>Include a back link with <code>role="doc-backlink"</code> to return to the original image</li>
+                <li>Include a backlink with <code>role="doc-backlink"</code> that returns to the anchor of the link to the extended description.</li>
+                <li>The backlink text must clearly identify which image the user is returning to, especially when the file contains multiple extended descriptions.</li>
             </ul>
 <p class="note">To avoid external files with many extended descriptions becoming too large and creating long load times, multiple files can be used (for example, one per chapter of the publication). These files must be identified in the spine as described below.</p>
+
+<p class="note">When a file contains many extended descriptions — for example in an end-of-book appendix — consider using one file per extended description, each with a single back link. This removes ambiguity: with only one back link in the file, the user cannot accidentally navigate to the wrong location in the main content. While this results in more files to manage, it provides the clearest and safest navigation experience.</p>
 
             <h5>EPUB spine configuration</h5>
 
@@ -275,7 +278,7 @@
         &lt;h3&gt;Presentation&lt;/h3&gt;
         &lt;p&gt;The bar chart represents both the number of visitors...&lt;/p&gt;
 
-        &lt;p&gt;&lt;a role="doc-backlink" href="chapter01.xhtml#img1"&gt;Navigate back to bar chart image&lt;/a&gt;.&lt;/p&gt;
+        &lt;p&gt;&lt;a role="doc-backlink" href="chapter01.xhtml#anchor-extended-description-img1"&gt;Navigate back to bar chart image&lt;/a&gt;.&lt;/p&gt;
     &lt;/section&gt;
 
     &lt;section id="extended-description-img2"&gt;
@@ -289,7 +292,7 @@
             &lt;!-- more list items --&gt;
         &lt;/ol&gt;
 
-        &lt;p&gt;&lt;a role="doc-backlink" href="chapter01.xhtml#img2"&gt;Navigate back to heart and lung diagram&lt;/a&gt;.&lt;/p&gt;
+        &lt;p&gt;&lt;a role="doc-backlink" href="chapter01.xhtml#anchor-extended-description-img2"&gt;Navigate back to heart and lung diagram&lt;/a&gt;.&lt;/p&gt;
     &lt;/section&gt;
 &lt;/body&gt;
 &lt;/html&gt;
