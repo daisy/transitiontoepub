@@ -66,8 +66,7 @@
         <p>Advantages:</p>
         <ul>
             <li>Simple technique, authors and publishers are already familiar with it.</li>
-            <li>Complexities and technical limitations in some EPUB reading systems due to collapsing and expanding are avoided, and fidelity of the page is maintained to a great extent.</li>
-            <li>Almost all EPUB reading systems support hyperlinks.</li>
+            <li>Well supported by EPUB reading systems, avoiding the technical limitations associated with collapsing and expanding elements.</li>
             <li>Including a copy of the original image marked as presentational (<code>role="presentation"</code>) can help users with understanding the extended description in context with the image.</li>
             <li>Multiple extended descriptions can be placed in the same HTML file, organized with <code>section</code> elements.</li>
             <li>The extended description file can be excluded from the reading order by setting <code>linear="no"</code> in the EPUB spine.</li>
@@ -349,6 +348,8 @@
 &lt;/aside&gt;
 		</pre>
 					</aside>
+
+				<p class="note">The heading levels used inside the <code>aside</code> element should follow the surrounding document structure. They should be one level below the last heading used before the <code>aside</code>.</p>
 
 			<h5 id="technique2-examples">Example</h5>
 
