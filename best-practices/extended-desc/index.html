@@ -30,6 +30,11 @@
 			};
 			// ]]>
 		</script>
+		<style>
+			pre {
+            	white-space: break-spaces !important;
+			}
+		</style>
     </head>
     <body>
     	<p class="copyright">Copyright &#169; DAISY Consortium 2022</p>
@@ -54,21 +59,20 @@
 
         <h2>Recommendations</h2>
 
-        <p>After thorough evaluation, we are able to propose two techniques at this point of time. These techniques worked in a majority of the reading environments. This does not guarantee full support, but these provide a way forward while the web browsers, EPUB reading systems and assistive technologies catch-up.</p>
+        <p>After thorough evaluation, we are able to propose two techniques at this point of time. These techniques worked in a majority of the reading environments. This does not guarantee full support, but these provide a way forward while the web browsers, EPUB reading systems and assistive technologies catch up.</p>
 
         <section id="technique1">
         <h3>Recommended technique: Extended description in a separate HTML file with hyperlink</h3>
 
-            <p>This technique provides extended descriptions in separate HTML file(s) (e.g. and appendix at the end of the e-book, a file containing extended descriptions for each chapter of the publication or even a file for each image). A hyperlink placed below the image in the main content links to the description in the separate file. And a back link placed in the description returns the user to the original reading position in the main content.</p>
+            <p>This technique provides extended descriptions in separate HTML file(s) (e.g. an appendix at the end of the e-book, a file containing extended descriptions for each chapter of the publication or even a file for each image). A hyperlink placed below the image in the main content links to the description in the separate file. And a back link placed in the description returns the user to the original reading position in the main content.</p>
 
-            <p class="note">This technique is recommended over the use of HTML <code>details</code> element (see <a href="#technique3">Deprecated technique</a>) as it provides better support across reading systems and reduces cognitive load for users.</p>
+            <p class="note">This technique is recommended over the use of HTML <code>details</code> element (see <a href="#technique3">Deprecated technique</a>) as it provides better support across reading systems.</p>
 
         <p>Advantages:</p>
         <ul>
             <li>Simple technique, authors and publishers are already familiar with it.</li>
-            <li>Complexities and technical limitations in some EPUB reading systems due to collapsing and expanding are avoided, and fidelity of the page is maintained to a great extent.</li>
-            <li>Almost all EPUB reading systems support hyperlinks.</li>
-            <li>Including a copy of the original image marked as presentational (<code>role="presentation"</code>) can help cognitive users with understanding the extended description in context with the image.</li>
+            <li>Well supported by EPUB reading systems, avoiding the technical limitations associated with collapsing and expanding elements.</li>
+            <li>Including a copy of the original image marked as presentational (<code>role="presentation"</code>) can help users with understanding the extended description in context with the image.</li>
             <li>Multiple extended descriptions can be placed in the same HTML file, organized with <code>section</code> elements.</li>
             <li>The extended description file can be excluded from the reading order by setting <code>linear="no"</code> in the EPUB spine.</li>
         </ul>
@@ -77,7 +81,6 @@
         <ul>
             <li>Results in branching from the reading flow and sometimes the reading position may be lost when returning.</li>
             <li>Accuracy of linking back to original reading position matters, and some reading systems may fail to provide this accuracy.</li>
-            <li>The navigation process (clicking the link, reading the description, then clicking the back link to return) may increase cognitive load for some users.</li>
         </ul>
 
         <section id="technique1-main-content">
@@ -226,9 +229,12 @@
                 <li>Include a heading that describes the content</li>
                 <li>Include a copy of the image marked as presentational (<code>role="presentation"</code> and <code>alt=""</code>) to prevent screen readers from announcing it twice, but for for visual reference</li>
                 <li>Contain the detailed description</li>
-                <li>Include a back link with <code>role="doc-backlink"</code> to return to the original image</li>
+                <li>Include a backlink with <code>role="doc-backlink"</code> that returns to the anchor of the link to the extended description.</li>
+                <li>The backlink text must clearly identify which image the user is returning to, especially when the file contains multiple extended descriptions.</li>
             </ul>
 <p class="note">To avoid external files with many extended descriptions becoming too large and creating long load times, multiple files can be used (for example, one per chapter of the publication). These files must be identified in the spine as described below.</p>
+
+<p class="note">When a file contains many extended descriptions – for example in an end-of-book appendix – consider using one file per extended description, each with a single back link. This removes ambiguity: with only one back link in the file, the user cannot accidentally navigate to the wrong location in the main content. While this results in more files to manage, it provides the clearest and safest navigation experience.</p>
 
             <h5>EPUB spine configuration</h5>
 
@@ -275,7 +281,7 @@
         &lt;h3&gt;Presentation&lt;/h3&gt;
         &lt;p&gt;The bar chart represents both the number of visitors...&lt;/p&gt;
 
-        &lt;p&gt;&lt;a role="doc-backlink" href="chapter01.xhtml#img1"&gt;Navigate back to bar chart image&lt;/a&gt;.&lt;/p&gt;
+        &lt;p&gt;&lt;a role="doc-backlink" href="chapter01.xhtml#anchor-extended-description-img1"&gt;Navigate back to bar chart image&lt;/a&gt;.&lt;/p&gt;
     &lt;/section&gt;
 
     &lt;section id="extended-description-img2"&gt;
@@ -289,7 +295,7 @@
             &lt;!-- more list items --&gt;
         &lt;/ol&gt;
 
-        &lt;p&gt;&lt;a role="doc-backlink" href="chapter01.xhtml#img2"&gt;Navigate back to heart and lung diagram&lt;/a&gt;.&lt;/p&gt;
+        &lt;p&gt;&lt;a role="doc-backlink" href="chapter01.xhtml#anchor-extended-description-img2"&gt;Navigate back to heart and lung diagram&lt;/a&gt;.&lt;/p&gt;
     &lt;/section&gt;
 &lt;/body&gt;
 &lt;/html&gt;
@@ -348,6 +354,8 @@
 		</pre>
 					</aside>
 
+				<p class="note">The heading levels used inside the <code>aside</code> element should follow the surrounding document structure. They should be one level below the last heading used before the <code>aside</code>.</p>
+
 			<h5 id="technique2-examples">Example</h5>
 
 			<aside class="example" title="Extended description below the image in an aside element">
@@ -356,12 +364,12 @@
 &lt;h3&gt;Chart 1&lt;/h3&gt;
 &lt;img src="chart-ebcaadfb.png" alt="Bar chart showing monthly and total visitors for the first quarter 2014 for sites 1 to 3." aria-details="image1-extended-desc" /&gt;
 &lt;aside id="image1-extended-desc"&gt;
-    &lt;h5&gt;Overview&lt;/h5&gt;
+	&lt;h4&gt;Overview&lt;/h4&gt;
 	&lt;p&gt;The chart shows the website hits for the first quarter of 2014. It shows that Site 1 has more visitors
 	  than either of the other sites, but the number of visitors is decreasing. Site 2 has a fairly constant
 	  number of visitors, while for Site 3 page hits are increasing month on month.&lt;/p&gt;
-	
-	&lt;h6&gt;Data&lt;/h6&gt;
+
+	&lt;h4&gt;Data&lt;/h4&gt;
 	&lt;table&gt;
 		&lt;tr&gt;
 			&lt;th scope="col"&gt;Period&lt;/th&gt;
@@ -395,7 +403,7 @@
 		&lt;/tr&gt;
 	&lt;/table&gt;
 	
-	&lt;h6&gt;Presentation&lt;/h6&gt;
+	&lt;h4&gt;Presentation&lt;/h4&gt;
 	&lt;p&gt;The bar chart represents both the number of visitors per month for each website, and the total number
 	  of visitors per website for the entire quarter. Website visitors for each month are represented using
 	  columns lined up horizontally, with heights indicating the number of visitors. A fourth column is
@@ -404,7 +412,7 @@
 </pre>
         </aside>
 
-			<p class="note">The code patterns shown in the <a href="#technique1-main-content-examples">Recommended technique examples</a> (such as images in figure with link in figcaption, multiple images, using an icon) can also be applied to this technique by replacing the link element with the <code>aside</code> element containing the extended description.</p>
+			<p class="note">Code patterns from the <a href="#technique1-main-content-examples">Recommended technique examples</a> can also be applied to this technique by replacing the link element with the <code>aside</code> element. However, when images are wrapped in a <code>figure</code> element, the <code>aside</code> cannot be placed inside the <code>figure</code> (as it would conflict with the required placement of <code>figcaption</code>); in this case, the <code>aside</code> should be placed immediately after the closing <code>figure</code> tag.</p>
 
 
         	</section>
@@ -424,7 +432,7 @@
 
 			<p>Disadvantages:</p>
 			<ul>
-				<li>If a publication has a large number of images and extended descriptions, the task of locating the details, and expanding it to read descriptions puts considerable cognitive load, especially on the people with cognitive disabilities.</li>
+				<li>If a publication has a large number of images and extended descriptions, the task of locating and expanding each details element to read the description may be cumbersome.</li>
 				<li>There are EPUB reading systems which do not support HTML details properly, or the expansion of the element may cause pagination issues.</li>
 				<li>This is one of the rare cases in which the content creator of the EPUB attempts to force a particular user experience (show/hide content); the world of EPUBs is normally declarative, identifying semantic structures and leaving it up to reading solutions to interpret them and show the user the best interface (think of footnotes managed in pop-ups or similar).</li>
 				<li>If the extended description inside the details element is huge, expanding it may disorient the user, especially when the reading system has paginated view.</li>
