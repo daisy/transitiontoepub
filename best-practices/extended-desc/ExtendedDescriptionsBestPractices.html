@@ -1,21 +1,42 @@
 <!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head>
 <meta charset="utf-8">
-<meta name="generator" content="ReSpec 32.5.1">
+<meta name="generator" content="ReSpec 36.0.0">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <style>
+span.example-title{text-transform:none}
+:is(aside,div).example,div.illegal-example{padding:.5em;margin:1em 0;position:relative;clear:both}
+div.illegal-example{color:red}
+div.illegal-example p{color:#000}
+aside.example div.example{border-left-width:.1em;border-color:#999;background:#fff}
+</style>
+<style>
+.issue-label{text-transform:initial}
+.warning>p:first-child{margin-top:0}
+.warning{padding:.5em;border-left-width:.5em;border-left-style:solid}
+span.warning{padding:.1em .5em .15em}
+.issue.closed span.issue-number{text-decoration:line-through}
+.issue.closed span.issue-number::after{content:" (Closed)";font-size:smaller}
+.warning{border-color:#f11;border-color:var(--warning-border,#f11);border-width:.2em;border-style:solid;background:#fbe9e9;background:var(--warning-bg,#fbe9e9);color:#000;color:var(--text,#000)}
+.warning-title:before{content:"⚠";font-size:1.3em;float:left;padding-right:.3em;margin-top:-.3em}
+li.task-list-item{list-style:none}
+input.task-list-item-checkbox{margin:0 .35em .25em -1.6em;vertical-align:middle}
+.issue a.respec-gh-label{padding:5px;margin:0 2px 0 2px;font-size:10px;text-transform:none;text-decoration:none;font-weight:700;border-radius:4px;position:relative;bottom:2px;border:none;display:inline-block}
+</style>
+<style>
 dfn{cursor:pointer}
-.dfn-panel{position:absolute;z-index:35;min-width:300px;max-width:500px;padding:.5em .75em;margin-top:.6em;font-family:"Helvetica Neue",sans-serif;font-size:small;background:#fff;color:#000;box-shadow:0 1em 3em -.4em rgba(0,0,0,.3),0 0 1px 1px rgba(0,0,0,.05);border-radius:2px}
+.dfn-panel{position:absolute;z-index:35;min-width:300px;max-width:500px;padding:.5em .75em;margin-top:.6em;font-family:"Helvetica Neue",sans-serif;font-size:small;background:#fff;background:var(--indextable-hover-bg,#fff);color:#000;color:var(--text,#000);box-shadow:0 1em 3em -.4em rgba(0,0,0,.3),0 0 1px 1px rgba(0,0,0,.05);box-shadow:0 1em 3em -.4em var(--tocsidebar-shadow,rgba(0,0,0,.3)),0 0 1px 1px var(--tocsidebar-shadow,rgba(0,0,0,.05));border-radius:2px}
 .dfn-panel:not(.docked)>.caret{position:absolute;top:-9px}
-.dfn-panel:not(.docked)>.caret::after,.dfn-panel:not(.docked)>.caret::before{content:"";position:absolute;border:10px solid transparent;border-top:0;border-bottom:10px solid #fff;top:0}
-.dfn-panel:not(.docked)>.caret::before{border-bottom:9px solid #a2a9b1}
+.dfn-panel:not(.docked)>.caret::after,.dfn-panel:not(.docked)>.caret::before{content:"";position:absolute;border:10px solid transparent;border-top:0;border-bottom:10px solid #fff;border-bottom-color:var(--indextable-hover-bg,#fff);top:0}
+.dfn-panel:not(.docked)>.caret::before{border-bottom:9px solid #a2a9b1;border-bottom-color:var(--indextable-hover-bg,#a2a9b1)}
 .dfn-panel *{margin:0}
-.dfn-panel b{display:block;color:#000;margin-top:.25em}
-.dfn-panel ul a[href]{color:#333}
+.dfn-panel b{display:block;color:#000;color:var(--text,#000);margin-top:.25em}
+.dfn-panel ul a[href]{color:#333;color:var(--text,#333)}
 .dfn-panel>div{display:flex}
 .dfn-panel a.self-link{font-weight:700;margin-right:auto}
 .dfn-panel .marker{padding:.1em;margin-left:.5em;border-radius:.2em;text-align:center;white-space:nowrap;font-size:90%;color:#040b1c}
 .dfn-panel .marker.dfn-exported{background:#d1edfd;box-shadow:0 0 0 .125em #1ca5f940}
 .dfn-panel .marker.idl-block{background:#8ccbf2;box-shadow:0 0 0 .125em #0670b161}
+.dfn-panel .marker.cddl-block{background:#8ccbf2;box-shadow:0 0 0 .125em #0670b161}
 .dfn-panel a:not(:hover){text-decoration:none!important;border-bottom:none!important}
 .dfn-panel a[href]:hover{border-bottom-width:1px}
 .dfn-panel ul{padding:0}
@@ -24,7 +45,7 @@ dfn{cursor:pointer}
 </style>
 		
 		
-<title>Best Practices for Authoring Extended Descriptions in EPUB</title>
+<title>Best Practices for Implementing Extended Descriptions in EPUB</title>
 		
 <style id="respec-mainstyle">
 @keyframes pop{
@@ -32,8 +53,6 @@ dfn{cursor:pointer}
 25%{transform:scale(1.25,1.25);opacity:.75}
 100%{transform:scale(1,1)}
 }
-:is(h1,h2,h3,h4,h5,h6,a) abbr{border:none}
-dfn{font-weight:700}
 a.internalDFN{color:inherit;border-bottom:1px solid #99c;text-decoration:none}
 a.externalDFN{color:inherit;border-bottom:1px dotted #ccc;text-decoration:none}
 a.bibref{text-decoration:none}
@@ -44,23 +63,11 @@ a.bibref{text-decoration:none}
 .respec-offending-element{background:url(data:image/gif;base64,R0lGODdhBAADAPEAANv///8AAP///wAAACwAAAAABAADAEACBZQjmIAFADs=) bottom repeat-x}
 }
 #references :target{background:#eaf3ff;animation:pop .4s ease-in-out 0s 1}
-cite .bibref{font-style:normal}
+cite .bibref{font-style:italic}
 a[href].orcid{padding-left:4px;padding-right:4px}
 a[href].orcid>svg{margin-bottom:-2px}
-.toc a,.tof a{text-decoration:none}
-a .figno,a .secno{color:#000}
 ol.tof,ul.tof{list-style:none outside none}
 .caption{margin-top:.5em;font-style:italic}
-table.simple{border-spacing:0;border-collapse:collapse;border-bottom:3px solid #005a9c}
-.simple th{background:#005a9c;color:#fff;padding:3px 5px;text-align:left}
-.simple th a{color:#fff;padding:3px 5px;text-align:left}
-.simple th[scope=row]{background:inherit;color:inherit;border-top:1px solid #ddd}
-.simple td{padding:3px 10px;border-top:1px solid #ddd}
-.simple tr:nth-child(even){background:#f0f6ff}
-.section dd>p:first-child{margin-top:0}
-.section dd>p:last-child{margin-bottom:0}
-.section dd{margin-bottom:1em}
-.section dl.attrs dd,.section dl.eldef dd{margin-bottom:0}
 #issue-summary>ul{column-count:2}
 #issue-summary li{list-style:none;display:inline-block}
 details.respec-tests-details{margin-left:1em;display:inline-block;vertical-align:top}
@@ -72,7 +79,7 @@ details.respec-tests-details>li{padding-left:1em}
 .self-link:hover{opacity:1;text-decoration:none;background-color:transparent}
 aside.example .marker>a.self-link{color:inherit}
 .header-wrapper{display:flex;align-items:baseline}
-:is(h2,h3,h4,h5,h6):not(#toc>h2,#abstract>h2,#sotd>h2,.head>h2){position:relative;left:-.5em}
+:is(h2,h3,h4,h5,h6):not(#toc>h2,#abstract>h2,#sotd>h2,.head>h2):has(+a.self-link){position:relative;left:-.5em}
 :is(h2,h3,h4,h5,h6):not(#toch2)+a.self-link{color:inherit;order:-1;position:relative;left:-1.1em;font-size:1rem;opacity:.5}
 :is(h2,h3,h4,h5,h6)+a.self-link::before{content:"§";text-decoration:none;color:var(--heading-text)}
 :is(h2,h3)+a.self-link{top:-.2em}
@@ -83,30 +90,87 @@ dd{margin-left:0}
 @media print{
 .removeOnSave{display:none}
 }
+body:has(input[name=color-scheme][value=light]:checked),head:not(:has(meta[name=color-scheme][content~=dark]))+body{color-scheme:light}
+body:has(input[name=color-scheme][value=dark]:checked){color-scheme:dark}
 </style>
 		
-        
-<link href="../css/callout.css" rel="stylesheet" type="text/css">
-    
+		
 <style>
-.hljs{display:block;overflow-x:auto;padding:.5em;color:#383a42;background:#fafafa}
-.hljs-comment,.hljs-quote{color:#717277;font-style:italic}
-.hljs-doctag,.hljs-formula,.hljs-keyword{color:#a626a4}
-.hljs-deletion,.hljs-name,.hljs-section,.hljs-selector-tag,.hljs-subst{color:#ca4706;font-weight:700}
-.hljs-literal{color:#0b76c5}
-.hljs-addition,.hljs-attribute,.hljs-meta-string,.hljs-regexp,.hljs-string{color:#42803c}
-.hljs-built_in,.hljs-class .hljs-title{color:#9a6a01}
-.hljs-attr,.hljs-number,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-pseudo,.hljs-template-variable,.hljs-type,.hljs-variable{color:#986801}
-.hljs-bullet,.hljs-link,.hljs-meta,.hljs-selector-id,.hljs-symbol,.hljs-title{color:#336ae3}
+
+			pre {
+            	white-space: break-spaces !important;
+			}
+		
+</style>
+    
+<meta name="color-scheme" content="light">
+<style>
+.hljs,body:has(input[name=color-scheme][value=light]:checked) .hljs,head:not(:has(meta[name=color-scheme][content~=dark]))+body .hljs{--base:#fafafa;--mono-1:#383a42;--mono-2:#686b77;--mono-3:#717277;--hue-1:#0b76c5;--hue-2:#336ae3;--hue-3:#a626a4;--hue-4:#42803c;--hue-5:#ca4706;--hue-5-2:#c91243;--hue-6:#986801;--hue-6-2:#9a6a01}
+@media (prefers-color-scheme:dark){
+.hljs{
+  --base: #282c34;
+  --mono-1: #abb2bf;
+  --mono-2: #818896;
+  --mono-3: #5c6370;
+  --hue-1: #56b6c2;
+  --hue-2: #61aeee;
+  --hue-3: #c678dd;
+  --hue-4: #98c379;
+  --hue-5: #e06c75;
+  --hue-5-2: #be5046;
+  --hue-6: #d19a66;
+  --hue-6-2: #e6c07b;
+}
+}
+body:has(input[name=color-scheme][value=dark]:checked) .hljs{
+  --base: #282c34;
+  --mono-1: #abb2bf;
+  --mono-2: #818896;
+  --mono-3: #5c6370;
+  --hue-1: #56b6c2;
+  --hue-2: #61aeee;
+  --hue-3: #c678dd;
+  --hue-4: #98c379;
+  --hue-5: #e06c75;
+  --hue-5-2: #be5046;
+  --hue-6: #d19a66;
+  --hue-6-2: #e6c07b;
+}
+.hljs{display:block;overflow-x:auto;padding:.5em;color:#383a42;color:var(--mono-1,#383a42);background:#fafafa;background:var(--base,#fafafa)}
+.hljs-comment,.hljs-quote{color:#717277;color:var(--mono-3,#717277);font-style:italic}
+.hljs-doctag,.hljs-formula,.hljs-keyword{color:#a626a4;color:var(--hue-3,#a626a4)}
+.hljs-deletion,.hljs-name,.hljs-section,.hljs-selector-tag,.hljs-subst{color:#ca4706;color:var(--hue-5,#ca4706);font-weight:700}
+.hljs-literal{color:#0b76c5;color:var(--hue-1,#0b76c5)}
+.hljs-addition,.hljs-attribute,.hljs-meta-string,.hljs-regexp,.hljs-string{color:#42803c;color:var(--hue-4,#42803c)}
+.hljs-built_in,.hljs-class .hljs-title{color:#9a6a01;color:var(--hue-6-2,#9a6a01)}
+.hljs-attr,.hljs-number,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-pseudo,.hljs-template-variable,.hljs-type,.hljs-variable{color:#986801;color:var(--hue-6,#986801)}
+.hljs-bullet,.hljs-link,.hljs-meta,.hljs-selector-id,.hljs-symbol,.hljs-title{color:#336ae3;color:var(--hue-2,#336ae3)}
 .hljs-emphasis{font-style:italic}
 .hljs-strong{font-weight:700}
 .hljs-link{text-decoration:underline}
 </style>
 <style>
-var{position:relative;cursor:pointer}
+var:hover{text-decoration:underline;cursor:pointer}
+var.respec-hl{color:var(--color,#000);background-color:var(--bg-color);box-shadow:0 0 0 2px var(--bg-color)}
+@media (prefers-color-scheme:dark){
+var.respec-hl{filter:saturate(.9) brightness(.9)}
+}
+var.respec-hl-c1{--bg-color:#f4d200}
+var.respec-hl-c2{--bg-color:#ff87a2}
+var.respec-hl-c3{--bg-color:#96e885}
+var.respec-hl-c4{--bg-color:#3eeed2}
+var.respec-hl-c5{--bg-color:#eacfb6}
+var.respec-hl-c6{--bg-color:#82ddff}
+var.respec-hl-c7{--bg-color:#ffbcf2}
+@media print{
+var.respec-hl{background:0 0;color:#000;box-shadow:unset}
+}
+</style>
+<style>
+var[data-type]{position:relative}
 var[data-type]::after,var[data-type]::before{position:absolute;left:50%;top:-6px;opacity:0;transition:opacity .4s;pointer-events:none}
-var[data-type]::before{content:"";transform:translateX(-50%);border-width:4px 6px 0 6px;border-style:solid;border-color:transparent;border-top-color:#000}
-var[data-type]::after{content:attr(data-type);transform:translateX(-50%) translateY(-100%);background:#000;text-align:center;font-family:"Dank Mono","Fira Code",monospace;font-style:normal;padding:6px;border-radius:3px;color:#daca88;text-indent:0;font-weight:400}
+var[data-type]::before{content:"";transform:translateX(-50%);border-width:4px 6px 0 6px;border-style:solid;border-color:transparent;border-top-color:#222}
+var[data-type]::after{content:attr(data-type);transform:translateX(-50%) translateY(-100%);background:#222;text-align:center;font-family:"Dank Mono","Fira Code",monospace;font-style:normal;padding:6px;border-radius:3px;color:#daca88;text-indent:0;font-weight:400}
 var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
 </style>
 <script id="initialUserConfig" type="application/json">{
@@ -116,13 +180,29 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
   "edDraftURI": null,
   "editors": [
     {
+      "name": "Avneesh Singh",
+      "company": "DAISY Consortium"
+    },
+    {
       "name": "Charles LaPierre",
       "company": "Benetech"
+    },
+    {
+      "name": "George Kerscher",
+      "company": "DAISY Consortium"
+    },
+    {
+      "name": "Gregorio Pellegrino",
+      "company": "Fondazione LIA"
+    },
+    {
+      "name": "Jonas Lillqvist",
+      "company": "Accessibility Library Celia, National Archives of Finland"
     }
   ],
   "logos": [
     {
-      "src": "/transitiontoepub/daisy_high.jpg",
+      "src": "https://daisy.github.io/transitiontoepub/daisy_high.jpg",
       "width": 112,
       "height": 100,
       "alt": "DAISY Consortium logo",
@@ -130,15 +210,15 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     }
   ],
   "github": "DAISY/transitiontoepub",
-  "publishISODate": "2022-12-14T00:00:00.000Z",
-  "generatedSubtitle": "14 December 2022"
+  "publishISODate": "2026-04-28T00:00:00.000Z",
+  "generatedSubtitle": "28 April 2026"
 }</script>
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/base.css"></head>
     <body class="h-entry informative"><div class="head">
-    <p class="logos"><a class="logo" href="https://daisy.org"><img crossorigin="" alt="DAISY Consortium logo" height="100" src="/transitiontoepub/daisy_high.jpg" width="112">
+    <p class="logos"><a class="logo" href="https://daisy.org"><img crossorigin="" alt="DAISY Consortium logo" height="100" src="https://daisy.github.io/transitiontoepub/daisy_high.jpg" width="112">
   </a></p>
-    <h1 id="title" class="title">Best Practices for Authoring Extended Descriptions in EPUB</h1> 
-    <p id="w3c-state"> <time class="dt-published" datetime="2022-12-14">14 December 2022</time></p>
+    <h1 id="title" class="title">Best Practices for Implementing Extended Descriptions in EPUB</h1> 
+    <p id="w3c-state"> <time class="dt-published" datetime="2026-04-28">28 April 2026</time></p>
     <details open="">
       <summary>More details about this document</summary>
       <dl>
@@ -155,8 +235,18 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
         
         
         
-        <dt>Editor:</dt><dd class="editor p-author h-card vcard">
+        <dt>
+                Editors:
+              </dt><dd class="editor p-author h-card vcard">
+    <span class="p-name fn">Avneesh Singh</span> (<span class="p-org org h-org">DAISY Consortium</span>)
+  </dd><dd class="editor p-author h-card vcard">
     <span class="p-name fn">Charles LaPierre</span> (<span class="p-org org h-org">Benetech</span>)
+  </dd><dd class="editor p-author h-card vcard">
+    <span class="p-name fn">George Kerscher</span> (<span class="p-org org h-org">DAISY Consortium</span>)
+  </dd><dd class="editor p-author h-card vcard">
+    <span class="p-name fn">Gregorio Pellegrino</span> (<span class="p-org org h-org">Fondazione LIA</span>)
+  </dd><dd class="editor p-author h-card vcard">
+    <span class="p-name fn">Jonas Lillqvist</span> (<span class="p-org org h-org">Accessibility Library Celia, National Archives of Finland</span>)
   </dd>
         
         
@@ -174,499 +264,593 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     
     <p class="copyright">Copyright © DAISY Consortium 2022</p>
     <hr title="Separator for header">
-  </div>
+  </div><style>
+.redborder{border:5px solid red!important;}.remove-item-ipedis{position:relative;z-index:1000000;font-size:12px;font-weight:bold;color:white;background:darkred;padding:2px 3px;display:inline-block;width:max-content;box-shadow:3px 3px 3px -1px rgba(0,0,0,0.75);border-radius:2px;font-family:Helvetica,sans-serif;}.inner-html{color:white;}.colour-default{color:red;background-color:red;margin:5px 0;}
+</style>
     	
-    	
-    	<section id="abstract" hidden="" class="notoc introductory"><h2>Abstract</h2></section><nav id="toc"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#introduction"><bdi class="secno">1. </bdi>Introduction</a></li><li class="tocline"><a class="tocxref" href="#evaluation-process"><bdi class="secno">2. </bdi>Evaluation Process</a></li><li class="tocline"><a class="tocxref" href="#recommendations"><bdi class="secno">3. </bdi>Recommendations</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#technique-1-extended-description-placed-in-html-details-element-just-below-the-image"><bdi class="secno">3.1 </bdi>Technique 1: Extended description placed in HTML details element, just below the image</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#advantages"><bdi class="secno">3.1.1 </bdi><b>Advantages:</b></a></li><li class="tocline"><a class="tocxref" href="#disadvantages"><bdi class="secno">3.1.2 </bdi><b>Disadvantages:</b></a></li></ol></li><li class="tocline"><a class="tocxref" href="#technique-2-provide-a-text-hyperlink-just-below-the-image-which-takes-the-user-to-a-separate-html-file-containing-only-one-extended-description-and-provide-a-text-hyperlink-to-return-back-to-original-reading-position"><bdi class="secno">3.2 </bdi>Technique 2: Provide a text hyperlink just below the image, which takes the user to a separate HTML file containing only one extended description, and provide a text hyperlink to return back to original reading position.</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#advantages-0"><bdi class="secno">3.2.1 </bdi><b>Advantages:</b></a></li><li class="tocline"><a class="tocxref" href="#disadvantages-0"><bdi class="secno">3.2.2 </bdi><b>Disadvantages:</b></a></li></ol></li><li class="tocline"><a class="tocxref" href="#technique-3-encapsulating-either-techniques-1-or-2-within-a-figure"><bdi class="secno">3.3 </bdi>Technique 3: Encapsulating either Techniques 1 or 2 within a <code>figure</code></a><ol class="toc"><li class="tocline"><a class="tocxref" href="#advantages-1"><bdi class="secno">3.3.1 </bdi><b>Advantages:</b></a></li><li class="tocline"><a class="tocxref" href="#disadvantages-1"><bdi class="secno">3.3.2 </bdi><b>Disadvantages:</b></a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#acknowledgements"><bdi class="secno">A. </bdi>Acknowledgments</a></li></ol></nav>
-    	
+
+    	<section id="abstract" hidden="" class="notoc introductory"><h2>Abstract</h2></section><nav id="toc"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#introduction"><bdi class="secno">1. </bdi>Introduction</a></li><li class="tocline"><a class="tocxref" href="#recommendations"><bdi class="secno">2. </bdi>Recommendations</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#technique1"><bdi class="secno">2.1 </bdi>Recommended technique: Extended description in a separate HTML file with hyperlink</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#technique1-main-content"><bdi class="secno">2.1.1 </bdi>Setting up the main content</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#technique1-main-content-examples"><bdi class="secno">2.1.1.1 </bdi>Examples</a></li></ol></li><li class="tocline"><a class="tocxref" href="#technique1-external-file"><bdi class="secno">2.1.2 </bdi>Setting up the external file with extended descriptions</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#epub-spine-configuration"><bdi class="secno">2.1.2.1 </bdi>EPUB spine configuration</a></li><li class="tocline"><a class="tocxref" href="#technique1-external-file-example"><bdi class="secno">2.1.2.2 </bdi>Example</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#technique2"><bdi class="secno">2.2 </bdi>Alternate technique: Extended description placed just below the image</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#technique2-below"><bdi class="secno">2.2.1 </bdi>Setting up the main content with extended description</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#technique2-examples"><bdi class="secno">2.2.1.1 </bdi>Example</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#technique3"><bdi class="secno">2.3 </bdi>Deprecated technique: Extended description in a details element below the image</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#technique3-details"><bdi class="secno">2.3.1 </bdi>Setting up the main content with extended description</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#acknowledgements"><bdi class="secno">A. </bdi>Acknowledgments</a></li></ol></nav>
+
         <section id="introduction"><div class="header-wrapper"><h2 id="x1-introduction"><bdi class="secno">1. </bdi>Introduction</h2><a class="self-link" href="#introduction" aria-label="Permalink for Section 1."></a></div>
 
-        <p>Images and diagrams are essential for careers in the fields of science, technology, engineering and mathematics. However, these crucial sources of information are not accessible to people with visual disabilities. The <code>alt</code> text attribute is frequently used to provide a summary of an image, but it is not sufficient for describing complex images, like a diagram of a hydraulic valve, or parts of the body like kidneys etc.</p>
+        <p>Images and diagrams are essential for careers in the fields of science, technology, engineering, and mathematics. However, these crucial sources of information are not accessible to people with visual disabilities. The <code>alt</code> text attribute is frequently used to provide a summary of an image. However, it is not sufficient for describing complex images. Examples include a diagram of a hydraulic valve or parts of the body such as the kidneys.</p>
+
+        <p>While this document primarily focuses on images, extended descriptions can also be used for other complex content, including tables, explanatory videos, and other media. Such content often requires additional context for full understanding.</p>
+
+        <p>At this point in time, the most appropriate and cost-effective solution for making complex content accessible is the use of extended descriptions. This enables authors and publishers to provide longer descriptions in well-structured text. The HTML and ARIA specifications already include features that support extended descriptions. However, there are implementation challenges in current web browsers, EPUB 3 reading systems, and assistive technologies. Therefore, we initiated an activity in a DAISY working group for evaluating the implementation shortcomings of different reading environments, and developing the best practices for authoring extended descriptions. These practices enable users to understand images across a wider range of EPUB reading environments.</p>
+
+        <p>The recommendations for EPUB 3 environments in this report may differ slightly from those for the web environment. Most EPUB 3 reading systems use components from web browsers. However, reading systems often change or override browser functionality. This results in a different reading experience.</p>
+
+        <div class="note" role="note" id="issue-container-generatedID"><div class="note-title marker" id="h-note"><span>Note</span></div><aside class="">
+        	<p>This document represents the second iteration of these best practices. Based on further testing and feedback from the community, we are now recommending a different approach compared to the previous version. While the first version primarily recommended the use of HTML <code>details</code> elements placed directly below images (see <a href="#technique3">Deprecated technique</a>), this updated version prioritizes the use of hyperlinks to external files containing extended descriptions (see <a href="#technique1">Recommended technique</a>).</p>
+        	<p>This change reflects the fact that many publishers prefer to treat extended descriptions as additional content rather than part of the main content, in addition to the fact that some pagination-based EPUB reading solutions have problems with the appearance and disappearance of <code>details</code> content.</p>
+        </aside></div>
+
+
+        </section><section id="recommendations"><div class="header-wrapper"><h2 id="x2-recommendations"><bdi class="secno">2. </bdi>Recommendations</h2><a class="self-link" href="#recommendations" aria-label="Permalink for Section 2."></a></div>
+
+        <p>After thorough evaluation, we are able to propose two techniques at this point of time. These techniques worked in a majority of the reading environments. This does not guarantee full support, but these provide a way forward while the web browsers, EPUB reading systems and assistive technologies catch up.</p>
+
+        <section id="technique1"><div class="header-wrapper"><h3 id="x2-1-recommended-technique-extended-description-in-a-separate-html-file-with-hyperlink"><bdi class="secno">2.1 </bdi>Recommended technique: Extended description in a separate HTML file with hyperlink</h3><a class="self-link" href="#technique1" aria-label="Permalink for Section 2.1"></a></div>
         
-        <p>At this point of time, the most appropriate and cost effective solution for making complex images accessible is the use of extended descriptions. It enables authors and publishers to provide longer descriptions in well-structured text. The good news is that the Html 5 and ARIA specifications already have the features for supporting extended descriptions, but there are implementation challenges in the current state of web browsers, EPUB 3 reading systems and assistive technologies. Therefore we initiated an activity in our  working group for evaluating the implementation shortcomings of different reading environments, and developing the best practices for authoring extended descriptions, which enables the users to understand the images in a wider range of EPUB reading environments.</p>
 
-        <p>It is possible that the recommendations for EPUB 3 environments provided in this report are a little different from the recommendations for the web environment. Though most of EPUB 3 reading systems use components from web browsers, the reading systems tend to change and sometimes override the web browser functionality, which results in a somewhat different reading experience.</p>
+            <p>This technique provides extended descriptions in separate HTML file(s) (e.g. an appendix at the end of the e-book, a file containing extended descriptions for each chapter of the publication or even a file for each image). A hyperlink placed below the image in the main content links to the description in the separate file. And a back link placed in the description returns the user to the original reading position in the main content.</p>
 
-        <p>It is important to highlight that the web browsers, EPUB 3 reading systems and assistive technologies are constantly improving, therefore, the recommendations may become outdated, and another round of evaluations would be required. Furthermore we will make the developers of reading technologies aware of the identified implementation gaps to facilitate resolution of the issues.</p>
+            <div class="note" role="note" id="issue-container-generatedID-0"><div class="note-title marker" id="h-note-0"><span>Note</span></div><p class="">This technique is recommended over the use of HTML <code>details</code> element (see <a href="#technique3">Deprecated technique</a>) as it provides better support across reading systems.</p></div>
 
-        </section><section id="evaluation-process"><div class="header-wrapper"><h2 id="x2-evaluation-process"><bdi class="secno">2. </bdi>Evaluation Process</h2><a class="self-link" href="#evaluation-process" aria-label="Permalink for Section 2."></a></div>
-        
-        <p>Step 1. The following techniques were developed:
-        </p><ol>
-            <li><code>&lt;aria-details&gt;</code> is used on <code>&lt;img&gt;</code> element, and it is used by the user to move from image to the extended description placed in HTML details element. The image is placed inside figure element and the HTML details element with extended description is placed before the figcaption of the figure element.</li>
-            <li><code>&lt;aria-details&gt;</code> is used on <code>&lt;img&gt;</code> element, and it is used by the user to move from image to the HTML details containing the extended description. The HTML details element follows the image in the reading order. In this technique no figure element is used.</li>
-            <li><code>&lt;aria-details&gt;</code> is used on <code>&lt;img&gt;</code> element, and it is used by the user to move from image to the extended description, which is placed at end of current HTML file.</li>
-            <li>Hyperlink on text is used by the user to move to the extended description placed at the end of current HTML file. The expectation is that the hyperlink needs to take you to the exact position on the extended description and the back link should take you back to the original image.</li>
-            <li><code>&lt;aria-describedby&gt;</code> points to an aside in a figcaption.</li>
-            <li><code>&lt;aria-describedby&gt;</code> points to an aside at the end of chapter.</li>
-            <li>Use of role="presentation" on inline image and block image.</li>
-            <li>Expand HTML details containing a long extended description, and evaluate if the reading system adjusts the screen accordingly and provides ease of reading.</li>
-            <li>Collapse HTML details containing a long extended description, and evaluate if the reading system correctly adjusts the screen and pagination.</li>
-            <li>JavaScript is supported and enhancement to HTML details, prefers-reduced-motion media query works.</li>
-            <li>JavaScript is supported  and enhancement to HTML details, pointer media query works.</li>
-            <li>Text hyperlink is used by the user to go to the exact position of the extended description placed on a separate HTML file, and the back links takes you back to the original position in the original file.</li>
-            <li>Text hyperlink is used by the user to go to a separate HTML file with a single extended description. The accuracy of the landing location on the description does not matter, because there is only a single description in the HTML file, but the back link must take you to the original position.</li>
-            <li>Text hyperlink is used by the user to go to a separate HTML file with single extended description. The accuracy of the landing location on the extended description as well as landing location while coming back is relaxed.</li>
-        </ol>
-    
-    <p>Step 2. The techniques were evaluated on Different configurations of reading environments. The following reading systems, operating systems, browsers and assistive technologies combinations were used: </p>
-        <ul>
-            <li>Reading systems: Vital Source bookshelf online, Vital Source bookshelf desktop, Redshelf, Thorium desktop, Azardi, Dolphin Easyreader, Voice Dream, Apple Books and Google Playbooks.</li>
-            <li>Operating systems: Windows, Mac OS, iOS and Android.</li>
-            <li>Browsers used for reading systems plugins: Chrome, Firefox, Edge, and Safari.</li>
-            <li>Assistive technologies: JAWS, NVDA, Voiceover and Talkback.</li>
-        </ul>
-
-        </section><section id="recommendations"><div class="header-wrapper"><h2 id="x3-recommendations"><bdi class="secno">3. </bdi>Recommendations</h2><a class="self-link" href="#recommendations" aria-label="Permalink for Section 3."></a></div>
-        
-        <p>After thorough evaluation, we are able to recommend three techniques at this point of time. These techniques worked in a majority of the reading environments. This does not guarantee very wide support, but these provide a way forward while the web browsers, EPUB reading systems and assistive technologies catch-up.</p>
-        
-        <p>It is also recommended to include <code>&lt;aria-details&gt;</code> on the image which informs assistive technology that in addition to the alt text simple description there is also an associated extended description which the <code>aria-details</code>refers to.</p>
-
-        <section id="technique-1-extended-description-placed-in-html-details-element-just-below-the-image"><div class="header-wrapper"><h3 id="x3-1-technique-1-extended-description-placed-in-html-details-element-just-below-the-image"><bdi class="secno">3.1 </bdi>Technique 1: Extended description placed in HTML details element, just below the image</h3><a class="self-link" href="#technique-1-extended-description-placed-in-html-details-element-just-below-the-image" aria-label="Permalink for Section 3.1"></a></div>
-        
-        <section id="advantages"><div class="header-wrapper"><h4 id="x3-1-1-advantages"><bdi class="secno">3.1.1 </bdi><b>Advantages:</b></h4><a class="self-link" href="#advantages" aria-label="Permalink for Section 3.1.1"></a></div>
-        <ul>
-            <li>The extended description is provided just below the image, the next item in the reading order. This means that the user does not need to change from the reading flow, and lose their reading position.</li>
-            <li>The details element does not show the description by default, the user needs to expand it to show the description, therefore it does not clutter the page for users who do not need extended descriptions.</li>
-            <li>It is a good approach for publishers who do not want additional portions of description text visible on the page.</li>
-        </ul>
-    
-    </section><section id="disadvantages"><div class="header-wrapper"><h4 id="x3-1-2-disadvantages"><bdi class="secno">3.1.2 </bdi><b>Disadvantages:</b></h4><a class="self-link" href="#disadvantages" aria-label="Permalink for Section 3.1.2"></a></div>
-        <ul>
-            <li>If a publication has a large number of images and extended descriptions, the task of locating the details, and expanding it to read descriptions puts considerable cognitive load, especially on the people with cognitive disabilities.</li>
-            <li>There are EPUB reading systems which do not support HTML details properly, and details element is always expanded. Such a situation clutters the page with a huge amount of text and makes it very difficult for everyone to read the publication.</li>
-            <li>Sometimes publishers need to create pixel perfect pages, and visibility of detail’s elements get in the way of achieving it.</li>
-            <li>If the extended description inside the details element is huge, expanding it may disorient the user, especially when the reading system has paginated view.</li>
-        </ul>
-
-        <div class="simplecalloutbox_preheader">    
-            <div class="header-wrapper"><h4 id="code-example-1">Code Example 1</h4><a class="self-link" href="#code-example-1" aria-label="Permalink for this Section"></a></div>
-        </div>
-        <div class="simplecalloutbox">
-            <pre><code aria-busy="false" class="hljs xml">
-            <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"chart-ebcaadfb.png"</span> 
-            <span class="hljs-attr">alt</span>=<span class="hljs-string">"Bar chart showing monthly and total visitors for the first quarter 2014 for sites 1 to 3."</span>
-            <span class="hljs-attr">aria-details</span>=<span class="hljs-string">"image1-extended-desc"</span> /&gt;</span>
-  
-          <span class="hljs-tag">&lt;<span class="hljs-name">details</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"image1-extended-desc"</span>&gt;</span>
-              <span class="hljs-tag">&lt;<span class="hljs-name">summary</span>&gt;</span>Expand / collapse Extended Description<span class="hljs-tag">&lt;/<span class="hljs-name">summary</span>&gt;</span>
-              <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
-                  <span class="hljs-tag">&lt;<span class="hljs-name">h5</span>&gt;</span>Overview<span class="hljs-tag">&lt;/<span class="hljs-name">h5</span>&gt;</span>
-                  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>The chart shows the website hits for the first quarter of 2014. It shows that Site 1 has more visitors
-                      than either of the other sites, but the number of visitors is decreasing. Site 2 has a fairly constant
-                      number of visitors, while for Site 3 page hits are increasing month on month.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-                  <span class="hljs-tag">&lt;<span class="hljs-name">h6</span>&gt;</span>Data<span class="hljs-tag">&lt;/<span class="hljs-name">h6</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span>
-                    <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"col"</span>&gt;</span>Period<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"col"</span>&gt;</span>Site 1<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"col"</span>&gt;</span>Site 2<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"col"</span>&gt;</span>Site 3<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
-                    <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
-                    <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"row"</span>&gt;</span>Jan<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>135<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>112<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>92<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
-                    <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
-                    <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"row"</span>&gt;</span>Feb<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>117<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>114<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>99<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
-                    <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
-                    <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"row"</span>&gt;</span>Mar<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>96<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>111<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>126<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
-                    <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
-                    <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"row"</span>&gt;</span>Qtr Total<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>348<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>337<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>308<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
-                    <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
-                <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">h6</span>&gt;</span>Presentation<span class="hljs-tag">&lt;/<span class="hljs-name">h6</span>&gt;</span>
-                  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>The bar chart represents both the number of visitors per month for each website, and the total number
-                      of visitors per website for the entire quarter. Website visitors for each month are represented using
-                      columns lined up horizontally, with heights indicating the number of visitors. A fourth column is
-                      provided for each website with the accumulated site visitors for the quarter.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-              <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-          <span class="hljs-tag">&lt;/<span class="hljs-name">details</span>&gt;</span>
-</code></pre>
-
-
-            <div class="simplecalloutbox_preheader">    
-            <div class="header-wrapper"><h4 id="code-example-1-preview">Code Example 1 Preview</h4><a class="self-link" href="#code-example-1-preview" aria-label="Permalink for this Section"></a></div>
-            </div>
-            <div class="simplecalloutbox">
-
-                <img src="chart-ebcaadfb.png" alt="Bar chart showing monthly and total visitors for the first quarter 2014 for sites 1 to 3." aria-details="image1-extended-desc" height="437" width="550">
-
-                <details id="image1-extended-desc">
-                <summary>Expand / collapse Extended Description</summary>
-                <div>
-                  <div class="header-wrapper"><h4 id="overview">Overview</h4><a class="self-link" href="#overview" aria-label="Permalink for this Section"></a></div>
-                  <p>The chart shows the website hits for the first quarter of 2014. It shows that Site 1 has more visitors
-                      than either of the other sites, but the number of visitors is decreasing. Site 2 has a fairly constant
-                      number of visitors, while for Site 3 page hits are increasing month on month.</p>
-                  <div class="header-wrapper"><h6 id="data">Data</h6><a class="self-link" href="#data" aria-label="Permalink for this Section"></a></div>
-                <table>
-                    <tbody><tr>
-                        <th scope="col">Period</th>
-                        <th scope="col">Site 1</th>
-                        <th scope="col">Site 2</th>
-                        <th scope="col">Site 3</th>
-                    </tr>
-                    <tr>
-                        <th scope="row">Jan</th>
-                        <td>135</td>
-                        <td>112</td>
-                        <td>92</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Feb</th>
-                        <td>117</td>
-                        <td>114</td>
-                        <td>99</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Mar</th>
-                        <td>96</td>
-                        <td>111</td>
-                        <td>126</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Qtr Total</th>
-                        <td>348</td>
-                        <td>337</td>
-                        <td>308</td>
-                    </tr>
-                </tbody></table>
-            <div class="header-wrapper"><h6 id="presentation">Presentation</h6><a class="self-link" href="#presentation" aria-label="Permalink for this Section"></a></div>
-                  <p>The bar chart represents both the number of visitors per month for each website, and the total number
-                      of visitors per website for the entire quarter. Website visitors for each month are represented using
-                      columns lined up horizontally, with heights indicating the number of visitors. A fourth column is
-                      provided for each website with the accumulated site visitors for the quarter.</p>
-              </div>
-          </details>
-            </div>
-        </div>
-        
-        </section></section><section id="technique-2-provide-a-text-hyperlink-just-below-the-image-which-takes-the-user-to-a-separate-html-file-containing-only-one-extended-description-and-provide-a-text-hyperlink-to-return-back-to-original-reading-position"><div class="header-wrapper"><h3 id="x3-2-technique-2-provide-a-text-hyperlink-just-below-the-image-which-takes-the-user-to-a-separate-html-file-containing-only-one-extended-description-and-provide-a-text-hyperlink-to-return-back-to-original-reading-position"><bdi class="secno">3.2 </bdi>Technique 2: Provide a text hyperlink just below the image, which takes the user to a separate HTML file containing only one extended description, and provide a text hyperlink to return back to original reading position.</h3><a class="self-link" href="#technique-2-provide-a-text-hyperlink-just-below-the-image-which-takes-the-user-to-a-separate-html-file-containing-only-one-extended-description-and-provide-a-text-hyperlink-to-return-back-to-original-reading-position" aria-label="Permalink for Section 3.2"></a></div>
-        
-            <p>This technique looks simple, but it is worth mentioning that all reading system environments are not able to land the reading cursor at the exact location on the destination HTML file. Therefore, to avoid landing at the incorrect extended description, it is important to have only one extended description in the HTML file.</p>
-            
-            <p>It is also recommended that on the separate page which has the extended description there should also be a copy of the same image marked as presentational.  This would be useful for those who can see the image and may need to reference the image along with its extended description.</p>
-        
-        <section id="advantages-0"><div class="header-wrapper"><h4 id="x3-2-1-advantages"><bdi class="secno">3.2.1 </bdi><b>Advantages:</b></h4><a class="self-link" href="#advantages-0" aria-label="Permalink for Section 3.2.1"></a></div>
+        <p>Advantages:</p>
         <ul>
             <li>Simple technique, authors and publishers are already familiar with it.</li>
-            <li>Complexities due to collapsing and expanding are avoided, and fidelity of the page is maintained to a great extent.</li>
-            <li>Almost all the EPUB reading systems support the hyperlinks, however navigation to exact location in the destination HTML file may not be supported as well.</li>
-            <li>Including a copy of the original image can help cognative users with understanding the extended description in context with the image on the same page.</li>
-            <li>Making the copy of the image presentational, instead of repeating the alt text from the original image in the EPUB, prevents the same alt text description from being spoken twice to the screen reader user.  Also, since the extended description fully describes the image in question no alt text is required here.</li>
+            <li>Well supported by EPUB reading systems, avoiding the technical limitations associated with collapsing and expanding elements.</li>
+            <li>Including a copy of the original image marked as presentational (<code>role="presentation"</code>) can help users with understanding the extended description in context with the image.</li>
+            <li>Multiple extended descriptions can be placed in the same HTML file, organized with <code>section</code> elements.</li>
+            <li>The extended description file can be excluded from the reading order by setting <code>linear="no"</code> in the EPUB spine.</li>
         </ul>
-    </section><section id="disadvantages-0"><div class="header-wrapper"><h4 id="x3-2-2-disadvantages"><bdi class="secno">3.2.2 </bdi><b>Disadvantages:</b></h4><a class="self-link" href="#disadvantages-0" aria-label="Permalink for Section 3.2.2"></a></div>
 
+    <p>Disadvantages:</p>
         <ul>
-            <li>Results in branching from the reading flow and sometimes the reading position is also lost.</li>
-            <li>The inaccuracy of the landing position on the extended description does not matter because there is just one extended description on the HTML file, but accuracy of linking back to original reading position does matter, and some reading systems fail to provide this accuracy.</li>
-            <li>Having only one extended description on an HTML page can create some production challenges for a publication having a large number of complex images to describe.</li>
+            <li>Results in branching from the reading flow and sometimes the reading position may be lost when returning.</li>
+            <li>Accuracy of linking back to original reading position matters, and some reading systems may fail to provide this accuracy.</li>
         </ul>
 
-        <div class="simplecalloutbox_preheader">    
-            <div class="header-wrapper"><h4 id="code-example-2">Code Example 2</h4><a class="self-link" href="#code-example-2" aria-label="Permalink for this Section"></a></div>
-        </div>
-        <div class="simplecalloutbox">
-
-            <pre><code aria-busy="false" class="hljs xml">
-    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Image with hyperlink pointing to the extended description. 
-
-    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Example.com Site visitors Jan to March 2014<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-    
-    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"chart-ebcaadfb.png"</span> 
-    <span class="hljs-attr">alt</span>=<span class="hljs-string">"Bar chart showing monthly and total visitors for the first quarter 2014 for sites 1 to 3."</span>  <span class="hljs-attr">aria-details</span>=<span class="hljs-string">"image2-link"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span>
-
-    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"image2-link"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"./endOfBookDescriptionsSingle.xhtml#image2-extended-desc"</span>&gt;</span>Follow for extended description<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-</code></pre>
-
-            <p>Extended description on a separate HTML file. It also shows smaller image for convenience of the users</p>
-
-
-            <pre><code aria-busy="false" class="hljs xml">
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"image2-extended-desc"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"endDesc"</span> <span class="hljs-attr">aria-labelledby</span>=<span class="hljs-string">"barchart-desc"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">h5</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"barchart-desc"</span>&gt;</span>Description of Bar Chart<span class="hljs-tag">&lt;/<span class="hljs-name">h5</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"chart-ebcaadfb.png"</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">""</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"presentation"</span>/&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">h6</span>&gt;</span>Overview<span class="hljs-tag">&lt;/<span class="hljs-name">h6</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>The chart shows the website hits for the first quarter of 2014. It shows that Site 1 has more visitors than either
-            of the other sites, but the number of visitors is decreasing. Site 2 has a fairly constant number of visitors,
-            while for Site 3 page hits are increasing month on month.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">h6</span>&gt;</span>Data<span class="hljs-tag">&lt;/<span class="hljs-name">h6</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span>
-                    <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"col"</span>&gt;</span>Period<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"col"</span>&gt;</span>Site 1<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"col"</span>&gt;</span>Site 2<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"col"</span>&gt;</span>Site 3<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
-                    <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
-                    <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"row"</span>&gt;</span>Jan<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>135<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>112<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>92<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
-                    <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
-                    <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"row"</span>&gt;</span>Feb<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>117<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>114<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>99<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
-                    <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
-                    <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"row"</span>&gt;</span>Mar<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>96<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>111<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>126<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
-                    <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
-                    <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"row"</span>&gt;</span>Qtr Total<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>348<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>337<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>308<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
-                    <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
-                <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">h6</span>&gt;</span>Presentation<span class="hljs-tag">&lt;/<span class="hljs-name">h6</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>The bar chart represents both the number of visitors per month for each website, and the total number of visitors
-            per website for the entire quarter. Website visitors for each month are represented using columns lined up
-            horizontally, with heights indicating the number of visitors. A fourth column is provided for each website
-            with the accumulated site visitors for the quarter.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"Image2DetailsBackLink"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"./testDetailsEndOfBookSingle.xhtml#image2-link"</span>&gt;</span>Navigate back to bar chart image.<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-</code></pre>
-
-<div class="simplecalloutbox_preheader">    
-<div class="header-wrapper"><h4 id="code-example-2-preview">Code Example 2 Preview</h4><a class="self-link" href="#code-example-2-preview" aria-label="Permalink for this Section"></a></div>
-</div>
-<div class="simplecalloutbox">
-     <p>Example.com Site visitors Jan to March 2014</p>
-       <img src="chart-ebcaadfb.png" alt="Bar chart showing monthly and total visitors for the first quarter 2014 for sites 1 to 3." aria-details="image2-link" height="437" width="550">
-    <br>
-    <a id="image2-link" href="./endofbookdescriptionssingle.html#image2-extended-desc">Follow for extended description</a>
-</div>
-</div>
-
-        </section></section><section id="technique-3-encapsulating-either-techniques-1-or-2-within-a-figure"><div class="header-wrapper"><h3 id="x3-3-technique-3-encapsulating-either-techniques-1-or-2-within-a-figure"><bdi class="secno">3.3 </bdi>Technique 3: Encapsulating either Techniques 1 or 2 within a <code>figure</code></h3><a class="self-link" href="#technique-3-encapsulating-either-techniques-1-or-2-within-a-figure" aria-label="Permalink for Section 3.3"></a></div>
+        <section id="technique1-main-content"><div class="header-wrapper"><h4 id="x2-1-1-setting-up-the-main-content"><bdi class="secno">2.1.1 </bdi>Setting up the main content</h4><a class="self-link" href="#technique1-main-content" aria-label="Permalink for Section 2.1.1"></a></div>
         
-            <p>This technique simply encapsulates either technique within a <code>figure</code> element.</p>
-            
-            <p>Note: when adding a <code>figcaption</code> it is important that this be placed either before the first image or after the last image within the <code>figure</code>.  I.E.: either immediately after
-            the <code>&lt;figure&gt;</code> tag or immediately before the end <code>&lt;/figure&gt;</code> tag.</p>
-           
-            <p>Note: when adding multiple images within a single <code>&lt;figure&gt;</code> there can be only one <code>&lt;figcaption&gt;</code> either at the top or bottom and each image should have its extended description <code>&lt;details&gt;</code> or link to the extended description immediately after the image. Note that when the images relate to each other, it may be best to have a single extended description after the final image that describes the images and their relationship.</p>
+
+            <p>By "main content" we refer to the primary content of your EPUB publication (chapters, sections, etc.) where the images that need extended descriptions appear.</p>
+
+            <p>Key requirements:</p>
+            <ul>
+                <li>The image must have a brief <code>alt</code> text that describes what the image is (e.g., "Bar chart showing quarterly website visitors").</li>
+                <li>After the image (or group of images), there must be a link pointing to its (their) extended description.</li>
+                <li>The content of the link to the extended description can be textual (for example, "Extended description", or more specific, localized in the language of the text), or it can be an icon whose accessible name (<code>alt</code> or <code>aria-label</code>) must include the term Extended description (in the language of the text).</li>
+                <li>The link must have a unique <code>id</code> attribute.</li>
+                <li>The image must have an <code>aria-details</code> attribute pointing to that link's ID.</li>
+            </ul>
+
+            <p>This establishes a programmatic relationship that allows assistive technologies to indicate that additional details are available.</p>
+
+            <p>The general pattern is:</p>
+            <aside class="example" id="example-general-pattern"><div class="marker">
+    <a class="self-link" href="#example-general-pattern">Example<bdi> 1</bdi></a><span class="example-title">: General pattern</span>
+  </div>
+            	<pre aria-busy="false"><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">aria-details</span>=<span class="hljs-string">"link-id"</span>  <span class="hljs-attr">alt</span>=<span class="hljs-string">"Bar chart showing..."</span> <span class="hljs-attr">...</span> /&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"link-id"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"extended-descriptions.xhtml#description-id"</span>&gt;</span>Extended description<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></code></pre>
+			</aside>
+
+			<section id="examples"><div class="header-wrapper"><h5 id="technique1-main-content-examples"><bdi class="secno">2.1.1.1 </bdi>Examples</h5><a class="self-link" href="#technique1-main-content-examples" aria-label="Permalink for Section 2.1.1.1"></a></div>
+			<p>In this section, we provide some examples, which are not exhaustive, of how the code relating to the link to the extended description can be structured in different cases.</p>
+
+        <aside class="example" id="example-images-in-figure-with-link-in-figcaption"><div class="marker">
+    <a class="self-link" href="#example-images-in-figure-with-link-in-figcaption">Example<bdi> 2</bdi></a><span class="example-title">: Images in figure with link in figcaption</span>
+  </div>
+        	<p>When using a <code>figure</code> element, you can place the link to the extended description inside the <code>figcaption</code>. The <code>figcaption</code> must be either the first or last element within the <code>figure</code> to maintain HTML validity.</p>
+
+        	<pre aria-busy="false"><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">figure</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"img1"</span> <span class="hljs-attr">aria-details</span>=<span class="hljs-string">"anchor-extended-description-img1"</span>
+         <span class="hljs-attr">src</span>=<span class="hljs-string">"image.png"</span>
+         <span class="hljs-attr">alt</span>=<span class="hljs-string">"Chart of 2014 First Quarter Visitors to example.com Websites"</span>/&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">figcaption</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>This is the caption for this image.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"anchor-extended-description-img1"</span>
+              <span class="hljs-attr">href</span>=<span class="hljs-string">"extended-descriptions.xhtml#extended-description-img1"</span>&gt;</span>Extended description<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">figcaption</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">figure</span>&gt;</span></code></pre>
+        </aside>
+
+        <aside class="example" id="example-images-in-figure-with-link-outside-figcaption"><div class="marker">
+    <a class="self-link" href="#example-images-in-figure-with-link-outside-figcaption">Example<bdi> 3</bdi></a><span class="example-title">: Images in figure with link outside figcaption</span>
+  </div>
+        	<p>If you prefer to place the link to the extended description outside the <code>figcaption</code>, it must be positioned before the <code>figcaption</code> to maintain HTML validity (since <code>figcaption</code> must be the first or last element within <code>figure</code>).</p>
+
+            <pre aria-busy="false"><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">figure</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"img2"</span> <span class="hljs-attr">aria-details</span>=<span class="hljs-string">"anchor-extended-description-img2"</span>
+         <span class="hljs-attr">src</span>=<span class="hljs-string">"image.png"</span>
+         <span class="hljs-attr">alt</span>=<span class="hljs-string">"Chart of 2014 First Quarter Visitors to example.com Websites"</span>/&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"anchor-extended-description-img2"</span>
+          <span class="hljs-attr">href</span>=<span class="hljs-string">"extended-descriptions.xhtml#extended-description-img2"</span>&gt;</span>Extended description<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">figcaption</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>This is the caption for this image.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">figcaption</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">figure</span>&gt;</span></code></pre>
+        </aside>
+
+        <aside class="example" id="example-images-without-figure-wrapper"><div class="marker">
+    <a class="self-link" href="#example-images-without-figure-wrapper">Example<bdi> 4</bdi></a><span class="example-title">: Images without figure wrapper</span>
+  </div>
+        	<p>For standalone images without a <code>figure</code> wrapper, place the link  after the image. The <code>aria-details</code> attribute still points to the link's ID.</p>
+
+            <pre aria-busy="false"><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"img3"</span> <span class="hljs-attr">aria-details</span>=<span class="hljs-string">"anchor-extended-description-img3"</span>
+     <span class="hljs-attr">src</span>=<span class="hljs-string">"image.jpg"</span>
+     <span class="hljs-attr">alt</span>=<span class="hljs-string">"A cross-section view of oxygen-rich blood flows between the heart and lungs."</span> /&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"anchor-extended-description-img3"</span>
+      <span class="hljs-attr">href</span>=<span class="hljs-string">"extended-descriptions.xhtml#extended-description-img3"</span>&gt;</span>Extended description<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></code></pre>
+        </aside>
+
+        <aside class="example" id="example-multiple-images"><div class="marker">
+    <a class="self-link" href="#example-multiple-images">Example<bdi> 5</bdi></a><span class="example-title">: Multiple images</span>
+  </div>
+        	<p>In the case of multiple grouped images within a single <code>figure</code>, the content creator can decide to have a single extended description for all the images (with only one link), or different extended descriptions (with several links placed after each image, referring in the label to the corresponding image).</p>
+
+        	<p>Example with a single extended description for all images</p>
+            <pre aria-busy="false"><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">figure</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"img4a"</span> <span class="hljs-attr">aria-details</span>=<span class="hljs-string">"anchor-extended-description-img4"</span>
+         <span class="hljs-attr">src</span>=<span class="hljs-string">"image-a.png"</span>
+         <span class="hljs-attr">alt</span>=<span class="hljs-string">"First diagram showing..."</span>/&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"img4b"</span> <span class="hljs-attr">aria-details</span>=<span class="hljs-string">"anchor-extended-description-img4"</span>
+         <span class="hljs-attr">src</span>=<span class="hljs-string">"image-b.png"</span>
+         <span class="hljs-attr">alt</span>=<span class="hljs-string">"Second diagram showing..."</span>/&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">figcaption</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Figure 2: Multiple related diagrams<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"anchor-extended-description-img4"</span>
+              <span class="hljs-attr">href</span>=<span class="hljs-string">"extended-descriptions.xhtml#extended-description-img4"</span>&gt;</span>Extended description<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">figcaption</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">figure</span>&gt;</span></code></pre>
+
+        	<p>Example with separate extended description for each image</p>
+            <pre aria-busy="false"><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">figure</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"img5a"</span> <span class="hljs-attr">aria-details</span>=<span class="hljs-string">"anchor-extended-description-img5a"</span>
+         <span class="hljs-attr">src</span>=<span class="hljs-string">"image-a.png"</span>
+         <span class="hljs-attr">alt</span>=<span class="hljs-string">"First diagram showing..."</span>/&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"anchor-extended-description-img5a"</span>
+          <span class="hljs-attr">href</span>=<span class="hljs-string">"extended-descriptions.xhtml#extended-description-img5a"</span>&gt;</span>Extended description for first diagram<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"img5b"</span> <span class="hljs-attr">aria-details</span>=<span class="hljs-string">"anchor-extended-description-img5b"</span>
+         <span class="hljs-attr">src</span>=<span class="hljs-string">"image-b.png"</span>
+         <span class="hljs-attr">alt</span>=<span class="hljs-string">"Second diagram showing..."</span>/&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"anchor-extended-description-img5b"</span>
+          <span class="hljs-attr">href</span>=<span class="hljs-string">"extended-descriptions.xhtml#extended-description-img5b"</span>&gt;</span>Extended description for second diagram<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">figcaption</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Figure 3: Multiple diagrams with individual descriptions<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">figcaption</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">figure</span>&gt;</span></code></pre>
+        </aside>
+
+        <aside class="example" id="example-using-an-icon-for-the-extended-description-link"><div class="marker">
+    <a class="self-link" href="#example-using-an-icon-for-the-extended-description-link">Example<bdi> 6</bdi></a><span class="example-title">: Using an icon for the extended description link</span>
+  </div>
+        	<p>An icon can be used instead of text for the link to the extended description. This can be helpful for users with cognitive disabilities. The icon image should have appropriate alternative text. This technique can be used in all cases presented in the other examples.</p>
+
+            <pre aria-busy="false"><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">figure</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"img3"</span> <span class="hljs-attr">aria-details</span>=<span class="hljs-string">"anchor-extended-description-img3"</span>
+         <span class="hljs-attr">src</span>=<span class="hljs-string">"image.png"</span>
+         <span class="hljs-attr">alt</span>=<span class="hljs-string">"Diagram description ..."</span>/&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">figcaption</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Figure 1: Caption text<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"anchor-extended-description-img3"</span>
+              <span class="hljs-attr">href</span>=<span class="hljs-string">"extended-descriptions.xhtml#extended-description-img3"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"extended-desc-icon.svg"</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">"Extended description"</span>/&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">figcaption</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">figure</span>&gt;</span></code></pre>
+        </aside>
+
+        </section></section>
+
+        <section id="technique1-external-file"><div class="header-wrapper"><h4 id="x2-1-2-setting-up-the-external-file-with-extended-descriptions"><bdi class="secno">2.1.2 </bdi>Setting up the external file with extended descriptions</h4><a class="self-link" href="#technique1-external-file" aria-label="Permalink for Section 2.1.2"></a></div>
         
-        <section id="advantages-1"><div class="header-wrapper"><h4 id="x3-3-1-advantages"><bdi class="secno">3.3.1 </bdi><b>Advantages:</b></h4><a class="self-link" href="#advantages-1" aria-label="Permalink for Section 3.3.1"></a></div>
-        <ul>
-            <li>Ability to add a <code>&lt;figcaption&gt;</code> that is linked semantically with the image(s)</li>
-            <li>Ability to group related images keeping their extended descriptions semantically linked with their respective image</li>
-        </ul>
 
- 
-        </section><section id="disadvantages-1"><div class="header-wrapper"><h4 id="x3-3-2-disadvantages"><bdi class="secno">3.3.2 </bdi><b>Disadvantages:</b></h4><a class="self-link" href="#disadvantages-1" aria-label="Permalink for Section 3.3.2"></a></div>
-        <ul>
-            <li>If no <code>&lt;figcaption&gt;</code> is needed, there is added complexity of using the <code>&lt;figure&gt;</code> structure, and the potential for additional text spoken to assistive technology</li>
-        </ul>
-         
-        <div class="simplecalloutbox_preheader">    
-            <div class="header-wrapper"><h4 id="code-example-3">Code Example 3</h4><a class="self-link" href="#code-example-3" aria-label="Permalink for this Section"></a></div>
-        </div>
-        <div class="simplecalloutbox">
+            <p>Extended descriptions should be placed in separate HTML file(s) that is referenced from the extended description link and with a backlink to the main content. These file(s) can be inserted at the end of the e-book and/or marked as non-linear, meaning that it does not appear when browsing through the e-book. A single HTML file can contain multiple extended descriptions. The content creator can decide whether to collect all the extended descriptions of the publication in a single file, or create one for each chapter or section of the book, or even create a single file for each description.</p>
 
-        <pre><code aria-busy="false" class="hljs xml">
-    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Image with hyperlink pointing to the extended description, followed by another image with the extended description in a 
-    <span class="hljs-tag">&lt;<span class="hljs-name">details</span>&gt;</span> expandable structure, both of which are encapsulated with a  
-    <span class="hljs-tag">&lt;<span class="hljs-name">figure</span>&gt;</span> structure&lt; with the <span class="hljs-tag">&lt;<span class="hljs-name">figcaption</span>&gt;</span> provided at the top<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+            <p>Each extended description must:</p>
+            <ul>
+                <li>Be wrapped in a <code>section</code> element with an ID that matches the fragment identifier in the link</li>
+                <li>Include a heading that describes the content</li>
+                <li>Include a copy of the image marked as presentational (<code>role="presentation"</code> and <code>alt=""</code>) to prevent screen readers from announcing it twice, but for for visual reference</li>
+                <li>Contain the detailed description</li>
+                <li>Include a backlink with <code>role="doc-backlink"</code> that returns to the anchor of the link to the extended description.</li>
+                <li>The backlink text must clearly identify which image the user is returning to, especially when the file contains multiple extended descriptions.</li>
+            </ul>
+<div class="note" role="note" id="issue-container-generatedID-1"><div class="note-title marker" id="h-note-1"><span>Note</span></div><p class="">To avoid external files with many extended descriptions becoming too large and creating long load times, multiple files can be used (for example, one per chapter of the publication). These files must be identified in the spine as described below.</p></div>
 
-    <span class="hljs-tag">&lt;<span class="hljs-name">figure</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"image3"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">figcaption</span>&gt;</span>Example.com Site visitors Jan to March 2014<span class="hljs-tag">&lt;/<span class="hljs-name">figcaption</span>&gt;</span>
+<div class="note" role="note" id="issue-container-generatedID-2"><div class="note-title marker" id="h-note-2"><span>Note</span></div><p class="">When a file contains many extended descriptions – for example in an end-of-book appendix – consider using one file per extended description, each with a single back link. This removes ambiguity: with only one back link in the file, the user cannot accidentally navigate to the wrong location in the main content. While this results in more files to manage, it provides the clearest and safest navigation experience.</p></div>
 
-    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"chart-ebcaadfb.png"</span> 
-    <span class="hljs-attr">alt</span>=<span class="hljs-string">"Bar chart showing monthly and total visitors for the first quarter 2014 for sites 1 to 3."</span>  <span class="hljs-attr">aria-details</span>=<span class="hljs-string">"image3-link"</span>/&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"image3-link"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"./endOfBookDescriptionsSingle3.xhtml#image3-extended-desc"</span>&gt;</span>Follow for extended description<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span>
+            <section id="epub-spine-configuration"><div class="header-wrapper"><h5 id="x2-1-2-1-epub-spine-configuration"><bdi class="secno">2.1.2.1 </bdi>EPUB spine configuration</h5><a class="self-link" href="#epub-spine-configuration" aria-label="Permalink for Section 2.1.2.1"></a></div>
 
-    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"chart-ebcaadfb.png"</span> 
-        <span class="hljs-attr">alt</span>=<span class="hljs-string">"Bar chart showing monthly and total visitors for the first quarter 2014 for sites 1 to 3."</span>
-        <span class="hljs-attr">aria-details</span>=<span class="hljs-string">"image4-extended-desc"</span> /&gt;</span>
+            <p>The extended description file can be marked as <code>linear="no"</code> in the EPUB <code>spine</code> (inside the OPF file) to exclude it from the normal reading order.</p>
 
-    <span class="hljs-tag">&lt;<span class="hljs-name">details</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"image4-extended-desc"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">summary</span>&gt;</span>Expand / collapse Extended Description<span class="hljs-tag">&lt;/<span class="hljs-name">summary</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">h5</span>&gt;</span>Overview<span class="hljs-tag">&lt;/<span class="hljs-name">h5</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>The chart shows the website hits for the first quarter of 2014. It shows that Site 1 has more visitors
-          than either of the other sites, but the number of visitors is decreasing. Site 2 has a fairly constant
-          number of visitors, while for Site 3 page hits are increasing month on month.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">h6</span>&gt;</span>Data<span class="hljs-tag">&lt;/<span class="hljs-name">h6</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"col"</span>&gt;</span>Period<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"col"</span>&gt;</span>Site 1<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"col"</span>&gt;</span>Site 2<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"col"</span>&gt;</span>Site 3<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"row"</span>&gt;</span>Jan<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>135<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>112<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>92<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"row"</span>&gt;</span>Feb<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>117<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>114<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>99<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"row"</span>&gt;</span>Mar<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>96<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>111<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>126<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"row"</span>&gt;</span>Qtr Total<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>348<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>337<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>308<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">h6</span>&gt;</span>Presentation<span class="hljs-tag">&lt;/<span class="hljs-name">h6</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>The bar chart represents both the number of visitors per month for each website, and the total number
-          of visitors per website for the entire quarter. Website visitors for each month are represented using
-          columns lined up horizontally, with heights indicating the number of visitors. A fourth column is
-          provided for each website with the accumulated site visitors for the quarter.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-          <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">details</span>&gt;</span>
+            <aside class="example" id="example-epub-spine-configuration"><div class="marker">
+    <a class="self-link" href="#example-epub-spine-configuration">Example<bdi> 7</bdi></a><span class="example-title">: EPUB spine configuration</span>
+  </div>
+            <pre aria-busy="false"><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">spine</span>&gt;</span>
+	...
+    <span class="hljs-tag">&lt;<span class="hljs-name">itemref</span> <span class="hljs-attr">idref</span>=<span class="hljs-string">"chapter01"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">itemref</span> <span class="hljs-attr">idref</span>=<span class="hljs-string">"chapter02"</span> /&gt;</span>
+    ...
+    <span class="hljs-tag">&lt;<span class="hljs-name">itemref</span> <span class="hljs-attr">idref</span>=<span class="hljs-string">"extended-descriptions"</span> <span class="hljs-attr">linear</span>=<span class="hljs-string">"no"</span> /&gt;</span>
+    ...
+<span class="hljs-tag">&lt;/<span class="hljs-name">spine</span>&gt;</span></code></pre>
+        </aside>
+
+
+            </section><section id="example"><div class="header-wrapper"><h5 id="technique1-external-file-example"><bdi class="secno">2.1.2.2 </bdi>Example</h5><a class="self-link" href="#technique1-external-file-example" aria-label="Permalink for Section 2.1.2.2"></a></div>
+
+            <aside class="example" id="example-extended-description-file-structure"><div class="marker">
+    <a class="self-link" href="#example-extended-description-file-structure">Example<bdi> 8</bdi></a><span class="example-title">: Extended description file structure</span>
+  </div>
+            	<p>This code is an example of how the file containing the extended descriptions could be structured. Multiple extended descriptions can be placed in the same file, each in its own <code>section</code>.</p>
+            <pre aria-busy="false"><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.w3.org/1999/xhtml"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Extended Descriptions<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Extended Descriptions<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">section</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"extended-description-img1"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>Description of Bar Chart<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"presentation"</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">""</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"image.png"</span> /&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>Overview<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>The chart shows the website hits for the first quarter of 2014...<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>Data<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span>
+            <span class="hljs-comment">&lt;!-- table content --&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>Presentation<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>The bar chart represents both the number of visitors...<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"doc-backlink"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"chapter01.xhtml#anchor-extended-description-img1"</span>&gt;</span>Navigate back to bar chart image<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">section</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"extended-description-img2"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>Description of Heart and Lung Diagram<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"presentation"</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">""</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"image.jpg"</span> /&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Systems in Sync. The circulatory and respiratory systems work together...<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">ol</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Oxygen-rich blood cells travel to the heart from the lungs.<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+            <span class="hljs-comment">&lt;!-- more list items --&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">ol</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"doc-backlink"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"chapter01.xhtml#anchor-extended-description-img2"</span>&gt;</span>Navigate back to heart and lung diagram<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+        </aside>
+        </section></section>
+        </section>
+        <section id="technique2"><div class="header-wrapper"><h3 id="x2-2-alternate-technique-extended-description-placed-just-below-the-image"><bdi class="secno">2.2 </bdi>Alternate technique: Extended description placed just below the image</h3><a class="self-link" href="#technique2" aria-label="Permalink for Section 2.2"></a></div>
+			
+			
+			<p>This technique provides extended descriptions in the same HTML file of the main content, just below the image.</p>
+	
+			<p>Advantages:</p>
+			<ul>
+				<li>The extended description is provided just below the image, the next item in the reading order. This means that the user does not need to change from the reading flow, and lose their reading position.</li>
+				<li>It is a good approach for content creators who don't want to manage external files and back and forward links (from the image to the description and back to the main content).</li>
+				<li>The description is always visible to all users, which can be a good solution for having text-to-speech engines read the description text.</li>
+			</ul>
+
+			<p>Disadvantages:</p>
+			<ul>
+				<li>The description is always visible, which may clutter the page for users who do not need extended descriptions.</li>
+			</ul>
+			
+			<section id="technique2-below"><div class="header-wrapper"><h4 id="x2-2-1-setting-up-the-main-content-with-extended-description"><bdi class="secno">2.2.1 </bdi>Setting up the main content with extended description</h4><a class="self-link" href="#technique2-below" aria-label="Permalink for Section 2.2.1"></a></div>
+				
+		
+					<p>In this technique the extended description is placed below the image.</p>
+		
+					<p>Key requirements:</p>
+					<ul>
+						<li>The image must have a brief <code>alt</code> text that describes what the image is (e.g., "Bar chart showing quarterly website visitors").</li>
+						<li>After the image (or group of images), there must be the <code>aside</code> element containing the extended description.</li>
+						<li>The <code>aside</code> element must have a unique <code>id</code> attribute.</li>
+						<li>The image must have an <code>aria-details</code> attribute pointing to that <code>aside</code>'s ID.</li>
+					</ul>
+		
+					<p>This establishes a programmatic relationship that allows assistive technologies to indicate that additional details are available.</p>
+		
+					<p>The general pattern is:</p>
+					<aside class="example" id="example-general-pattern-0"><div class="marker">
+    <a class="self-link" href="#example-general-pattern-0">Example<bdi> 9</bdi></a><span class="example-title">: General pattern</span>
+  </div>
+						<pre aria-busy="false"><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">aria-details</span>=<span class="hljs-string">"container-id"</span>  <span class="hljs-attr">alt</span>=<span class="hljs-string">"Bar chart showing..."</span> <span class="hljs-attr">...</span> /&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">aside</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"container-id"</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>Overview<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>The chart shows the website hits for the first quarter of 2014...<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+
+	<span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>Data<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span>
+		<span class="hljs-comment">&lt;!-- table content --&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
+
+	<span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>Presentation<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>The bar chart represents both the number of visitors...<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">aside</span>&gt;</span></code></pre>
+					</aside>
+
+				<div class="note" role="note" id="issue-container-generatedID-3"><div class="note-title marker" id="h-note-3"><span>Note</span></div><p class="">The heading levels used inside the <code>aside</code> element should follow the surrounding document structure. They should be one level below the last heading used before the <code>aside</code>.</p></div>
+
+			<section id="example-0"><div class="header-wrapper"><h5 id="technique2-examples"><bdi class="secno">2.2.1.1 </bdi>Example</h5><a class="self-link" href="#technique2-examples" aria-label="Permalink for Section 2.2.1.1"></a></div>
+
+			<aside class="example" id="example-extended-description-below-the-image-in-an-aside-element"><div class="marker">
+    <a class="self-link" href="#example-extended-description-below-the-image-in-an-aside-element">Example<bdi> 10</bdi></a><span class="example-title">: Extended description below the image in an aside element</span>
+  </div>
+            	<p>This code is an example of an extended description inside an <code>aside</code> element, just below the image.</p>
+            <pre aria-busy="false"><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>Chart 1<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"chart-ebcaadfb.png"</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">"Bar chart showing monthly and total visitors for the first quarter 2014 for sites 1 to 3."</span> <span class="hljs-attr">aria-details</span>=<span class="hljs-string">"image1-extended-desc"</span> /&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">aside</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"image1-extended-desc"</span>&gt;</span>
+				
+	<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Extended description<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>The chart shows the website hits for the first quarter of 2014. It shows that Site 1 has more visitors
+	  than either of the other sites, but the number of visitors is decreasing. Site 2 has a fairly constant
+	  number of visitors, while for Site 3 page hits are increasing month on month.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+
+	<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Data<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"col"</span>&gt;</span>Period<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"col"</span>&gt;</span>Site 1<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"col"</span>&gt;</span>Site 2<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"col"</span>&gt;</span>Site 3<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"row"</span>&gt;</span>Jan<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>135<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>112<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>92<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"row"</span>&gt;</span>Feb<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>117<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>114<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>99<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"row"</span>&gt;</span>Mar<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>96<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>111<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>126<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"row"</span>&gt;</span>Qtr Total<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>348<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>337<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>308<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
+	
+	<span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Presentation<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>The bar chart represents both the number of visitors per month for each website, and the total number
+	  of visitors per website for the entire quarter. Website visitors for each month are represented using
+	  columns lined up horizontally, with heights indicating the number of visitors. A fourth column is
+	  provided for each website with the accumulated site visitors for the quarter.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">aside</span>&gt;</span></code></pre>
+        </aside>
+
+			<div class="note" role="note" id="issue-container-generatedID-4"><div class="note-title marker" id="h-note-4"><span>Note</span></div><p class="">Code patterns from the <a href="#technique1-main-content-examples">Recommended technique examples</a> can also be applied to this technique by replacing the link element with the <code>aside</code> element. However, when images are wrapped in a <code>figure</code> element, the <code>aside</code> cannot be placed inside the <code>figure</code> (as it would conflict with the required placement of <code>figcaption</code>); in this case, the <code>aside</code> should be placed immediately after the closing <code>figure</code> tag.</p></div>
+
+
+        	</section></section>
+        </section>
+
+        <section id="technique3"><div class="header-wrapper"><h3 id="x2-3-deprecated-technique-extended-description-in-a-details-element-below-the-image"><bdi class="secno">2.3 </bdi>Deprecated technique: Extended description in a details element below the image</h3><a class="self-link" href="#technique3" aria-label="Permalink for Section 2.3"></a></div>
+			
+
+			<p>This technique provides extended descriptions in the same HTML file of the main content, using a <code>details</code> element just below the image. The description is hidden by default and can be expanded by the user.</p>
+
+			<p>Advantages:</p>
+			<ul>
+				<li>The extended description is provided just below the image, the next item in the reading order. This means that the user does not need to change from the reading flow, and lose their reading position.</li>
+				<li>The details element does not show the description by default, the user needs to expand it to show the description, therefore it does not clutter the page for users who do not need extended descriptions.</li>
+				<li>It is a good approach for content creators who don't want to manage external files and back and forward links (from the image to the description and back to the main content).</li>
+			</ul>
+
+			<p>Disadvantages:</p>
+			<ul>
+				<li>If a publication has a large number of images and extended descriptions, the task of locating and expanding each details element to read the description may be cumbersome.</li>
+				<li>There are EPUB reading systems which do not support HTML details properly, or the expansion of the element may cause pagination issues.</li>
+				<li>This is one of the rare cases in which the content creator of the EPUB attempts to force a particular user experience (show/hide content); the world of EPUBs is normally declarative, identifying semantic structures and leaving it up to reading solutions to interpret them and show the user the best interface (think of footnotes managed in pop-ups or similar).</li>
+				<li>If the extended description inside the details element is huge, expanding it may disorient the user, especially when the reading system has paginated view.</li>
+			</ul>
+
+			<section id="technique3-details"><div class="header-wrapper"><h4 id="x2-3-1-setting-up-the-main-content-with-extended-description"><bdi class="secno">2.3.1 </bdi>Setting up the main content with extended description</h4><a class="self-link" href="#technique3-details" aria-label="Permalink for Section 2.3.1"></a></div>
+				
+
+					<p>In this technique the extended description is placed below the image in a <code>details</code> element.</p>
+
+					<p>Key requirements:</p>
+					<ul>
+						<li>The image must have a brief <code>alt</code> text that describes what the image is (e.g., "Bar chart showing quarterly website visitors").</li>
+						<li>After the image (or group of images), there must be the <code>details</code> element containing the extended description.</li>
+						<li>The <code>details</code> element must have a unique <code>id</code> attribute.</li>
+						<li>The image must have an <code>aria-details</code> attribute pointing to that <code>details</code>'s ID.</li>
+					</ul>
+
+					<p>This establishes a programmatic relationship that allows assistive technologies to indicate that additional details are available.</p>
+
+					<p>The general pattern is:</p>
+					<aside class="example" id="example-general-pattern-1"><div class="marker">
+    <a class="self-link" href="#example-general-pattern-1">Example<bdi> 11</bdi></a><span class="example-title">: General pattern</span>
+  </div>
+						<pre aria-busy="false"><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">aria-details</span>=<span class="hljs-string">"container-id"</span>  <span class="hljs-attr">alt</span>=<span class="hljs-string">"Bar chart showing..."</span> <span class="hljs-attr">...</span> /&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">details</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"container-id"</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">summary</span>&gt;</span>Description of Bar Chart<span class="hljs-tag">&lt;/<span class="hljs-name">summary</span>&gt;</span>
+
+	<span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>Overview<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>The chart shows the website hits for the first quarter of 2014...<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+
+	<span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>Data<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span>
+		<span class="hljs-comment">&lt;!-- table content --&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
+
+	<span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>Presentation<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>The bar chart represents both the number of visitors...<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">details</span>&gt;</span></code></pre>
+					</aside>
+
+        	</section>
+        </section>
+
+    	</section><section class="appendix informative" id="acknowledgements"><div class="header-wrapper"><h2 id="a-acknowledgments"><bdi class="secno">A. </bdi>Acknowledgments</h2><a class="self-link" href="#acknowledgements" aria-label="Permalink for Appendix A."></a></div><p><em>This section is non-normative.</em></p>
+			
+			
+			<p>The following people contributed to the development of this document:</p>
+			
+			<ul>
+				<li>Avneesh Singh (DAISY Consortium)</li>
+				<li>Charles LaPierre (Benetech)</li>
+				<li>Cody Care (EBSCO)</li>
+				<li>Gautier Chomel (EDRLab)</li>
+				<li>George Kerscher (DAISY Consortium)</li>
+				<li>Gregorio Pellegrino (Fondazione LIA)</li>
+				<li>Ibrahim Siddo (Oxford University Press)</li>
+				<li>James Yanchak (Taylor and Francis)</li>
+				<li>Jonas Lillqvist (Accessibility Library Celia, National Archives of Finland)</li>
+				<li>Mark Dunn (Oxford University Press)</li>
+				<li>Matt Garrish (DAISY Consortium)</li>
+				<li>Richard Orme (DAISY Consortium)</li>
+				<li>Sagiv Lapkin (Taylor &amp; Francis)</li>
+				<li>Steve Noble (Pearson)</li>
+			</ul>
+		</section>
     
-    <span class="hljs-tag">&lt;/<span class="hljs-name">figure</span>&gt;</span>
-</code></pre>
 
-    <div class="simplecalloutbox_preheader">    
-    <div class="header-wrapper"><h4 id="code-example-3-preview">Code Example 3 Preview</h4><a class="self-link" href="#code-example-3-preview" aria-label="Permalink for this Section"></a></div>
-    </div>
-    <div class="simplecalloutbox">
-     <figure id="image3">
-        <figcaption>Figure <bdi class="figno">1</bdi> <span class="fig-title">Example.com Site visitors Jan to March 2014</span></figcaption>
-        <img src="chart-ebcaadfb.png" alt="Bar chart showing monthly and total visitors for the first quarter 2014 for sites 1 to 3." aria-details="image3-link" height="437" width="550">
-        <br>
-        <a id="image3-link" href="./endofbookdescriptionssingle3.html#image3-extended-desc">Follow for extended description</a>
-        <br>
-        <br>
-         
-       <img src="chart-ebcaadfb.png" alt="Bar chart showing monthly and total visitors for the first quarter 2014 for sites 1 to 3." aria-details="image4-extended-desc" height="437" width="550">
-       <details id="image4-extended-desc">
-          <summary>Expand / collapse Extended Description</summary>
-          <div>
-              <div class="header-wrapper"><h4 id="overview-0">Overview</h4><a class="self-link" href="#overview-0" aria-label="Permalink for this Section"></a></div>
-                <p>The chart shows the website hits for the first quarter of 2014. It shows that Site 1 has more visitors
-                  than either of the other sites, but the number of visitors is decreasing. Site 2 has a fairly constant
-                  number of visitors, while for Site 3 page hits are increasing month on month.</p>
-                <div class="header-wrapper"><h6 id="data-0">Data</h6><a class="self-link" href="#data-0" aria-label="Permalink for this Section"></a></div>
-                <table>
-                    <tbody><tr>
-                        <th scope="col">Period</th>
-                        <th scope="col">Site 1</th>
-                        <th scope="col">Site 2</th>
-                        <th scope="col">Site 3</th>
-                    </tr>
-                    <tr>
-                        <th scope="row">Jan</th>
-                        <td>135</td>
-                        <td>112</td>
-                        <td>92</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Feb</th>
-                        <td>117</td>
-                        <td>114</td>
-                        <td>99</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Mar</th>
-                        <td>96</td>
-                        <td>111</td>
-                        <td>126</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Qtr Total</th>
-                        <td>348</td>
-                        <td>337</td>
-                        <td>308</td>
-                    </tr>
-                </tbody></table>
-            <div class="header-wrapper"><h6 id="presentation-0">Presentation</h6><a class="self-link" href="#presentation-0" aria-label="Permalink for this Section"></a></div>
-                  <p>The bar chart represents both the number of visitors per month for each website, and the total number
-                      of visitors per website for the entire quarter. Website visitors for each month are represented using
-                      columns lined up horizontally, with heights indicating the number of visitors. A fourth column is
-                      provided for each website with the accumulated site visitors for the quarter.</p>
-              </div>
-          </details>
-        </figure>   
-    </div>
-    </div>
-    
-</section></section></section><section class="appendix informative" id="acknowledgements"><div class="header-wrapper"><h2 id="a-acknowledgments"><bdi class="secno">A. </bdi>Acknowledgments</h2><a class="self-link" href="#acknowledgements" aria-label="Permalink for Appendix A."></a></div><p><em>This section is non-normative.</em></p>
-	
-	
-	<p style="font-style:italic">Ben Schroeter’s insights and implementations contributed greatly to our work. We all
-		will miss his good-natured contributions. This document is dedicated to his memory.</p>
-	
-	<p>The following people contributed to the development of this document:</p>
-	
-	<ul>
-		<li>Avneesh Singh (DAISY Consortium)</li>
-		<li>Ben Schroeter (Pearson)</li>
-		<li>Charles LaPierre (Benetech)</li>
-		<li>Franco Alvarado (Macmillan Learning)</li>
-		<li>George Kerscher (DAISY Consortium)</li>
-		<li>Gregorio Pellegrino (Fondazione LIA)</li>
-		<li>James Yanchak (Taylor and Francis)</li>
-		<li>Jason White (Educational Testing Service)</li>
-		<li>Matt Garrish (DAISY Consortium)</li>
-		<li>Steve Noble (Pearson)</li>
-	</ul>
-	
-	<p>The task force would also like to thank the following people for their help designing techniques,
-		creating test books, synthesizing test results, and developing best practices:</p>
-	
-	<ul>
-		<li>George Kerscher (DAISY Consortium)</li>
-		<li>Charles LaPierre (Benetech)</li>
-		<li>Gregorio Pellegrino (Fondazione LIA)</li>
-		<li>Avneesh Singh (DAISY Consortium)</li>
-		<li>Ben Schroeter (Pearson)</li>
-		<li>James Yanchak (Taylor &amp; Francis Group)</li>
-	</ul>
-	
-	<p>Additionally, thanks goes to the following people for their help testing the techniques:</p>
-	
-	<ul>
-		<li>George Kerscher (DAISY Consortium)</li>
-		<li>Richard Orme (DAISY Consortium)</li>
-		<li>Prashant Verma (DAISY Consortium)</li>
-	</ul>
-</section>
-
-    
-<p role="navigation" id="back-to-top">
+<span id="data-ipedis" data-extension="" aria-hidden="true" style="display:none;visibility:hidden;height:0;opacity:0;" tabindex="-1"></span><p role="navigation" id="back-to-top">
     <a href="#title"><abbr title="Back to Top">↑</abbr></a>
-  </p><script id="respec-dfn-panel">(() => {
+  </p><script id="respec-highlight-vars">(() => {
+// @ts-check
+
+if (document.respec) {
+  document.respec.ready.then(setupVarHighlighter);
+} else {
+  setupVarHighlighter();
+}
+
+function setupVarHighlighter() {
+  document
+    .querySelectorAll("var")
+    .forEach(varElem => varElem.addEventListener("click", highlightListener));
+}
+
+/**
+ * @param {MouseEvent} ev
+ */
+function highlightListener(ev) {
+  ev.stopPropagation();
+  const varElem = /** @type {HTMLElement} */ (ev.target);
+  const hightligtedElems = highlightVars(varElem);
+  const resetListener = () => {
+    const hlColor = getHighlightColor(varElem);
+    hightligtedElems.forEach(el => removeHighlight(el, hlColor));
+    [...HL_COLORS.keys()].forEach(key => HL_COLORS.set(key, true));
+  };
+  if (hightligtedElems.length) {
+    document.body.addEventListener("click", resetListener, { once: true });
+  }
+}
+
+// availability of highlight colors. colors from var.css
+const HL_COLORS = new Map([
+  ["respec-hl-c1", true],
+  ["respec-hl-c2", true],
+  ["respec-hl-c3", true],
+  ["respec-hl-c4", true],
+  ["respec-hl-c5", true],
+  ["respec-hl-c6", true],
+  ["respec-hl-c7", true],
+]);
+
+/**
+ * @param {HTMLElement} target
+ */
+function getHighlightColor(target) {
+  // return current colors if applicable
+  const { value } = target.classList;
+  const re = /respec-hl-\w+/;
+  const activeClass = re.test(value) && value.match(re);
+  if (activeClass) return activeClass[0];
+
+  // first color preference
+  if (HL_COLORS.get("respec-hl-c1") === true) return "respec-hl-c1";
+
+  // otherwise get some other available color
+  return HL_COLORS.keys().find(c => HL_COLORS.get(c)) || "respec-hl-c1";
+}
+
+/**
+ * @param {HTMLElement} varElem
+ */
+function highlightVars(varElem) {
+  const textContent = norm(varElem.textContent);
+  const parent = /** @type {HTMLElement} */ (
+    varElem.closest(".algorithm, section")
+  );
+  if (!parent) return [];
+  const highlightColor = getHighlightColor(varElem);
+
+  const varsToHighlight = [...parent.querySelectorAll("var")].filter(
+    el =>
+      norm(el.textContent) === textContent &&
+      el.closest(".algorithm, section") === parent
+  );
+
+  // update availability of highlight color
+  const colorStatus = varsToHighlight[0].classList.contains("respec-hl");
+  HL_COLORS.set(highlightColor, colorStatus);
+
+  // highlight vars
+  if (colorStatus) {
+    varsToHighlight.forEach(el => removeHighlight(el, highlightColor));
+    return [];
+  } else {
+    varsToHighlight.forEach(el => addHighlight(el, highlightColor));
+  }
+  return varsToHighlight;
+}
+
+/**
+ * @param {HTMLElement} el
+ * @param {string} highlightColor
+ */
+function removeHighlight(el, highlightColor) {
+  el.classList.remove("respec-hl", highlightColor);
+  // clean up empty class attributes so they don't come in export
+  if (!el.classList.length) el.removeAttribute("class");
+}
+
+/**
+ * @param {HTMLElement} elem
+ * @param {string} highlightColor
+ */
+function addHighlight(elem, highlightColor) {
+  elem.classList.add("respec-hl", highlightColor);
+}
+
+/**
+ * Same as `norm` from src/core/utils, but our build process doesn't allow
+ * imports in runtime scripts, so duplicated here.
+ * @param {string} str
+ */
+function norm(str) {
+  return str.trim().replace(/\s+/g, " ");
+}
+})()</script><script id="respec-dfn-panel">(() => {
 // @ts-check
 if (document.respec) {
   document.respec.ready.then(setupPanel);
@@ -681,8 +865,11 @@ function setupPanel() {
 }
 
 function panelListener() {
-  /** @type {HTMLElement} */
+  /** @type {HTMLElement | null} */
   let panel = null;
+  /**
+   * @param {KeyboardEvent|MouseEvent} event
+   */
   return event => {
     const { target, type } = event;
 
@@ -690,24 +877,34 @@ function panelListener() {
 
     // For keys, we only care about Enter key to activate the panel
     // otherwise it's activated via a click.
-    if (type === "keydown" && event.key !== "Enter") return;
+    if (
+      type === "keydown" &&
+      /** @type {KeyboardEvent} */ (event).key !== "Enter"
+    )
+      return;
 
     const action = deriveAction(event);
 
     switch (action) {
       case "show": {
         hidePanel(panel);
-        /** @type {HTMLElement} */
+        /** @type {HTMLElement | null} */
         const dfn = target.closest("dfn, .index-term");
+        if (!dfn?.id) break;
         panel = document.getElementById(`dfn-panel-for-${dfn.id}`);
-        const coords = deriveCoordinates(event);
+        if (!panel) break;
+        const coords = deriveCoordinates(
+          /** @type {MouseEvent|KeyboardEvent} */ (event)
+        );
         displayPanel(dfn, panel, coords);
         break;
       }
       case "dock": {
-        panel.style.left = null;
-        panel.style.top = null;
-        panel.classList.add("docked");
+        if (panel) {
+          panel.style.left = "";
+          panel.style.top = "";
+          panel.classList.add("docked");
+        }
         break;
       }
       case "hide": {
@@ -758,7 +955,8 @@ function deriveAction(event) {
     if (hitALink) {
       return target.classList.contains("self-link") ? "hide" : "dock";
     }
-    const panel = target.closest(".dfn-panel");
+
+    const panel = /** @type {HTMLElement} */ (target.closest(".dfn-panel"));
     return panel.classList.contains("docked") ? "hide" : "none";
   }
   if (document.querySelector(".dfn-panel:not([hidden])")) {
@@ -802,9 +1000,9 @@ function displayPanel(dfn, panel, { x, y }) {
     const newLeft = Math.max(MARGIN, x + MARGIN - panelRect.width);
     const newCaretOffset = left - newLeft;
     panel.style.left = `${newLeft}px`;
-    /** @type {HTMLElement} */
+    /** @type {HTMLElement | null} */
     const caret = panel.querySelector(".caret");
-    caret.style.left = `${newCaretOffset}px`;
+    if (caret) caret.style.left = `${newCaretOffset}px`;
   }
 
   // As it's a dialog, we trap focus.
@@ -853,6 +1051,9 @@ function trapFocus(panel, dfn) {
 function createTrapListener(anchors, panel, dfn) {
   const lastIndex = anchors.length - 1;
   let currentIndex = 0;
+  /**
+   * @param {KeyboardEvent} event
+   */
   return event => {
     switch (event.key) {
       // Hitting "Tab" traps us in a nice loop around elements.
@@ -882,7 +1083,7 @@ function createTrapListener(anchors, panel, dfn) {
   };
 }
 
-/** @param {HTMLElement} panel */
+/** @param {HTMLElement | null} panel */
 function hidePanel(panel) {
   if (!panel) return;
   panel.hidden = true;
