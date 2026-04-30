@@ -210,15 +210,15 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     }
   ],
   "github": "DAISY/transitiontoepub",
-  "publishISODate": "2026-04-28T00:00:00.000Z",
-  "generatedSubtitle": "28 April 2026"
+  "publishISODate": "2026-04-30T00:00:00.000Z",
+  "generatedSubtitle": "30 April 2026"
 }</script>
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/base.css"></head>
     <body class="h-entry informative"><div class="head">
     <p class="logos"><a class="logo" href="https://daisy.org"><img crossorigin="" alt="DAISY Consortium logo" height="100" src="https://daisy.github.io/transitiontoepub/daisy_high.jpg" width="112">
   </a></p>
     <h1 id="title" class="title">Best Practices for Implementing Extended Descriptions in EPUB</h1> 
-    <p id="w3c-state"> <time class="dt-published" datetime="2026-04-28">28 April 2026</time></p>
+    <p id="w3c-state"> <time class="dt-published" datetime="2026-04-30">30 April 2026</time></p>
     <details open="">
       <summary>More details about this document</summary>
       <dl>
@@ -264,9 +264,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     
     <p class="copyright">Copyright © DAISY Consortium 2022</p>
     <hr title="Separator for header">
-  </div><style>
-.redborder{border:5px solid red!important;}.remove-item-ipedis{position:relative;z-index:1000000;font-size:12px;font-weight:bold;color:white;background:darkred;padding:2px 3px;display:inline-block;width:max-content;box-shadow:3px 3px 3px -1px rgba(0,0,0,0.75);border-radius:2px;font-family:Helvetica,sans-serif;}.inner-html{color:white;}.colour-default{color:red;background-color:red;margin:5px 0;}
-</style>
+  </div>
     	
 
     	<section id="abstract" hidden="" class="notoc introductory"><h2>Abstract</h2></section><nav id="toc"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#introduction"><bdi class="secno">1. </bdi>Introduction</a></li><li class="tocline"><a class="tocxref" href="#recommendations"><bdi class="secno">2. </bdi>Recommendations</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#technique1"><bdi class="secno">2.1 </bdi>Recommended technique: Extended description in a separate HTML file with hyperlink</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#technique1-main-content"><bdi class="secno">2.1.1 </bdi>Setting up the main content</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#technique1-main-content-examples"><bdi class="secno">2.1.1.1 </bdi>Examples</a></li></ol></li><li class="tocline"><a class="tocxref" href="#technique1-external-file"><bdi class="secno">2.1.2 </bdi>Setting up the external file with extended descriptions</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#epub-spine-configuration"><bdi class="secno">2.1.2.1 </bdi>EPUB spine configuration</a></li><li class="tocline"><a class="tocxref" href="#technique1-external-file-example"><bdi class="secno">2.1.2.2 </bdi>Example</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#technique2"><bdi class="secno">2.2 </bdi>Alternate technique: Extended description placed just below the image</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#technique2-below"><bdi class="secno">2.2.1 </bdi>Setting up the main content with extended description</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#technique2-examples"><bdi class="secno">2.2.1.1 </bdi>Example</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#technique3"><bdi class="secno">2.3 </bdi>Deprecated technique: Extended description in a details element below the image</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#technique3-details"><bdi class="secno">2.3.1 </bdi>Setting up the main content with extended description</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#acknowledgements"><bdi class="secno">A. </bdi>Acknowledgments</a></li></ol></nav>
@@ -707,7 +705,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
         	</section>
         </section>
 
-    	</section><section class="appendix informative" id="acknowledgements"><div class="header-wrapper"><h2 id="a-acknowledgments"><bdi class="secno">A. </bdi>Acknowledgments</h2><a class="self-link" href="#acknowledgements" aria-label="Permalink for Appendix A."></a></div><p><em>This section is non-normative.</em></p>
+    	</section><section class="appendix" id="acknowledgements"><div class="header-wrapper"><h2 id="a-acknowledgments"><bdi class="secno">A. </bdi>Acknowledgments</h2><a class="self-link" href="#acknowledgements" aria-label="Permalink for Appendix A."></a></div>
 			
 			
 			<p>The following people contributed to the development of this document:</p>
@@ -731,7 +729,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
 		</section>
     
 
-<span id="data-ipedis" data-extension="" aria-hidden="true" style="display:none;visibility:hidden;height:0;opacity:0;" tabindex="-1"></span><p role="navigation" id="back-to-top">
+<p role="navigation" id="back-to-top">
     <a href="#title"><abbr title="Back to Top">↑</abbr></a>
   </p><script id="respec-highlight-vars">(() => {
 // @ts-check
