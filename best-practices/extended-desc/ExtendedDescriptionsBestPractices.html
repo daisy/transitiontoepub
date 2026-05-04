@@ -1,6 +1,6 @@
 <!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head>
 <meta charset="utf-8">
-<meta name="generator" content="ReSpec 36.0.0">
+<meta name="generator" content="ReSpec 37.0.0">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <style>
 span.example-title{text-transform:none}
@@ -63,6 +63,10 @@ a.bibref{text-decoration:none}
 .respec-offending-element{background:url(data:image/gif;base64,R0lGODdhBAADAPEAANv///8AAP///wAAACwAAAAABAADAEACBZQjmIAFADs=) bottom repeat-x}
 }
 #references :target{background:#eaf3ff;animation:pop .4s ease-in-out 0s 1}
+@media (prefers-color-scheme:dark){
+#references :target{background:color-mix(in srgb, #eaf3ff 15%, transparent)}
+}
+body:has(input[name=color-scheme][value=dark]:checked) #references :target{background:color-mix(in srgb, #eaf3ff 15%, transparent)}
 cite .bibref{font-style:italic}
 a[href].orcid{padding-left:4px;padding-right:4px}
 a[href].orcid>svg{margin-bottom:-2px}
@@ -210,15 +214,15 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     }
   ],
   "github": "DAISY/transitiontoepub",
-  "publishISODate": "2026-04-30T00:00:00.000Z",
-  "generatedSubtitle": "30 April 2026"
+  "publishISODate": "2026-05-04T00:00:00.000Z",
+  "generatedSubtitle": "04 May 2026"
 }</script>
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/base.css"></head>
     <body class="h-entry informative"><div class="head">
     <p class="logos"><a class="logo" href="https://daisy.org"><img crossorigin="" alt="DAISY Consortium logo" height="100" src="https://daisy.github.io/transitiontoepub/daisy_high.jpg" width="112">
   </a></p>
     <h1 id="title" class="title">Best Practices for Implementing Extended Descriptions in EPUB</h1> 
-    <p id="w3c-state"> <time class="dt-published" datetime="2026-04-30">30 April 2026</time></p>
+    <p id="w3c-state"> <time class="dt-published" datetime="2026-05-04">04 May 2026</time></p>
     <details open="">
       <summary>More details about this document</summary>
       <dl>
@@ -581,7 +585,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
 <span class="hljs-tag">&lt;/<span class="hljs-name">aside</span>&gt;</span></code></pre>
 					</aside>
 
-				<div class="note" role="note" id="issue-container-generatedID-3"><div class="note-title marker" id="h-note-3"><span>Note</span></div><p class="">The heading levels used inside the <code>aside</code> element should follow the surrounding document structure. They should be one level below the last heading used before the <code>aside</code>.</p></div>
+				<div class="note" role="note" id="issue-container-generatedID-3"><div class="note-title marker" id="h-note-3"><span>Note</span></div><p class="">In this example, the heading levels used inside the <code>aside</code> element follow the surrounding document structure. However, you can choose not to use a heading or use a heading structure that is suitable for your readers and your workflow.</p></div>
 
 			<section id="example-0"><div class="header-wrapper"><h5 id="technique2-examples"><bdi class="secno">2.2.1.1 </bdi>Example</h5><a class="self-link" href="#technique2-examples" aria-label="Permalink for Section 2.2.1.1"></a></div>
 
