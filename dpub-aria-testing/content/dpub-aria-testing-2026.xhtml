@@ -5,7 +5,7 @@
 	<body>
 	  <header>
 		<h1>DPUB ARIA Test Suite</h1>
-		<p>Last updated: June 8, 2024</p>
+		<p>Last updated: May 6, 2025</p>
 <p>This test Suite has been created and is maintained by the DAISY Consortium's "Transition to Accessible EPUB" working group. To ask questions or get clarification, please use the <a href="https://github.com/daisy/transitiontoepub/issues" >issue tracker on GitHub</a>.</p>
 	  </header>
 	  <main>
@@ -18,21 +18,20 @@
 		</p>
 		<p>The following are presented for testing purposes. Included in the example is a description of the test, its importance, and suggested output, which corresponds to the Google sheet linked above.</p>
 		
-<p>The document semantic verbosity i.e., selection of the amount  of document semantics to vocalize  or present, could be grouped as "all," "most", "some," or None."</p> 
+<p>The document semantic verbosity i.e., selection of the amount  of document semantics to vocalize  or present, could be grouped as "all," "most," or "some."</p></main> 
 
 		<dl>
-			<dt>critical</dt><dd>should  always be presented, unless the document semantic verbosity "none" is selected.</dd>
-			<dt>high</dt><dd>should be presented when the document semantic verbosity "some," "most," or "all"is selected.</dd>
-			<dt>medium</dt><dd>should be presented when the document semantic verbosity "most" or "all"  is selected.</dd>
+			<dt>high</dt><dd>should  always be presented.</dd>
+						<dt>medium</dt><dd>should be presented when the document semantic verbosity "most" or "all"  is selected.</dd>
 			<dt>low</dt><dd>should be presented     when the document semantic verbosity "all" is selected.</dd>
 		</dl>
 
-<p>Note: a document semantic verbosity selection of "some" includes critical and high importance. A verbosity selection of "most includes critical, high, and medium.</p> 
+
 
 <p>Note: The links and references are not live, meaning that following the reference will not move to that location. The references are for testing vocalization only</p>
 		<h2 id="doc-abstract">doc-abstract Test</h2>
 		<div role="doc-abstract">This text in the div element has the role of abstract.</div>
-		<p>This is a high priority. Many times the word "abstract" would be included in the heading associated with this item. It should be vocalized when the document semantic verbosity is set to some, most, or all.</p>
+		<p>This is a low priority. Many times the word "abstract" would be included in the heading associated with this item. It should be vocalized when the document semantic verbosity is set to all.</p>
 		<p>Suggested output: "abstract"</p>
 		<h2 id="doc-acknowledgments">doc-acknowledgments Test</h2>
 		<div role="doc-acknowledgments">This text in the <code>div</code> element has the role of acknowledgments.</div>
@@ -40,15 +39,15 @@
 		<p>Suggested output: "acknowledgments"</p>
 		<h2 id="doc-afterword">doc-afterword Test</h2>
 		<div role="doc-afterword">This text in the div element has the role of afterword.</div>
-		<p>This is a medium priority. Many times the word "Afterword" would be included in the heading associated with this item. It should be vocalized when the document semantic verbosity is set to Most or all.</p>
+		<p>This is a low priority. Many times the word "Afterword" would be included in the heading associated with this item. It should be vocalized when the document semantic verbosity is set to all.</p>
 		<p>Suggested output: "afterword"</p>
 		<h2 id="doc-appendix">doc-appendix Test</h2>
 		<div role="doc-appendix">This text in the <code>div</code> element has the role of appendix.</div>
-		<p>This is a medium priority. Many times the word "Appendix" would be included in the heading associated with this item. It should be vocalized when the document semantic verbosity is set to most or all.</p>
+		<p>This is a low priority. Many times the word "Appendix" would be included in the heading associated with this item. It should be vocalized when the document semantic verbosity is set to all.</p>
 		<p>Suggested output: "appendix"</p>
 		<h2 id="doc-backlink">doc-backlink Test</h2>
 		<a role="doc-backlink" href="#">a backlink</a>
-		<p>This is a critical priority. The vocalization of the information that it is a back link should always be vocalized, unless the document semantic verbosity of none is selected.</p>
+		<p>This is a high priority. The vocalization of the information that it is a back link should always be vocalized.</p>
 		<p>Suggested output: "back link"</p>
 		<p>This is an "actionable item" meaning the user would follow the back link to return to the identified position in the publication.</p>
 		<h2 id="doc-bibliography">doc-bibliography Test</h2>
@@ -61,28 +60,28 @@
 			</ul>
 		</section>
 		<div role="doc-bibliography">This text in the <code>div</code> element has bibliography role. Test added to check if it acts differently from role on <code>section</code> tag.</div>
-		<p>This is a medium priority. Many times the word "bibliography" would be included in the heading associated with this item. It should be vocalized when the document semantic verbosity is set to Most or all.</p>
+		<p>This is a low priority. Many times the word "bibliography" would be included in the heading associated with this item. It should be vocalized when the document semantic verbosity is set to all.</p>
 		<p>Suggested output: "bibliography"</p>
 		<h2 id="doc-biblioref">doc-biblioref Test</h2>
 		<a role="doc-biblioref" href="#">a role of biblioref.</a>
-		<p>This is a critical priority. The vocalization of the information that it is a Bibliographic reference link should always be vocalized, unless the document semantic verbosity of none is selected.</p>
+		<p>This is a high priority. The vocalization of the information that it is a Bibliographic reference link should always be vocalized.</p>
 		<p>Suggested output: "bibliographic reference"</p>
 		<p>This is an "actionable item" meaning the user would follow the link to go to the reference identified.</p>
 		<h2 id="doc-chapter">doc-chapter Test</h2>
 		<div role="doc-chapter">This text has the  role of chapter.</div>
-		<p>This is a high priority. Many times the word "chapter" will not appear in the heading. It should be vocalized when the document semantic verbosity is set to some, most, or all.</p>
+		<p>This is a low priority. Many times the word "chapter" will not appear in the heading, but the semantics is easily infered. It should be vocalized when the document semantic verbosity is,, set to all.</p>
 		<p>Suggested output: "chapter"</p>
 		<h2 id="doc-colophon">doc-colophon Test</h2>
 		<div role="doc-colophon">This text has the role of colophon.</div>
-		<p>This is a low priority. Many times the word "colophon" would be included in the heading associated with this item. It should be vocalized when the document semantic verbosity is set to all.</p>
+		<p>This is a medium priority. Many times the word "colophon" would be included in the heading associated with this item. It should be vocalized when the document semantic verbosity is set to most or all.</p>
 		<p>Suggested output: "colophon"</p>
 		<h2 id="doc-conclusion">doc-conclusion Test</h2>
 		<div role="doc-conclusion">This text has the  role of conclusion.</div>
-		<p>This is a medium priority. Many times the word "conclusion" would be included in the heading associated with this item. It should be vocalized when the document semantic verbosity is set to  most or all.</p>
+		<p>This is a low priority. Many times the word "conclusion" would be included in the heading associated with this item. It should be vocalized when the document semantic verbosity is set to all.</p>
 		<p>Suggested output: "conclusion"</p>
 		<h2 id="doc-cover">doc-cover Test</h2>
 		<img role="doc-cover" src="image_001.jpg" alt="A beautiful cover with role of cover."/>
-		<p>This is a medium priority. Many times the word "Cover" would be included in the heading associated with this item. It should be vocalized when the document semantic verbosity is set to most or all.</p>
+		<p>This is a medium priority. Many times the word "Cover" would be included in the heading associated with this item or it is easily infered. It should be vocalized when the document semantic verbosity is set to most or all.</p>
 		<p>Suggested output, "cover"</p>
 		<h2 id="doc-credit">doc-credit Test</h2>
 		<div role="doc-credit">This text has the role of credit.</div>
@@ -94,7 +93,7 @@
 		<p>Suggested output: "credits"</p>
 		<h2 id="doc-dedication">doc-dedication Test</h2>
 		<div role="doc-dedication">This text has the role of dedication.</div>
-		<p>This is a medium priority. Many times the word "dedication" would be included in the heading associated with this item. It should be vocalized when the document semantic verbosity is set to most or all.</p>
+		<p>This is a medium priority. sometimes the word "dedication" would be included in the heading associated with this item. It should be vocalized when the document semantic verbosity is set to most or all.</p>
 		<p>Suggested output: "dedication"</p>
 		<h2 id="doc-endnotes">doc-endnotes Tests</h2>
 		<section role="doc-endnotes">
@@ -104,7 +103,7 @@
 				<li>list item inside endnotes</li>
 				<li>second list item inside endnotes</li>
 			</ul>
-			<p>This is a critical priority. Many times the word "end notes" would be included in the heading associated with this item. It should be vocalized all of the time, unless the document semantic verbosity   of  none is selected. </p>
+			<p>This is a medium priority. Many times the word "end notes" would be included in the heading associated with this item. It should be vocalized most or all of the time. </p>
 			<p>Suggested output: "endnotes"</p>
 		</section>
 		<div role="doc-endnotes">This text in the <code>div</code> element has the endnotes role. Test added to check if it acts differently from role on <code>section</code> tag.</div>
@@ -221,6 +220,6 @@
 		<div role="complementary">
 			This text in a <code>div</code> element has the  role of complementary.
 		</div>
-	  </main>
+	  
 	</body>
 </html>
