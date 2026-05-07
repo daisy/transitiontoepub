@@ -5,7 +5,7 @@
 	<body>
 	  <header>
 		<h1>DPUB ARIA Test Suite</h1>
-		<p>Last updated: May 6, 2025</p>
+		<p>Last updated: May 7, 2025</p>
 <p>This test Suite has been created and is maintained by the DAISY Consortium's "Transition to Accessible EPUB" working group. To ask questions or get clarification, please use the <a href="https://github.com/daisy/transitiontoepub/issues" >issue tracker on GitHub</a>.</p>
 	  </header>
 	  <main>
@@ -21,7 +21,7 @@
 <p>The document semantic verbosity i.e., selection of the amount  of document semantics to vocalize  or present, could be grouped as "all," "most," or "some."</p></main> 
 
 		<dl>
-			<dt>high</dt><dd>should  always be presented.</dd>
+			<dt>high</dt><dd>should  always be presented, i.e., when verbosity is set to some.</dd>
 						<dt>medium</dt><dd>should be presented when the document semantic verbosity "most" or "all"  is selected.</dd>
 			<dt>low</dt><dd>should be presented     when the document semantic verbosity "all" is selected.</dd>
 		</dl>
@@ -69,7 +69,7 @@
 		<p>This is an "actionable item" meaning the user would follow the link to go to the reference identified.</p>
 		<h2 id="doc-chapter">doc-chapter Test</h2>
 		<div role="doc-chapter">This text has the  role of chapter.</div>
-		<p>This is a low priority. Many times the word "chapter" will not appear in the heading, but the semantics is easily inferred. It should be vocalized when the document semantic verbosity is,, set to all.</p>
+		<p>This is a low priority. Many times the word "chapter" will not appear in the heading, but the semantics is easily inferred. It should be vocalized when the document semantic verbosity is set to all.</p>
 		<p>Suggested output: "chapter"</p>
 		<h2 id="doc-colophon">doc-colophon Test</h2>
 		<div role="doc-colophon">This text has the role of colophon.</div>
@@ -103,7 +103,7 @@
 				<li>list item inside endnotes</li>
 				<li>second list item inside endnotes</li>
 			</ul>
-			<p>This is a medium priority. Many times the word "end notes" would be included in the heading associated with this item. It should be vocalized most or all of the time. </p>
+			<p>This is a medium priority. Many times the word "end notes" would be included in the heading associated with this item. It should be vocalized when the document semantic verbosity is set to most or all.</p>
 			<p>Suggested output: "endnotes"</p>
 		</section>
 		<div role="doc-endnotes">This text in the <code>div</code> element has the endnotes role. Test added to check if it acts differently from role on <code>section</code> tag.</div>
@@ -135,7 +135,7 @@
                              <div role="doc-glossary">
                                            This text has the role of glossary.
 <ul>
-                                           <li><span role="term">foo role of term.</span>: <span role="definition">bar role of definition.</span></li>
+                                           <li><span role="term">foobar</span>: <span role="definition">A word used in computer science to mean anything you want.</span></li>
 </ul>
                              </div>
                                            <p>This is a low priority. Many times the word "glossary" would be included in the heading associated with this item. It should be vocalized when the document semantic verbosity is set to all.</p>
@@ -144,7 +144,7 @@
 
 		<h2 id="doc-glossref">doc-glossref Test</h2>
 		<a role="doc-glossref" href="#">a glossary reference</a>
-		<p>This is a high priority. The vocalization of the information that it is a glossary reference link should always be vocalized.</p>
+		<p>This is a high priority. The vocalization of the information that it is a glossary reference link should always be vocalized. For example, to the term foobar above.</p>
 		<p>Suggested output: "glossary reference"</p>
 		<p>This is an "actionable item" meaning the user would follow the link to go to the reference identified.</p>
 		<h2 id="doc-index">doc-index Test</h2>
@@ -163,7 +163,7 @@
 		<h2 id="doc-notice">doc-notice Test</h2>
 		<div role="doc-notice">This text has the role of notice.</div>
 		<p>This is a high priority. 
-			the word "notice or caution" would be included in the heading associated with this item. It should be vocalized when the document semantic verbosity is set to most or all.
+			the word "notice or caution" would be included in the heading associated with this item. It should be vocalized all of the time.
 		</p>
 		<p>Suggested output: "notice"</p>
 		<h2 id="doc-pagebreak">doc-pagebreak Test</h2>
@@ -190,7 +190,7 @@
 		<p>Suggested output: "prolog"</p>
 		<h2 id="doc-pullquote">doc-pullquote Test</h2>
 		<div role="doc-pullquote">This text has the role of pullquote.</div>
-		<p>This is a high priority. Many times emphasized portions of  text are in a margin or pulled to the side. The information that emphasized text is being presented should be vocalized when the document semantic verbosity is set to some, most, or all.</p>
+		<p>This is a high priority. Many times emphasized portions of  text are in a margin or pulled to the side. The information that emphasized text is being presented should be vocalized all of the time.</p>
 		<p>Suggested output: "emphasized text"</p>
 		<h2 id="doc-qna">doc-qna Test</h2>
 		<div role="doc-qna">This text has the role of qna.</div>
@@ -198,7 +198,7 @@
 		<p>Suggested output: "questions and answers"</p>
 		<h2 id="doc-subtitle">doc-subtitle Test</h2>
 		<div role="doc-subtitle">This text has the role of subtitle.</div>
-		<p>This is a high priority. Many times the subtitle is present after the title. It should be vocalized when the document semantic verbosity is set to some, most, or all.</p>
+		<p>This is a high priority. Many times the subtitle is present after the title. It should be vocalized all of the time.</p>
 		<p>Suggested output: "subtitle"</p>
 		<h2 id="doc-tip">doc-tip Test</h2>
 		<div role="doc-tip">This text has the role of tip.</div>
