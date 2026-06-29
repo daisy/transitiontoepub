@@ -5,7 +5,7 @@
 	<body>
 	  <header>
 		<h1>DPUB ARIA Test Suite</h1>
-		<p>Last updated: May 7, 2025</p>
+		<p>Last updated:June 28, 2026</p>
 <p>This test Suite has been created and is maintained by the DAISY Consortium's "Transition to Accessible EPUB" working group. To ask questions or get clarification, please use the <a href="https://github.com/daisy/transitiontoepub/issues" >issue tracker on GitHub</a>.</p>
 	  </header>
 	  <main>
@@ -169,13 +169,13 @@
 		<h2 id="doc-pagebreak">doc-pagebreak Test</h2>
 		<p>In this text there is a pagebreak <span role="doc-pagebreak" aria-label="23" />.</p>
 		<p>This is a medium priority. The vocalization of the information that it is a page break should be vocalized when the document semantic verbosity is set to most or all.</p>
-		<p>Suggested output: "page break"</p>
-		<p>This is an "actionable item" meaning the user would want to go to the previous or next page break. This is an excellent candidate for single letter navigation .</p>
+		<p>Suggested output: "page"</p>
+		<p>The reading system may have a function to go to a certain page, and to the next or previous page break, and the word page should be announced. . This is an excellent candidate for single letter navigation . If the page number is visible, the word page should be announced before the number. If the number is not visible, the word page should be announced before the aria-label. In all cases the word page is announced followed by the number.</p>
 		<h2 id="doc-pagelist">doc-pagelist Test</h2>
 		<div role="doc-pagelist">This text has the role of pagelist.</div>
 		<p>This is a low priority. It should be vocalized when the document semantic verbosity is set to all.</p>
 		<p>Suggested output: "list of pages"</p>
-		<p>This is an "actionable item" meaning the user would want to be taken to the list of pages or if they were presented with a list of pages, it would be announced.</p>
+		
 		<h2 id="doc-part">doc-part Test</h2>
 		<div role="doc-part">This text has the role of part.</div>
 		<p>This is a low priority. Many times the word "part" would be included in the heading associated with this item. It should be vocalized when the document semantic verbosity is set to all .</p>
@@ -190,8 +190,8 @@
 		<p>Suggested output: "prolog"</p>
 		<h2 id="doc-pullquote">doc-pullquote Test</h2>
 		<div role="doc-pullquote">This text has the role of pullquote.</div>
-		<p>This is a high priority. Many times emphasized portions of  text are in a margin or pulled to the side. The information that emphasized text is being presented should be vocalized all of the time.</p>
-		<p>Suggested output: "emphasized text"</p>
+		<p>This is a medium priority. Many times an extracted quote is emphasized by taking portions of  text and repeating it in the margin or pulled to the side. It should be vocalized when the document semantic verbosity is set to most or all. </p>
+		<p>Suggested output: "extracted quote"</p>
 		<h2 id="doc-qna">doc-qna Test</h2>
 		<div role="doc-qna">This text has the role of qna.</div>
 		<p>This is a low priority. Many times the words "Questions and Answers" would be included in the heading associated with this item. It should be vocalized when the document semantic verbosity is set to all.</p>
@@ -208,7 +208,7 @@
 		<div role="doc-toc">This text has the role of toc.</div>
 		<p>This is a low priority. It should be vocalized when the document semantic verbosity is set to all.</p>
 		<p>Suggested output: "table of contents"</p>
-		<p>This is an "actionable item" meaning the user would want to have a mechanism to go to the table of contents.</p>
+		
 		
 <h2>Tests to make sure nothing is voiced</h2>
 
